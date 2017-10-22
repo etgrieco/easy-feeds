@@ -4,6 +4,9 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+.byebug_history
+npm-debug.log
+
 # Ignore MacOSX files
 .DS_Store
 
