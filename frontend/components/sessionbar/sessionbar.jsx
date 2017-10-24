@@ -9,9 +9,7 @@ class SessionBar extends React.Component {
   }
 
   handleSignInClick(e) {
-    // debugger
     e.preventDefault();
-    console.log("button clicked");
     this.props.history.push("/signup");
   }
 
