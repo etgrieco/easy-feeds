@@ -1,11 +1,10 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import SessionBar from './sessionbar/sessionbar';
+import SessionBarContainer from './sessionbar/sessionbar_container';
 import MainPage from './main_page/main_page';
 
 const App = () => (
   <div>
-    <SessionBar />
+    <SessionBarContainer />
     <MainPage />
   </div>
 );

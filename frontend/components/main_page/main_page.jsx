@@ -1,14 +1,17 @@
 import React from 'react';
 import Landing from './landing/landing';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import SessionFormContainer from '../session/session_form_container';
+import { AuthRoute } from '../../util/route_util.js';
 
 const MainPage = props => (
 
   <main>
-    <Route path="/" component={Landing} />
-    <Route path="/login" component={SessionFormContainer} />
-    <Route path="/signup" component={SessionFormContainer} />
+    <Switch>
+      <AuthRoute path="/login" component={SessionFormContainer} />
+      <AuthRoute path="/signup" component={SessionFormContainer} />
+      <Route path="/" component={Landing} />
+    </Switch>
   </main>
 );
 

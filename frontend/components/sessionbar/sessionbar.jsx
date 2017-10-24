@@ -1,28 +1,29 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
 class SessionBar extends React.Component {
-
   constructor(props) {
     super(props);
-    this.handleSignInClick = this.handleSignInClick.bind(this);
   }
 
-  handleSignInClick(e) {
-    e.preventDefault();
-    this.props.history.push("/signup");
+  sessionButton() {
+    const buttonText = this.props.loggedIn ?  "Log Out" : "Sign Up";
+    const buttonAction = this.props.loggedIn ?
+      e => this.props.logout()
+      : e => this.props.history.push("/signup");
+
+    return (
+      <button onClick={buttonAction}>{buttonText}</button>
+    );
   }
 
   render() {
-
     return (
       <header className="session-bar">
         <h1>EasyFeeds</h1>
-        <button onClick={this.handleSignInClick}>Sign Up</button>
+        {this.sessionButton()}
       </header>
     );
-
   }
 }
 
-export default withRouter(SessionBar);
+export default SessionBar;
