@@ -2,14 +2,13 @@ import React from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
-
 class SessionForm extends Component {
 
   constructor(props) {
     super(props);
     this.state = { email: "", password: "", first_name: "", last_name: ""};
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearErrors = this.props.clearSessionErrors; // for semantic ease
   }
 
   update(field) {
@@ -18,11 +17,37 @@ class SessionForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.clearErrors();
     const { processForm } = this.props;
     const credentials = Object.assign({}, this.state);
     processForm(credentials)
       .then(() => this.props.history.push("/"),
       () => this.setState({ email: "", password: ""}));
+  }
+
+  userCreationDetails() {
+    return this.props.formType === 'signup' ?
+      <div className="user-details">
+        <label>First Name
+          <input type="text"
+            onChange={this.update('first_name')}
+            value={this.state.first_name} />
+        </label>
+        <label>Last Name
+          <input type="text"
+            onChange={this.update('last_name')}
+            value={this.state.last_name} />
+        </label>
+      </div>
+      : "";
+  }
+
+  handleXClick() {
+    return e => {
+      e.preventDefault();
+      this.props.history.push("/");
+      this.clearErrors();
+    };
   }
 
   render() {
@@ -34,6 +59,8 @@ class SessionForm extends Component {
 
     return(
       <div>
+        <button onClick={this.handleXClick()}>x</button>
+
         <h3>{text}</h3>
         <form className="sesssion-form" onSubmit={this.handleSubmit}>
           <label>Email
@@ -46,19 +73,14 @@ class SessionForm extends Component {
               onChange={this.update('password')}
               value={this.state.password} />
           </label>
-          <label>First Name
-            <input type="text"
-              onChange={this.update('first_name')}
-              value={this.state.first_name} />
-          </label>
-          <label>Last Name
-            <input type="text"
-              onChange={this.update('last_name')}
-              value={this.state.last_name} />
-          </label>
+
+          {this.userCreationDetails()}
+
           <button>{text}</button>
         </form>
-        <Link to={otherLink}>{otherText}</Link>
+        <Link to={otherLink}
+          onClick={this.clearErrors}
+          >{otherText}</Link>
 
         <ul>
           {errors}
