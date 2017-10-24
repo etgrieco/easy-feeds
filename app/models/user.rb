@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class User < ApplicationRecord
   validates :email, :first_name, :password_digest, :session_token,
     presence: true
