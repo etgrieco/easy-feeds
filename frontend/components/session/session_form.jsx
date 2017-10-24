@@ -55,7 +55,10 @@ class SessionForm extends Component {
     const text = formType === 'signup' ? "Sign Up" : "Log In";
     const otherText = formType === 'signup' ? "Log In" : "Sign Up";
     const otherLink = formType === 'signup' ? '/login' : '/signup';
-    const errorItems = errors.map((error, idx) => (<li key={idx}>{error}</li>));
+
+    const errorItems = errors.map((error, idx) => (
+      <li key={idx}>{error}</li>
+    ));
 
     return(
       <div>
@@ -83,7 +86,7 @@ class SessionForm extends Component {
           >{otherText}</Link>
 
         <ul>
-          {errors}
+          {errorItems}
         </ul>
       </div>
     );
