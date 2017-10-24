@@ -24,10 +24,15 @@
     "test": "test"
   },
   "devDependencies": {},
+  "engines": {
+  "node": "4.1.1",
+  "npm": "2.1.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:watch": "webpack --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
