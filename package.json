@@ -25,8 +25,8 @@
   },
   "devDependencies": {},
   "engines": {
-  "node": "6.7.0",
-  "npm": "3.10.7"
+    "node": "6.7.0",
+    "npm": "3.10.7"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
