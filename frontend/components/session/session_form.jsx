@@ -92,7 +92,6 @@ class SessionForm extends Component {
           <Link to={otherLink}
             onClick={this.clearErrors}
             >{otherText}</Link>
-
           <ul>
             {errorItems}
           </ul>
