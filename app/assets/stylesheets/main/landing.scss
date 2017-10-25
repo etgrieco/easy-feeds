@@ -1,11 +1,33 @@
 .landing-container {
   margin: 0 auto;
-  background: lightgrey;
   width: 850px;
+  padding-top: 70px;
+}
+
+.landing-container h1 {
+  padding-bottom: 25px;
+}
+
+.landing-container p {
+  width: 300px;
+  padding-bottom: 25px;
+  font-size: 20px;
+  line-height: 32px;
+  color: #9F9F9F;
+  font-weight: 200px;
 }
 
 .landing-image-container {
   margin: 0 auto;
-  height: 600px;
-  background: lightblue;
+  width: 840;
+  height: 630px;
+  background: #4C5250;
+  color: white
+}
+
+.landing-get-started-button {
+  background: #2BB14C;
+  font-weight: 400;
+  color: white;
+  padding: 15px 40px;
 }

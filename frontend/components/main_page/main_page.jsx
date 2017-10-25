@@ -6,7 +6,7 @@ import { AuthRoute } from '../../util/route_util.js';
 
 const MainPage = props => (
 
-  <main>
+  <main className="main-page">
     <Route path="/" component={Landing} />
     <Switch>
       <AuthRoute path="/login" component={SessionFormContainer} />

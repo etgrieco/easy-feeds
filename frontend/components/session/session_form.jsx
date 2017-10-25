@@ -65,7 +65,8 @@ class SessionForm extends Component {
         <div className="session-modal-screen"></div>
 
         <div className="session-modal-form">
-          <button onClick={this.handleXClick()}>x</button>
+          <button className="session-form-exit-button"
+            onClick={this.handleXClick()}>x</button>
 
           <h3>{text}</h3>
           <form className="sesssion-form" onSubmit={this.handleSubmit}>

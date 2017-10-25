@@ -1,19 +1,21 @@
 body {
   font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }
 
 body h1 {
   font-size: 35px;
   margin-bottom: 5px;
+  font-weight: 700;
 }
 
 body button {
   background-color: white;
-  border-radius: 3px;
-  border: 1px solid black;
-  padding: 4px;
+  padding: 4px 8px;
   margin: 10px;
   text-transform: uppercase;
+  border-radius: 5px;
+  align-self: center;
 }
 
 body input {
