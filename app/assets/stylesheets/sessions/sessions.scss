@@ -16,10 +16,13 @@
   vertical-align: middle;
   display: inline-block;
   border: 1px solid lightgrey;
+  font-size: 14px;
+  padding: 8px 20px;
 }
 
 .session-bar button:hover {
   border-color: #9f9f9f;
+  font-weight: bold;
 }
 
 .session-modal-screen {
@@ -37,7 +40,7 @@
   top: 100px;
   left: 50%;
   margin-left: -220px;
-  width: 360px;
+  width: 500px;
   background: #fff;
   z-index: 3;
   border-radius: 5px;
