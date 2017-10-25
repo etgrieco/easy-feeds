@@ -28,18 +28,14 @@ class SessionForm extends Component {
   userCreationDetails() {
     return this.props.formType === 'signup' ?
       <div className="user-details">
-        <label>
           <input type="text"
             placeholder="First Name"
             onChange={this.update('first_name')}
             value={this.state.first_name} />
-        </label>
-        <label>
           <input type="text"
             placeholder="Last Name (optional)"
             onChange={this.update('last_name')}
             value={this.state.last_name} />
-        </label>
       </div>
       : "";
   }
@@ -76,20 +72,16 @@ class SessionForm extends Component {
           <div className="session-modal-form">
             <h3>{headerText}</h3>
             <form className="session-form" onSubmit={this.handleSubmit}>
-              <label>
                 <input type="text"
                   placeholder="Email"
                   onChange={this.update('email')}
                   value={this.state.email}/>
-              </label>
-              <label>
                 <input type="password"
                   placeholder={"Password"
                     + ( formType === "signup" ?
                     " (minimum 6 characters)" : "")}
                     onChange={this.update('password')}
                     value={this.state.password} />
-                </label>
 
                 {this.userCreationDetails()}
 
