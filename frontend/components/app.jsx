@@ -4,11 +4,9 @@ import NavBar from './navbar/navbar';
 import { AuthRoute, ProtectedRoute } from '../util/route_util.js';
 
 const App = () => (
-  <div>
-    <div className="app-wrapper">
-      <ProtectedRoute path="/i" component={NavBar} />
-      <MainPage />
-    </div>
+  <div className="app-wrapper">
+    <ProtectedRoute path="/i" component={NavBar} />
+    <MainPage />
   </div>
 );
 

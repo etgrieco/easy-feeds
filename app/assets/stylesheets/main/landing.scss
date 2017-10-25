@@ -1,8 +1,12 @@
 .landing-container {
-  padding-top: 40px;
   background: #F2F2F2;
-  width: 850px;
+  width: 100%;
+  padding: 40px 0 50px 50px;
+}
+
+.landing-content {
   margin: 0 auto;
+  width: 850px;
 }
 
 .landing-container h1 {
@@ -24,4 +28,8 @@
   height: 630px;
   background: #4C5250;
   color: white
+}
+
+.landing-content {
+
 }

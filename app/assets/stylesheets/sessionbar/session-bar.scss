@@ -11,13 +11,13 @@
 }
 
 .session-bar-contents {
+  padding: 0 50px;
+  margin: 0 auto;
   min-width: 400px;
-
+  max-width: 770px;
   display: flex;
   justify-content: space-between;
-
   color: grey;
-
   align-items: center;
 }
 
