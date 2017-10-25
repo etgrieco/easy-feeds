@@ -1,7 +1,31 @@
+.session-modal-form {
+  padding: 20px;
+  border-radius: inherit;
+}
+
 .session-form {
   width: 300px;
   margin: 0 auto;
   text-align: center;
+}
+
+.session-modal-header {
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+  background: #9f9f9f;
+  width: 100%;
+}
+
+.session-form-exit-button {
+  align-self: center;
+  // color: lightpink;
+  color: #8f8f8f;
+  background: none;
+}
+
+.session-form-exit-button:hover {
+  color: #6f6f6f;
 }
 
 .session-form button {
@@ -22,10 +46,21 @@
   border-color: black;
 }
 
-.session-form-exit-button {
-  color: lightpink;
+.session-form-supplement {
+  width: 100%;
+  text-align: center;
 }
 
-.session-form-exit-button:hover {
-  color: red;
+.session-form-supplement a {
+  display: inline-block;
+  text-decoration: underline;
+  color: #9f9f9f;
+}
+
+.session-form-supplement a:hover {
+  color: #8f8f8f;
+}
+
+.session-errors {
+
 }

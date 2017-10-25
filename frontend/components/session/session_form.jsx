@@ -28,13 +28,15 @@ class SessionForm extends Component {
   userCreationDetails() {
     return this.props.formType === 'signup' ?
       <div className="user-details">
-        <label>First Name
+        <label>
           <input type="text"
+            placeholder="First Name"
             onChange={this.update('first_name')}
             value={this.state.first_name} />
         </label>
-        <label>Last Name
+        <label>
           <input type="text"
+            placeholder="Last Name (optional)"
             onChange={this.update('last_name')}
             value={this.state.last_name} />
         </label>
@@ -55,7 +57,7 @@ class SessionForm extends Component {
     const headerText = formType === 'signup' ? "Sign Up for EasyFeeds"
       : "Login to EasyFeeds";
     const buttonText = formType === 'signup' ? "Sign Up" : "Login";
-    const otherText = formType === 'signup' ? "Login" : "Sign Up";
+    const otherText = formType === 'signup' ? "Existing User? Login" : "New User? Sign up";
     const otherLink = formType === 'signup' ? '/login' : '/signup';
 
     const errorItems = errors.map((error, idx) => (
@@ -66,35 +68,45 @@ class SessionForm extends Component {
       <div className="session-modal">
         <div className="session-modal-screen"></div>
 
-        <div className="session-modal-form">
-          <button className="session-form-exit-button"
-            onClick={this.handleXClick()}>X</button>
+        <div className="session-modal-form-container">
+          <header className="session-modal-header">
+            <button className="session-form-exit-button"
+              onClick={this.handleXClick()}>&#10006;</button>
+          </header>
+          <div className="session-modal-form">
+            <h3>{headerText}</h3>
+            <form className="session-form" onSubmit={this.handleSubmit}>
+              <label>
+                <input type="text"
+                  placeholder="Email"
+                  onChange={this.update('email')}
+                  value={this.state.email}/>
+              </label>
+              <label>
+                <input type="password"
+                  placeholder={"Password"
+                    + ( formType === "signup" ?
+                    " (minimum 6 characters)" : "")}
+                    onChange={this.update('password')}
+                    value={this.state.password} />
+                </label>
 
-          <h3>{headerText}</h3>
-          <form className="session-form" onSubmit={this.handleSubmit}>
-            <label>
-              <input type="text"
-                placeholder="Email"
-                onChange={this.update('email')}
-                value={this.state.email}/>
-            </label>
-            <label>
-              <input type="password"
-                placeholder="Password"
-                onChange={this.update('password')}
-                value={this.state.password} />
-            </label>
+                {this.userCreationDetails()}
 
-            {this.userCreationDetails()}
+                <button className="green-button">{buttonText}</button>
+              </form>
 
-            <button className="green-button">{buttonText}</button>
-          </form>
-          <Link to={otherLink}
-            onClick={this.clearErrors}
-            >{otherText}</Link>
-          <ul>
-            {errorItems}
-          </ul>
+              <div className="session-form-supplement">
+                <Link to={otherLink}
+                  onClick={this.clearErrors}
+                  >{otherText}</Link>
+
+                <ul className="session-errors">
+                  {errorItems}
+                </ul>
+              </div>
+
+            </div>
         </div>
       </div>
     );

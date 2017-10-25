@@ -32,13 +32,12 @@
   background: rgba(0, 0, 0, 0.8);
 }
 
-.session-modal-form {
+.session-modal-form-container {
   position: absolute;
   top: 100px;
   left: 50%;
   margin-left: -220px;
   width: 360px;
-  padding: 20px;
   background: #fff;
   z-index: 3;
   border-radius: 5px;
