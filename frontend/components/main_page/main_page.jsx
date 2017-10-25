@@ -8,11 +8,9 @@ import StoriesContainer from '../stories/stories_container';
 const MainPage = props => (
 
   <main className="main-page">
-    <AuthRoute path="/" component={Landing} />
-    <Switch>
-      <AuthRoute path="/login" component={SessionFormContainer} />
-      <AuthRoute path="/signup" component={SessionFormContainer} />
-    </Switch>
+    <AuthRoute exact path="/" component={Landing} />
+    <AuthRoute path="/login" component={Landing} />
+    <AuthRoute path="/signup" component={Landing} />
     <ProtectedRoute path="/latest" component={StoriesContainer} />
   </main>
 );

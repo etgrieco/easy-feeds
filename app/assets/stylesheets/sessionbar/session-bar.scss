@@ -18,12 +18,13 @@
 
   margin: 0 auto;
   color: grey;
+
+  align-items: center;
 }
 
 .session-bar-contents button {
   color: #9f9f9f;
   margin-right: 20px;
-  vertical-align: middle;
   display: inline-block;
   border: 1px solid lightgrey;
   font-size: 14px;

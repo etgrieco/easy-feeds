@@ -1,4 +1,6 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+import SessionFormContainer from '../../session/session_form_container';
 
 const Landing = (props) => {
   return (
@@ -12,6 +14,8 @@ const Landing = (props) => {
       <div className="landing-image-container">
         <p>Screenshot of final app goes here.</p>
       </div>
+      <Route path="/login" component={SessionFormContainer} />
+      <Route path="/signup" component={SessionFormContainer} />
     </div>
   );
 };

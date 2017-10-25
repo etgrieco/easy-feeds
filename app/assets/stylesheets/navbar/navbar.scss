@@ -1,6 +1,13 @@
 .navbar-container {
+  flex-shrink: 0;
   width: 260px;
-  height: 1000px;
   background: lightgrey;
   padding-top: 40px;
+  overflow-y: auto;
+}
+
+.sample-nav-container {
+  height: 300px;
+  margin: 20px;
+  background: lightblue;
 }
