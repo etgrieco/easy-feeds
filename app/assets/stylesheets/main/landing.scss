@@ -1,10 +1,12 @@
 .landing-container {
   background: #F2F2F2;
   width: 100%;
-  padding: 40px 0 50px 50px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
 }
 
 .landing-content {
+  padding: 40px 50px 50px 50px;
   margin: 0 auto;
   width: 850px;
 }
