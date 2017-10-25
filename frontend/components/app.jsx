@@ -6,8 +6,10 @@ import NavBar from './navbar/navbar';
 const App = () => (
   <div>
     <SessionBarContainer />
-    <NavBar />
-    <MainPage />
+    <div className="app-wrapper">
+      <NavBar />
+      <MainPage />
+    </div>
   </div>
 );
 

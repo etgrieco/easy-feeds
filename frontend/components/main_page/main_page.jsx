@@ -2,7 +2,7 @@ import React from 'react';
 import Landing from './landing/landing';
 import { Route, Switch } from 'react-router-dom';
 import SessionFormContainer from '../session/session_form_container';
-import { AuthRoute } from '../../util/route_util.js';
+import { AuthRoute, ProtectedRoute } from '../../util/route_util.js';
 import StoriesContainer from '../stories/stories_container';
 
 const MainPage = props => (
@@ -13,7 +13,7 @@ const MainPage = props => (
       <AuthRoute path="/login" component={SessionFormContainer} />
       <AuthRoute path="/signup" component={SessionFormContainer} />
     </Switch>
-    <Route exact path="/latest" component={StoriesContainer} />
+    <ProtectedRoute path="/latest" component={StoriesContainer} />
   </main>
 );
 
