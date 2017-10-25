@@ -19,8 +19,10 @@ class SessionBar extends React.Component {
   render() {
     return (
       <header className="session-bar">
-        <h3 className="session-logo">EasyFeeds</h3>
-        {this.sessionButton()}
+        <div className="session-bar-contents">
+          <h3 className="session-logo">EasyFeeds</h3>
+          {this.sessionButton()}
+        </div>
       </header>
     );
   }
