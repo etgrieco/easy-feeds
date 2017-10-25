@@ -6,10 +6,10 @@ class SessionBar extends React.Component {
   }
 
   sessionButton() {
-    const buttonText = this.props.loggedIn ?  "Log Out" : "Sign Up";
+    const buttonText = this.props.loggedIn ?  "Log Out" : "Log In";
     const buttonAction = this.props.loggedIn ?
       e => this.props.logout()
-      : e => this.props.history.push("/signup");
+      : e => this.props.history.push("/login");
 
     return (
       <button onClick={buttonAction}>{buttonText}</button>
