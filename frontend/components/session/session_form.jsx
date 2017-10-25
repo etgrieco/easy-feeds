@@ -52,8 +52,10 @@ class SessionForm extends Component {
 
   render() {
     const { formType, errors } = this.props;
-    const text = formType === 'signup' ? "Sign Up" : "Log In";
-    const otherText = formType === 'signup' ? "Log In" : "Sign Up";
+    const headerText = formType === 'signup' ? "Sign Up for EasyFeeds"
+      : "Login to EasyFeeds";
+    const buttonText = formType === 'signup' ? "Sign Up" : "Login";
+    const otherText = formType === 'signup' ? "Login" : "Sign Up";
     const otherLink = formType === 'signup' ? '/login' : '/signup';
 
     const errorItems = errors.map((error, idx) => (
@@ -66,24 +68,26 @@ class SessionForm extends Component {
 
         <div className="session-modal-form">
           <button className="session-form-exit-button"
-            onClick={this.handleXClick()}>x</button>
+            onClick={this.handleXClick()}>X</button>
 
-          <h3>{text}</h3>
-          <form className="sesssion-form" onSubmit={this.handleSubmit}>
-            <label>Email
+          <h3>{headerText}</h3>
+          <form className="session-form" onSubmit={this.handleSubmit}>
+            <label>
               <input type="text"
+                placeholder="Email"
                 onChange={this.update('email')}
                 value={this.state.email}/>
             </label>
-            <label>Password
+            <label>
               <input type="password"
+                placeholder="Password"
                 onChange={this.update('password')}
                 value={this.state.password} />
             </label>
 
             {this.userCreationDetails()}
 
-            <button>{text}</button>
+            <button className="green-button">{buttonText}</button>
           </form>
           <Link to={otherLink}
             onClick={this.clearErrors}

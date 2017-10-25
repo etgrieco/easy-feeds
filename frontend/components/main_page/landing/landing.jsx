@@ -6,7 +6,7 @@ const Landing = (props) => {
       <h1>Welcome to EasyFeeds</h1>
       <p>An easy way to aggregate stories from across the web.</p>
       <button
-        className="landing-get-started-button"
+        className="green-button"
         onClick={e => props.history.push("/signup")}>
         Get Started</button>
       <div className="landing-image-container">

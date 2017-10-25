@@ -1,0 +1,28 @@
+.session-form {
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.session-form button {
+  width: inherit;
+}
+
+.session-form input {
+  display: inline-block;
+  background: #F2F2F2;
+  border: 1px solid lightgrey;
+  padding: 10px;
+}
+
+.session-form input:focus {
+  border-color: black;
+}
+
+.session-form-exit-button {
+  color: lightpink;
+}
+
+.session-form-exit-button:hover {
+  color: red;
+}

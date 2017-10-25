@@ -12,6 +12,7 @@
  *
  *= require reset
  *= require body
+ *= require buttons
  *= require main/landing
  *= require sessions/sessions
  *= require_self
