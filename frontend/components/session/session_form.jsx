@@ -21,7 +21,7 @@ class SessionForm extends Component {
     const { processForm } = this.props;
     const credentials = Object.assign({}, this.state);
     processForm(credentials)
-      .then(() => this.props.history.push("/latest"),
+      .then(() => this.props.history.push("/i/latest"),
       () => this.setState({ email: "", password: ""}));
   }
 

@@ -8,7 +8,7 @@ const StoriesContainer = () => {
   }
 
   return <div className="stories-container">
-
+    {lis}
   </div>;
 };
 
