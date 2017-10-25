@@ -1,0 +1,36 @@
+.session-bar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  width: 100%;
+  height: 60px;
+  box-shadow: 2px 2px 2px #C2C2C2;
+}
+
+.session-bar-contents {
+  width: 850px;
+
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0 auto;
+  color: grey;
+}
+
+.session-bar-contents button {
+  color: #9f9f9f;
+  margin-right: 20px;
+  vertical-align: middle;
+  display: inline-block;
+  border: 1px solid lightgrey;
+  font-size: 14px;
+  padding: 8px 20px;
+}
+
+.session-bar-contents button:hover {
+  border-color: #9f9f9f;
+  color: grey;
+}

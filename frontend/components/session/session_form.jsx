@@ -53,7 +53,8 @@ class SessionForm extends Component {
     const headerText = formType === 'signup' ? "Sign Up for EasyFeeds"
       : "Login to EasyFeeds";
     const buttonText = formType === 'signup' ? "Sign Up" : "Login";
-    const otherText = formType === 'signup' ? "Existing User? Login" : "New User? Sign up";
+    const otherText = formType === 'signup' ? "Existing User? Login"
+      : "New User? Sign up";
     const otherLink = formType === 'signup' ? '/login' : '/signup';
 
     const errorItems = errors.map((error, idx) => (

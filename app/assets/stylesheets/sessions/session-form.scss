@@ -1,12 +1,12 @@
 .session-modal-form {
   padding: 20px;
   border-radius: inherit;
+  text-align: center;
 }
 
 .session-form {
   width: 300px;
   margin: 0 auto;
-  text-align: center;
 }
 
 .session-modal-header {
@@ -46,7 +46,7 @@
   margin: 0;
 }
 
-.session-form input:last-child {
+.session-form input:last-of-type {
   border-bottom: 1px solid lightgrey;
 }
 
