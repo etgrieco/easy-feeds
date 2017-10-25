@@ -1,3 +1,26 @@
 // Place all the styles related to the Api/Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.session-modal-screen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.session-modal-form {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -220px;
+  width: 360px;
+  padding: 20px;
+  background: #fff;
+  z-index: 3;
+  border-radius: 5px;
+  border: 1px solid #000;
+}

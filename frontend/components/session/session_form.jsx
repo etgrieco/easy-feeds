@@ -61,33 +61,37 @@ class SessionForm extends Component {
     ));
 
     return(
-      <div>
-        <button onClick={this.handleXClick()}>x</button>
+      <div className="session-modal">
+        <div className="session-modal-screen"></div>
 
-        <h3>{text}</h3>
-        <form className="sesssion-form" onSubmit={this.handleSubmit}>
-          <label>Email
-            <input type="text"
-              onChange={this.update('email')}
-              value={this.state.email}/>
-          </label>
-          <label>Password
-            <input type="password"
-              onChange={this.update('password')}
-              value={this.state.password} />
-          </label>
+        <div className="session-modal-form">
+          <button onClick={this.handleXClick()}>x</button>
 
-          {this.userCreationDetails()}
+          <h3>{text}</h3>
+          <form className="sesssion-form" onSubmit={this.handleSubmit}>
+            <label>Email
+              <input type="text"
+                onChange={this.update('email')}
+                value={this.state.email}/>
+            </label>
+            <label>Password
+              <input type="password"
+                onChange={this.update('password')}
+                value={this.state.password} />
+            </label>
 
-          <button>{text}</button>
-        </form>
-        <Link to={otherLink}
-          onClick={this.clearErrors}
-          >{otherText}</Link>
+            {this.userCreationDetails()}
 
-        <ul>
-          {errorItems}
-        </ul>
+            <button>{text}</button>
+          </form>
+          <Link to={otherLink}
+            onClick={this.clearErrors}
+            >{otherText}</Link>
+
+          <ul>
+            {errorItems}
+          </ul>
+        </div>
       </div>
     );
   }
