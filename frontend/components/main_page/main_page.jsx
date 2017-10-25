@@ -1,5 +1,5 @@
 import React from 'react';
-import Landing from './landing/landing';
+import Landing from './landing';
 import { Route, Switch } from 'react-router-dom';
 import SessionFormContainer from '../session/session_form_container';
 import { AuthRoute, ProtectedRoute } from '../../util/route_util.js';

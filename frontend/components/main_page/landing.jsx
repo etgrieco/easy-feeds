@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import SessionFormContainer from '../../session/session_form_container';
+import SessionFormContainer from '../session/session_form_container';
 
 const Landing = (props) => {
   return (
