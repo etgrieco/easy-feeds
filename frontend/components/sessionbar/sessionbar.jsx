@@ -6,7 +6,7 @@ class SessionBar extends React.Component {
   }
 
   sessionButton() {
-    const buttonText = this.props.loggedIn ?  "Log Out" : "Log In";
+    const buttonText = this.props.loggedIn ?  "Log Out" : "Login";
     const buttonAction = this.props.loggedIn ?
       e => this.props.logout()
       : e => this.props.history.push("/login");
@@ -19,7 +19,7 @@ class SessionBar extends React.Component {
   render() {
     return (
       <header className="session-bar">
-        <h1>EasyFeeds</h1>
+        <h3 className="session-logo">EasyFeeds</h3>
         {this.sessionButton()}
       </header>
     );

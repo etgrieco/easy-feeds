@@ -3,9 +3,23 @@ body {
 }
 
 body h1 {
-
+  font-size: 35px;
+  margin-bottom: 5px;
 }
 
 body button {
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid black;
+  padding: 4px;
+  margin: 10px;
+  text-transform: uppercase;
+}
 
+body input {
+  display: block;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 1px;
+  margin: 5px;
 }

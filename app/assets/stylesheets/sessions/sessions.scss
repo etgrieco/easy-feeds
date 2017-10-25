@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.session-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 850px;
+  margin: 0 auto;
+  color: grey;
+  border-color: grey;
+  height: 60px;
+}
+
+.session-bar button {
+  margin-right: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
 .session-modal-screen {
   position: fixed;
   top: 0;
@@ -23,4 +39,8 @@
   z-index: 3;
   border-radius: 5px;
   border: 1px solid #000;
+}
+
+.session-logo h3 {
+  color: lightgrey;
 }
