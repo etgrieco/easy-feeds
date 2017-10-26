@@ -18,9 +18,12 @@ class SessionBar extends React.Component {
   }
 
   render() {
+    const { loggedIn } = this.props;
     return (
       <header className="session-bar">
-        <div className="session-bar-contents">
+        <div className={"session-bar-contents" +
+          (loggedIn ? " logged-in-session" : "")
+        }>
           <h3 className="session-logo">EasyFeeds</h3>
           {this.sessionButton()}
         </div>
