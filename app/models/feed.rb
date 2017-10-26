@@ -23,7 +23,6 @@ class Feed < ApplicationRecord
   end
 
   def fetch_and_parse
-    debugger
     feed = Feedjira::Feed.fetch_and_parse self.rss_url
 
     self.title = feed.title || ""

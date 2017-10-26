@@ -21,4 +21,11 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def require_login
+    unless logged_in?
+      # render :json ["Must be logged in to create a subcription"], status: 403
+      redirect_to "/"
+    end
+  end
+
 end

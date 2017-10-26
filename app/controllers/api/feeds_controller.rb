@@ -1,32 +1,38 @@
 class Api::FeedsController < ApplicationController
+  before_action :require_login
+
   def index
-    @feeds = current_user.feeds
+    @feeds = current_user.feeds.include(:subscriptions)
   end
 
   def show
-    @feed = current_user.feeds.find(params[:id])
+    @feed = current_user.feeds.find_by(id: params[:id])
+
+    if @feed
+      render :show
+    else
+      render json: ["You are not subscribed to this feed"], status: 403
+    end
   end
 
   def destroy
-    @subcription = current_user.subscriptions.find_by(:feed_id: params[:id])
+    @subscription = current_user.subscriptions.find_by(feed_id: params[:id])
     if @subscription
       @subscription.destroy!
+      render json: ["Subscription deleted"], status: 200
     else
-      render :json ["Subscription no longer exists"], status: 404
+      render json: ["Subscription no longer exists"], status: 404
     end
   end
 
   def create
-    if !logged_in?
-      render :json ["Must be logged in to create a subcription"], status: 403
-    end
-
     # create feed if there is none
     @feed = Feed.find_by(rss_url: feed_params[:rss_url])
-    unless @feed
+    if @feed.nil?
       @feed = Feed.new(rss_url: feed_params[:rss_url])
-      if !@feed.save
-        render :json @feed.errors.full_messages, status: 422
+      unless @feed.save
+        render json: @feed.errors.full_messages, status: 422
+        return
       end
     end
 
@@ -40,7 +46,7 @@ class Api::FeedsController < ApplicationController
     if @subscription.save
       render :show
     else
-      render :json @subscription.errors.full_messages, status: 422
+      render json: @subscription.errors.full_messages, status: 422
     end
   end
 

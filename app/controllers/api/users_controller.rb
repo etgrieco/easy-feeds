@@ -20,12 +20,11 @@ class Api::UsersController < ApplicationController
     else
       render json: @user.errors.full_messages, status: 422
     end
-    
+
   end
 
   def user_params
-    params.require(:user).permit(:email, :first_name,
-      :last_name, :password)
+    params.require(:user).permit(:email, :first_name, :last_name, :password)
   end
 
   def edit_user_params
