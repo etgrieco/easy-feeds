@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-
+import SubscriptionsReducer from './subscriptions_reducer';
 
 export default combineReducers({
-  // entities go here
+  feeds: SubscriptionsReducer
 });
