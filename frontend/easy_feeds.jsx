@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //test
   window.SubscriptionApiUtil = SubscriptionApiUtil;
+  window.FeedApiUtil = FeedApiUtil;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 

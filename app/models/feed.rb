@@ -23,6 +23,7 @@ class Feed < ApplicationRecord
   end
 
   def fetch_and_parse
+    # use the lonely operator
     feed = Feedjira::Feed.fetch_and_parse self.rss_url
 
     self.title = feed.title || ""

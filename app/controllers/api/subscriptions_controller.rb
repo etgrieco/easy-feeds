@@ -7,11 +7,10 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def create
-    # feed = Feed.find_by(rss_url: feed_params[:rss_url])
     @subscription = Subscription.new(
       feed: @feed,
       subscriber: current_user,
-      title: feed_params[:title] || @feed.title
+      title: subscription_params[:title] || @feed.title
     )
 
     if @subscription.save
@@ -41,10 +40,10 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def ensure_feed
-    @feed = Feed.find_by(rss_url: feed_params[:rss_url])
+    @feed = Feed.find_by(rss_url: subscription_params[:rss_url])
 
     if @feed.nil?
-      @feed = Feed.new(rss_url: feed_params[:rss_url])
+      @feed = Feed.new(rss_url: subscription_params[:rss_url])
       unless @feed.save
         render json: @feed.errors.full_messages, status: 422
         # this will stop subscribe create from occuring

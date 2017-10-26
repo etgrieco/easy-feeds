@@ -1,16 +1,24 @@
-export const destroySubscription = (id) => (
+export const fetchSubscriptions = () => (
+  $.ajax({
+    type: "GET",
+    url: "api/subscriptions"
+  })
+);
+
+
+export const destroySubscription = id => (
   $.ajax({
     type: "DELETE",
-    url: `api/feeds/${id}`
+    url: `api/subscriptions/${id}`
   })
 );
 
 // creates feeds if one does not exist
 // { newFeed: { rss_url: "www....", title: "my-title" } }
-export const createSubscription = ( subscription ) => (
+export const createSubscription = subscription => (
   $.ajax({
     type: "POST",
-    url: "api/feeds",
+    url: "api/subscriptions",
     data: { subscription }
   })
 );

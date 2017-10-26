@@ -2,11 +2,11 @@ class Api::FeedsController < ApplicationController
   before_action :require_login
 
   def index
-    @feeds = Feeds.all
+    @feeds = Feed.all
   end
 
   def show
-    @feed = Feeds.find_by(id: params[:id])
+    @feed = Feed.find_by(id: params[:id])
     render :show
   end
 

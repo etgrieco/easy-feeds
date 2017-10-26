@@ -7,10 +7,12 @@ json.feeds do
   end
 end
 
+# get basic info about subscription: 
 json.subscriptions do
   @subs.each do |subscription|
     json.set! subscription.feed_id do
-      json.title subscription.title
+      json.subscription_title subscription.title
+      json.subscription_id subscription.id
     end
   end
 end
