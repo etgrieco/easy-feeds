@@ -13,9 +13,8 @@
  *= require reset
  *= require body
  *= require buttons
- *= require sessions/sessions
  *= require sessionbar/session-bar
- *= require sessions/session-form
+ *= require main/session-form
  *= require main/landing
  *= require main/stories/stories
  *= require navbar/navbar

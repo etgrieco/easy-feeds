@@ -25,9 +25,9 @@ class SessionForm extends Component {
       () => this.setState({ email: "", password: ""}));
   }
 
-  userCreationDetails() {
+  newUserDetails() {
     return this.props.formType === 'signup' ?
-      <div className="user-details">
+      <div className="new-user-details">
           <input type="text"
             placeholder="First Name"
             onChange={this.update('first_name')}
@@ -65,14 +65,17 @@ class SessionForm extends Component {
       <div className="session-modal">
         <div className="session-modal-screen"></div>
 
-        <div className="session-modal-form-container">
+        <div className="session-form-window">
           <header className="session-modal-header">
             <button className="session-form-exit-button"
               onClick={this.handleXClick()}>&#10006;</button>
           </header>
-          <div className="session-modal-form">
-            <h3>{headerText}</h3>
+
+          <div className="session-form-container">
             <form className="session-form" onSubmit={this.handleSubmit}>
+              <h3>{headerText}</h3>
+
+              <div className="credentials">
                 <input type="text"
                   placeholder="Email"
                   onChange={this.update('email')}
@@ -83,22 +86,22 @@ class SessionForm extends Component {
                     " (minimum 6 characters)" : "")}
                     onChange={this.update('password')}
                     value={this.state.password} />
-
-                {this.userCreationDetails()}
-
-                <button className="green-button">{buttonText}</button>
-              </form>
-
-              <div className="session-form-supplement">
-                <Link to={otherLink}
-                  onClick={this.clearErrors}
-                  >{otherText}</Link>
-
-                <ul className="session-errors">
-                  {errorItems}
-                </ul>
               </div>
 
+              <div>
+                {this.newUserDetails()}
+              </div>
+
+              <button className="green-button">{buttonText}</button>
+            </form>
+
+              <ul className="session-errors">
+                {errorItems}
+              </ul>
+
+              <Link to={otherLink}
+                onClick={this.clearErrors}
+                >{otherText}</Link>
             </div>
         </div>
       </div>

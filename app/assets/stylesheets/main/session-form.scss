@@ -1,4 +1,28 @@
-.session-modal-form {
+.session-modal-screen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.session-form-window {
+  margin: 0 auto;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -220px;
+  width: 400px;
+  background: #fff;
+  z-index: 3;
+  border-radius: 0px;
+  border: 0px solid #000;
+  min-height: 500px;
+}
+
+.session-form-container {
   padding: 20px;
   border-radius: inherit;
   text-align: center;
@@ -29,6 +53,7 @@
 }
 
 .session-form button {
+  margin-left: 0px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -43,7 +68,12 @@
   border-right: 1px solid lightgrey;
   border-top: 1px solid lightgrey;
   padding: 10px;
-  margin: 0;
+  margin: 0px 0px 0px 0px;
+  box-sizing: border-box;
+}
+
+.new-user-details {
+  margin-top: 10px;
 }
 
 .session-form input:last-of-type {
@@ -54,22 +84,16 @@
   border: 1px solid black;
 }
 
-.session-form-supplement {
-  width: 100%;
-  text-align: center;
-}
-
-.session-form-supplement a {
+.session-form-container a {
   display: inline-block;
   text-decoration: underline;
   color: #9f9f9f;
 }
 
-.session-form-supplement a:hover {
+.session-form-container a:hover {
   color: #8f8f8f;
 }
 
 .session-errors {
   color: red;
-  list-style: circle;
 }
