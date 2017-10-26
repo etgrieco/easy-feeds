@@ -2,7 +2,7 @@ class Api::FeedsController < ApplicationController
   before_action :require_login
 
   def index
-    @feeds = current_user.feeds.include(:subscriptions)
+    @subs = current_user.subscriptions.include(:feeds)
   end
 
   def show
