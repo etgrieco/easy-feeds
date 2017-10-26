@@ -1,9 +1,9 @@
 class Feed < ApplicationRecord
-  validates :title, :rss_url, :description, :favicon_url,
-    :website_url, :last_publish, presence: true
+  validates :title, :rss_url, :description, :favicon_url, :image_url
+    :website_url, :last_built, presence: true
 
-  before_intialize :update_last_publish
-  before_validation :sanitize_urls
+  before_intialize :update_last_publish, :update_fields
+  before_validation :sanitize_urls, :fetch_and_parse
 
   def sanitize_urls
     @rss_url = sanitize(rss_url)
@@ -12,7 +12,21 @@ class Feed < ApplicationRecord
   end
 
   def update_last_publish
-    
+
+  end
+
+  def update_fields
+
+  end
+
+  def fetch_and_parse
+    @feed = Feedjira::Feed.fetch_and_parse @rss_url
+
+    @title, @rss_url, @description, @website_url
+      @last_modified, @image_url = @feed.title, @feed.url, @feed.description,
+      @feed.url, @feed.image.url
+
+    @last_built = @feed.last_built || @feed.last_modified
   end
 
 end
