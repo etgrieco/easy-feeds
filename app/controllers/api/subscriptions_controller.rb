@@ -53,7 +53,7 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def subscription_params
-    params.require(:feed).permit(:rss_url, :title)
+    params.require(:subscription).permit(:rss_url, :title)
   end
 
 end

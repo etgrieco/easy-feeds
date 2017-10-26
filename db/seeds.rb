@@ -18,17 +18,23 @@ polygon.save! ; feeds << polygon
 tus = []
 User.where(first_name: "TEST").each { |u| u.destroy! }
 tu1 = User.new(email: "test_user@test.com", first_name: "TEST", password: "password123")
-tu1.save! ; tus << tu1
+tu1.save!
+tus << tu1
 tu2 = User.new(email: "test_user2@test.com", first_name: "TEST", password: "password123")
-tu2.save! ; tus << tu2
+tu2.save!
+tus << tu2
 tu3 = User.new(email: "test_user3@test.com", first_name: "TEST", password: "password123")
-tu3.save! ; tus << tu3
+tu3.save!
+tus << tu3
 tu4 = User.new(email: "test_user4@test.com", first_name: "TEST", password: "password123")
-tu4.save! ; tus << tu4
+tu4.save!
+tus << tu4
 tu5 = User.new(email: "test_user5@test.com", first_name: "TEST", password: "password123")
-tu5.save! ; tus << tu5
+tu5.save!
+tus << tu5
 tu6 = User.new(email: "test_user6@test.com", first_name: "TEST", password: "password123")
-tu6.save! ; tus << tu6
+tu6.save!
+tus << tu6
 
 
 Subscription.destroy_all
