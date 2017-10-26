@@ -29,9 +29,11 @@
   width: 840;
   height: 630px;
   background: #4C5250;
-  color: white
+  color: white;
+  box-sizing: border-box;
+  padding: 30px;
 }
 
-.landing-content {
+.landing-content.green-button {
 
 }

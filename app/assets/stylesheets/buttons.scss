@@ -1,12 +1,14 @@
 body button {
   background-color: white;
   padding: 4px 8px;
+  margin: 10px;
   text-transform: uppercase;
   border-radius: 5px;
   align-self: center;
 }
 
 .green-button {
+  margin-left: 0;
   font-size: 14px;
   background: #2BB14C;
   font-weight: 400;
