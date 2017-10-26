@@ -22,6 +22,9 @@ class Feed < ApplicationRecord
     self.website_url = feed.url || ""
     self.image_url = feed.image && feed.image.url || ""
     self.last_built = feed.last_built || feed.last_modified || Time.now
+
+    host = URI(feed.url).host
+    self.favicon_url = Favicon.new(host).uri
   end
 
 end
