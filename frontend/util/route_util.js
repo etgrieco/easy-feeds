@@ -12,14 +12,15 @@ const Auth = ({component: Component, path, loggedIn, exact}) => {
     !loggedIn ? (
       <Component {...props} />
     ) : (
-      <Redirect to="/i" />
+      <Redirect to="/i/latest" />
     )
   )}/>
 );
 };
 
 
-export const AuthRoute = withRouter(connect(mapStateToProps, null)(Auth));
+export const AuthRoute = withRouter(
+  connect(mapStateToProps, null)(Auth));
 
 const Protect = ({component: Component, path, loggedIn}) => {
   return (
@@ -33,7 +34,8 @@ const Protect = ({component: Component, path, loggedIn}) => {
   );
 };
 
-export const ProtectedRoute = withRouter(connect(mapStateToProps, null)(Protect));
+export const ProtectedRoute = withRouter(
+  connect(mapStateToProps, null)(Protect));
 
 // Define a <ProtectedRoute> helper method in your route_util.js. It should:
 // Check to see if the application state has a currentUser property. You can use the loggedIn boolean like we did in our AuthRoute component.

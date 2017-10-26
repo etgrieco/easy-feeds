@@ -1,14 +1,32 @@
 .navbar-container {
   flex-shrink: 0;
   width: 260px;
-  background: lightgrey;
+  background: #efefef;
+  position: relative;
+}
+
+.navbar-collections {
   padding-top: 20px;
+  height: calc(100vh - 80px);
   overflow-y: auto;
-  height: 100vh;
 }
 
 .sample-nav-container {
   height: 300px;
   margin: 20px;
   background: lightblue;
+}
+
+.nav-add-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  height: 80px;
+  width: 100%;
+  border-top: 1px solid #9f9f9f;
+}
+
+.nav-add-content a {
+
 }
