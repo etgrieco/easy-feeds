@@ -7,9 +7,14 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :session_token, :email, uniqueness: true
 
-  attr_reader :password
-
   after_initialize :ensure_session_token
+
+  has_many :subscriptions,
+    foreign_key: :subscriber_id
+
+  has_many :feeds,
+    through: :subscriptions,
+    source: :feed
 
   def password=(password)
     @password = password
@@ -41,5 +46,7 @@ class User < ApplicationRecord
   def create_session_token
     SecureRandom.urlsafe_base64(16)
   end
+
+  attr_reader :password
 
 end

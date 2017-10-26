@@ -7,5 +7,7 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    add_index [:subscriber_id, :feed_id], unique: true
+    add_index :title
   end
 end

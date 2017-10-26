@@ -10,6 +10,14 @@ class Feed < ApplicationRecord
   before_create :set_time_to_now
   before_validation :fetch_and_parse
 
+  has_many :subscriptions,
+    foreign_key: :subscriber_id,
+    class_name: :Subscription
+
+  has_many :subscribers,
+    through: :subscriptions,
+    source: :subscriber
+
   def set_time_to_now
     self.last_built = Time.now
   end
