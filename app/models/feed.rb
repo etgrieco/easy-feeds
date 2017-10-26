@@ -1,30 +1,27 @@
 require 'feedjira'
+require 'feed_favicon_helper'
 
 class Feed < ApplicationRecord
-  validates :title, :rss_url, :description, :favicon_url, :image_url
-    :website_url, :last_built, presence: true
+  validates :title, :rss_url, presence: true
 
-  before_intialize :update_fields
-  before_validation :fetch_and_parse, :sanitize_urls
+  validates :description, :website_url, :image_url, :last_built,
+    :favicon_url, presence: true, allow_blank: true
 
-  def sanitize_urls
-    @rss_url = sanitize(rss_url)
-    @website_url = sanitize(website_url)
-    @favicon_url = sanitize(favicon_url)
-  end
+  before_create :set_time_to_now
+  before_validation :fetch_and_parse
 
-  def update_fields
-
+  def set_time_to_now
+    self.last_built = Time.now
   end
 
   def fetch_and_parse
-    @feed = Feedjira::Feed.fetch_and_parse @rss_url
+    feed = Feedjira::Feed.fetch_and_parse self.rss_url
 
-    @title, @rss_url, @description, @website_url, @image_url =
-    @feed.title || "", @feed.url || "", @feed.description || "",
-    @feed.url || "", @feed.image.url || ""
-
-    @last_built = @feed.last_built || @feed.last_modified
+    self.title = feed.title || ""
+    self.description = "#{feed.title}: #{feed.url}"
+    self.website_url = feed.url || ""
+    self.image_url = feed.image && feed.image.url || ""
+    self.last_built = feed.last_built || feed.last_modified || Time.now
   end
 
 end
