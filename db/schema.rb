@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024162509) do
+ActiveRecord::Schema.define(version: 20171026131337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feeds", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "rss_url", null: false
+    t.string "description", default: "", null: false
+    t.string "favicon_url", default: "", null: false
+    t.string "image_url", default: "", null: false
+    t.string "website_url", default: "", null: false
+    t.datetime "last_built", default: "2017-10-26 14:07:05", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rss_url"], name: "index_feeds_on_rss_url", unique: true
+    t.index ["title"], name: "index_feeds_on_title"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
