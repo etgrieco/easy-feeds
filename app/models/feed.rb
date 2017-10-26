@@ -23,16 +23,21 @@ class Feed < ApplicationRecord
   end
 
   def fetch_and_parse
+    debugger
     feed = Feedjira::Feed.fetch_and_parse self.rss_url
 
     self.title = feed.title || ""
     self.description = "#{feed.title}: #{feed.url}"
     self.website_url = feed.url || ""
-    self.image_url = feed.image && feed.image.url || ""
-    self.last_built = feed.last_built || feed.last_modified || Time.now
+
+    self.last_built = feed.last_modified || feed.last_built || Time.now
 
     host = URI(feed.url).host
-    self.favicon_url = Favicon.new(host).uri
+    self.favicon_url = Favicon.new(host).uri || ""
+
+    # not all parsers support #image
+    self.image_url = feed.methods.include?("image") ?
+    feed.image && feed.image.url || self.favicon_url : self.favicon_url
   end
 
 end
