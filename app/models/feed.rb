@@ -11,7 +11,7 @@ class Feed < ApplicationRecord
   before_validation :fetch_and_parse
 
   has_many :subscriptions,
-    foreign_key: :subscriber_id,
+    foreign_key: :feed_id,
     class_name: :Subscription
 
   has_many :subscribers,
