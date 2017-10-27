@@ -5,46 +5,73 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+User.destroy_all!
+
+users = []
+50.times do
+  u = User.new(
+    email: Faker::Internet.unique.email,
+    password: "password",
+    first_name: Faker::Name.unique.first_name,
+    last_name: Faker::Name.unique.last_name,
+  )
+  users << u
+  u.save!
+end
 
 Feed.destroy_all
+
+seed_urls = (
+  "http://feeds.bbci.co.uk/news/world/rss.xml*
+http://www.cbn.com/cbnnews/world/feed/*
+http://feeds.reuters.com/Reuters/worldNews*
+http://feeds.bbci.co.uk/news/rss.xml*
+http://news.sky.com/sky-news/rss/home/rss.xml*
+http://www.cbn.com/cbnnews/us/feed/*
+http://feeds.reuters.com/Reuters/domesticNews*
+http://news.yahoo.com/rss/*
+http://feeds.bbci.co.uk/news/technology/rss.xml*
+http://feeds.bbci.co.uk/news/business/rss.xml*
+http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml*
+http://www.politico.com/rss/congress.xml*
+https://www.polygon.com/rss/index.xml*
+http://feeds.feedburner.com/TechCrunch/*
+https://www.wired.com/feed/rss*
+http://www.techradar.com/rss*
+http://github.com/blog.atom*
+").split("*\n")
+
 feeds = []
-nyt = Feed.new(rss_url: "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml")
-nyt.save! ; feeds << nyt
-politico = Feed.new(rss_url: "http://www.politico.com/rss/congress.xml")
-politico.save! ; feeds << politico
-polygon = Feed.new(rss_url: "https://www.polygon.com/rss/index.xml")
-polygon.save! ; feeds << polygon
-
-tus = []
-User.where(first_name: "TEST").each { |u| u.destroy! }
-tu1 = User.new(email: "test_user@test.com", first_name: "TEST", password: "password123")
-tu1.save!
-tus << tu1
-tu2 = User.new(email: "test_user2@test.com", first_name: "TEST", password: "password123")
-tu2.save!
-tus << tu2
-tu3 = User.new(email: "test_user3@test.com", first_name: "TEST", password: "password123")
-tu3.save!
-tus << tu3
-tu4 = User.new(email: "test_user4@test.com", first_name: "TEST", password: "password123")
-tu4.save!
-tus << tu4
-tu5 = User.new(email: "test_user5@test.com", first_name: "TEST", password: "password123")
-tu5.save!
-tus << tu5
-tu6 = User.new(email: "test_user6@test.com", first_name: "TEST", password: "password123")
-tu6.save!
-tus << tu6
-
+seed_urls.each do |url|
+  f = Feed.new(url)
+  feeds << f
+  f.save!
+end
 
 Subscription.destroy_all
-Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
+
+
+users.each do |user|
+  feed_ids = Array.new(10) { feeds.sample.id }.unique
+  feed_ids.each do |feed_id|
+    s = Subscription.new(
+      subscriber_id: user.id,
+      feed_id: feed_id
+    )
+    s.title
+  end
+end
+
+# Subscription.destroy_all
+# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
+# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
+# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
+# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
+# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
+# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
+# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
+# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
+# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
+# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
