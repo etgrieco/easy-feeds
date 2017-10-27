@@ -12,11 +12,14 @@ User.destroy_all
 users = []
 
 du = User.new(
-  email: "demouser@email.com",
+  email: "demo@email.com",
   password: "demopassword123",
   first_name: "Demo",
   last_name: "User"
 )
+
+users << du
+du.save
 
 50.times do
   u = User.new(
