@@ -23,10 +23,10 @@ export const updateSubscription = subscription => (
 
 // creates feeds if one does not exist
 // { newFeed: { rss_url: "www....", title: "my-title" } }
-export const createSubscription = subscription => (
+export const createFeed = feed => (
   $.ajax({
     type: "POST",
     url: "api/subscriptions",
-    data: { subscription }
+    data: { feed }
   })
 );

@@ -1,4 +1,5 @@
 # get all the user's subscribed feeds
+json.feeds({})
 json.feeds do
   @subs.each do |subscription|
     json.set! subscription.feed_id do
@@ -7,7 +8,8 @@ json.feeds do
   end
 end
 
-# get basic info about subscription: 
+# get basic info about subscription:
+json.subscriptions({})
 json.subscriptions do
   @subs.each do |subscription|
     json.set! subscription.feed_id do
