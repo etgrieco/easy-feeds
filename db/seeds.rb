@@ -10,6 +10,14 @@ require 'faker'
 User.destroy_all
 
 users = []
+
+du = User.new(
+  email: "demouser@emial.com",
+  password: "demopassword123",
+  first_name: "Demo",
+  last_name: "User"
+)
+
 50.times do
   u = User.new(
     email: Faker::Internet.unique.email,

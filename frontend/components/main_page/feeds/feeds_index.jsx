@@ -32,6 +32,7 @@ export class FeedsIndex extends React.Component {
             {feedsIndexRows}
           </tbody>
         </table>
+        <div></div>
       </div>
     );
   }

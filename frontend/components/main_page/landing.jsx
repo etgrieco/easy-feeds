@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import SessionFormContainer from '../session/session_form_container';
+import { connect } from 'react-redux';
+import { login } from '../../actions/session_actions';
 
 const Landing = (props) => {
   return (
@@ -12,6 +14,13 @@ const Landing = (props) => {
           className="green-button"
           onClick={e => props.history.push("/signup")}>
           Get Started</button>
+        <button
+          className="green-button demo-user"
+          onClick={e =>
+            props.login({email: "demo@email.com",
+              password: "demopassword123"})
+          }>
+          Demo User</button>
         <div className="landing-image-container">
           <p>Screenshot of final app goes here.</p>
         </div>
@@ -22,4 +31,10 @@ const Landing = (props) => {
   );
 };
 
-export default Landing;
+const mapDispatchToProps = dispatch => {
+  return ({
+    login: credentials => dispatch(login(credentials))
+  });
+};
+
+export default connect(null, mapDispatchToProps)(Landing);
