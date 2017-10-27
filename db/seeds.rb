@@ -12,7 +12,7 @@ User.destroy_all
 users = []
 
 du = User.new(
-  email: "demouser@emial.com",
+  email: "demouser@email.com",
   password: "demopassword123",
   first_name: "Demo",
   last_name: "User"
