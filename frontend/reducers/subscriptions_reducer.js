@@ -18,7 +18,8 @@ const subscriptionsById = (state = {}, action) => {
       delete newState[action.feedId];
       return newState;
     case EDIT_FEED:
-      //action: feed: {}, subscription: {}
+      newState = merge({}, state, action.subscription);
+      return newState;
     default:
       return state;
   }

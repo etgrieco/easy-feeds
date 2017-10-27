@@ -9,7 +9,10 @@ class FeedsIndexRow extends React.Component {
   }
 
   handleEdit() {
-    return e => this.props.updateFeed(this.state);
+    return e => {
+      this.props.updateFeed(this.state);
+      this.state.renaming = false;
+    };
   }
 
   handleEditChange(e) {

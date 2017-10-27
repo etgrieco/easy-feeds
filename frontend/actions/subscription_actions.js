@@ -18,6 +18,7 @@ export const removeFeed = feedId => ({
 
 export const editFeed = feedPayload => ({
   type: EDIT_FEED,
+  subscription: feedPayload.subscription
 });
 
 export const fetchAllSubscriptions = () => dispatch => (
