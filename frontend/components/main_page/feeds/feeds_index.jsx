@@ -1,5 +1,6 @@
 import React from 'react';
 import FeedsIndexRow from './feeds_index_row';
+import AddFeedFormContainer from './add_feeds_form_container';
 
 export class FeedsIndex extends React.Component {
 
@@ -10,6 +11,7 @@ export class FeedsIndex extends React.Component {
   render() {
     const feedsIndexRows = this.props.feeds.map(feed => {
       return <FeedsIndexRow key={feed.id}
+        updateFeed={this.props.updateFeed}
         deleteFeed={this.props.deleteFeed}
         feed={feed} />;
     });
@@ -17,6 +19,7 @@ export class FeedsIndex extends React.Component {
     return (
       <div className="feeds-index">
         <h1>Organize Sources</h1>
+        <AddFeedFormContainer />
         <table>
           <thead>
             <tr>

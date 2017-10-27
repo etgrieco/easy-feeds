@@ -16,7 +16,8 @@
  *= require sessionbar/session-bar
  *= require main/session-form
  *= require main/landing
- *= require main/stories/stories
+ *= require main/feeds
+ *= require main/stories
  *= require navbar/navbar
  *= require_self
  *= require_tree .

@@ -6,6 +6,15 @@ class Api::SubscriptionsController < ApplicationController
     @subs = current_user.subscriptions.includes(:feed)
   end
 
+  def update
+    @subscription = current_user.subscriptions.find_by(id: params[:id])
+    if @subscription.update(subscription_params)
+      render :show
+    else
+      render json: @subscription.errors.full_messages, status: 422
+    end
+  end
+
   def create
     @subscription = Subscription.new(
       feed: @feed,

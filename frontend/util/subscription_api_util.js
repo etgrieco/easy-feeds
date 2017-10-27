@@ -13,6 +13,14 @@ export const deleteSubscription = id => (
   })
 );
 
+export const updateSubscription = subscription => (
+  $.ajax({
+    type: "PATCH",
+    url: `api/subscriptions/${subscription.id}`,
+    data: { subscription }
+  })
+);
+
 // creates feeds if one does not exist
 // { newFeed: { rss_url: "www....", title: "my-title" } }
 export const createSubscription = subscription => (

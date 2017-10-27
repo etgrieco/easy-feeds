@@ -2,7 +2,7 @@ require 'feedjira'
 require 'feed_favicon_helper'
 
 class Feed < ApplicationRecord
-  validates :title, :rss_url, presence: true
+  validates :title, :rss_url, :status, presence: true
 
   validates :description, :website_url, :image_url, :last_built,
     :favicon_url, presence: true, allow_blank: true
@@ -23,21 +23,39 @@ class Feed < ApplicationRecord
   end
 
   def fetch_and_parse
-    # use the lonely operator
-    feed = Feedjira::Feed.fetch_and_parse self.rss_url
+    puts "Fetching #{self.rss_url}"
+    begin
+      feed = Feedjira::Feed.fetch_and_parse self.rss_url
+      self.title = feed.title
+      self.website_url = feed.url
+    rescue
+      puts "Failed to find feed #{rss_url}"
+      self.status = "ISSUES"
+      if self.title.nil?
+        self.title = "#{rss_url.slice(5..20)}_BROKEN"
+        self.status = "DEAD"
+      end
+      return
+    end
 
-    self.title = feed.title || ""
     self.description = "#{feed.title}: #{feed.url}"
-    self.website_url = feed.url || ""
 
-    self.last_built = feed.last_modified || feed.last_built || Time.now
+    self.last_built =
+      if feed.methods.include?('last_built')
+        feed.last_built
+      # elsif feed.methods.include?('last_modified')
+      #   feed.last_modified
+      else
+        Time.now
+      end
 
     host = URI(feed.url).host
-    self.favicon_url = Favicon.new(host).uri || ""
+    self.favicon_url = Favicon.new(host).uri || ''
 
+    self.image_url = favicon_url
     # not all parsers support #image
-    self.image_url = feed.methods.include?("image") ?
-    feed.image && feed.image.url || self.favicon_url : self.favicon_url
+    # if feed.methods.include?('image')
+    #   self.image_url = feed.image.url
+    # end
   end
-
 end

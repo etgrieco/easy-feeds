@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-User.destroy_all!
+User.destroy_all
 
 users = []
 50.times do
@@ -18,11 +18,10 @@ users = []
     last_name: Faker::Name.unique.last_name,
   )
   users << u
-  u.save!
+  u.save
 end
 
 Feed.destroy_all
-
 seed_urls = (
   "http://feeds.bbci.co.uk/news/world/rss.xml*
 http://www.cbn.com/cbnnews/world/feed/*
@@ -45,33 +44,25 @@ http://github.com/blog.atom*
 
 feeds = []
 seed_urls.each do |url|
-  f = Feed.new(url)
+  f = Feed.new(rss_url: url)
   feeds << f
-  f.save!
+  f.save
 end
 
 Subscription.destroy_all
-
-
 users.each do |user|
-  feed_ids = Array.new(10) { feeds.sample.id }.unique
-  feed_ids.each do |feed_id|
+  feed_ids = Array.new(10) do
+    feed = feeds.sample
+    # ["ISSUES", "DEAD"].include?(feed.status) ? nil : feed.id
+    feed.id
+  end
+  feed_ids.uniq.each do |feed_id|
+    next if feed_id.nil?
     s = Subscription.new(
       subscriber_id: user.id,
       feed_id: feed_id
     )
-    s.title
+    s.title = Faker::Ancient.god if Random.rand(3) > 1
+    s.save
   end
 end
-
-# Subscription.destroy_all
-# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
-# Subscription.create(title: "test-subscription", subscriber_id: tus.sample.id, feed_id: feeds.sample.id)
