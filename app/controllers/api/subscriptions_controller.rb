@@ -30,7 +30,7 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @subscription = current_user.subscriptions.find_by(feed_id: params[:id])
+    @subscription = current_user.subscriptions.find_by(id: params[:id])
     if @subscription
       @subscription.destroy!
       render json: ["Subscription deleted"], status: 200

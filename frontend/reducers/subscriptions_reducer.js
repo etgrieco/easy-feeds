@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_SUBSCRIPTIONS } from '../actions/subscription_actions';
+import { RECEIVE_ALL_SUBSCRIPTIONS, REMOVE_FEED } from '../actions/subscription_actions';
 import merge from 'lodash/merge';
 import { combineReducers } from 'redux';
 
@@ -11,6 +11,10 @@ const subscriptionsById = (state = {}, action) => {
       const newFeeds = merge({}, action.feeds, action.subscriptions );
       newState = merge({}, state, newFeeds);
       return newState;
+    case REMOVE_FEED:
+      newState = merge({}, state);
+      delete newState[action.feedId];
+      return newState;
     default:
       return state;
   }
@@ -22,6 +26,9 @@ const allSubscriptions = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
       return state.concat(Object.keys(action.feeds));
+    case REMOVE_FEED:
+      let idx = state.indexOf(action.feedId);
+      return idx > -1 ? state.concat([]).splice(idx, 1) : state;
     default:
       return state;
   }

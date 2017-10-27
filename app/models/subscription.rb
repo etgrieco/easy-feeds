@@ -1,5 +1,9 @@
 class Subscription < ApplicationRecord
   validates :subscriber_id, :feed_id, :title, presence: true
+  # add before creates: default sub name
+  before_create do
+    self.title = feed.title if self.title.nil?
+  end
 
   belongs_to :subscriber,
     class_name: "User",

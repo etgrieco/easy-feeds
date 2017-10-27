@@ -1,4 +1,5 @@
 import React from 'react';
+import FeedsIndexRow from './feeds_index_row';
 
 export class FeedsIndex extends React.Component {
 
@@ -7,16 +8,27 @@ export class FeedsIndex extends React.Component {
   }
 
   render() {
-    const { feeds } = this.props;
-    const feedsList = feeds.map( feed => (
-      <div key={feed.id} className="feed-item">
-        <p>{feed.title}</p>
-        <li >{feed.website_url}</li>
-      </div>
-    ));
+    const feedsIndexRows = this.props.feeds.map(feed => {
+      return <FeedsIndexRow key={feed.id}
+        deleteFeed={this.props.deleteFeed}
+        feed={feed} />;
+    });
+
     return (
       <div className="feeds-index">
-        {feedsList}
+        <h1>Organize Sources</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Source Name</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {feedsIndexRows}
+          </tbody>
+        </table>
       </div>
     );
   }
