@@ -5,7 +5,7 @@ import { subscribedFeeds } from '../../../reducers/selectors';
 import { fetchAllSubscriptions } from '../../../actions/subscription_actions';
 
 const mapStateToProps = state => ({
-  feeds: subscribedFeeds(state)
+  feeds: Object.values(state.entities.feeds.byId)
 });
 
 const mapDispatchToProps = dispatch => ({

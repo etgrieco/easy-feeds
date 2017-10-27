@@ -9,9 +9,9 @@ export class FeedsIndex extends React.Component {
   render() {
     const { feeds } = this.props;
     const feedsList = feeds.map( feed => (
-      <div className="feed-item">
-        <li>{feed.title}</li>
-        <li>{feed.website_url}</li>
+      <div key={feed.id} className="feed-item">
+        <p>{feed.title}</p>
+        <li >{feed.website_url}</li>
       </div>
     ));
     return (
