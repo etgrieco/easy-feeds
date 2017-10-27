@@ -1,21 +1,31 @@
 .feeds-index {
+  height: 100%;
   padding-top: 40px;
   padding-left: 30px;
   padding-right: 30px;
   background: lightgrey;
 }
 
+.add-feed-form {
+  width: 100%;
+}
+
+.add-feed-form input {
+  padding: 5px;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.add-feed-form button {
+
+}
+
 .feeds-table {
-  background: lightgreen;
   width: 100%;
 }
 
 .feeds-table {
   border: 1px solid black;
-}
-
-feeds-table th {
-
 }
 
 .feeds-table img {
@@ -51,6 +61,15 @@ feeds-table th {
 
 .feed-status-header {
   width: 20px;
+}
+
+.feed-status-text {
+  color: green;
+}
+
+.feed-modify-cell {
+  text-align: center;
+  min-width: 150px;
 }
 
 .feed-rename-button {

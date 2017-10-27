@@ -14,7 +14,7 @@ const NavBar = (props) => {
       <div className="sample-nav-container"></div>
     </div>
     <div className="nav-add-content">
-      <a href="#">Add Content</a>
+      <Link to="/i/feeds">Add Content</Link>
     </div>
   </div>;
 };

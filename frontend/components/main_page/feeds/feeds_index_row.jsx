@@ -48,8 +48,8 @@ class FeedsIndexRow extends React.Component {
           <img src={feed.image_url} className="feed-index-icon"/>
           {this.subscriptionTitleForm(feed)}
         </td>
-        <td>{feed.status}</td>
-        <td>
+        <td className="feed-status-text">{feed.status}</td>
+        <td className="feed-modify-cell">
           <button className="feed-rename-button"
             onClick={e => this.setState(
               { renaming: true }
