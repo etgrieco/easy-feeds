@@ -20,12 +20,12 @@ export class FeedsIndex extends React.Component {
       <div className="feeds-index">
         <h1>Organize Sources</h1>
         <AddFeedFormContainer />
-        <table>
+        <table className="feeds-table">
           <thead>
             <tr>
-              <th>Source Name</th>
-              <th>Status</th>
-              <th></th>
+              <th className="feed-source-header">Source Name</th>
+              <th className="feed-status-header">Status</th>
+              <th className="feed-modify-header">Modify</th>
             </tr>
           </thead>
           <tbody>

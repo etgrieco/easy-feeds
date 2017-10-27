@@ -2,3 +2,8 @@
   margin: 0 auto;
   width: 100%;
 }
+
+.main-content {
+  overflow-y: auto;
+  height: calc(100vh - 60px);
+}

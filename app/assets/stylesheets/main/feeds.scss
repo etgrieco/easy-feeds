@@ -1,4 +1,62 @@
 .feeds-index {
-  overflow-y: auto;
-  height: calc(100vh - 60px);
+  padding-top: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background: lightgrey;
+}
+
+.feeds-table {
+  background: lightgreen;
+  width: 100%;
+}
+
+.feeds-table {
+  border: 1px solid black;
+}
+
+feeds-table th {
+
+}
+
+.feeds-table img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+}
+
+.feed-rename {
+  display: inline-block;
+}
+
+.feed-rename input {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.feed-rename button {
+  display: inline-block;
+  padding: 3px;
+  font-size: 12px;
+}
+
+.feeds-table input {
+  width: 50%
+}
+
+.feed-source-header {
+  min-width: 400px;
+  max-width: 80%;
+}
+
+.feed-status-header {
+  width: 20px;
+}
+
+.feed-rename-button {
+  font-size: 8px;
+}
+
+.feed-delete-button {
+  font-size: 8px;
 }

@@ -26,8 +26,9 @@ class FeedsIndexRow extends React.Component {
   subscriptionTitleForm(feed) {
     return (
       this.state.renaming ?
-      <div>
-        <form onSubmit={this.handleEdit()}>
+      <div className="feed-rename">
+        <form
+          onSubmit={this.handleEdit()}>
           <input type="text"
             value={this.state.subscription_title}
             onChange={e => this.handleEditChange(e)}
@@ -49,12 +50,14 @@ class FeedsIndexRow extends React.Component {
         </td>
         <td>{feed.status}</td>
         <td>
-          <button onClick={e => this.setState(
+          <button className="feed-rename-button"
+            onClick={e => this.setState(
               { renaming: true }
             )}>
             Rename
           </button>
-          <button onClick={this.handleDelete(feed)}>
+          <button className="feed-delete-button"
+            onClick={this.handleDelete(feed)}>
             Delete
           </button>
         </td>
