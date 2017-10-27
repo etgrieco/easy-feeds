@@ -28,12 +28,11 @@ class Feed < ApplicationRecord
       feed = Feedjira::Feed.fetch_and_parse self.rss_url
       self.title = feed.title
       self.website_url = feed.url
-    rescue
-      puts "Failed to find feed #{rss_url}"
+    rescue StandardError => msg
+      puts msg
       self.status = "ISSUES"
       if self.title.nil?
-        self.title = "#{rss_url.slice(5..20)}_BROKEN"
-        self.status = "DEAD"
+        self.title = "BROKEN_FEED"
       end
       return
     end
