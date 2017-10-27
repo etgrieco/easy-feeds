@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   deleteFeed: feed => dispatch(deleteFeed(feed)),
   fetchAllSubscriptions: () => dispatch(fetchAllSubscriptions()),
-  updateFeed: (feed) => dispatch(updateFeed(feed))
+  updateFeed: feed => dispatch(updateFeed(feed))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeedsIndex);

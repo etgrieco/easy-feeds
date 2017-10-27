@@ -43,7 +43,9 @@ export const updateFeed = feed => dispatch => {
     .then((updatedFeed) => dispatch(receiveFeed(updatedFeed)));
 };
 
-export const createFeed = feed => dispatch => (
-  SubscriptionApiUtil.createFeed(feed)
-    .then((newFeed) => dispatch(receiveFeed(newFeed)))
-);
+export const createFeed = feed => dispatch => {
+  return (
+    SubscriptionApiUtil.createFeed(feed)
+      .then((newFeed) => dispatch(receiveFeed(newFeed)))
+  );
+};
