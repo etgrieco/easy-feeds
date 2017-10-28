@@ -22,7 +22,7 @@ export class FeedsIndex extends React.Component {
         <AddFeedFormContainer />
         <table className="feeds-table">
           <thead>
-            <tr>
+            <tr className="feed-header-row">
               <th className="feed-source-header">Source Name</th>
               <th className="feed-status-header">Status</th>
               <th className="feed-modify-header">Modify</th>

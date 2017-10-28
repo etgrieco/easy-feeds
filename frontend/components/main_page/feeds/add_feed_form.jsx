@@ -32,8 +32,8 @@ export class AddFeedForm extends React.Component {
             onChange={e => this.setState({rss_url: e.target.value})}
             />
           <i class="fa fa-search" aria-hidden="true"></i>
+          <button className="green-button">Add Feed</button>
         </div>
-        <button>Add Feed</button>
       </form>
     );
   }

@@ -4,12 +4,13 @@ class FeedsIndexRow extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = Object.assign({ renaming: false }, this.props.feed);
+    this.state = Object.assign({ renaming: false, isMouseInside: false }, this.props.feed);
     this.handleEditChange = this.handleEditChange.bind(this);
   }
 
   handleEdit() {
     return e => {
+      e.preventDefault;
       this.props.updateFeed(this.state);
       this.state.renaming = false;
     };
@@ -43,23 +44,36 @@ class FeedsIndexRow extends React.Component {
   render() {
     const { feed } = this.props;
     return (
-      <tr>
+      <tr className="feed-index-row"
+        onMouseEnter={e =>
+          this.setState({ isMouseInside: true })
+        }
+        onMouseLeave={e => {
+          this.setState({ isMouseInside: false });
+          }
+        }
+      >
         <td>
           <img src={feed.image_url} className="feed-index-icon"/>
           {this.subscriptionTitleForm(feed)}
         </td>
         <td className="feed-status-text">{feed.status}</td>
         <td className="feed-modify-cell">
-          <button className="feed-rename-button"
-            onClick={e => this.setState(
-              { renaming: true }
-            )}>
-            Rename
-          </button>
-          <button className="feed-delete-button"
-            onClick={this.handleDelete(feed)}>
-            Delete
-          </button>
+          { this.state.isMouseInside ?
+            <div id="modify-buttons">
+              <button className="feed-modify feed-rename-button"
+                onClick={e => this.setState(
+                  { renaming: true }
+                )}>
+                <i className="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+              <button className="feed-modify feed-delete-button"
+                onClick={this.handleDelete(feed)}>
+                <i className="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
+            </div>
+            : null
+          }
         </td>
       </tr>
     );
