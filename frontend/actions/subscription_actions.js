@@ -22,6 +22,11 @@ export const receiveFeed = feedPayload => ({
   subscription: feedPayload.subscription
 });
 
+export const receiveFeedErrors = errors => ({
+  type: RECEIVE_FEED_ERRORS,
+  errors
+})
+
 export const fetchAllSubscriptions = () => dispatch => (
   SubscriptionApiUtil.fetchSubscriptions()
     .then(subscriptionsPayload =>
@@ -40,7 +45,8 @@ export const updateFeed = feed => dispatch => {
     id: feed.subscription_id
   };
   return SubscriptionApiUtil.updateSubscription(subscription)
-    .then((updatedFeed) => dispatch(receiveFeed(updatedFeed)));
+    .then((updatedFeed) => dispatch(receiveFeed(updatedFeed))),
+    errors => dispatch(receiveFeedErrors(errors.responseJSON));
 };
 
 export const createFeed = feed => dispatch => {
