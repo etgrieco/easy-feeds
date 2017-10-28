@@ -10,11 +10,13 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
 
   has_many :subscriptions,
-    foreign_key: :subscriber_id
+    foreign_key: :subscriber_id,
+    dependent: :destroy
 
   has_many :feeds,
     through: :subscriptions,
-    source: :feed
+    source: :feed,
+    dependent: :destroy
 
   def password=(password)
     @password = password
