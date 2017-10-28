@@ -13,8 +13,8 @@ export class AddFeedForm extends React.Component {
     this.props.createFeed(this.state);
   }
 
-  componentDidMount() {
-    this.props.clearErrors();
+  componentWillReceiveProps() {
+    this.setState({rss_url: ""});
   }
 
   render() {
@@ -26,11 +26,13 @@ export class AddFeedForm extends React.Component {
     return(
       <form className="add-feed-form" onSubmit={this.handleSubmit}>
         <ul className="add-feed-errors">{errors}</ul>
-        <ul className="loading-messages">{loadingMessages}</ul>
-        <input placeholder="Add a feed URL"
-          value={this.state.rss_url}
-          onChange={e => this.setState({rss_url: e.target.value})}
-          />
+        <div className="add-feed-input-container">
+          <input placeholder="Add a feed URL"
+            value={this.state.rss_url}
+            onChange={e => this.setState({rss_url: e.target.value})}
+            />
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
         <button>Add Feed</button>
       </form>
     );

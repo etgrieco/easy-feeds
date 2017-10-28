@@ -15,17 +15,18 @@ class SessionForm extends Component {
     return e => this.setState( { [field]: e.target.value } );
   }
 
-  componentDidMount() {
-    this.props.clearErrors();
-  }
-
   handleSubmit(e) {
     e.preventDefault();
     const { processForm } = this.props;
     const credentials = Object.assign({}, this.state);
     processForm(credentials)
       .then(() => this.props.history.push("/i/latest"),
-      () => this.setState({ email: "", password: ""}));
+      () => {
+        if (this.props.formType === 'login') {
+          this.setState({ email: "", password: ""});
+        }
+      }
+    );
   }
 
   newUserDetails() {

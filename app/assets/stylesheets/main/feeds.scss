@@ -14,6 +14,12 @@
   padding: 5px;
   margin: 0 auto;
   width: 80%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.add-feed-form input:focus {
+  border: 1px solid #2BB14C;
 }
 
 .add-feed-form button {
@@ -64,7 +70,7 @@
 }
 
 .feed-status-text {
-  color: green;
+  color: #2BB14C;
 }
 
 .feed-modify-cell {
