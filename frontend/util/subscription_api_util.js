@@ -5,7 +5,6 @@ export const fetchSubscriptions = () => (
   })
 );
 
-
 export const deleteSubscription = id => (
   $.ajax({
     type: "DELETE",
@@ -13,20 +12,18 @@ export const deleteSubscription = id => (
   })
 );
 
-export const updateSubscription = subscription => (
+export const updateSubscription = feed => (
   $.ajax({
     type: "PATCH",
-    url: `api/subscriptions/${subscription.id}`,
-    data: { subscription }
+    url: `api/subscriptions/${feed.id}`,
+    data: { subscription: feed }
   })
 );
 
-// creates feeds if one does not exist
-// { newFeed: { rss_url: "www....", title: "my-title" } }
-export const createFeed = subscription => (
+export const createFeed = feed => (
   $.ajax({
     type: "POST",
     url: "api/subscriptions",
-    data: { subscription }
+    data: { subscription: feed }
   })
 );

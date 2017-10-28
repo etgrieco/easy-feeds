@@ -4,6 +4,7 @@ import * as SubscriptionApiUtil from '../util/subscription_api_util';
 export const RECEIVE_ALL_SUBSCRIPTIONS = 'RECEIVE_ALL_SUBSCRIPTIONS';
 export const REMOVE_FEED = 'REMOVE_FEED';
 export const RECEIVE_FEED = 'RECEIVE_FEED';
+export const RECEIVE_SUBSCRIPTION_ERRORS = 'RECEIVE_SUBSCRIPTION_ERRORS';
 
 export const receiveAllSubscriptions = feedsPayload => ({
   type: RECEIVE_ALL_SUBSCRIPTIONS,
@@ -22,10 +23,10 @@ export const receiveFeed = feedPayload => ({
   subscription: feedPayload.subscription
 });
 
-export const receiveFeedErrors = errors => ({
-  type: RECEIVE_FEED_ERRORS,
+export const receiveSubscriptionErrors = errors => ({
+  type: RECEIVE_SUBSCRIPTION_ERRORS,
   errors
-})
+});
 
 export const fetchAllSubscriptions = () => dispatch => (
   SubscriptionApiUtil.fetchSubscriptions()
@@ -46,7 +47,7 @@ export const updateFeed = feed => dispatch => {
   };
   return SubscriptionApiUtil.updateSubscription(subscription)
     .then((updatedFeed) => dispatch(receiveFeed(updatedFeed))),
-    errors => dispatch(receiveFeedErrors(errors.responseJSON));
+    errors => dispatch(receiveSubscriptionErrors(errors.responseJSON));
 };
 
 export const createFeed = feed => dispatch => {
