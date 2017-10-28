@@ -46,13 +46,19 @@ export const updateFeed = feed => dispatch => {
     id: feed.subscription_id
   };
   return SubscriptionApiUtil.updateSubscription(subscription)
-    .then((updatedFeed) => dispatch(receiveFeed(updatedFeed))),
-    errors => dispatch(receiveSubscriptionErrors(errors.responseJSON));
+    .then(
+      updatedFeed => {
+        return dispatch(receiveFeed(updatedFeed));
+      },
+      errors => {
+        return dispatch(receiveSubscriptionErrors(errors.responseJSON));
+    });
 };
 
-export const createFeed = feed => dispatch => {
-  return (
-    SubscriptionApiUtil.createFeed(feed)
-      .then((newFeed) => dispatch(receiveFeed(newFeed)))
-  );
-};
+export const createFeed = feed => dispatch => (
+  SubscriptionApiUtil.createFeed(feed)
+  .then(
+    newFeed => dispatch(receiveFeed(newFeed)),
+    errors => dispatch(receiveSubscriptionErrors(errors.responseJSON))
+  )
+);

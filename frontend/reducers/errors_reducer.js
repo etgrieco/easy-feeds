@@ -23,12 +23,12 @@ const SessionErrorsReducer = (state = intitialState, action) => {
 };
 
 //Subscription/feed errors
-import { RECEIVE_SUBCRIPTION_ERRORS } from '../actions/subscription_actions';
+import { RECEIVE_SUBSCRIPTION_ERRORS } from '../actions/subscription_actions';
 
 const SubscriptionErrorsReducer = (state = intitialState, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_SUBCRIPTION_ERRORS:
+    case RECEIVE_SUBSCRIPTION_ERRORS:
       return action.errors;
     default:
       return state;
@@ -37,5 +37,5 @@ const SubscriptionErrorsReducer = (state = intitialState, action) => {
 
 export default combineReducers({
   session: SessionErrorsReducer,
-  errors: SubscriptionErrorsReducer
+  feeds: SubscriptionErrorsReducer
 });

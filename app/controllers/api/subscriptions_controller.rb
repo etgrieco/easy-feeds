@@ -10,7 +10,7 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = current_user.subscriptions.find_by(id: params[:id])
 
     # necessary because there is a model-level before_validation that
-    # creates automatic feed title for feed/subcription creation purposes
+    # creates automatic feed title for feed/subscription creation purposes
     if subscription_params[:title].empty?
       render json: ["Subscription titles must have at least one character"], status: 422
     elsif @subscription.update(subscription_params)

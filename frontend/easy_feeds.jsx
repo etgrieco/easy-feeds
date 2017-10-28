@@ -26,11 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 
-  window.dispatch(SubscriptionActions.updateFeed(
-    { subscription_title: "", subscription_id: 1872 }
-  ));
-
-
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store}/>, root);
 });
