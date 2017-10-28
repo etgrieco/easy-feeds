@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027144832) do
+ActiveRecord::Schema.define(version: 20171028173316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "feeds", force: :cascade do |t|
-    t.string "title", null: false
+    t.string "title", default: "", null: false
     t.string "rss_url", null: false
     t.string "description", default: "", null: false
     t.string "favicon_url", default: "", null: false

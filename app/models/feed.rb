@@ -2,13 +2,10 @@ require 'feedjira'
 require 'feed_favicon_helper'
 
 class Feed < ApplicationRecord
-  validates :title, :rss_url, :status, presence: true
+  validates :rss_url, presence: true
 
-  validates :description, :website_url, :image_url, :last_built,
+  validates :title, :description, :website_url, :image_url, :last_built,
     :favicon_url, presence: true, allow_blank: true
-
-  before_create :set_time_to_now
-  before_validation :fetch_and_parse
 
   has_many :subscriptions,
     foreign_key: :feed_id,
@@ -18,23 +15,14 @@ class Feed < ApplicationRecord
     through: :subscriptions,
     source: :subscriber
 
-  def set_time_to_now
-    self.last_built = Time.now
-  end
-
-  def fetch_and_parse
-    puts "Fetching #{self.rss_url}"
+  def before_create
     begin
       feed = Feedjira::Feed.fetch_and_parse self.rss_url
       self.title = feed.title
       self.website_url = feed.url
-    rescue StandardError => msg
-      puts msg
-      self.status = "ISSUES"
-      if self.title.nil?
-        self.title = "BROKEN_FEED"
-      end
-      return
+    rescue
+      self.errors[:rss_url] << "There was an issue fetching the feed. " +
+        "Please check the URL or try again."
     end
 
     self.description = "#{feed.title}: #{feed.url}"
@@ -42,8 +30,6 @@ class Feed < ApplicationRecord
     self.last_built =
       if feed.methods.include?('last_built')
         feed.last_built
-      # elsif feed.methods.include?('last_modified')
-      #   feed.last_modified
       else
         Time.now
       end
@@ -52,9 +38,6 @@ class Feed < ApplicationRecord
     self.favicon_url = Favicon.new(host).uri || ''
 
     self.image_url = favicon_url
-    # not all parsers support #image
-    # if feed.methods.include?('image')
-    #   self.image_url = feed.image.url
-    # end
   end
+
 end
