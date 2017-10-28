@@ -18,11 +18,16 @@ class Feed < ApplicationRecord
   after_validation :populate_feed_metadata, on: :create
 
   def check_feed_url_status
+    if self.rss_url.empty?
+      puts "Empty url"
+      errors.add(:base, "The url field cannot be empty")
+      throw :abort
+    end
     begin
       @feed = Feedjira::Feed.fetch_and_parse self.rss_url
     rescue
       puts "Feed url 404"
-      errors.add(:rss_url, "There was an issue fetching the feed. " +
+      errors.add(:base, "There was an issue fetching the feed. " +
         "Please check the URL or try again.")
       throw :abort
     end

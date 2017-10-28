@@ -8,16 +8,19 @@ class SessionForm extends Component {
     super(props);
     this.state = { email: "", password: "", first_name: "", last_name: ""};
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.clearErrors = this.props.clearSessionErrors; // for semantic ease
+    // this.clearErrors = this.props.clearSessionErrors; // for semantic ease
   }
 
   update(field) {
     return e => this.setState( { [field]: e.target.value } );
   }
 
+  componentDidMount() {
+    this.props.clearErrors();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    this.clearErrors();
     const { processForm } = this.props;
     const credentials = Object.assign({}, this.state);
     processForm(credentials)
@@ -44,7 +47,6 @@ class SessionForm extends Component {
     return e => {
       e.preventDefault();
       this.props.history.push("/");
-      this.clearErrors();
     };
   }
 

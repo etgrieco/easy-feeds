@@ -30,6 +30,8 @@ const SubscriptionErrorsReducer = (state = intitialState, action) => {
   switch (action.type) {
     case RECEIVE_SUBSCRIPTION_ERRORS:
       return action.errors;
+    case CLEAR_ERRORS:
+      return [];
     default:
       return state;
   }
