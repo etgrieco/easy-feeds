@@ -1,5 +1,6 @@
 class Subscription < ApplicationRecord
   validates :subscriber_id, :feed_id, :title, presence: true
+  validates :feed_id, uniqueness: { scope: :subscriber_id }
 
   # add before creates: default sub name
   before_validation do

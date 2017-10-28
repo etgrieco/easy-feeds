@@ -5,6 +5,7 @@ export const RECEIVE_ALL_SUBSCRIPTIONS = 'RECEIVE_ALL_SUBSCRIPTIONS';
 export const REMOVE_FEED = 'REMOVE_FEED';
 export const RECEIVE_FEED = 'RECEIVE_FEED';
 export const RECEIVE_SUBSCRIPTION_ERRORS = 'RECEIVE_SUBSCRIPTION_ERRORS';
+export const START_FEED_ACTION = 'START_FEED_ACTION';
 
 export const receiveAllSubscriptions = feedsPayload => ({
   type: RECEIVE_ALL_SUBSCRIPTIONS,
@@ -23,17 +24,28 @@ export const receiveFeed = feedPayload => ({
   subscription: feedPayload.subscription
 });
 
+export const startFeedAction = messages => ({
+  type: START_FEED_ACTION,
+  messages
+});
+
 export const receiveSubscriptionErrors = errors => ({
   type: RECEIVE_SUBSCRIPTION_ERRORS,
   errors
 });
 
-export const fetchAllSubscriptions = () => dispatch => (
-  SubscriptionApiUtil.fetchSubscriptions()
-    .then(subscriptionsPayload =>
-      dispatch(receiveAllSubscriptions(subscriptionsPayload))
-    )
-);
+export const fetchAllSubscriptions = () => dispatch => {
+  dispatch(startFeedAction(["Loading Feeds..."]));
+  return (
+    SubscriptionApiUtil.fetchSubscriptions()
+      .then(
+      subscriptionsPayload =>
+        dispatch(receiveAllSubscriptions(subscriptionsPayload)),
+      errors =>
+        dispatch(receiveSubscriptionErrors(["Error loading subscriptions"]))
+      )
+  );
+};
 
 export const deleteFeed = feed => dispatch => (
   SubscriptionApiUtil.deleteSubscription(feed.subscription_id)
@@ -45,6 +57,7 @@ export const updateFeed = feed => dispatch => {
     title: feed.subscription_title,
     id: feed.subscription_id
   };
+  dispatch(startFeedAction(["Updating Feed..."]));
   return SubscriptionApiUtil.updateSubscription(subscription)
     .then(
       updatedFeed => {
@@ -55,10 +68,12 @@ export const updateFeed = feed => dispatch => {
     });
 };
 
-export const createFeed = feed => dispatch => (
-  SubscriptionApiUtil.createFeed(feed)
-  .then(
-    newFeed => dispatch(receiveFeed(newFeed)),
-    errors => dispatch(receiveSubscriptionErrors(errors.responseJSON))
-  )
-);
+export const createFeed = feed => dispatch => {
+  dispatch(startFeedAction(["Creating Feed..."]));
+  return (
+    SubscriptionApiUtil.createFeed(feed)
+    .then(
+      newFeed => dispatch(receiveFeed(newFeed)),
+      errors => dispatch(receiveSubscriptionErrors(errors.responseJSON)))
+  );
+};
