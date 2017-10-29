@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchFeedResults } from '../../../actions/discovery_actions';
 import { createFeed } from '../../../actions/subscription_actions';
+import DiscoverIndexItem from './discover_index_item';
 
-class DiscoverFeeds extends React.Component {
+class DiscoverIndex extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {query: ""};
     this.handleQueryChange = this.handleQueryChange.bind(this);
-    this.handleSubscribe = this.handleSubscribe.bind(this);
   }
 
   componentDidMount() {
@@ -21,49 +21,41 @@ class DiscoverFeeds extends React.Component {
     this.props.fetchFeedResults(e.target.value);
   }
 
-  handleSubscribe(feed) {
-    this.props.createFeed(feed);
-  }
-
   render() {
-      const { feeds } = this.props;
-      let feedResults = feeds.results.map(resultId => {
-        let feed = feeds.byId[resultId];
-        return (
-        <div key={feed.id}>
-          {feed.title}
-          {
-            feed.subscribed ?
-            null :
-            <button onClick={e => this.handleSubscribe(feed)}>Subscribe</button>
-          }
-        </div>);
-      });
+    const { feeds } = this.props;
+    let discoverIndexItems = feeds.results.map(resultId => {
+      let feed = feeds.byId[resultId];
+      return <DiscoverIndexItem
+        key={feed.id}
+        feed={feed}
+        createFeed={this.props.createFeed}
+         />;
+    });
 
-      if (feedResults.length === 0) {
-        feedResults = ["No Feeds Found"];
-      }
+    if (discoverIndexItems.length === 0) {
+      discoverIndexItems = ["No Feeds Found"];
+    }
 
-      return (
-        <div>
-          <form>
-            <input className="feed-search"
-              value={this.state.query}
-              onChange={this.handleQueryChange}
-              />
-          </form>
+    return (
+      <div>
+        <form>
+          <input className="feed-search"
+            value={this.state.query}
+            onChange={this.handleQueryChange}
+            />
+        </form>
 
-          {
-            this.state.query.length === 0 ?
-            <h1>Popular Feeds</h1>
-            : <h1>Results</h1>
-          }
+        {
+          this.state.query.length === 0 ?
+          <h1>Popular Feeds</h1>
+          : <h1>Results</h1>
+        }
 
-          <div className="results">
-            {feedResults}
-          </div>
+        <div className="results">
+          {discoverIndexItems}
         </div>
-      );
+      </div>
+    );
   }
 
 }
@@ -84,4 +76,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DiscoverFeeds);
+)(DiscoverIndex);

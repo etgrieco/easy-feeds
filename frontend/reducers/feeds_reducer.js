@@ -32,7 +32,6 @@ const allSubscriptions = (state = [], action) => {
     case RECEIVE_ALL_SUBSCRIPTIONS:
       return Object.keys(action.subscriptions).map(key => parseInt(key));
     case REMOVE_FEED:
-      debugger
       let idx = state.indexOf(action.feedId);
       newState = state.concat([]);
       idx > -1 ? newState.splice(idx, 1) : null;
