@@ -58,6 +58,17 @@
   margin-right: 0px;
 }
 
+// Feed form errors
+.add-feed-form {
+  position: relative;
+}
+
+.add-feed-errors {
+  position: absolute;
+  bottom: 70px;
+  color: red;
+}
+
 // Feeds Table
 .feeds-index-container table {
   min-width: 400px;

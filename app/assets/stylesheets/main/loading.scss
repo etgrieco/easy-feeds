@@ -3,11 +3,11 @@
 }
 
 .main-loading-messages {
+  list-style: none;
   position: absolute;
-  top: 80px;
-  bottom: auto;
-  left: 470px;
-  // margin: 0 auto;
+  left: 50%;
+  top: 100px;
+  transform: translate(-50%);
   right: auto;
   background: rgba(43, 177, 76, 0.5);
   background-blend-mode: lighten;

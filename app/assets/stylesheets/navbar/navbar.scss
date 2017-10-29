@@ -6,27 +6,78 @@
 }
 
 .navbar-collections {
-  padding-top: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 25px;
+  padding-bottom: 0;
   height: calc(100vh - 80px);
   overflow-y: auto;
+  color: #757575;
 }
 
-.sample-nav-container {
-  height: 300px;
-  margin: 20px;
-  background: lightblue;
+.tabs {
+  margin-top: 20px;
 }
 
-.nav-add-content {
+.tabs i {
+  padding-right: 10px;
+}
+
+.collections-header {
+  font-weight: 400;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.latest-tab {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//ADD CONTENT BUTTON
+.nav-add-content {
   text-transform: uppercase;
-  height: 80px;
-  width: 100%;
   border-top: 1px solid #9f9f9f;
 }
 
-.nav-add-content a {
+.nav-add-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.nav-add-content span {
+  font-size: 20px;
+  -webkit-text-stroke: 3px #efefef;
+  padding-right: 10px;
+  padding-bottom: 5px;
+}
+
+.nav-add-content a {
+  height: 300px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  text-align: center;
+  vertical-align: middle;
 }
