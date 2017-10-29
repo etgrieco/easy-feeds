@@ -13,6 +13,7 @@ const feedsById = (
 
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
+    case RECEIVE_FEEDS_RESULTS:
       newFeeds = merge({}, action.feeds, action.subscriptions );
       newState = merge({}, state, newFeeds);
       return newState;
@@ -50,7 +51,7 @@ const allFeedsResults = (state = [], action) => {
 
   switch (action.type) {
     case RECEIVE_FEEDS_RESULTS:
-      return Object.values(action.results);
+      return action.results;
     default:
       return state;
   }

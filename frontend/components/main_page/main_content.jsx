@@ -4,6 +4,7 @@ import { AuthRoute, ProtectedRoute } from '../../util/route_util.js';
 import Landing from './landing';
 import StoriesContainer from '../stories/stories_container';
 import FeedsIndexContainer from './feeds/feeds_index_container';
+import DiscoverFeedsContainer from './feeds/discover_feeds_container';
 
 export default (props) => {
   return (
@@ -13,6 +14,7 @@ export default (props) => {
       <AuthRoute path="/signup" component={Landing} />
       <ProtectedRoute path="/i/latest" component={StoriesContainer} />
       <ProtectedRoute path="/i/feeds" component={FeedsIndexContainer} />
+      <ProtectedRoute path="/i/discover" component={DiscoverFeedsContainer} />
     </section>
   );
 };
