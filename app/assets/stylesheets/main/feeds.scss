@@ -1,10 +1,16 @@
-.feeds-index {
+.feeds-index-container {
   height: 100%;
-  padding-top: 40px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-top: 50px;
+  margin: 0 auto;
+  max-width: 840px;
 }
 
+.feeds-index {
+  padding-top: 40px;
+  width: 100%;
+}
+
+//ADD FEED FORM
 .add-feed-form {
   width: 100%;
 }
@@ -14,27 +20,23 @@
   vertical-align: middle;
 }
 
-.feed-header-row {
-  text-align: left;
-  color: lightgrey;
-}
-
 .add-feed-input-container i {
   position: absolute;
-  bottom:22px;
-  left:18px;
+  bottom:26px;
+  left:12px;
   width:10px;
   height:10px;
-  color: lightgrey;
+  color: rgba(0, 0, 0, 0.15);
 }
 
 .add-feed-form input {
   display: inline-block;
   padding: 5px;
   padding-left: 40px;
-  width: calc(100% - 250px);
-  border: 1px solid lightgrey;
+  width: calc(100% - 162px);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
+  margin-left: 0px;
 }
 
 .add-feed-form input:focus {
@@ -49,83 +51,118 @@
   margin: 10px;
   width: 70px;
   height: 10px;
-  padding: 15px 15px;
+  padding: 12px 15px;
+  padding-top: 8px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 0px;
 }
 
-.feeds-table {
-  width: 100%;
-}
-
-.feeds-table {
-  border: 1px solid lightgrey;
+// Feeds Table
+.feeds-index-container table {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-collapse: separate;
   border-radius: 5px;
+  border-spacing: 0;
+  box-shadow: none;
+  margin: 20px 0;
+  text-align: left;
+  width: 100%
 }
 
-.feed-index-row {
-  height: 75px;
+.feeds-index-container table tr th:first-child {
+  padding-left: 15px;
 }
 
-.feed-index-icon {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  padding: 5px;
-  padding-right: 10px;
+.feeds-index-container table tr th {
+  padding-bottom: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
 }
 
-.feed-rename {
-  display: inline-block;
-}
-
-.feed-rename input {
-  display: inline-block;
-  max-width: 100%;
-}
-
-.feed-rename button {
-  display: inline-block;
-  padding: 3px;
+.feeds-index-container th {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  color: #757575;
   font-size: 12px;
-}
-
-.feeds-table input {
-  width: 50%
-}
-
-.feed-source-header {
+  text-transform: uppercase;
+  text-align: left;
+  vertical-align: middle;
   min-width: 400px;
   max-width: 80%;
 }
 
-.feed-status-header {
+.feeds-index-container tbody tr {
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.feeds-index-container tbody td {
+  padding: 15px;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.feed-index-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin-right: 15px;
+  background: #F1F1F1;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+
+//feed name column
+.feed-source-name {
+  width: 80%;
+}
+
+.feed-name-show {
+  width: 75%;
+  display: inline-flex;
+  font-weight: 700;
+  justify-content: space-between;
+}
+
+.modify-button {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  opacity: .5;
   width: 20px;
+}
+
+.modify-button:hover {
+  opacity: 1;
+}
+
+.feed-rename button {
+  font-size: 12px;
+}
+
+.feed-rename-form {
+  width: 75%;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.feed-rename-form input {
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+
+.feed-rename-form button {
+  color: #2BB14C;
+  opacity: .5;
+}
+
+.feed-rename-form button:hover {
+  opacity: 1;
 }
 
 .feed-status-text {
   color: #2BB14C;
-}
-
-.feed-modify-cell {
-  text-align: center;
-  min-width: 150px;
-}
-
-.feed-modify {
-  font-size: 12px;
-}
-
-.feed-rename-button {
-  color: lightgrey;
-}
-
-.feed-rename-button:hover {
-  color: grey;
-}
-
-.feed-delete-button {
-  color: lightpink;
-}
-
-.feed-delete-button:hover {
-  color: red;
 }

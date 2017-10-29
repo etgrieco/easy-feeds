@@ -27,11 +27,11 @@ export class AddFeedForm extends React.Component {
       <form className="add-feed-form" onSubmit={this.handleSubmit}>
         <ul className="add-feed-errors">{errors}</ul>
         <div className="add-feed-input-container">
-          <input placeholder="Add a feed URL"
+          <input placeholder="Add a feed URL..."
             value={this.state.rss_url}
             onChange={e => this.setState({rss_url: e.target.value})}
             />
-          <i class="fa fa-search" aria-hidden="true"></i>
+          <i className="fa fa-search" aria-hidden="true"></i>
           <button className="green-button">Add Feed</button>
         </div>
       </form>

@@ -4,13 +4,13 @@ class FeedsIndexRow extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = Object.assign({ renaming: false, isMouseInside: false }, this.props.feed);
+    this.state = Object.assign({ renaming: false, isMouseInside: true }, this.props.feed);
     this.handleEditChange = this.handleEditChange.bind(this);
   }
 
   handleEdit() {
     return e => {
-      e.preventDefault;
+      e.preventDefault();
       this.props.updateFeed(this.state);
       this.state.renaming = false;
     };
@@ -27,54 +27,63 @@ class FeedsIndexRow extends React.Component {
   subscriptionTitleForm(feed) {
     return (
       this.state.renaming ?
-      <div className="feed-rename">
-        <form
+        <form className="feed-rename-form"
           onSubmit={this.handleEdit()}>
           <input type="text"
             value={this.state.subscription_title}
             onChange={e => this.handleEditChange(e)}
             />
-          <button>&#10004;</button>
+          <button><i className="fa fa-check" aria-hidden="true"></i></button>
         </form>
+      :
+      <div className="feed-name-show">
+        {this.state.subscription_title}
+        { this.state.isMouseInside ?
+          <button className="modify-button feed-rename"
+            onClick={e => this.setState(
+              { renaming: true }
+            )}>
+            <i className="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          : null
+        }
       </div>
-      : feed.subscription_title
     );
   }
+
+  // this.setState({ isMouseInside: true })
+
+  //  this.setState({ isMouseInside: false });
 
   render() {
     const { feed } = this.props;
     return (
       <tr className="feed-index-row"
-        onMouseEnter={e =>
-          this.setState({ isMouseInside: true })
+        onMouseEnter={e => {
+          //
+          }
         }
         onMouseLeave={e => {
-          this.setState({ isMouseInside: false });
+          //
           }
         }
       >
-        <td>
-          <img src={feed.image_url} className="feed-index-icon"/>
-          {this.subscriptionTitleForm(feed)}
-        </td>
-        <td className="feed-status-text">{feed.status}</td>
-        <td className="feed-modify-cell">
-          { this.state.isMouseInside ?
-            <div id="modify-buttons">
-              <button className="feed-modify feed-rename-button"
-                onClick={e => this.setState(
-                  { renaming: true }
-                )}>
-                <i className="fa fa-pencil" aria-hidden="true"></i>
-              </button>
-              <button className="feed-modify feed-delete-button"
-                onClick={this.handleDelete(feed)}>
-                <i className="fa fa-trash-o" aria-hidden="true"></i>
-              </button>
-            </div>
-            : null
-          }
-        </td>
+      <td className="feed-source-name">
+        <img src={feed.image_url} className="feed-index-icon"/>
+        {this.subscriptionTitleForm(feed)}
+      </td>
+      <td className="feed-status-text">{feed.status}</td>
+      <td className="feed-delete-cell">
+        { this.state.isMouseInside ?
+          <div>
+            <button className="modify-button feed-delete"
+              onClick={this.handleDelete(feed)}>
+              <i className="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+          </div>
+          : null
+        }
+      </td>
       </tr>
     );
   }

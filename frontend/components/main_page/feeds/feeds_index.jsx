@@ -17,22 +17,26 @@ export class FeedsIndex extends React.Component {
     });
 
     return (
-      <div className="feeds-index">
+      <div className="feeds-index-container">
         <h1>Organize Sources</h1>
-        <AddFeedFormContainer />
-        <table className="feeds-table">
-          <thead>
-            <tr className="feed-header-row">
-              <th className="feed-source-header">Source Name</th>
-              <th className="feed-status-header">Status</th>
-              <th className="feed-modify-header">Modify</th>
-            </tr>
-          </thead>
-          <tbody>
-            {feedsIndexRows}
-          </tbody>
-        </table>
-        <div></div>
+        <div className="feeds-index">
+          <AddFeedFormContainer />
+          <div>
+            <table className="feeds-table">
+              <thead>
+                <tr className="feed-header-row">
+                  <th className="feed-source-header">Source Name</th>
+                  <th className="feed-status-header">Status</th>
+                  <th className="feed-modify-header"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {feedsIndexRows}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
       </div>
     );
   }
