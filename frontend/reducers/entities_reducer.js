@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import SubscriptionsReducer from './subscriptions_reducer';
+import FeedsReducer from './feeds_reducer';
 
 export default combineReducers({
-  feeds: SubscriptionsReducer
+  feeds: FeedsReducer
 });

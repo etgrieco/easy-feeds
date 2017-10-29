@@ -1,4 +1,6 @@
-@feeds.includes(:subscriptions).each do |feed|
+json.results @feeds, :id
+
+@feeds.each do |feed|
   json.set! feed.id do
     json.partial! 'api/feeds/feed', feed: feed
     #fix n + 1 query?

@@ -3,7 +3,7 @@ import { RECEIVE_ALL_SUBSCRIPTIONS, REMOVE_FEED, RECEIVE_FEED }
 import merge from 'lodash/merge';
 import { combineReducers } from 'redux';
 
-const subscriptionsById = (
+const feedsById = (
   state = {},
   action) => {
 
@@ -42,14 +42,24 @@ const allSubscriptions = (state = [], action) => {
   }
 };
 
+import { RECEIVE_FEEDS_RESULTS } from '../actions/discovery_actions';
 
+const allFeedsResults = (state = [], action) => {
+  Object.freeze(state);
+  let newState;
 
+  switch (action.type) {
+    case RECEIVE_FEEDS_RESULTS:
+      return Object.values(action.results);
+    default:
+      return state;
+  }
+};
 
-
-
-const subscriptionsReducer = combineReducers({
-  byId: subscriptionsById,
-  allIds: allSubscriptions
+const feedsReducer = combineReducers({
+  byId: feedsById,
+  allSubIds: allSubscriptions,
+  results: allFeedsResults
 });
 
-export default subscriptionsReducer;
+export default feedsReducer;

@@ -4,9 +4,8 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 //test
-import * as SubscriptionActions from './actions/subscription_actions';
-import * as SubscriptionApiUtil from './util/subscription_api_util';
 import * as FeedApiUtil from './util/feed_api_util';
+import * as FeedActions from './actions/discovery_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -20,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //test
-  window.SubscriptionApiUtil = SubscriptionApiUtil;
-  window.SubscriptionActions = SubscriptionActions;
+  window.FeedApiUtil = FeedApiUtil;
+  window.FeedActions = FeedActions;
 
   window.getState = store.getState;
   window.dispatch = store.dispatch;
