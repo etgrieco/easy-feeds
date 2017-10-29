@@ -1,18 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchFeedResults } from '../../../actions/discovery_actions';
-
-// const DiscoverFeeds = ({ feeds, fetchFeedResults }) => {
-//   console.log(fetchFeedResults)
-//   debugger
-//
-//   const feedResults = feeds.results.map(result => {
-//     let feed = feeds[result];
-//     return (<div key={feed.id}>{feed.title}</div>);
-//   });
-//
-//   return <div className="results">{feedResults}</div>;
-// };
+import { createFeed } from '../../../actions/subscription_actions';
 
 class DiscoverFeeds extends React.Component {
 
@@ -20,6 +9,7 @@ class DiscoverFeeds extends React.Component {
     super(props);
     this.state = {query: ""};
     this.handleQueryChange = this.handleQueryChange.bind(this);
+    this.handleSubscribe = this.handleSubscribe.bind(this);
   }
 
   componentDidMount() {
@@ -31,13 +21,23 @@ class DiscoverFeeds extends React.Component {
     this.props.fetchFeedResults(e.target.value);
   }
 
-  handleSubscribe()
+  handleSubscribe(feed) {
+    this.props.createFeed(feed);
+  }
 
   render() {
       const { feeds } = this.props;
       let feedResults = feeds.results.map(resultId => {
         let feed = feeds.byId[resultId];
-        return (<div key={feed.id}>{feed.title}</div>);
+        return (
+        <div key={feed.id}>
+          {feed.title}
+          {
+            feed.subscribed ?
+            null :
+            <button onClick={e => this.handleSubscribe(feed)}>Subscribe</button>
+          }
+        </div>);
       });
 
       if (feedResults.length === 0) {
@@ -46,7 +46,7 @@ class DiscoverFeeds extends React.Component {
 
       return (
         <div>
-          <for>
+          <form>
             <input className="feed-search"
               value={this.state.query}
               onChange={this.handleQueryChange}
@@ -76,7 +76,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return ({
-    fetchFeedResults: query => dispatch(fetchFeedResults(query))
+    fetchFeedResults: query => dispatch(fetchFeedResults(query)),
+    createFeed: feed => dispatch(createFeed(feed))
   });
 };
 

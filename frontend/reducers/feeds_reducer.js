@@ -17,10 +17,6 @@ const feedsById = (
       newFeeds = merge({}, action.feeds, action.subscriptions );
       newState = merge({}, state, newFeeds);
       return newState;
-    case REMOVE_FEED:
-      newState = merge({}, state);
-      delete newState[action.feedId];
-      return newState;
     case RECEIVE_FEED:
       newState = merge({}, state, action.feed, action.subscription);
       return newState;
@@ -34,10 +30,13 @@ const allSubscriptions = (state = [], action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
-      return state.concat(Object.keys(action.feeds));
+      return Object.keys(action.subscriptions).map(key => parseInt(key));
     case REMOVE_FEED:
+      debugger
       let idx = state.indexOf(action.feedId);
-      return idx > -1 ? state.concat([]).splice(idx, 1) : state;
+      newState = state.concat([]);
+      idx > -1 ? newState.splice(idx, 1) : null;
+      return newState;
     default:
       return state;
   }

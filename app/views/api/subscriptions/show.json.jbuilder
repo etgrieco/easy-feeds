@@ -10,5 +10,6 @@ json.subscription do
   json.set! @subscription.feed_id do
     json.subscription_title @subscription.title
     json.subscription_id @subscription.id
+    json.subscribed true
   end
 end

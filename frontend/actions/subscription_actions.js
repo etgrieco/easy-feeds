@@ -1,6 +1,5 @@
 import * as SubscriptionApiUtil from '../util/subscription_api_util';
 
-// export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ALL_SUBSCRIPTIONS = 'RECEIVE_ALL_SUBSCRIPTIONS';
 export const REMOVE_FEED = 'REMOVE_FEED';
 export const RECEIVE_FEED = 'RECEIVE_FEED';
@@ -69,7 +68,7 @@ export const updateFeed = feed => dispatch => {
 };
 
 export const createFeed = feed => dispatch => {
-  dispatch(startFeedAction(["Creating Feed..."]));
+  dispatch(startFeedAction(["Subscribing to Feed..."]));
   return (
     SubscriptionApiUtil.createFeed(feed)
     .then(
