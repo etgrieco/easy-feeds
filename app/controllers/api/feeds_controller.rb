@@ -6,7 +6,7 @@ class Api::FeedsController < ApplicationController
       @feeds = Feed.popular
     else
       @q = Feed.ransack(title_cont: params[:q])
-      @feeds = @q.result(distinct: true)
+      @feeds = @q.result(distinct: true).limit(20)
     end
   end
 
