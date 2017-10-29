@@ -41,5 +41,3 @@ export class AddFeedForm extends React.Component {
 }
 
 export default AddFeedForm;
-
-// export default () => (<input placeholder="Add a feed URL"/>);

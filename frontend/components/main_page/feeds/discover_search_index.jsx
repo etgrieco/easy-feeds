@@ -1,11 +1,12 @@
 import React from 'react';
 import DiscoverIndexItem from './discover_index_item';
+import AddFeedForm from './add_feed_form';
 
 class DiscoverSearchIndex extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {query: ""};
+    this.state = {query: "", formType: "search"};
     this.handleQueryChange = this.handleQueryChange.bind(this);
   }
 
@@ -33,30 +34,38 @@ class DiscoverSearchIndex extends React.Component {
     );
   }
 
-  render() {
-    const { feeds } = this.props;
-    let discoverIndexItems = this.getDiscoverIndexItems(feeds);
-
+  discoverSearch(discoverIndexItems) {
     return (
-      <div>
-        <form>
-          <input className="feed-search"
-            value={this.state.query}
-            onChange={this.handleQueryChange}
-            />
-        </form>
+    <div>
+      <form>
+        <input className="feed-search"
+          value={this.state.query}
+          onChange={this.handleQueryChange}
+          />
+      </form>
 
-        {
-          this.state.query.length === 0 ?
-          <h1>Popular Feeds</h1>
-          : <h1>Results</h1>
-        }
+      {
+        this.state.query.length === 0 ?
+        <h1>Popular Feeds</h1>
+        : <h1>Results</h1>
+      }
 
-        <div className="results">
-          {discoverIndexItems}
-        </div>
+      <div className="results">
+        {discoverIndexItems}
       </div>
-    );
+
+    </div>
+  );
+}
+
+  render() {
+    if (this.state.formType === "search") {
+      const { feeds } = this.props;
+      let discoverIndexItems = this.getDiscoverIndexItems(feeds);
+      return this.discoverSearch(discoverIndexItems);
+    } else if (this.state.formType === "url") {
+      return <AddFeedForm />;
+    }
   }
 }
 
