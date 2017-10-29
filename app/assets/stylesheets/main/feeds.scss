@@ -60,14 +60,21 @@
 
 // Feeds Table
 .feeds-index-container table {
+  min-width: 400px;
+  max-width: 840px;
+}
+
+.feeds-index-container thead tbody {
+  width: 100%;
+}
+
+.feeds-index-container table {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-collapse: separate;
   border-radius: 5px;
   border-spacing: 0;
-  box-shadow: none;
   margin: 20px 0;
   text-align: left;
-  width: 100%
 }
 
 .feeds-index-container table tr th:first-child {
@@ -87,8 +94,6 @@
   text-transform: uppercase;
   text-align: left;
   vertical-align: middle;
-  min-width: 400px;
-  max-width: 80%;
 }
 
 .feeds-index-container tbody tr {
@@ -115,12 +120,11 @@
 
 
 //feed name column
-.feed-source-name {
-  width: 80%;
+.feed-source-header {
+  width: 100%;
 }
-
 .feed-name-show {
-  width: 75%;
+  width: 80%;
   display: inline-flex;
   font-weight: 700;
   justify-content: space-between;
@@ -129,7 +133,7 @@
 .modify-button {
   margin: 0;
   padding: 0;
-  font-size: 12px;
+  font-size: 16px;
   opacity: .5;
   width: 20px;
 }
@@ -143,7 +147,7 @@
 }
 
 .feed-rename-form {
-  width: 75%;
+  width: 80%;
   display: inline-flex;
   justify-content: space-between;
 }
@@ -152,6 +156,7 @@
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
+  width: 100%;
 }
 
 .feed-rename-form button {
@@ -163,6 +168,12 @@
   opacity: 1;
 }
 
+//Feed status/delete columns
+
 .feed-status-text {
   color: #2BB14C;
+}
+
+.feed-delete {
+  color: red;
 }

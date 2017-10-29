@@ -4,7 +4,7 @@ class FeedsIndexRow extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = Object.assign({ renaming: false, isMouseInside: true }, this.props.feed);
+    this.state = Object.assign({ renaming: false, isMouseInside: false }, this.props.feed);
     this.handleEditChange = this.handleEditChange.bind(this);
   }
 
@@ -51,20 +51,16 @@ class FeedsIndexRow extends React.Component {
     );
   }
 
-  // this.setState({ isMouseInside: true })
-
-  //  this.setState({ isMouseInside: false });
-
   render() {
     const { feed } = this.props;
     return (
       <tr className="feed-index-row"
         onMouseEnter={e => {
-          //
+          this.setState({ isMouseInside: true });
           }
         }
         onMouseLeave={e => {
-          //
+          this.setState({ isMouseInside: false });
           }
         }
       >
@@ -81,7 +77,7 @@ class FeedsIndexRow extends React.Component {
               <i className="fa fa-trash-o" aria-hidden="true"></i>
             </button>
           </div>
-          : null
+          : <div className="modify-button feed-delete"></div>
         }
       </td>
       </tr>

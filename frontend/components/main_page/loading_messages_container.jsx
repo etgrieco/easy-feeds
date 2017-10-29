@@ -7,7 +7,10 @@ const LoadingMessages = ({ messages }) => {
     <li key={idx}>{msg}</li>
   );
 
-  return <div className="main-loading-messages">{loadingMessages}</div>;
+  if (loadingMessages.length > 0) {
+    return <div className="main-loading-messages">{loadingMessages}</div>;
+  }
+  return <div></div>;
 };
 
 const mapStateToProps = state => {
