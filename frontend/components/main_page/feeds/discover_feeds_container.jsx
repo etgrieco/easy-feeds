@@ -18,17 +18,20 @@ class DiscoverFeeds extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = ({query: ""});
-    this.handleQuery = this.handleQuery.bind(this);
+    this.state = {query: ""};
+    this.handleQueryChange = this.handleQueryChange.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchFeedResults(this.state.query);
   }
 
-  handleQuery(e) {
+  handleQueryChange(e) {
     this.setState({query: e.target.value});
+    this.props.fetchFeedResults(e.target.value);
   }
+
+  handleSubscribe()
 
   render() {
       const { feeds } = this.props;
@@ -43,12 +46,18 @@ class DiscoverFeeds extends React.Component {
 
       return (
         <div>
-          <form>
+          <for>
             <input className="feed-search"
               value={this.state.query}
-              onChange={this.handleQuery}
+              onChange={this.handleQueryChange}
               />
           </form>
+
+          {
+            this.state.query.length === 0 ?
+            <h1>Popular Feeds</h1>
+            : <h1>Results</h1>
+          }
 
           <div className="results">
             {feedResults}

@@ -24,7 +24,7 @@ const NavBar = (props) => {
 
       </div>
       <div className="nav-add-content">
-        <Link to="/i/feeds">
+        <Link to="/i/discover">
           <div className="nav-add-container">
             <span><i className="fa fa-plus" aria-hidden="true"></i></span>
             Add Content
