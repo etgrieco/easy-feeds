@@ -2,7 +2,12 @@ class Api::FeedsController < ApplicationController
   before_action :require_login
 
   def index
-    @feeds = Feed.all
+    if params[:q].try(:empty?)
+      @feeds = Feed.popular
+    else
+      @q = Feed.ransack(title_cont: params[:q])
+      @feeds = @q.result(distinct: true)
+    end
   end
 
   def show

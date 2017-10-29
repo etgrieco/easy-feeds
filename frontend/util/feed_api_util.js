@@ -1,7 +1,8 @@
-export const fetchFeeds = () => (
+export const fetchFeeds = (q) => (
   $.ajax({
     type: "GET",
-    url: "api/feeds"
+    url: "api/feeds",
+    data: { q }
   })
 );
 

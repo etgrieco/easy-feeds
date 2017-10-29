@@ -17,6 +17,19 @@ class Feed < ApplicationRecord
   before_validation :check_feed_url_status, on: :create
   after_validation :populate_feed_metadata, on: :create
 
+
+  def self.popular
+    Feed
+      .joins(:subscribers)
+      .group("feeds.id")
+      .order("COUNT(subscriptions.id) DESC")
+      .limit(20)
+  end
+
+  def subscribed_by?(user)
+    !!user.subscriptions.find_by(feed_id: self.id)
+  end
+
   def check_feed_url_status
     if self.rss_url.empty?
       puts "Empty url"

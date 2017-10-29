@@ -31,6 +31,7 @@ gem 'jquery-rails'
 gem 'feedjira'
 gem 'httparty'
 gem 'faker'
+gem 'ransack'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
