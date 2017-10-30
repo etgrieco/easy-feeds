@@ -5,13 +5,9 @@ class Story < ApplicationRecord
     class_name: :Feed,
     foreign_key: :feed_id
 
-# before_validation :check_entry_exists, on: :create
-#
-# def check_entry_exists
-#   if Feed.find_by(entry_id: self.entry_id)
-#     throw :abort
-#   end
-# end
+  has_many :readers,
+    through: :feed,
+    source: :subscribers
 
 def self.create_attributes_hash(fjra_entry, feed_id)
   {

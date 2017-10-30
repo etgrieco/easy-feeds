@@ -15,8 +15,11 @@ class User < ApplicationRecord
 
   has_many :feeds,
     through: :subscriptions,
-    source: :feed,
-    dependent: :destroy
+    source: :feed
+
+  has_many :stories,
+    through: :feeds,
+    source: :stories
 
   def password=(password)
     @password = password

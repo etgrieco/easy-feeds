@@ -13,3 +13,15 @@ json.subscription do
     json.subscribed true
   end
 end
+
+json.byId do
+  stories = subscription.stories
+  stories.each do |story|
+    json.set! story.id do
+      json.partial! 'api/stories/story', story: story
+    end
+  end
+end
+json.allIds do
+  stories.map(&:id)
+end

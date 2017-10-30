@@ -1,6 +1,7 @@
 class Api::SubscriptionsController < ApplicationController
   before_action :require_login
   before_action :ensure_feed, only: [:create]
+  before_action :refresh_all, only: [:index]
 
   def index
     @subs = current_user.subscriptions.includes(:feed)
@@ -62,6 +63,12 @@ class Api::SubscriptionsController < ApplicationController
         render json: @feed.errors.full_messages, status: 422
         # this will stop subscribe create from occuring
       end
+    end
+  end
+
+  def refresh_all
+    current_user.feeds.each |feed|
+      feed.populate_entries
     end
   end
 

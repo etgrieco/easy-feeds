@@ -19,3 +19,19 @@ json.subscriptions do
     end
   end
 end
+
+# get stories
+json.stories({})
+json.stories @subs.each do |subscription|
+  json.byId do
+    stories = subscription.stories
+    stories.each do |story|
+      json.set! story.id do
+        json.partial! 'api/stories/story', story: story
+      end
+    end
+  end
+  json.allIds do
+    stories.map(&:id)
+  end
+end

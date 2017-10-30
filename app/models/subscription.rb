@@ -20,4 +20,8 @@ class Subscription < ApplicationRecord
     primary_key: :id,
     counter_cache: :subscriptions_count
 
+  has_many :stories,
+    through: :feed,
+    source: :stories
+
 end
