@@ -9,7 +9,8 @@ export const START_FEED_ACTION = 'START_FEED_ACTION';
 export const receiveAllSubscriptions = feedsPayload => ({
   type: RECEIVE_ALL_SUBSCRIPTIONS,
   feeds: feedsPayload.feeds,
-  subscriptions: feedsPayload.subscriptions
+  subscriptions: feedsPayload.subscriptions,
+  stories: feedsPayload.stories
 });
 
 export const removeFeed = feedId => ({

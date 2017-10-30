@@ -24,18 +24,11 @@ end
 json.stories({})
 json.stories do
   @subs.each do |subscription|
-    subbed_stories = subscription.stories
-    json.byId do
-      subbed_stories.each do |story|
-        json.set! story.id do
-          json.partial! 'api/stories/story', story: story
-        end
+    subbed_stories = subscription.stories.limit(10)
+    subbed_stories.each do |story|
+      json.set! story.id do
+        json.partial! 'api/stories/story', story: story
       end
     end
-
-    # FIX THIS
-    # json.allIds do
-    #   subbed_stories.map { |story| story.id }
-    # end
   end
 end

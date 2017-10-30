@@ -3,10 +3,7 @@ import { RECEIVE_ALL_SUBSCRIPTIONS, REMOVE_FEED, RECEIVE_FEED }
 import merge from 'lodash/merge';
 import { combineReducers } from 'redux';
 
-const feedsById = (
-  state = {},
-  action) => {
-
+const feedsById = (state = {}, action) => {
   Object.freeze(state);
   let newState;
   let newFeeds;

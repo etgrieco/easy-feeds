@@ -1,5 +1,5 @@
 class Story < ApplicationRecord
-  validates :entry_id, uniqueness: true
+  validates :entry_id, presence: true, uniqueness: true
 
   belongs_to :feed,
     class_name: :Feed,
@@ -10,8 +10,10 @@ class Story < ApplicationRecord
     source: :subscribers
 
 def self.create_attributes_hash(fjra_entry, feed_id)
+  entry_id = fjra_entry.entry_id || fjira_entry.url
+
   {
-    entry_id: fjra_entry.entry_id,
+    entry_id: entry_id,
     title: fjra_entry.title,
     author: fjra_entry.author,
     summary: fjra_entry.summary,
