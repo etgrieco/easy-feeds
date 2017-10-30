@@ -14,14 +14,18 @@ json.subscription do
   end
 end
 
-json.byId do
-  stories = subscription.stories
-  stories.each do |story|
-    json.set! story.id do
-      json.partial! 'api/stories/story', story: story
+json.stories do
+  subbed_stories = @subscription.stories
+  json.byId do
+    subbed_stories.each do |story|
+      json.set! story.id do
+        json.partial! 'api/stories/story', story: story
+      end
     end
   end
 end
-json.allIds do
-  stories.map(&:id)
-end
+
+# FIX THIS
+# json.allIds do
+#   stories.map(&:id)
+# end

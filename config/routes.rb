@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :subscriptions, only: [:create, :index, :show, :destroy, :update]
     resources :feeds, only: [:index, :show]
-    get '/feeds/search', to: 'feeds#search'
   end
 
 end

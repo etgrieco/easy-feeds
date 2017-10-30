@@ -21,8 +21,7 @@ class Feed < ApplicationRecord
 
   before_validation :check_feed_url_status, on: :create
   after_validation :populate_feed_metadata, on: :create
-  after_save :populate_entries
-
+  after_save :populate_entries, on: :create
 
   def self.popular
     Feed

@@ -1,4 +1,4 @@
-json.results @feeds.map(&:id)
+json.results (@feeds.map {|feed| feed.id })
 
 json.feeds do
   @feeds.each do |feed|

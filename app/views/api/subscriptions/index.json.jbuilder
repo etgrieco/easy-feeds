@@ -20,18 +20,22 @@ json.subscriptions do
   end
 end
 
-# get stories
+# get stories (perhaps later map to collections?)
 json.stories({})
-json.stories @subs.each do |subscription|
-  json.byId do
-    stories = subscription.stories
-    stories.each do |story|
-      json.set! story.id do
-        json.partial! 'api/stories/story', story: story
+json.stories do
+  @subs.each do |subscription|
+    subbed_stories = subscription.stories
+    json.byId do
+      subbed_stories.each do |story|
+        json.set! story.id do
+          json.partial! 'api/stories/story', story: story
+        end
       end
     end
-  end
-  json.allIds do
-    stories.map(&:id)
+
+    # FIX THIS
+    # json.allIds do
+    #   subbed_stories.map { |story| story.id }
+    # end
   end
 end

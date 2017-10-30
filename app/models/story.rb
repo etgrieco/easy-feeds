@@ -16,7 +16,7 @@ def self.create_attributes_hash(fjra_entry, feed_id)
     author: fjra_entry.author,
     summary: fjra_entry.summary,
     link_url: fjra_entry.url,
-    image_url: fjra_entry.try(:image)&.url,
+    image_url: fjra_entry.try(:image),
     feed_id: feed_id,
     pub_datetime: fjra_entry.published
   }

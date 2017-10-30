@@ -1,7 +1,7 @@
 class Api::SubscriptionsController < ApplicationController
   before_action :require_login
   before_action :ensure_feed, only: [:create]
-  before_action :refresh_all, only: [:index]
+  before_action :refresh, only: [:show]
 
   def index
     @subs = current_user.subscriptions.includes(:feed)
@@ -36,7 +36,8 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def show
-    @subscription = current_user.subscriptions.find_by(id: params[:id])
+    # lazy loaded because refresh likely ran
+    @subscription ||= current_user.subscriptions.find_by(feed_id: params[:id])
     if @subscription
       render :show
     else
@@ -66,8 +67,13 @@ class Api::SubscriptionsController < ApplicationController
     end
   end
 
+  def refresh
+    @subscription = current_user.subscriptions.find_by(feed_id: params[:id])
+    @subscription.feed.populate_entries
+  end
+
   def refresh_all
-    current_user.feeds.each |feed|
+    current_user.feeds.each do |feed|
       feed.populate_entries
     end
   end
