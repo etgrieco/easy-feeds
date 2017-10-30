@@ -11,11 +11,8 @@ const feedsById = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
     case RECEIVE_FEEDS_RESULTS:
-      newFeeds = merge({}, action.feeds.byId, action.subscriptions );
-      newState = merge({}, state, newFeeds);
-      return newState;
     case RECEIVE_FEED:
-      newState = merge({}, state, action.feed, action.subscription);
+      newState = merge({}, state, action.feeds.byId, action.subscriptions.byId );
       return newState;
     default:
       return state;
@@ -31,7 +28,7 @@ const allSubscriptions = (state = [], action) => {
       return action.feeds.allIds;
     case RECEIVE_FEED:
       // remove feed, then add to beginning of array
-      const newSubFeedId = parseInt(Object.keys(action.subscription)[0]);
+      const newSubFeedId = action.subscriptions.allIds[0];
       idx = state.indexOf(newSubFeedId);
       newState = state.concat();
       idx > -1 ? newState.splice(idx, 1) : null;

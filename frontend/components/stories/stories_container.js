@@ -5,7 +5,8 @@ import { fetchAllSubscriptions } from '../../actions/subscription_actions';
 const mapStateToProps = state => {
   return ({
     storiesIds: state.entities.stories.allIds,
-    stories: state.entities.stories.byId
+    stories: state.entities.stories.byId,
+    feeds: state.entities.feeds.byId
   });
 };
 

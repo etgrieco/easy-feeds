@@ -20,8 +20,9 @@ export const removeFeed = feedId => ({
 
 export const receiveFeed = feedPayload => ({
   type: RECEIVE_FEED,
-  feed: feedPayload.feed,
-  subscription: feedPayload.subscription
+  feeds: feedPayload.feeds,
+  subscriptions: feedPayload.subscriptions,
+  stories: feedPayload.stories
 });
 
 export const startFeedAction = messages => ({

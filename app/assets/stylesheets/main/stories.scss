@@ -1,0 +1,33 @@
+.story-index {
+  margin: 0 auto;
+  max-width: 840px;
+  padding-top: 40px;
+  padding-left: 20px;
+}
+
+.story-index-item {
+  display: flex;
+  max-height: 150px;
+  max-width: 620px;
+  border: 1px solid black;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.story-index-item h4 {
+  font-size: 15px;
+  font-weight: bold;
+  padding-bottom: 12px;
+}
+
+.story-index-item h5 {
+  font-size: 12px;
+  padding-bottom: 12px;
+  color: grey;
+}
+
+.story-item-image {
+  min-height: 85px;
+  min-width: 135px;
+  overflow: hidden;
+}

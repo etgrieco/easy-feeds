@@ -15,6 +15,7 @@ export default (props) => {
       <ProtectedRoute path="/i/latest" component={StoriesContainer} />
       <ProtectedRoute path="/i/feeds" component={FeedsIndexContainer} />
       <ProtectedRoute path="/i/discover" component={DiscoverFeedsContainer} />
+      <ProtectedRoute path="/i/subscriptions/:feedId" component={StoriesContainer} />
     </section>
   );
 };

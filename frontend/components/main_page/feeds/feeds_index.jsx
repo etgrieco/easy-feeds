@@ -9,8 +9,11 @@ export class FeedsIndex extends React.Component {
   }
 
   render() {
+    const { feeds } = this.props;
     const feedsIndexRows = this.props.subFeedIds.map(feedId => {
-      const feed = this.props.feeds[feedId];
+      const feed = feeds[feedId];
+
+
       return <FeedsIndexRow key={feed.id}
         updateFeed={this.props.updateFeed}
         deleteFeed={this.props.deleteFeed}

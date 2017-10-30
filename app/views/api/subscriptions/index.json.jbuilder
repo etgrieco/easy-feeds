@@ -19,17 +19,19 @@ json.feeds do
     end
   end
 
-  json.allIds all_feeds.sort_by(&:last_built).map(&:id)
+  json.allIds all_feeds.sort_by(&:last_built).map(&:id).reverse
 end
 
 # get basic info about subscription:
 json.subscriptions({})
 json.subscriptions do
-  @subs.each do |subscription|
-    json.set! subscription.feed_id do
-      json.subscription_title subscription.title
-      json.subscription_id subscription.id
-      json.subscribed true
+  json.byId do
+    @subs.each do |subscription|
+      json.set! subscription.feed_id do
+        json.subscription_title subscription.title
+        json.subscription_id subscription.id
+        json.subscribed true
+      end
     end
   end
 end
@@ -45,5 +47,5 @@ json.stories do
     end
   end
 
-  json.allIds all_stories.sort_by(&:pub_datetime).map(&:id)
+  json.allIds all_stories.sort_by(&:pub_datetime).map(&:id).reverse
 end

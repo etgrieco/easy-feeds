@@ -21,16 +21,12 @@ class Feed < ApplicationRecord
 
   before_validation :check_feed_url_status, on: :create
   after_validation :populate_feed_metadata, on: :create
-  after_save :populate_entries, on: :create
+  after_create :populate_entries
 
   def self.popular
     Feed
       .order("subscriptions_count DESC")
       .limit(20)
-  end
-
-  def subscribed_by?(user)
-    !!user.subscriptions.find_by(feed_id: self.id)
   end
 
   def check_feed_url_status
@@ -77,12 +73,25 @@ class Feed < ApplicationRecord
 
     entries.each do |entry|
       unless stories.find_by(entry_id: entry.entry_id)
-        attributes = Story.create_attributes_hash(entry, self.id)
+        attributes = Story.create_attributes_hash(
+          entry, self.id, self.title)
         Story.create(attributes)
       end
     end
 
     self.last_built = Time.now
   end
+
+  # def force_update_entries
+  #   @feed ||= Feedjira::Feed.fetch_and_parse self.rss_url
+  #
+  #   entries = @feed.entries
+  #   entries.each do |entry|
+  #     attributes = Story.create_attributes_hash(entry, self)
+  #     Story.update(attributes)
+  #   end
+  #
+  #   self.last_built = Time.now
+  # end
 
 end

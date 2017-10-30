@@ -32,6 +32,7 @@ gem 'feedjira'
 gem 'httparty'
 gem 'faker'
 gem 'ransack'
+gem 'sanitize'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
