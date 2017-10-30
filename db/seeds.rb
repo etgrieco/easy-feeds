@@ -32,7 +32,6 @@ du.save
   u.save
 end
 
-Feed.destroy_all
 seed_urls = (
   "http://feeds.bbci.co.uk/news/world/rss.xml*
 http://www.cbn.com/cbnnews/world/feed/*

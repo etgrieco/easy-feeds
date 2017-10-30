@@ -25,15 +25,19 @@ const feedsById = (state = {}, action) => {
 const allSubscriptions = (state = [], action) => {
   Object.freeze(state);
   let newState;
+  let idx;
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
       return action.feeds.allIds;
     case RECEIVE_FEED:
-      // will receive directly
+      // remove feed, then add to beginning of array
       const newSubFeedId = parseInt(Object.keys(action.subscription)[0]);
-      return [newSubFeedId].concat(state);
+      idx = state.indexOf(newSubFeedId);
+      newState = state.concat();
+      idx > -1 ? newState.splice(idx, 1) : null;
+      return [newSubFeedId].concat(newState);
     case REMOVE_FEED:
-      let idx = state.indexOf(action.feedId);
+      idx = state.indexOf(action.feedId);
       newState = state.concat();
       idx > -1 ? newState.splice(idx, 1) : null;
       return newState;
