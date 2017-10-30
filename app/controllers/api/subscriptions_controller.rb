@@ -4,7 +4,7 @@ class Api::SubscriptionsController < ApplicationController
   before_action :refresh, only: [:show]
 
   def index
-    @subs = current_user.subscriptions.includes(:feed)
+    @subs = current_user.subscriptions.includes(:feed, :stories)
   end
 
   def update

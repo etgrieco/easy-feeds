@@ -11,7 +11,7 @@ class Story < ApplicationRecord
 
 def self.create_attributes_hash(fjra_entry, feed_id)
   entry_id = fjra_entry.entry_id || fjira_entry.url
-
+  pub_datetime = fjra_entry.published || Time.now
   {
     entry_id: entry_id,
     title: fjra_entry.title,
@@ -20,7 +20,7 @@ def self.create_attributes_hash(fjra_entry, feed_id)
     link_url: fjra_entry.url,
     image_url: fjra_entry.try(:image),
     feed_id: feed_id,
-    pub_datetime: fjra_entry.published
+    pub_datetime: pub_datetime
   }
 end
 

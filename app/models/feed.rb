@@ -82,6 +82,8 @@ class Feed < ApplicationRecord
         Story.create(attributes)
       end
     end
+
+    self.last_built = Time.now
   end
 
 end

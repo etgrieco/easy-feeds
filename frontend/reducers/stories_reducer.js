@@ -11,7 +11,6 @@ const storiesById = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
-      debugger
       newState = merge({}, state, action.stories);
       return newState;
     default:
@@ -23,6 +22,8 @@ const allStories = (state = [], action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
+      debugger
+      // later -- take pure array that is sorted by pubdate?
       return Object.keys(action.stories).map(key => parseInt(key));
     default:
       return state;

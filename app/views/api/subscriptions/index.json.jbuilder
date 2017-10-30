@@ -1,11 +1,26 @@
 # get all the user's subscribed feeds
+
+all_stories = []
+all_feeds = []
+
 json.feeds({})
 json.feeds do
   @subs.each do |subscription|
-    json.set! subscription.feed_id do
-      json.partial! 'api/feeds/feed', feed: subscription.feed
+    feed = subscription.feed
+    all_feeds << feed
+
+    json.set! feed.id do
+      sub_stories = feed.stories.order('pub_datetime DESC').limit(10)
+      json.partial! 'api/feeds/feed', feed: feed
+      json.stories sub_stories.map(&:id)
+      all_stories += sub_stories
     end
   end
+
+  json.allIds do
+    all_feeds.sort_by(&:last_built).map(&:id)
+  end
+
 end
 
 # get basic info about subscription:
@@ -23,12 +38,13 @@ end
 # get stories (perhaps later map to collections?)
 json.stories({})
 json.stories do
-  @subs.each do |subscription|
-    subbed_stories = subscription.stories.limit(10)
-    subbed_stories.each do |story|
-      json.set! story.id do
-        json.partial! 'api/stories/story', story: story
-      end
+  all_stories.each do |story|
+    json.set! story.id do
+      json.partial! 'api/stories/story', story: story
     end
+  end
+
+  json.allIds do
+    all_stories.sort_by(&:pub_datetime).map(&:id)
   end
 end
