@@ -20,9 +20,7 @@ class Feed < ApplicationRecord
 
   def self.popular
     Feed
-      .joins(:subscribers)
-      .group("feeds.id")
-      .order("COUNT(subscriptions.id) DESC")
+      .order("subscriptions_count DESC")
       .limit(20)
   end
 
