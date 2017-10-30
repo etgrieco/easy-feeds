@@ -27,12 +27,11 @@ const allSubscriptions = (state = [], action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
-      // return Object.keys(action.subscriptions).map(key => parseInt(key));
       return action.feeds.allIds;
     case RECEIVE_FEED:
       // will receive directly
       const newSubFeedId = parseInt(Object.keys(action.subscription)[0]);
-      return state.concat(newSubFeedId);
+      return [newSubFeedId].concat(state);
     case REMOVE_FEED:
       let idx = state.indexOf(action.feedId);
       newState = state.concat();
