@@ -10,7 +10,7 @@ class Story < ApplicationRecord
     source: :subscribers
 
 def self.create_attributes_hash(fjra_entry, feed_id)
-  entry_id = fjra_entry.entry_id || fjira_entry.url
+  entry_id = fjra_entry.entry_id || fjra_entry.url
   pub_datetime = fjra_entry.published || Time.now
   {
     entry_id: entry_id,
