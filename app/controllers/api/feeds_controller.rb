@@ -38,6 +38,16 @@ class Api::FeedsController < ApplicationController
     end
   end
 
+  def refresh
+    Feed.find(params[:id]).populate_entries
+  end
+
+  def refresh_all
+    current_user.feeds.each |feed|
+      feed.populate_entries
+    end
+  end
+
   def feed_params
     params.require(:feed).permit(:rss_url, :title)
   end

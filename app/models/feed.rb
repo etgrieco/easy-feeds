@@ -14,8 +14,14 @@ class Feed < ApplicationRecord
     source: :subscriber,
     dependent: :destroy
 
+  has_many :stories,
+    foreign_key: :feed_id,
+    class_name: :Story,
+    dependent: :destroy
+
   before_validation :check_feed_url_status, on: :create
   after_validation :populate_feed_metadata, on: :create
+  after_save :populate_entries
 
 
   def self.popular
@@ -45,6 +51,8 @@ class Feed < ApplicationRecord
   end
 
   def populate_feed_metadata
+    @feed ||= Feedjira::Feed.fetch_and_parse self.rss_url
+
     title = @feed.title
     self.title = title.empty? ? "New Feed" : title
     self.website_url = @feed.url
@@ -61,6 +69,20 @@ class Feed < ApplicationRecord
     self.favicon_url = Favicon.new(host).uri || ''
 
     self.image_url = favicon_url
+  end
+
+  def populate_entries
+    @feed ||= Feedjira::Feed.fetch_and_parse self.rss_url
+
+    stories = self.stories
+    entries = @feed.entries
+
+    entries.each do |entry|
+      unless stories.find_by(entry_id: entry.entry_id)
+        attributes = Story.create_attributes_hash(entry, self.id)
+        Story.create(attributes)
+      end
+    end
   end
 
 end
