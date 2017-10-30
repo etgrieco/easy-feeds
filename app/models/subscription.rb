@@ -7,6 +7,14 @@ class Subscription < ApplicationRecord
     self.title = feed.title if self.title.empty?
   end
 
+  after_save do
+    self.feed.update(num_subscribers: self.feed.num_subscribers + 1)
+  end
+
+  after_delete do
+    self.feed.update(num_subscribers: self.feed.num_subscribers - 1)
+  end
+
   belongs_to :subscriber,
     class_name: "User",
     foreign_key: :subscriber_id,
