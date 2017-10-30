@@ -11,7 +11,7 @@ const storiesById = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
-      newState = merge({}, state, action.stories);
+      newState = merge({}, state, action.stories.byId);
       return newState;
     default:
       return state;
@@ -22,9 +22,9 @@ const allStories = (state = [], action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
-      debugger
+      return action.stories.allIds;
       // later -- take pure array that is sorted by pubdate?
-      return Object.keys(action.stories).map(key => parseInt(key));
+      // return Object.keys(action.stories).map(key => parseInt(key));
     default:
       return state;
   }

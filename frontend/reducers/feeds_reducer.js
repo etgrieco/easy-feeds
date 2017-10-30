@@ -11,7 +11,7 @@ const feedsById = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
     case RECEIVE_FEEDS_RESULTS:
-      newFeeds = merge({}, action.feeds, action.subscriptions );
+      newFeeds = merge({}, action.feeds.byId, action.subscriptions );
       newState = merge({}, state, newFeeds);
       return newState;
     case RECEIVE_FEED:
@@ -27,8 +27,10 @@ const allSubscriptions = (state = [], action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
-      return Object.keys(action.subscriptions).map(key => parseInt(key));
+      // return Object.keys(action.subscriptions).map(key => parseInt(key));
+      return action.feeds.allIds;
     case RECEIVE_FEED:
+      // will receive directly
       const newSubFeedId = parseInt(Object.keys(action.subscription)[0]);
       return state.concat(newSubFeedId);
     case REMOVE_FEED:
