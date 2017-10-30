@@ -50,7 +50,7 @@ class Feed < ApplicationRecord
     title = @feed.title
     self.title = title.empty? ? "New Feed" : title
     self.website_url = @feed.url
-    self.description = "#{@feed.title}: #{@feed.url}"
+    self.description = @feed.description || "#{@feed.title}: #{@feed.url}"
 
     self.last_built =
       if @feed.methods.include?('last_built')

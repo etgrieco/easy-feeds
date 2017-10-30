@@ -21,3 +21,28 @@ body button {
 .green-button:hover {
   background: #249540;
 }
+
+.discover-button {
+  background: white;
+  padding: 4px 0;
+  font-size: 12px;
+  font-weight: 700;
+  width: 90px;
+  box-sizing: border-box;
+}
+
+.follow-button {
+  border: 1px solid #2BB14C;
+  color: #2BB14C;
+}
+
+.follow-button:hover {
+  color: #249540;
+  border: 1px solid #249540;
+}
+
+.following-button {
+  border: 1px solid grey;
+  color: grey;
+  cursor: default;
+}

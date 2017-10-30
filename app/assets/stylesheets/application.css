@@ -17,6 +17,7 @@
  *= require main/session-form
  *= require main/landing
  *= require main/feeds
+ *= require main/discover
  *= require main/stories
  *= require navbar/navbar
  *= require_self

@@ -1,0 +1,97 @@
+.discover-search-index {
+  padding-top: 40px;
+  padding-left: 20px;
+  max-width: 840px;
+}
+
+.discover-search-index h1 {
+  color: grey;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.feed-search-input-container {
+  position: relative;
+  vertical-align: middle;
+}
+
+.feed-search-input-container i {
+  position: absolute;
+  bottom:19px;
+  left:12px;
+  width:10px;
+  height:10px;
+  color: rgba(0, 0, 0, 0.15);
+}
+
+.feed-search-input-container input {
+  display: inline-block;
+  padding: 5px;
+  padding-left: 40px;
+  width: 75%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  margin-left: 0px;
+}
+
+.feed-search-input-container input:focus {
+  border: 1px solid #2BB14C;
+}
+
+.feed-search-input-container input:focus + i {
+  color: grey;
+}
+
+.feed-url-container {
+  margin-top: 5px;
+  text-align: left;
+  color: lightgrey;
+  font-size: 10px;
+}
+
+.feed-url-container a:hover {
+  color: grey;
+}
+
+.discover-items {
+  margin-top: 70px;
+}
+
+.discover-items h2 {
+  text-transform: uppercase;
+  color: grey;
+  font-size: 12px;
+}
+
+.results {
+  margin-top: 25px;
+}
+
+.search-item {
+  display: flex;
+  justify-content: space-between;
+  height: 115px;
+  max-width: 630px;
+  margin-bottom: 50px;
+}
+
+.feed-search-name {
+  display: flex;
+}
+
+.search-item h3 {
+  padding: 0;
+  margin: 0;
+  padding-bottom: 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.search-item p {
+  font-size: 12px;
+  color: grey;
+}
+
+.feed-search-description {
+
+}

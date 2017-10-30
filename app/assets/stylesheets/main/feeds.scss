@@ -1,6 +1,7 @@
 .feeds-index-container {
+  padding-top: 40px;
+  padding-left: 20px;
   height: 100%;
-  padding-top: 50px;
   margin: 0 auto;
   max-width: 840px;
 }
@@ -128,7 +129,6 @@
   border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 3px;
 }
-
 
 //feed name column
 .feed-source-header {

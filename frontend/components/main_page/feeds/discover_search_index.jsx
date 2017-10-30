@@ -1,12 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import DiscoverIndexItem from './discover_index_item';
-import AddFeedForm from './add_feed_form';
 
 class DiscoverSearchIndex extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {query: "", formType: "search"};
+    this.state = {query: ""};
     this.handleQueryChange = this.handleQueryChange.bind(this);
   }
 
@@ -19,7 +19,7 @@ class DiscoverSearchIndex extends React.Component {
     this.props.fetchFeedResults(e.target.value);
   }
 
-  getDiscoverIndexItems(feeds) {
+  createDiscoverIndexItems(feeds) {
     return (
       feeds.results.length === 0 ?
       ["No Feeds Found"] :
@@ -35,38 +35,66 @@ class DiscoverSearchIndex extends React.Component {
   }
 
   discoverSearch(discoverIndexItems) {
+    const text = this.state.query.length === 0 ? "Popular Feeds" : "Results";
     return (
-    <div>
-      <form>
-        <input className="feed-search"
-          value={this.state.query}
-          onChange={this.handleQueryChange}
-          />
-      </form>
-
-      {
-        this.state.query.length === 0 ?
-        <h1>Popular Feeds</h1>
-        : <h1>Results</h1>
-      }
-
+    <div className="discover-items">
+      <h2>{text}</h2>
       <div className="results">
         {discoverIndexItems}
       </div>
-
     </div>
   );
 }
 
   render() {
-    if (this.state.formType === "search") {
-      const { feeds } = this.props;
-      let discoverIndexItems = this.getDiscoverIndexItems(feeds);
-      return this.discoverSearch(discoverIndexItems);
-    } else if (this.state.formType === "url") {
-      return <AddFeedForm />;
-    }
+    const { feeds } = this.props;
+    const discoverIndexItems = this.createDiscoverIndexItems(feeds);
+
+    return(
+      <div className="discover-search-index">
+        <h1>What sources do you want to follow?</h1>
+        <form>
+          <div className="feed-search-input-container">
+            <input className="feed-search"
+              value={this.state.query}
+              onChange={this.handleQueryChange}
+              />
+            <i className="fa fa-search" aria-hidden="true"></i>
+          </div>
+        </form>
+        <div className="feed-url-container">
+          <Link to="/i/feeds">{"Have an RSS URL? Add one here."}</Link>
+        </div>
+        {this.discoverSearch(discoverIndexItems)}
+      </div>
+    );
   }
 }
 
 export default DiscoverSearchIndex;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// end of doc
