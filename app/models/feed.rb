@@ -35,7 +35,6 @@ class Feed < ApplicationRecord
 
   def check_feed_url_status
     if self.rss_url.empty?
-      puts "Empty url"
       errors.add(:base, "The url field cannot be empty")
       throw :abort
     end
