@@ -4,24 +4,19 @@ import StoriesIndexItem from './stories_index_item';
 class StoriesIndex extends React.Component {
 
   componentDidMount() {
-    switch (this.props.formType) {
-      case 'ALL':
-        this.props.fetchAction();
-        break;
-      case 'FEED':
-        this.props.fetchAction(this.props.match.params.formId);
-        break;
-      case 'COLLECTION':
-        this.props.fetchAction(this.props.match.params.collectionId);
-        break;
-      default:
-        this.props.fetchAction();
-    }
+    this.props.fetchAction(this.props.match.params.id);
+  }
+
+  componentWillReceiveProps(newProps) {
+    // debugger
+    // if (this.match.params.feedId !== newProps.match.params.feedId) {
+    //   this.props.fetchAction(newProps.match.params.feedId);
+    // }
   }
 
   render() {
-    const { storiesIds, stories, feeds } = this.props;
-    const storyItems = storiesIds.map(storyId => {
+    const { storyIds, stories, feeds } = this.props;
+    const storyItems = storyIds.map(storyId => {
       const story = stories[storyId];
       const feed = feeds[story.feed_id];
 

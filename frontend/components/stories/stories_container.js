@@ -4,37 +4,32 @@ import StoriesIndex from './stories_index';
 import { fetchAllSubscriptions, fetchFeed }
   from '../../actions/subscription_actions';
 
-const mapStateToProps = (state, ownProps) => {
-
-  let fetchType = 'ALL';
-  if (ownProps.match.path === "/i/subscriptions/:feedId") {
-    fetchType = 'FEED';
-  } else if (ownProps.match.path === "/i/collections/:collectionId") {
-    fetchType = 'COLLECTION';
+const getFetchInfo = (path) => {
+  switch (path.split("/")[2]) {
+    case "subscriptions":
+      return ["FEED", fetchFeed];
+    case "collections":
+      // return ["COLLECTIONS", fetchCollection];
+    case "latest":
+      return ["ALL", fetchAllSubscriptions];
+    default:
+      return ["ALL", fetchAllSubscriptions];
   }
+};
 
+const mapStateToProps = (state, ownProps) => {
   return ({
-    fetchType,
-    storiesIds: state.entities.stories.allIds,
+    storyIds: state.entities.stories.allIds,
     stories: state.entities.stories.byId,
     feeds: state.entities.feeds.byId
   });
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  let fetchAction;
-  switch (ownProps.match.path) {
-    case "/i/subscriptions/:feedId":
-      fetchAction = fetchFeed;
-      break;
-    case "/i/collections/:collectionId":
-      //collection action goes here
-      break;
-    default:
-      fetchAction = fetchAllSubscriptions;
-  }
+  const [fetchType, fetchAction] = getFetchInfo(ownProps.match.path);
 
   return ({
+    fetchType,
     fetchAction: (arg) => dispatch(fetchAction(arg))
   });
 };

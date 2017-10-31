@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 
 class StoriesIndexItem extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { story, feed } = this.props;
 
@@ -26,7 +22,6 @@ class StoriesIndexItem extends React.Component {
             </Link>
             {` by ${story.author} / ${pubDateTime}`}
           </h5>
-
           <p>{story.summary ? story.summary.split('.').slice(0,200) + ' ...' : null}</p>
         </div>
       </div>
