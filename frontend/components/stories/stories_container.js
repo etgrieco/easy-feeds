@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import StoriesIndex from './stories_index';
-import { fetchAllSubscriptions, fetchFeed }
+import { fetchFeed }
   from '../../actions/subscription_actions';
+import { fetchLatest }
+  from '../../actions/stories_actions';
 
 const getFetchProps = path => {
   switch (path.split("/")[2]) {
@@ -13,7 +15,7 @@ const getFetchProps = path => {
     case "collections":
       return ["FEED", fetchFeed];
     default:
-      return ["ALL", fetchAllSubscriptions, state => state.session.latest];
+      return ["ALL", fetchLatest, state => state.session.latest];
   }
 };
 

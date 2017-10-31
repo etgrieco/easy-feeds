@@ -5,7 +5,7 @@ import AddFeedFormContainer from './add_feeds_form_container';
 export class FeedsIndex extends React.Component {
 
   componentDidMount() {
-    this.props.fetchAllSubscriptions();
+    // this.props.fetchAllSubscriptions();
   }
 
   render() {

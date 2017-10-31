@@ -21,9 +21,9 @@ export const logout = () => (
   })
 );
 
-export const fetchCurrentUser = () => {
+export const fetchSubscriptions = () => {
   return $.ajax({
     type: 'GET',
-    url: "/api/users",
+    url: "/api/subscriptions",
   });
 };

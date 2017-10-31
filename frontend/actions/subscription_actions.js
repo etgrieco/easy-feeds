@@ -1,17 +1,16 @@
 import * as SubscriptionApiUtil from '../util/subscription_api_util';
 
-export const RECEIVE_LATEST = 'RECEIVE_LATEST';
 export const REMOVE_FEED = 'REMOVE_FEED';
 export const RECEIVE_FEED = 'RECEIVE_FEED';
 export const RECEIVE_NEW_FEED = 'RECEIVE_NEW_FEED';
 export const RECEIVE_SUBSCRIPTION_ERRORS = 'RECEIVE_SUBSCRIPTION_ERRORS';
 export const START_FEED_ACTION = 'START_FEED_ACTION';
+export const RECEIVE_ALL_SUBSCRIPTIONS = 'RECEIVE_ALL_SUBSCRIPTIONS';
 
-export const receiveAllSubscriptions = feedsPayload => ({
-  type: RECEIVE_LATEST,
-  feeds: feedsPayload.feeds,
-  subscriptions: feedsPayload.subscriptions,
-  stories: feedsPayload.stories
+export const receiveAllSubscriptions = subscriptionsPayload => ({
+  type: RECEIVE_ALL_SUBSCRIPTIONS,
+  feeds: subscriptionsPayload.feeds,
+  subscriptions: subscriptionsPayload.subscriptions
 });
 
 export const removeFeed = feedId => ({
@@ -44,14 +43,11 @@ export const receiveSubscriptionErrors = errors => ({
 });
 
 export const fetchAllSubscriptions = () => dispatch => {
-  dispatch(startFeedAction(["Loading Feeds..."]));
   return (
-    SubscriptionApiUtil.fetchSubscriptions()
+    SubscriptionApiUtil.fetchAllSubscriptions()
       .then(
-      subscriptionsPayload =>
-        dispatch(receiveAllSubscriptions(subscriptionsPayload)),
-      errors =>
-        dispatch(receiveSubscriptionErrors(["Error loading subscriptions"]))
+        subscriptionsPayload =>
+          dispatch(receiveAllSubscriptions(subscriptionsPayload))
       )
   );
 };

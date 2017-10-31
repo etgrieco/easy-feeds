@@ -31,6 +31,9 @@ class StoriesIndex extends React.Component {
 
   render() {
     const { storyIds, stories, feeds } = this.props;
+
+    debugger
+
     const storyItems = storyIds.map(storyId => {
       const story = stories[storyId];
       const feed = feeds[story.feed_id];
@@ -43,12 +46,12 @@ class StoriesIndex extends React.Component {
     }
     );
 
-    // {storyItems}
     return (
       <div className="story-index">
         <div>
           {this.getTitle()}
         </div>
+        {storyItems}
       </div>
     );
   }

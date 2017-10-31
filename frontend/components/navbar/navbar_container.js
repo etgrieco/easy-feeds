@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NavBar from './navbar';
-import { fetchCurrentUser } from '../../actions/session_actions';
+import { fetchAllSubscriptions } from '../../actions/subscription_actions';
 
 const mapStateToProps = state => {
   return ({
@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return ({
-    fetchCurrentUser: () => dispatch(fetchCurrentUser())
+    fetchAllSubscriptions: () => dispatch(fetchAllSubscriptions())
   });
 };
 

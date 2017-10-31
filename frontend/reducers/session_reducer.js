@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import
   { RECEIVE_LATEST, REMOVE_FEED,
-  RECEIVE_NEW_FEED }
+  RECEIVE_NEW_FEED, RECEIVE_ALL_SUBSCRIPTIONS }
 from '../actions/subscription_actions';
 import { CLEAR_ENTITIES } from '../actions/session_actions';
 import merge from 'lodash/merge';
@@ -24,9 +24,8 @@ const subscriptionsReducer = (state = [], action) => {
   let newState;
   let idx;
   switch (action.type) {
-    // case RECEIVE_ALL_SUBSCRIPTIONS:
-      // return action.feeds.allIds;
-    // case RECEIVE_CURRENT_USER:
+    case RECEIVE_ALL_SUBSCRIPTIONS:
+      return action.feeds.allIds;
     case RECEIVE_NEW_FEED:
       const newFeedId = action.subscriptions.allIds[0];
       return state.concat([newFeedId]);

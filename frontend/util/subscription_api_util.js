@@ -1,14 +1,14 @@
-export const fetchSubscriptions = () => (
-  $.ajax({
-    type: "GET",
-    url: "api/subscriptions"
-  })
-);
-
 export const fetchFeed = (feedId) => (
   $.ajax({
     type: "GET",
     url: `api/subscriptions/${feedId}`
+  })
+);
+
+export const fetchAllSubscriptions = () => (
+  $.ajax({
+    type: "GET",
+    url: `api/subscriptions/`
   })
 );
 

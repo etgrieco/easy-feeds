@@ -10,24 +10,6 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def index
-    @user = current_user
-    render :show
-  end
-
-  # consider implementing later
-  # def update
-  #   @user = current_user
-  #   @user.first_name = edit_user_params.first_name
-  #   @user.last_name = edit_user_params.last_name
-  #
-  #   if @user.update
-  #     render :show
-  #   else
-  #     render json: @user.errors.full_messages, status: 422
-  #   end
-  # end
-
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password)
   end
