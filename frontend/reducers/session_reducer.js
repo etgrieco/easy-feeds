@@ -4,6 +4,19 @@ import
   { RECEIVE_ALL_SUBSCRIPTIONS, REMOVE_FEED,
   RECEIVE_NEW_FEED }
 from '../actions/subscription_actions';
+import merge from 'lodash/merge';
+
+const userReducer = (state = null, action) => {
+  Object.freeze(state);
+  let newState;
+  switch (action.type) {
+    case RECEIVE_CURRENT_USER:
+      newState = action.currentUser;
+      return newState;
+    default:
+      return state;
+  }
+};
 
 const subscriptionsReducer = (state = [], action) => {
   Object.freeze(state);
@@ -19,17 +32,6 @@ const subscriptionsReducer = (state = [], action) => {
       idx = state.indexOf(action.feedId);
       newState = state.concat();
       idx > -1 ? newState.splice(idx, 1) : null;
-      return newState;
-    default:
-      return state;
-  }
-};
-
-const userReducer = (state = null, action) => {
-  Object.freeze(state);
-  switch (action.type) {
-    case RECEIVE_CURRENT_USER:
-      const newState = Object.assign({}, state, { currentUser: action.currentUser });
       return newState;
     default:
       return state;
