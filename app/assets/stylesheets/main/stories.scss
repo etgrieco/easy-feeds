@@ -14,10 +14,17 @@
   overflow: hidden;
 }
 
+.story-details {
+  margin-left: 20px;
+}
+
+// title
 .story-index-item h4 {
   font-size: 15px;
   font-weight: bold;
   padding-bottom: 12px;
+  margin-right: 140px;
+  line-height: 18px;
 }
 
 .story-index-item h5 {
@@ -27,7 +34,17 @@
 }
 
 .story-item-image {
-  min-height: 85px;
-  min-width: 135px;
+  display: block;
+  flex: none;
+  height: 85px;
+  width: 135px;
   overflow: hidden;
+  object-fit: fill;
+  border-radius: 3px;
+}
+
+.story-index-item p {
+  font-size: 14px;
+  color: grey;
+  font-family: serif;
 }

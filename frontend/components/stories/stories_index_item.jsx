@@ -22,12 +22,11 @@ class StoriesIndexItem extends React.Component {
             </Link>
             {` by ${story.author} / ${pubDateTime}`}
           </h5>
-          <p>{story.summary ? story.summary.split('.').slice(0,200) + ' ...' : null}</p>
+          <p>{story.summary ? story.summary.split('.').slice(0,100) + ' ...' : null}</p>
         </div>
       </div>
     );
   }
-
 }
 
 // source: https://stackoverflow.com/questions/3177836/how-to-format-time-since-xxx-e-g-4-minutes-ago-similar-to-stack-exchange-site
