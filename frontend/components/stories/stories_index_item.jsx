@@ -11,7 +11,7 @@ class StoriesIndexItem extends React.Component {
     return (
       <div className="story-index-item">
         <div className="story-item-image">
-          <img src={story.image_url} />
+          <img src={story.image_url || feed.favicon_url} />
         </div>
         <div className="story-details">
           <h4>{story.title}</h4>
@@ -29,7 +29,6 @@ class StoriesIndexItem extends React.Component {
   }
 
 }
-
 
 // source: https://stackoverflow.com/questions/3177836/how-to-format-time-since-xxx-e-g-4-minutes-ago-similar-to-stack-exchange-site
 function timeSince(date) {

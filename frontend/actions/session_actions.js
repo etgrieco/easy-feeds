@@ -37,7 +37,7 @@ export const logout = () => dispatch => {
   return SessionApiUtil.logout()
     .then(() => {
       dispatch(receiveCurrentUser(null));
-      // dispatch(clearEntities());
+      dispatch(clearEntities());
     },
     errors => dispatch(receiveSessionErrors(errors.responseJSON))
   );

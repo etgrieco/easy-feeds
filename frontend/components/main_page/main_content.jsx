@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../../util/route_util.js';
 import Landing from './landing';
 import StoriesContainer from '../stories/stories_container';
@@ -12,11 +12,14 @@ export default (props) => {
       <AuthRoute exact path="/" component={Landing} />
       <AuthRoute path="/login" component={Landing} />
       <AuthRoute path="/signup" component={Landing} />
-      <ProtectedRoute path="/i/feeds" component={FeedsIndexContainer} />
-      <ProtectedRoute path="/i/discover" component={DiscoverFeedsContainer} />
-      <ProtectedRoute path="/i/latest" component={StoriesContainer} />
-      <ProtectedRoute path="/i/subscriptions/:id" component={StoriesContainer} />
-      <ProtectedRoute path="/i/collection/:id" component={StoriesContainer} />
+      <Switch>
+        <ProtectedRoute path="/i/feeds" component={FeedsIndexContainer} />
+        <ProtectedRoute path="/i/discover" component={DiscoverFeedsContainer} />
+        <ProtectedRoute path="/i/latest" component={StoriesContainer} />
+        <ProtectedRoute path="/i/subscriptions/:id" component={StoriesContainer} />
+        <ProtectedRoute path="/i/collection/:id" component={StoriesContainer} />
+        <Route path="/i/:anyRoute" render={() => <Redirect to="/i/latest"/>} />
+      </Switch>
     </section>
   );
 };

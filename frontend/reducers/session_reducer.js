@@ -4,6 +4,7 @@ import
   { RECEIVE_ALL_SUBSCRIPTIONS, REMOVE_FEED,
   RECEIVE_NEW_FEED }
 from '../actions/subscription_actions';
+import { CLEAR_ENTITIES } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
 const userReducer = (state = null, action) => {
@@ -33,6 +34,8 @@ const subscriptionsReducer = (state = [], action) => {
       newState = state.concat();
       idx > -1 ? newState.splice(idx, 1) : null;
       return newState;
+    case CLEAR_ENTITIES:
+      return [];
     default:
       return state;
   }

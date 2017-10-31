@@ -8,11 +8,11 @@ class StoriesIndex extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // const newId = newProps.match.params.id;
-    // const oldId = this.match.params.id;
-    // if (oldId !== newId) {
-    //   this.props.fetchAction(newId);
-    // }
+    const newURL = newProps.match.url;
+    const oldURL = this.props.match.url;
+    if (newURL !== oldURL) {
+      this.props.fetchAction(newProps.match.params.id);
+    }
   }
 
   render() {
