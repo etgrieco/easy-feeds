@@ -1,7 +1,7 @@
 class Api::SubscriptionsController < ApplicationController
   before_action :require_login
   before_action :ensure_feed, only: [:create]
-  before_action :refresh, only: [:show]
+  # before_action :refresh, only: [:show]
 
   def index
     @subs = current_user.subscriptions.includes(:feed, :stories)
@@ -10,16 +10,17 @@ class Api::SubscriptionsController < ApplicationController
   def show
     # lazy loaded because refresh likely ran
     @subscription ||= current_user.subscriptions.find_by(feed_id: params[:id])
-      .includes(:feeds, :stories)
+      &.includes(:feeds, :stories)
 
     if @subscription
       render :show
     else
-      render json: ["Your subscription cannot be found"], status: 403
+      render json: ["An error occured."], status: 403
     end
   end
 
   def update
+    # note: takes a subscription id vs. a feed id
     @subscription = current_user.subscriptions.find_by(id: params[:id])
 
     if subscription_params[:title].empty?

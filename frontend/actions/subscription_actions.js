@@ -48,6 +48,19 @@ export const fetchAllSubscriptions = () => dispatch => {
   );
 };
 
+export const fetchFeed = feedId => dispatch => {
+  dispatch(startFeedAction(["Loading Feed..."]));
+  return (
+    SubscriptionApiUtil.fetchFeed(feedId)
+      .then(
+        feedPayload =>
+          dispatch(receiveFeed(feedPayload)),
+        errors =>
+          dispatch(receiveSubscriptionErrors(errors.responseJSON))
+      )
+  );
+};
+
 export const deleteFeed = feed => dispatch => (
   SubscriptionApiUtil.deleteSubscription(feed.subscription_id)
     .then(() => dispatch(removeFeed(feed.id)))

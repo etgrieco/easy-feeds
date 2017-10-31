@@ -6,9 +6,9 @@ export const fetchFeeds = (q) => (
   })
 );
 
-export const fetchFeed = (id) => (
-  $.ajax({
-    type: "GET",
-    url: `api/feeds/${id}`
-  })
-);
+// export const fetchFeed = (id) => (
+//   $.ajax({
+//     type: "GET",
+//     url: `api/feeds/${id}`
+//   })
+// );

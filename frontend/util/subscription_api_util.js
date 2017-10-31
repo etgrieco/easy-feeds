@@ -5,6 +5,13 @@ export const fetchSubscriptions = () => (
   })
 );
 
+export const fetchFeed = (feedId) => (
+  $.ajax({
+    type: "GET",
+    url: `api/subscriptions/${feedId}`
+  })
+);
+
 export const deleteSubscription = id => (
   $.ajax({
     type: "DELETE",
@@ -12,11 +19,11 @@ export const deleteSubscription = id => (
   })
 );
 
-export const updateSubscription = feed => (
+export const updateSubscription = subscription => (
   $.ajax({
     type: "PATCH",
-    url: `api/subscriptions/${feed.id}`,
-    data: { subscription: feed }
+    url: `api/subscriptions/${subscription.id}`,
+    data: { subscription }
   })
 );
 

@@ -12,9 +12,9 @@ export default (props) => {
       <AuthRoute exact path="/" component={Landing} />
       <AuthRoute path="/login" component={Landing} />
       <AuthRoute path="/signup" component={Landing} />
-      <ProtectedRoute path="/i/latest" component={StoriesContainer} />
       <ProtectedRoute path="/i/feeds" component={FeedsIndexContainer} />
       <ProtectedRoute path="/i/discover" component={DiscoverFeedsContainer} />
+      <ProtectedRoute path="/i/latest" component={StoriesContainer} />
       <ProtectedRoute path="/i/subscriptions/:feedId" component={StoriesContainer} />
     </section>
   );
