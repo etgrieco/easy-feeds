@@ -2,6 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NavBar = (props) => {
+  const feedsList = props.feedIds.map(feedId => {
+    const feed = props.feeds[feedId];
+    return (
+      <li key={feedId}>
+        <Link to={`/i/subscriptions/${feed.id}`}>
+          {feed.subscription_title}
+        </Link>
+      </li>
+    );
+  });
+
   return (
     <div className="navbar-container">
       <div className="navbar-collections">
@@ -19,6 +30,10 @@ const NavBar = (props) => {
               <span><i className="fa fa-bars" aria-hidden="true"></i></span>
               All
             </Link>
+          </div>
+
+          <div>
+            {feedsList}
           </div>
         </div>
 

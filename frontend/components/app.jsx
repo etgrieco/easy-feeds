@@ -1,11 +1,11 @@
 import React from 'react';
 import MainPage from './main_page/main_page';
-import NavBar from './navbar/navbar';
+import NavBarContainer from './navbar/navbar_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util.js';
 
 const App = () => (
   <div className="app-wrapper">
-    <ProtectedRoute path="/i" component={NavBar} />
+    <ProtectedRoute path="/i" component={NavBarContainer} />
     <MainPage />
   </div>
 );
