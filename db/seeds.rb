@@ -34,7 +34,7 @@ end
 
 Feed.destroy_all
 seed_urls = (
-  "http://feeds.bbci.co.uk/news/world/rss.xml*
+"http://feeds.bbci.co.uk/news/world/rss.xml*
 http://www.cbn.com/cbnnews/world/feed/*
 http://feeds.reuters.com/Reuters/worldNews*
 http://feeds.bbci.co.uk/news/rss.xml*
@@ -51,6 +51,19 @@ http://feeds.feedburner.com/TechCrunch/*
 https://www.wired.com/feed/rss*
 http://www.techradar.com/rss*
 http://github.com/blog.atom*
+http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml*
+http://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml*
+http://rss.nytimes.com/services/xml/rss/nyt/Business.xml*
+http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml*
+http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml*
+http://rss.nytimes.com/services/xml/rss/nyt/Science.xml*
+http://rss.nytimes.com/services/xml/rss/nyt/Arts.xml*
+http://www.nytimes.com/svc/collections/v1/publish/www.nytimes.com/column/the-stone/rss.xml*
+http://www.espn.com/espn/rss/news*
+https://www.theringer.com/rss/index.xml*
+https://www.boston.com/tag/local-news/feed*
+https://www.boston.com/tag/politics/feed*
+https://www.politico.com/rss/politics08.xml*
 ").split("*\n")
 
 feeds = []
@@ -64,7 +77,6 @@ Subscription.destroy_all
 users.each do |user|
   feed_ids = Array.new(10) do
     feed = feeds.sample
-    # ["ISSUES", "DEAD"].include?(feed.status) ? nil : feed.id
     feed.id
   end
   feed_ids.uniq.each do |feed_id|

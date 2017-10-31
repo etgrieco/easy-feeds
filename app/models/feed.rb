@@ -40,6 +40,7 @@ class Feed < ApplicationRecord
       puts "Feed url 404"
       errors.add(:base, "There was an issue fetching the feed. " +
         "Please check the URL or try again.")
+      self.status = "ISSUES"
       throw :abort
     end
   end
@@ -52,12 +53,7 @@ class Feed < ApplicationRecord
     self.website_url = @feed.url
     self.description = @feed.description || "#{@feed.title}: #{@feed.url}"
 
-    self.last_built =
-      if @feed.methods.include?('last_built')
-        @feed.last_built
-      else
-        Time.now
-      end
+    self.last_built = Time.now
 
     host = URI(@feed.url).host
     self.favicon_url = Favicon.new(host).uri || ''
@@ -81,17 +77,5 @@ class Feed < ApplicationRecord
 
     self.last_built = Time.now
   end
-
-  # def force_update_entries
-  #   @feed ||= Feedjira::Feed.fetch_and_parse self.rss_url
-  #
-  #   entries = @feed.entries
-  #   entries.each do |entry|
-  #     attributes = Story.create_attributes_hash(entry, self)
-  #     Story.update(attributes)
-  #   end
-  #
-  #   self.last_built = Time.now
-  # end
 
 end

@@ -1,7 +1,8 @@
 require 'sanitize'
 
 class Story < ApplicationRecord
-  validates :entry_id, presence: true, uniqueness: true
+  validates :entry_id, presence: true
+  validates :entry_id, uniqueness: {scope: :feed_id }
 
   belongs_to :feed,
     class_name: :Feed,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030154426) do
+ActiveRecord::Schema.define(version: 20171030142331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20171030154426) do
     t.string "favicon_url", default: "", null: false
     t.string "image_url", default: "", null: false
     t.string "website_url", default: "", null: false
-    t.datetime "last_built", default: "2017-10-26 14:07:05", null: false
+    t.datetime "last_built", default: "2017-10-31 14:44:47", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status", default: "OK"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20171030154426) do
     t.datetime "pub_datetime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["entry_id"], name: "index_stories_on_entry_id", unique: true
+    t.index ["feed_id", "entry_id"], name: "index_stories_on_feed_id_and_entry_id", unique: true
   end
 
   create_table "subscriptions", force: :cascade do |t|

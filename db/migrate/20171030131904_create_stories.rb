@@ -12,5 +12,6 @@ class CreateStories < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    add_index :stories, [:feed_id, :entry_id], unique: true
   end
 end

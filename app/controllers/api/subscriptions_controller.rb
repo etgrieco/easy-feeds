@@ -4,11 +4,12 @@ class Api::SubscriptionsController < ApplicationController
   before_action :refresh, only: [:show]
 
   def index
-    @subs = current_user.subscriptions.includes(:feed, :stories)
+    # lazy loaded in case refresh already ran
+    @subs ||= current_user.subscriptions.includes(:feed, :stories)
   end
 
   def show
-    # lazy loaded because refresh likely ran
+    # lazy loaded in case refresh already ran
     @subscription ||= current_user.subscriptions.find_by(feed_id: params[:id])
       &.includes(:feeds, :stories)
 
@@ -74,7 +75,8 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def refresh_all
-    current_user.feeds.each do |feed|
+    @subs = current_user.subscriptions.includes(:feed, :stories)
+    @subs.each do |feed|
       feed.populate_entries
     end
   end
