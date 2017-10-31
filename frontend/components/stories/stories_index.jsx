@@ -19,21 +19,15 @@ class StoriesIndex extends React.Component {
     const { feeds } = this.props;
     const { id } = this.props.match.params;
 
-    const feedTitle = feeds[id] ? feeds[id].subscription_title : null;
-
-    const dictionary = {
+    const titleProps = {
       "ALL": "Latest",
-      "FEED": feedTitle,
-      // "COLLECTION":
+      "SUBSCRIPTION": feeds[id].subscription_title,
     };
-    return dictionary[this.props.fetchType];
+    return titleProps[this.props.fetchType];
   }
 
   render() {
     const { storyIds, stories, feeds } = this.props;
-
-    debugger
-
     const storyItems = storyIds.map(storyId => {
       const story = stories[storyId];
       const feed = feeds[story.feed_id];

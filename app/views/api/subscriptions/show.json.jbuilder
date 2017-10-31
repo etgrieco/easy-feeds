@@ -37,6 +37,4 @@ json.subscriptions do
       json.subscribed true
     end
   end
-
-  json.allIds [subscription.feed_id]
 end

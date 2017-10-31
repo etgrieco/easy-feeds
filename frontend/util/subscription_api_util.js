@@ -1,3 +1,4 @@
+// gives subscriptions, feeds, & most-recent stories
 export const fetchFeed = (feedId) => (
   $.ajax({
     type: "GET",
@@ -5,6 +6,7 @@ export const fetchFeed = (feedId) => (
   })
 );
 
+// gives subscriptions & feeds
 export const fetchAllSubscriptions = () => (
   $.ajax({
     type: "GET",

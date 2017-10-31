@@ -12,6 +12,7 @@ const storiesById = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_LATEST:
     case RECEIVE_FEED:
+      debugger
       newState = merge({}, state, action.stories.byId);
       return newState;
     case CLEAR_ENTITIES:
@@ -23,5 +24,4 @@ const storiesById = (state = {}, action) => {
 
 export default combineReducers({
   byId: storiesById,
-  // allIds: allStories
 });

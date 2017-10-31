@@ -7,9 +7,7 @@ export const CLEAR_ENTITIES = 'CLEAR_ENTITIES';
 export const receiveCurrentUser = userPayLoad => {
   return {
     type: RECEIVE_CURRENT_USER,
-    currentUser: userPayLoad.currentUser,
-    feeds: userPayLoad.feeds,
-    subscriptions: userPayLoad.subscriptions
+    currentUser: userPayLoad.currentUser
   };
 };
 

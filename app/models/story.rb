@@ -12,6 +12,10 @@ class Story < ApplicationRecord
     through: :feed,
     source: :subscribers
 
+  has_many :subscriptions,
+    through: :feed,
+    source: :subscriptions
+
   def self.sanitize_summary(summary)
     Sanitize.fragment(summary, Sanitize::Config::RESTRICTED)
   end
