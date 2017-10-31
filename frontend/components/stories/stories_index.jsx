@@ -11,7 +11,7 @@ class StoriesIndex extends React.Component {
     const newURL = newProps.match.url;
     const oldURL = this.props.match.url;
     if (newURL !== oldURL) {
-      this.props.fetchAction(newProps.match.params.id);
+      newProps.fetchAction(newProps.match.params.id);
     }
   }
 

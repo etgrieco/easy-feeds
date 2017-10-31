@@ -10,8 +10,10 @@ json.feeds do
     @subs.each do |subscription|
       feed = subscription.feed
       all_feeds << feed
-      json.partial! 'api/feeds/feed', feed: feed
-      json.stories (user_stories.select { |story| story.feed_id == feed.id })
+      json.set! feed.id do
+        json.partial! 'api/feeds/feed', feed: feed
+        json.stories (user_stories.select { |story| story.feed_id == feed.id })
+      end
     end
   end
 

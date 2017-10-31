@@ -1,7 +1,7 @@
 class Api::SubscriptionsController < ApplicationController
   before_action :require_login
   before_action :ensure_feed, only: [:create]
-  before_action :refresh, only: [:show]
+  # before_action :refresh, only: [:show]
 
   def index
     # lazy loaded in case refresh already ran
@@ -11,7 +11,6 @@ class Api::SubscriptionsController < ApplicationController
   def show
     # lazy loaded in case refresh already ran
     @subscription ||= current_user.subscriptions.find_by(feed_id: params[:id])
-      &.includes(:feeds, :stories)
 
     if @subscription
       render :show

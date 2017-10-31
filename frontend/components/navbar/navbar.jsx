@@ -5,6 +5,7 @@ class NavBar extends React.Component {
 
   onComponentDidMount() {
     this.props.fetchAllSubscriptions();
+    // change to fetch all collections!!
   }
 
   render() {
@@ -12,7 +13,7 @@ class NavBar extends React.Component {
     const feed = this.props.feeds[feedId];
       return (
         <li key={feedId}>
-          <Link to={`/i/subscriptions/${feed.id}/`}>
+          <Link to={`/i/subscriptions/${feed.id}`}>
             {feed.subscription_title}
           </Link>
         </li>
@@ -32,7 +33,7 @@ class NavBar extends React.Component {
           </div>
           <div className="tabs">
             <div className="latest-tab">
-              <Link to="/i/latest/">
+              <Link to="/i/latest">
                 <span><i className="fa fa-bars" aria-hidden="true"></i></span>
                 All
               </Link>
