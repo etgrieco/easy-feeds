@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 class SessionBar extends React.Component {

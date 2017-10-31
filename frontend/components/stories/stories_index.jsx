@@ -15,6 +15,20 @@ class StoriesIndex extends React.Component {
     }
   }
 
+  getTitle() {
+    const { feeds } = this.props;
+    const { id } = this.props.match.params;
+
+    const feedTitle = feeds[id] ? feeds[id].subscription_title : null;
+
+    const dictionary = {
+      "ALL": "Latest",
+      "FEED": feedTitle,
+      // "COLLECTION":
+    };
+    return dictionary[this.props.fetchType];
+  }
+
   render() {
     const { storyIds, stories, feeds } = this.props;
     const storyItems = storyIds.map(storyId => {
@@ -29,9 +43,12 @@ class StoriesIndex extends React.Component {
     }
     );
 
+    // {storyItems}
     return (
       <div className="story-index">
-        {storyItems}
+        <div>
+          {this.getTitle()}
+        </div>
       </div>
     );
   }

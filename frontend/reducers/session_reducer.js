@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import
-  { RECEIVE_ALL_SUBSCRIPTIONS, REMOVE_FEED,
+  { RECEIVE_LATEST, REMOVE_FEED,
   RECEIVE_NEW_FEED }
 from '../actions/subscription_actions';
 import { CLEAR_ENTITIES } from '../actions/session_actions';
@@ -24,8 +24,9 @@ const subscriptionsReducer = (state = [], action) => {
   let newState;
   let idx;
   switch (action.type) {
-    case RECEIVE_ALL_SUBSCRIPTIONS:
-      return action.feeds.allIds;
+    // case RECEIVE_ALL_SUBSCRIPTIONS:
+      // return action.feeds.allIds;
+    // case RECEIVE_CURRENT_USER:
     case RECEIVE_NEW_FEED:
       const newFeedId = action.subscriptions.allIds[0];
       return state.concat([newFeedId]);
@@ -41,9 +42,21 @@ const subscriptionsReducer = (state = [], action) => {
   }
 };
 
+const latestStoriesReducer = (state = [], action) => {
+  Object.freeze(state);
+  let newState;
+
+  switch (action.type) {
+    case RECEIVE_LATEST:
+      return action.stories.allIds;
+    default:
+      return state;
+  }
+};
 
 
 export default combineReducers({
   currentUser: userReducer,
-  subscriptions: subscriptionsReducer
+  subscriptions: subscriptionsReducer,
+  latest: latestStoriesReducer
 });

@@ -20,7 +20,8 @@ class Story < ApplicationRecord
     entry_id = fjra_entry.entry_id || fjra_entry.url
     pub_datetime = fjra_entry.published || Time.now
     author = fjra_entry.author || feed_title || "Anonymous"
-    summary = sanitize_summary(fjra_entry.summary)
+    summary = fjra_entry.summary || fjra_entry.content
+    summary = sanitize_summary(summary)
     {
       entry_id: entry_id,
       title: fjra_entry.title,

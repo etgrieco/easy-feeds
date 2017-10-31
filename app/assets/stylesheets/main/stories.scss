@@ -7,8 +7,8 @@
 
 .story-index-item {
   display: flex;
-  max-height: 150px;
-  max-width: 620px;
+  height: 150px;
+  width: 620px;
   border: 1px solid black;
   margin-bottom: 40px;
   overflow: hidden;
@@ -41,6 +41,7 @@
   overflow: hidden;
   object-fit: fill;
   border-radius: 3px;
+  border: 1px solid lightgrey;
 }
 
 .story-index-item p {

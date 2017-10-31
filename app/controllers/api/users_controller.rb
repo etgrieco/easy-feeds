@@ -10,6 +10,11 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def index
+    @user = current_user
+    render :show
+  end
+
   # consider implementing later
   # def update
   #   @user = current_user

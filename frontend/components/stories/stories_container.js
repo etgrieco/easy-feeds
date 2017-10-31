@@ -4,29 +4,31 @@ import StoriesIndex from './stories_index';
 import { fetchAllSubscriptions, fetchFeed }
   from '../../actions/subscription_actions';
 
-const getFetchInfo = (path) => {
+const getFetchProps = path => {
   switch (path.split("/")[2]) {
     case "subscriptions":
-      return ["FEED", fetchFeed];
+      return ["FEED", fetchFeed, (state, feedId) => {
+        return state.entities.feeds.byId[feedId].stories;
+      }];
     case "collections":
-      // return ["COLLECTIONS", fetchCollection];
-    case "latest":
-      return ["ALL", fetchAllSubscriptions];
+      return ["FEED", fetchFeed];
     default:
-      return ["ALL", fetchAllSubscriptions];
+      return ["ALL", fetchAllSubscriptions, state => state.session.latest];
   }
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const storyIds = getFetchProps(ownProps.match.path)[2](state, ownProps.match.params);
+
   return ({
-    storyIds: state.entities.stories.allIds,
     stories: state.entities.stories.byId,
+    storyIds,
     feeds: state.entities.feeds.byId
   });
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const [fetchType, fetchAction] = getFetchInfo(ownProps.match.path);
+  const [fetchType, fetchAction] = getFetchProps(ownProps.match.path);
 
   return ({
     fetchType,

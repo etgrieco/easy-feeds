@@ -20,6 +20,11 @@ export const clearEntities = () => ({
   type: CLEAR_ENTITIES
 });
 
+export const fetchCurrentUser = () => dispatch => (
+  SessionApiUtil.fetchCurrentUser()
+    .then(loggedInUser => dispatch(receiveCurrentUser(loggedInUser)))
+);
+
 export const login = user => dispatch => (
   SessionApiUtil.login(user)
     .then(loggedInUser => dispatch(receiveCurrentUser(loggedInUser)),

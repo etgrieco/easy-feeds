@@ -22,7 +22,7 @@ class StoriesIndexItem extends React.Component {
             </Link>
             {` by ${story.author} / ${pubDateTime}`}
           </h5>
-          <p>{story.summary ? story.summary.split('.').slice(0,100) + ' ...' : null}</p>
+          <p>{story.summary ? story.summary.split('.')[0].slice(0,200) + ' ...' : null}</p>
         </div>
       </div>
     );

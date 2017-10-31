@@ -1,0 +1,5 @@
+def refresh_all_feeds
+  Feed.all.each do |feed|
+    feed.populate_entries
+  end
+end
