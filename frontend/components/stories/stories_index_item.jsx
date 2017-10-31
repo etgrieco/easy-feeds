@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class StoriesIndexItem extends React.Component {
 
@@ -8,11 +9,6 @@ class StoriesIndexItem extends React.Component {
 
   render() {
     const { story, feed } = this.props;
-    // const pubDateTime = new Date(story.pub_datetime).toString();
-
-    // var local = new Date(date);
-    // local.setMinutes(date.getMinutes() - date.getTimezoneOffset());
-    // return local.toJSON().slice(0, 10);
 
     const pubDateTime = timeSince(new Date(story.pub_datetime));
 
@@ -23,7 +19,14 @@ class StoriesIndexItem extends React.Component {
         </div>
         <div className="story-details">
           <h4>{story.title}</h4>
-          <h5>{`${feed.title} by ${story.author} / ${pubDateTime}`}</h5>
+
+          <h5>
+            <Link to={`/i/subscriptions/${story.feed_id}`}>
+              {feed.subscription_title}
+            </Link>
+            {` by ${story.author} / ${pubDateTime}`}
+          </h5>
+
           <p>{story.summary ? story.summary.split('.').slice(0,200) + ' ...' : null}</p>
         </div>
       </div>

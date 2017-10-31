@@ -1,7 +1,7 @@
 class Api::SubscriptionsController < ApplicationController
   before_action :require_login
   before_action :ensure_feed, only: [:create]
-  # before_action :refresh, only: [:show]
+  before_action :refresh, only: [:show]
 
   def index
     @subs = current_user.subscriptions.includes(:feed, :stories)
@@ -15,7 +15,7 @@ class Api::SubscriptionsController < ApplicationController
     if @subscription
       render :show
     else
-      render json: ["An error occured."], status: 403
+      render json: ["You do not have access to this subscription."], status: 403
     end
   end
 
@@ -70,7 +70,7 @@ class Api::SubscriptionsController < ApplicationController
 
   def refresh
     @subscription = current_user.subscriptions.find_by(feed_id: params[:id])
-    @subscription.feed.populate_entries
+    @subscription.nil? ? nil : @subscription.feed.populate_entries
   end
 
   def refresh_all

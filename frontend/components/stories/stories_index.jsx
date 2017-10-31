@@ -4,7 +4,19 @@ import StoriesIndexItem from './stories_index_item';
 class StoriesIndex extends React.Component {
 
   componentDidMount() {
-    this.props.fetchAllSubscriptions();
+    switch (this.props.formType) {
+      case 'ALL':
+        this.props.fetchAction();
+        break;
+      case 'FEED':
+        this.props.fetchAction(this.props.match.params.formId);
+        break;
+      case 'COLLECTION':
+        this.props.fetchAction(this.props.match.params.collectionId);
+        break;
+      default:
+        this.props.fetchAction();
+    }
   }
 
   render() {
