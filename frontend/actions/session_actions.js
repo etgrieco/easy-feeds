@@ -4,10 +4,12 @@ export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const CLEAR_ENTITIES = 'CLEAR_ENTITIES';
 
-export const receiveCurrentUser = currentUser => {
+export const receiveCurrentUser = userPayLoad => {
   return {
     type: RECEIVE_CURRENT_USER,
-    currentUser
+    currentUser: userPayLoad.currentUser,
+    feeds: userPayLoad.feeds,
+    subscriptions: userPayLoad.subscriptions
   };
 };
 
