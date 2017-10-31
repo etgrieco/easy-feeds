@@ -24,27 +24,6 @@ const feedsById = (state = {}, action) => {
   }
 };
 
-const allSubscriptions = (state = [], action) => {
-  Object.freeze(state);
-  let newState;
-  let idx;
-  switch (action.type) {
-    case RECEIVE_ALL_SUBSCRIPTIONS:
-      return action.feeds.allIds;
-    case RECEIVE_NEW_FEED:
-      const newFeedId = action.subscriptions.allIds[0];
-      return state.concat([newFeedId]);
-    case REMOVE_FEED:
-      idx = state.indexOf(action.feedId);
-      newState = state.concat();
-      idx > -1 ? newState.splice(idx, 1) : null;
-      return newState;
-    default:
-      return state;
-  }
-};
-
-
 const allFeedsResults = (state = [], action) => {
   Object.freeze(state);
   let newState;
@@ -59,7 +38,6 @@ const allFeedsResults = (state = [], action) => {
 
 const feedsReducer = combineReducers({
   byId: feedsById,
-  allSubIds: allSubscriptions,
   results: allFeedsResults
 });
 

@@ -7,7 +7,7 @@ import { fetchAllSubscriptions, deleteFeed, updateFeed }
 
 const mapStateToProps = state => ({
   feeds: state.entities.feeds.byId,
-  subFeedIds: state.entities.feeds.allSubIds
+  subFeedIds: state.session.subscriptions
 });
 
 const mapDispatchToProps = dispatch => ({

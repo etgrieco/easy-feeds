@@ -4,7 +4,7 @@ import NavBar from './navbar';
 const mapStateToProps = state => {
   return ({
     feeds: state.entities.feeds.byId,
-    feedIds: state.entities.feeds.allSubIds
+    feedIds: state.session.subscriptions
   });
 };
 
