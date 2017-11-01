@@ -29,6 +29,8 @@ class DiscoverSearchIndex extends React.Component {
           key={feed.id}
           feed={feed}
           createFeed={this.props.createFeed}
+          openPopOut={this.props.openPopOut}
+          fetchUnsubscribedFeed={this.props.fetchUnsubscribedFeed}
           />;
       })
     );

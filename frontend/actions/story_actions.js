@@ -1,5 +1,7 @@
 import * as StoryApiUtil from '../util/story_api_util';
+import * as FeedApiUtil from '../util/feed_api_util';
 import { startFeedAction } from './loading_actions';
+import { receiveSingleFeed } from './subscription_actions';
 
 export const RECEIVE_LATEST = 'RECEIVE_LATEST';
 
@@ -18,5 +20,14 @@ export const fetchLatest = () => dispatch => {
       stories =>
         dispatch(receiveLatest(stories))
       )
+  );
+};
+
+export const fetchUnsubscribedFeed = feedId => dispatch =>  {
+  return (
+    FeedApiUtil.fetchUnsubscribedFeed(feedId)
+      .then(
+        feedPayload => dispatch(receiveSingleFeed(feedPayload))
+    )
   );
 };

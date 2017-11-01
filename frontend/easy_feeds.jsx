@@ -5,6 +5,7 @@ import Root from './components/root';
 
 //test
 import * as PopOutActions from './actions/popout_actions';
+import * as StoryActions from './actions/story_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //test
   window.PopOutActions = PopOutActions;
+  window.StoryActions = StoryActions;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   window.SampleComponent = () => <h1>Hello!</h1>;

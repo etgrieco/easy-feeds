@@ -5,8 +5,8 @@ import { fetchSingleFeed } from '../../../actions/subscription_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const storiesState = state.entities.stories.byId;
-  const feeds = state.entities.feeds.byId;
-  const id = ownProps.match.params.id;
+  const feeds = ownProps.feeds || state.entities.feeds.byId;
+  const id = ownProps.popOutFeedId || ownProps.match.params.id;
 
   let feed = feeds[id];
   feed = (!feed || !feed.stories) ?
@@ -19,12 +19,18 @@ const mapStateToProps = (state, ownProps) => {
     title: feed.subscription_title,
     stories,
     feeds,
+    popOutFeedId: ownProps.popOutFeedId
   });
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+
+  const fetchAction = ownProps.fetchAction ?
+    ownProps.fetchAction :
+    feedId => dispatch(fetchSingleFeed(feedId));
+
   return ({
-    fetchAction: (feedId) => dispatch(fetchSingleFeed(feedId))
+    fetchAction
   });
 };
 

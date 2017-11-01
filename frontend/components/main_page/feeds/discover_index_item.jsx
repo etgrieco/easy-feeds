@@ -1,17 +1,29 @@
 import React from 'react';
+import SubscriptionStoriesContainer from '../stories/subscription_stories_container';
 
 class DiscoverIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubscribe = this.handleSubscribe.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleSubscribe(feed) {
     this.props.createFeed(feed);
   }
 
+  handleClick(feed) {
+    this.props.openPopOut(
+      <SubscriptionStoriesContainer
+        feeds={{ [feed.id]: feed }}
+        popOutFeedId={feed.id}
+        fetchAction={this.props.fetchUnsubscribedFeed}
+      />
+    );
+  }
+
   render() {
-    const { feed } = this.props;
+    const { feed, openPopOut, fetchUnsubscribedFeed } = this.props;
     return (
       <div key={feed.id} className="search-item">
         <div className="feed-search-name">
@@ -19,7 +31,9 @@ class DiscoverIndexItem extends React.Component {
             className="feed-index-icon"
             />
           <div className="feed-search-description">
-            <h3>{feed.title}</h3>
+            <h3 onClick={e => this.handleClick(feed)}>
+              {feed.title}
+            </h3>
             <p>{feed.description}</p>
           </div>
         </div>

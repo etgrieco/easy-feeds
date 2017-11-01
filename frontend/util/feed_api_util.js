@@ -6,7 +6,7 @@ export const fetchFeedResults = (q) => (
   })
 );
 
-export const fetchSingleUnsubscribedFeed = (feedId) => (
+export const fetchUnsubscribedFeed = (feedId) => (
   $.ajax({
     type: "GET",
     url: `api/feeds/${feedId}`,
