@@ -1,5 +1,4 @@
 import React from 'react';
-import SubscriptionStoriesContainer from '../stories/subscription_stories_container';
 
 class FeedsIndexRow extends React.Component {
 
@@ -7,7 +6,6 @@ class FeedsIndexRow extends React.Component {
     super(props);
     this.state = Object.assign({ renaming: false, isMouseInside: false }, this.props.feed);
     this.handleEditChange = this.handleEditChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleEdit() {
@@ -20,15 +18,6 @@ class FeedsIndexRow extends React.Component {
 
   handleEditChange(e) {
     this.setState({subscription_title: e.target.value});
-  }
-
-  handleClick(feed) {
-    this.props.openPopOut(
-      <SubscriptionStoriesContainer
-        feeds={{ [feed.id]: feed }}
-        popOutFeedId={feed.id}
-      />
-    );
   }
 
   handleDelete(feed) {
@@ -48,8 +37,7 @@ class FeedsIndexRow extends React.Component {
         </form>
       :
       <div className="feed-name-show">
-        <h3 onClick={this.handleClick(feed)}>
-          {this.state.subscription_title}</h3>
+        {this.state.subscription_title}
         { this.state.isMouseInside ?
           <button className="modify-button feed-rename"
             onClick={e => this.setState(
