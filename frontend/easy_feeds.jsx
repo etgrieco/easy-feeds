@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.PopOutActions = PopOutActions;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
+  window.SampleComponent = () => <h1>Hello!</h1>;
+  window.showSampleComponent = () => window.dispatch(PopOutActions.openPopOut(<SampleComponent />));
 
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store}/>, root);

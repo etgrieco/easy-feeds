@@ -1,7 +1,6 @@
 import React from 'react';
 
 class DiscoverIndexItem extends React.Component {
-
   constructor(props) {
     super(props);
     this.handleSubscribe = this.handleSubscribe.bind(this);

@@ -5,3 +5,10 @@ export const fetchFeedResults = (q) => (
     data: { q }
   })
 );
+
+export const fetchSingleUnsubscribedFeed = (feedId) => (
+  $.ajax({
+    type: "GET",
+    url: `api/feeds/${feedId}`,
+  })
+);

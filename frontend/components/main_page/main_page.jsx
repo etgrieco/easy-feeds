@@ -10,7 +10,7 @@ const MainPage = (props) => {
   return (
     <main className="main-page">
       <SessionBarContainer />
-      {props.popOutIsOpen ? <PopOutContainer /> : null}
+      <PopOutContainer />
       <LoadingMessagesContainer />
       <MainContent />
     </main>
@@ -18,7 +18,6 @@ const MainPage = (props) => {
 };
 
 const mapStateToProps = state => {
-
   return ({
     popOutIsOpen: state.ui.popOutIsOpen
   });

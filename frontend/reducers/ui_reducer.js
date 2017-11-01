@@ -4,9 +4,8 @@ import merge from 'lodash/merge';
 export default (state = { popOutIsOpen: false }, action) => {
   switch (action.type) {
     case OPEN_POPOUT:
-      return merge({}, state, { popOutIsOpen: true });
     case CLOSE_POPOUT:
-      return merge({}, state, { popOutIsOpen: false });
+      return merge({}, state, { component: action.component });
     default:
       return state;
   }
