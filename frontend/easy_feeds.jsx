@@ -4,8 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 //test
-import * as SubscriptionApiUtil from './util/subscription_api_util';
-import * as SubscriptionActions from './actions/subscription_actions';
+import * as PopOutActions from './actions/popout_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -19,9 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //test
-  window.SubscriptionApiUtil = SubscriptionApiUtil;
-  window.SubscriptionActions = SubscriptionActions;
-
+  window.PopOutActions = PopOutActions;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 
