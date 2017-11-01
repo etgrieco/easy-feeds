@@ -6,6 +6,7 @@ class FeedsIndexRow extends React.Component {
     super(props);
     this.state = Object.assign({ renaming: false, isMouseInside: false }, this.props.feed);
     this.handleEditChange = this.handleEditChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleEdit() {
@@ -37,7 +38,8 @@ class FeedsIndexRow extends React.Component {
         </form>
       :
       <div className="feed-name-show">
-        {this.state.subscription_title}
+        <h3 onClick={this.handleClick(feed)}>
+          {this.state.subscription_title}</h3>
         { this.state.isMouseInside ?
           <button className="modify-button feed-rename"
             onClick={e => this.setState(

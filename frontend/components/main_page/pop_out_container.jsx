@@ -17,8 +17,10 @@ const PopOut = ({ component, isOpen, closePopOut }) => {
 
 
 const PopOutContainer = connect(
-  ({ ui: { component } }) => ({ component: component, isOpen: Boolean(component) }),
-  dispatch => ({ closePopOut: () => dispatch(closePopOut()) })
+  ({ ui: { component } }) =>
+    ({ component: component, isOpen: Boolean(component) }),
+  dispatch =>
+    ({ closePopOut: () => dispatch(closePopOut()) })
 )(PopOut);
 
 export default PopOutContainer;

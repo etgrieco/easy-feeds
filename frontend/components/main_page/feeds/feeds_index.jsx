@@ -9,16 +9,18 @@ export class FeedsIndex extends React.Component {
   }
 
   render() {
-    const { feeds } = this.props;
+    const { feeds, fetchSingleFeed, openPopOut, updateFeed, deleteFeed } = this.props;
     const feedsIndexRows = this.props.subFeedIds.map(feedId => {
       const feed = feeds[feedId];
 
 
       return <FeedsIndexRow key={feed.id}
-        updateFeed={this.props.updateFeed}
-        deleteFeed={this.props.deleteFeed}
+        updateFeed={updateFeed}
+        deleteFeed={deleteFeed}
+        fetchSingleFeed={fetchSingleFeed}
+        openPopOut={openPopOut}
         feed={feed} />;
-    });
+      });
 
     return (
       <div className="feeds-index-container">

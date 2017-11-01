@@ -13,12 +13,7 @@ class StoriesIndex extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // for rendering in a popout
-    // if (newProps.popOutFeedId) {
-    //   newProps.fetchAction(newProps.popOutfeedId);
-    //   return;
-    // }
-
+    // for switching among feed-views
     const newURL = newProps.match.url;
     const oldURL = this.props.match.url;
     if (newURL !== oldURL) {
