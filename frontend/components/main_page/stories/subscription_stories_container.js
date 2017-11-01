@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import StoriesIndex from './stories_index';
 import { fetchSingleFeed } from '../../../actions/subscription_actions';
+import { fetchUnsubscribedFeed } from '../../../actions/story_actions';
+
 
 const mapStateToProps = (state, ownProps) => {
   const storiesState = state.entities.stories.byId;
@@ -24,8 +26,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 
-  const fetchAction = ownProps.fetchAction ?
-    ownProps.fetchAction :
+  const fetchAction = ownProps.match.path.split('/')[2] === "discover" ?
+    feedId => dispatch(fetchUnsubscribedFeed(feedId)) :
     feedId => dispatch(fetchSingleFeed(feedId));
 
   return ({

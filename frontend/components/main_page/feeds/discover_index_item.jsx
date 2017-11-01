@@ -14,14 +14,6 @@ class DiscoverIndexItem extends React.Component {
   }
 
   handleClick(feed) {
-    // this.props.openPopOut(
-    //   <SubscriptionStoriesContainer
-    //     feeds={{ [feed.id]: feed }}
-    //     popOutFeedId={feed.id}
-    //     fetchAction={this.props.fetchUnsubscribedFeed}
-    //   />
-    // );
-    debugger
     this.props.history.push(`/i/discover/${feed.id}`);
   }
 

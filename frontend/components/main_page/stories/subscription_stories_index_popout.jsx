@@ -7,10 +7,8 @@ export default props => {
   const newProps = {
     component: SubscriptionStoriesContainer,
     isOpen: true,
-    closePopOut: () => props.history.push("/i/discover")
+    closePopOut: () => props.history.goBack(),
   };
-
-  debugger
 
   return <PopOut {...props} {...newProps}/>;
 };

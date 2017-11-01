@@ -1,4 +1,5 @@
 import React from 'react';
+import SubscriptionStoriesContainer from '../stories/subscription_stories_container';
 
 class FeedsIndexRow extends React.Component {
 
@@ -19,6 +20,15 @@ class FeedsIndexRow extends React.Component {
 
   handleEditChange(e) {
     this.setState({subscription_title: e.target.value});
+  }
+
+  handleClick(feed) {
+    this.props.openPopOut(
+      <SubscriptionStoriesContainer
+        feeds={{ [feed.id]: feed }}
+        popOutFeedId={feed.id}
+      />
+    );
   }
 
   handleDelete(feed) {
