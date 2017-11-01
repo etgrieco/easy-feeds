@@ -29,6 +29,7 @@ export const receiveNewFeed = feedPayload => ({
   type: RECEIVE_NEW_FEED,
   feeds: feedPayload.feeds,
   subscriptions: feedPayload.subscriptions,
+  stories: feedPayload.stories
 });
 
 export const receiveSubscriptionErrors = errors => ({

@@ -1,5 +1,5 @@
 import React from 'react';
-import StoriesShow from './stories_show';
+import StoriesShow from './story_show';
 import PopOut from '../pop_out';
 
 export default props => {
