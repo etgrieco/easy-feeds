@@ -3,6 +3,7 @@ import SessionBarContainer from './sessionbar/sessionbar_container';
 import MainContent from './main_content';
 import LoadingMessagesContainer from './loading_messages_container';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 const PopOutContainer = () => {
   return (<div></div>);
@@ -13,8 +14,8 @@ const MainPage = (props) => {
     <main className="main-page">
       <SessionBarContainer />
       <LoadingMessagesContainer />
-      {props.popOutIsOpen ? <PopOutContainer /> : null}
       <MainContent />
+      {props.popOutIsOpen ? <PopOutContainer /> : null}
     </main>
   );
 };
@@ -33,4 +34,8 @@ const mapDispatchToProps = dispatch => {
   });
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps)(MainPage)
+  );
