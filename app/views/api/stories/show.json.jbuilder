@@ -15,7 +15,8 @@ json.stories do
   end
 end
 
-json.subscriptions do
+
+json.subscriptions do  
   json.byId do
     json.set! @story.feed.id do
       user_sub = current_user.subscriptions.find_by(feed_id: @story.feed)

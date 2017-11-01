@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import { combineReducers } from 'redux';
 import { RECEIVE_SINGLE_FEED } from '../actions/subscription_actions';
-import { RECEIVE_LATEST } from '../actions/story_actions';
+import { RECEIVE_LATEST, RECEIVE_STORY } from '../actions/story_actions';
 import { CLEAR_ENTITIES } from '../actions/session_actions';
 
 const storiesById = (state = {}, action) => {
@@ -12,6 +12,7 @@ const storiesById = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_LATEST:
     case RECEIVE_SINGLE_FEED:
+    case RECEIVE_STORY:
       newState = merge({}, state, action.stories.byId);
       return newState;
     case CLEAR_ENTITIES:

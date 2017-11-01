@@ -8,7 +8,7 @@ json.stories do
     end
   end
 
-  json.allIds @stories.map(&:id).reverse
+  json.allIds @stories.map(&:id)
 end
 
 all_feeds = []

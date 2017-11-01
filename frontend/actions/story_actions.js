@@ -20,6 +20,15 @@ export const receiveStory = storyPayload => ({
   stories: storyPayload.stories
 });
 
+export const fetchStory = storyId => dispatch => {
+  return (
+    StoryApiUtil.fetchStory(storyId)
+      .then(
+        story => dispatch(receiveStory(story))
+      )
+  );
+};
+
 export const fetchLatest = () => dispatch => {
   dispatch(startFeedAction(["Loading Feeds..."]));
   return (
