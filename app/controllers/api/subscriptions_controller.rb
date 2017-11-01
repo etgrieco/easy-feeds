@@ -10,7 +10,7 @@ class Api::SubscriptionsController < ApplicationController
 
   def show
     # lazy loaded in case refresh already ran
-    @subscription ||= current_user.subscriptions.find_by(feed_id: params[:id])
+    @subscription ||= current_user.subscriptions.includes(:feed, :stories).find_by(feed_id: params[:id])
 
     if @subscription
       render :show
