@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  after_create_commit :give_seed_feeds
+
   has_many :subscriptions,
     foreign_key: :subscriber_id,
     dependent: :destroy
@@ -44,6 +46,25 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= create_session_token
+  end
+
+  def give_seed_feeds
+    seed_urls = (
+      "http://feeds.bbci.co.uk/news/world/rss.xml*
+      https://www.polygon.com/rss/index.xml*
+      http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml*
+      http://github.com/blog.atom*
+      http://www.espn.com/espn/rss/news*
+      ").split("*\n")
+
+    5.times do
+      feed = Feed.all.sample
+      s = Subscription.new(
+        subscriber_id: self.id,
+        feed_id: feed.id
+      )
+      s.save
+    end
   end
 
   private

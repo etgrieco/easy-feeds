@@ -5,6 +5,7 @@ import { RECEIVE_CURRENT_USER,
   RECEIVE_SESSION_ERRORS} from '../actions/session_actions';
 import { CLEAR_SESSION_ERRORS } from '../actions/errors_actions';
 const intitialState = [];
+import merge from 'lodash/merge';
 
 //Session login/signup errors
 const SessionErrorsReducer = (state = intitialState, action) => {
@@ -15,7 +16,7 @@ const SessionErrorsReducer = (state = intitialState, action) => {
     case CLEAR_ERRORS:
       return [];
     case RECEIVE_SESSION_ERRORS:
-      return action.errors;
+      return action.errors ? action.errors : state;
     default:
       return state;
   }
@@ -28,7 +29,7 @@ const SubscriptionErrorsReducer = (state = intitialState, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_SUBSCRIPTION_ERRORS:
-      return action.errors;
+      return action.errors ? action.errors : state;
     case CLEAR_ERRORS:
     case RECEIVE_FEED:
     case REMOVE_FEED:
