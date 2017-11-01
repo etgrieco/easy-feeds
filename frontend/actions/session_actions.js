@@ -4,10 +4,10 @@ export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const CLEAR_ENTITIES = 'CLEAR_ENTITIES';
 
-export const receiveCurrentUser = userPayLoad => {
+export const receiveCurrentUser = user => {
   return {
     type: RECEIVE_CURRENT_USER,
-    currentUser: userPayLoad.currentUser
+    currentUser: user
   };
 };
 
@@ -19,11 +19,6 @@ export const receiveSessionErrors = errors => ({
 export const clearEntities = () => ({
   type: CLEAR_ENTITIES
 });
-
-export const fetchSubscriptions = () => dispatch => (
-  SessionApiUtil.fetchSubscriptions()
-    .then(userPayload => dispatch(receiveCurrentUser(userPayload)))
-);
 
 export const login = user => dispatch => (
   SessionApiUtil.login(user)

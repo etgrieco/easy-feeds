@@ -8,7 +8,7 @@ json.stories do
     end
   end
 
-  json.allIds @stories.sort_by(&:pub_datetime).map(&:id).reverse
+  json.allIds @stories.map(&:id).reverse
 end
 
 all_feeds = []

@@ -11,7 +11,6 @@ export const receiveLatest = feedsPayload => ({
 });
 
 export const fetchLatest = () => dispatch => {
-  // dispatch(startFeedAction(["Loading Feeds..."]));
   return (
     StoryApiUtil.fetchLatest()
       .then(

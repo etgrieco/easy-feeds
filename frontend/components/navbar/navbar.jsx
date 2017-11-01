@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 class NavBar extends React.Component {
 
   componentDidMount() {
-    // this.props.fetchAllSubscriptions();
     // change to fetch all collections!!
       // -- should include collections + basic subscription info
     this.props.fetchAllSubscriptions();

@@ -6,7 +6,6 @@ class Api::StoriesController < ApplicationController
       .order('pub_datetime DESC')
       .limit(20)
       .includes(:feed, :subscriptions)
-      # .where("subcriber_id = #{current_user.id}")
   end
 
 end

@@ -26,7 +26,7 @@ const subscriptionsReducer = (state = [], action) => {
     case RECEIVE_ALL_SUBSCRIPTIONS:
       return action.feeds.allIds;
     case RECEIVE_NEW_FEED:
-      const newFeedId = action.subscriptions.allIds[0];
+      const newFeedId = action.feed.allIds[0];
       return state.concat([newFeedId]);
     case REMOVE_FEED:
       idx = state.indexOf(action.feedId);
@@ -45,8 +45,9 @@ const latestStoriesReducer = (state = [], action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_LATEST:
-      debugger
       return action.stories.allIds;
+    case CLEAR_ENTITIES:
+      return [];
     default:
       return state;
   }

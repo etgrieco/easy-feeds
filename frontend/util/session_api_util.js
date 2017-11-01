@@ -20,10 +20,3 @@ export const logout = () => (
     url: '/api/session'
   })
 );
-
-export const fetchSubscriptions = () => {
-  return $.ajax({
-    type: 'GET',
-    url: "/api/subscriptions",
-  });
-};
