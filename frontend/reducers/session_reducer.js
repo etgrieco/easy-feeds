@@ -26,7 +26,7 @@ const subscriptionsReducer = (state = [], action) => {
     case RECEIVE_ALL_SUBSCRIPTIONS:
       return action.feeds.allIds;
     case RECEIVE_NEW_FEED:
-      const newFeedId = action.feed.allIds[0];
+      const newFeedId = action.feeds.allIds[0];
       return state.concat([newFeedId]);
     case REMOVE_FEED:
       idx = state.indexOf(action.feedId);

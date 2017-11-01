@@ -14,7 +14,11 @@ class StoriesIndexItem extends React.Component {
           <img src={story.image_url || feed.favicon_url} />
         </div>
         <div className="story-details">
-          <h4>{story.title}</h4>
+          <h4>
+            <Link to={`/i/stories/${story.id}`}>
+              {story.title}
+            </Link>
+          </h4>
 
           <h5>
             <Link to={`/i/subscriptions/${story.feed_id}`}>

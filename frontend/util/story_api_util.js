@@ -4,3 +4,10 @@ export const fetchLatest = () => (
     url: "api/stories"
   })
 );
+
+export const fetchStory = id => (
+  $.ajax({
+    type: "GET",
+    url: `api/stories/${id}`
+  })
+);

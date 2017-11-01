@@ -1,20 +1,14 @@
 import React from 'react';
-import SubscriptionStoriesContainer from '../stories/subscription_stories_container';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class DiscoverIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubscribe = this.handleSubscribe.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleSubscribe(feed) {
     this.props.createFeed(feed);
-  }
-
-  handleClick(feed) {
-    this.props.history.push(`/i/discover/${feed.id}`);
   }
 
   render() {
@@ -26,9 +20,11 @@ class DiscoverIndexItem extends React.Component {
             className="feed-index-icon"
             />
           <div className="feed-search-description">
-            <h3 onClick={e => this.handleClick(feed)}>
-              {feed.title}
-            </h3>
+            <Link to={`/i/discover/${feed.id}`}>
+              <h3>
+                {feed.title}
+              </h3>
+            </Link>
             <p>{feed.description}</p>
           </div>
         </div>

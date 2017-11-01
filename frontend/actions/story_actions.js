@@ -4,12 +4,20 @@ import { startFeedAction } from './loading_actions';
 import { receiveSingleFeed } from './subscription_actions';
 
 export const RECEIVE_LATEST = 'RECEIVE_LATEST';
+export const RECEIVE_STORY = "RECEIVE_STORY";
 
 export const receiveLatest = feedsPayload => ({
   type: RECEIVE_LATEST,
   feeds: feedsPayload.feeds,
   subscriptions: feedsPayload.subscriptions,
   stories: feedsPayload.stories
+});
+
+export const receiveStory = storyPayload => ({
+  type: RECEIVE_STORY,
+  feeds: storyPayload.feeds,
+  subscriptions: storyPayload.subscriptions,
+  stories: storyPayload.stories
 });
 
 export const fetchLatest = () => dispatch => {

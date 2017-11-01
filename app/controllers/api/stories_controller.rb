@@ -8,4 +8,14 @@ class Api::StoriesController < ApplicationController
       .includes(:feed, :subscriptions)
   end
 
+  def show
+    @story = Story.includes(:feed, :subscriptions).find_by(id: params[:id])
+
+    if @story
+      render :show
+    else
+      render json: ["Cannot find story"], status: 404
+    end
+  end
+
 end

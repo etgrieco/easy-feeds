@@ -7,6 +7,7 @@ import SubscriptionStoriesContainer from './stories/subscription_stories_contain
 import FeedsIndexContainer from './feeds/feeds_index_container';
 import DiscoverFeedsContainer from './feeds/discover_feeds_container';
 import SubscriptionStoriesIndexPopout from './stories/subscription_stories_index_popout';
+import StoryShowPopout from './stories/story_show_popout';
 
 export default (props) => {
   return (
@@ -20,6 +21,7 @@ export default (props) => {
       <ProtectedRoute path="/i/discover/:id" component={SubscriptionStoriesIndexPopout} />
       <ProtectedRoute path="/i/subscriptions/:id" component={SubscriptionStoriesContainer} />
       <ProtectedRoute path="/i/collection/:id" component={SubscriptionStoriesContainer} />
+      <ProtectedRoute path="/i/stories/:id" component={StoryShowPopout} />
     </section>
   );
 };
