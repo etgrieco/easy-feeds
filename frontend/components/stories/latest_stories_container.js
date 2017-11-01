@@ -4,15 +4,14 @@ import StoriesIndex from './stories_index';
 import { fetchLatest } from '../../actions/story_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const stories = state.entities.stories.byId;
+  const storiesState = state.entities.stories.byId;
   const feeds = state.entities.feeds.byId;
-  const storyIds = state.session.latest;
+  const stories = state.session.latest.map(storyId => storiesState[storyId]);
 
   return ({
     title: "Latest",
     stories,
     feeds,
-    storyIds,
   });
 };
 

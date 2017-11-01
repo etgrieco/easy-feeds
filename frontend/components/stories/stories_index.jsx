@@ -16,15 +16,14 @@ class StoriesIndex extends React.Component {
   }
 
   render() {
-    const { stories, feeds, storyIds, title} = this.props;
+    const { stories, feeds, title } = this.props;
     const id = this.props.match.params.id;
 
-    const storyItems = storyIds.map(storyId => {
-      const story = stories[storyId];
+    const storyItems = stories.map(story => {
       const feed = feeds[story.feed_id];
 
       return (
-        <StoriesIndexItem key={storyId}
+        <StoriesIndexItem key={story.id}
           story={story}
           feed={feed} />
       );
