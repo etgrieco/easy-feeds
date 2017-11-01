@@ -1,7 +1,7 @@
 import * as StoryApiUtil from '../util/story_api_util';
+import { startFeedAction } from './loading_actions';
 
 export const RECEIVE_LATEST = 'RECEIVE_LATEST';
-export const START_FEED_ACTION = 'START_FEED_ACTION';
 
 export const receiveLatest = feedsPayload => ({
   type: RECEIVE_LATEST,
@@ -11,6 +11,7 @@ export const receiveLatest = feedsPayload => ({
 });
 
 export const fetchLatest = () => dispatch => {
+  dispatch(startFeedAction(["Loading Feeds..."]));
   return (
     StoryApiUtil.fetchLatest()
       .then(

@@ -1,10 +1,10 @@
 import * as SubscriptionApiUtil from '../util/subscription_api_util';
+import { startFeedAction } from './loading_actions';
 
 export const REMOVE_FEED = 'REMOVE_FEED';
 export const RECEIVE_SINGLE_FEED = 'RECEIVE_SINGLE_FEED';
 export const RECEIVE_NEW_FEED = 'RECEIVE_NEW_FEED';
 export const RECEIVE_SUBSCRIPTION_ERRORS = 'RECEIVE_SUBSCRIPTION_ERRORS';
-export const START_FEED_ACTION = 'START_FEED_ACTION';
 export const RECEIVE_ALL_SUBSCRIPTIONS = 'RECEIVE_ALL_SUBSCRIPTIONS';
 
 export const receiveAllSubscriptions = subscriptionsPayload => ({
@@ -31,11 +31,6 @@ export const receiveNewFeed = feedPayload => ({
   subscriptions: feedPayload.subscriptions,
 });
 
-export const startFeedAction = messages => ({
-  type: START_FEED_ACTION,
-  messages
-});
-
 export const receiveSubscriptionErrors = errors => ({
   type: RECEIVE_SUBSCRIPTION_ERRORS,
   errors
@@ -52,7 +47,7 @@ export const fetchAllSubscriptions = () => dispatch => {
 };
 
 export const fetchSingleFeed = feedId => dispatch => {
-  // dispatch(startFeedAction(["Loading Feed..."]));
+  dispatch(startFeedAction(["Loading Feed..."]));
   return (
     SubscriptionApiUtil.fetchSingleFeed(feedId)
       .then(
