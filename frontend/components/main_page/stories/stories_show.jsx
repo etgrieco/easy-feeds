@@ -6,7 +6,6 @@ class StoriesShow extends  React.Component {
   constructor(props) {
     super(props);
     // props: match.params.id
-    debugger
   }
 
   render() {

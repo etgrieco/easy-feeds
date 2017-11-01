@@ -1,6 +1,7 @@
 # get basic info about subscriptions:
 json.subscriptions({})
 json.subscriptions do
+  json.byId({})
   json.byId do
     @subscriptions.each do |subscription|
       json.set! subscription.feed_id do
@@ -16,6 +17,7 @@ end
 all_feeds = []
 json.feeds({})
 json.feeds do
+  json.byId({})
   json.byId do
     @subscriptions.each do |subscription|
       feed = subscription.feed

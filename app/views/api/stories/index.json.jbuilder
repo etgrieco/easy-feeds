@@ -12,6 +12,7 @@ json.stories do
 end
 
 all_feeds = []
+json.feeds({})
 json.feeds do
   json.byId do
     @stories.each do |story|
@@ -24,6 +25,7 @@ json.feeds do
   end
 end
 
+json.subscriptions({})
 json.subscriptions do
   json.byId do
     @stories.each do |story|

@@ -6,7 +6,7 @@ import { RECEIVE_LATEST } from '../actions/story_actions';
 import merge from 'lodash/merge';
 import { combineReducers } from 'redux';
 
-const feedsById = (state = {}, action) => {
+const feedsById = (state = { byId: {} }, action) => {
   Object.freeze(state);
   let newState;
 
