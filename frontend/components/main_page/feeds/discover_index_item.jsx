@@ -1,5 +1,6 @@
 import React from 'react';
 import SubscriptionStoriesContainer from '../stories/subscription_stories_container';
+import { withRouter } from 'react-router-dom';
 
 class DiscoverIndexItem extends React.Component {
   constructor(props) {
@@ -13,13 +14,15 @@ class DiscoverIndexItem extends React.Component {
   }
 
   handleClick(feed) {
-    this.props.openPopOut(
-      <SubscriptionStoriesContainer
-        feeds={{ [feed.id]: feed }}
-        popOutFeedId={feed.id}
-        fetchAction={this.props.fetchUnsubscribedFeed}
-      />
-    );
+    // this.props.openPopOut(
+    //   <SubscriptionStoriesContainer
+    //     feeds={{ [feed.id]: feed }}
+    //     popOutFeedId={feed.id}
+    //     fetchAction={this.props.fetchUnsubscribedFeed}
+    //   />
+    // );
+    debugger
+    this.props.history.push(`/i/discover/${feed.id}`);
   }
 
   render() {
@@ -54,4 +57,4 @@ class DiscoverIndexItem extends React.Component {
 }
 
 
-export default DiscoverIndexItem;
+export default withRouter(DiscoverIndexItem);

@@ -6,7 +6,7 @@ import { fetchSingleFeed } from '../../../actions/subscription_actions';
 const mapStateToProps = (state, ownProps) => {
   const storiesState = state.entities.stories.byId;
   const feeds = state.entities.feeds.byId;
-  const id = ownProps.popOutFeedId || ownProps.match.params.id;
+  const id = ownProps.match.params.id;
 
   let feed = feeds[id];
   feed = (!feed || !feed.stories) ?
@@ -19,7 +19,6 @@ const mapStateToProps = (state, ownProps) => {
     title: feed.subscription_title,
     stories,
     feeds,
-    popOutFeedId: ownProps.popOutFeedId
   });
 };
 

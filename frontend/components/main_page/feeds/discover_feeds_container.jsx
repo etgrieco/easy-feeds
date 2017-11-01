@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchFeedResults } from '../../../actions/discovery_actions';
 import { createFeed } from '../../../actions/subscription_actions';
 import { openPopOut } from '../../../actions/popout_actions';
@@ -21,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   });
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(DiscoverSearchIndex);
+)(DiscoverSearchIndex));

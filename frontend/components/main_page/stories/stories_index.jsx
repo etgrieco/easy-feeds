@@ -4,11 +4,6 @@ import StoriesIndexItem from './stories_index_item';
 class StoriesIndex extends React.Component {
 
   componentDidMount() {
-    if (this.props.popOutFeedId) {
-      this.props.fetchAction(this.props.popOutFeedId);
-      return;
-    }
-
     this.props.fetchAction(this.props.match.params.id);
   }
 
