@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:create, :index, :show, :destroy, :update]
     resources :feeds, only: [:index, :show]
     resources :stories, only: [:index, :show]
+    resources :collections, only: [:create, :update, :destroy]
   end
 
 end
