@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { fetchFeedResults } from '../../../actions/discovery_actions';
 import { createFeed } from '../../../actions/subscription_actions';
 import { openPopOut } from '../../../actions/popout_actions';
+import { clearErrors } from '../../../actions/errors_actions';
 import { fetchUnsubscribedFeed } from '../../../actions/story_actions';
 import DiscoverSearchIndex from './discover_search_index';
 
@@ -18,7 +19,8 @@ const mapDispatchToProps = dispatch => {
     fetchFeedResults: query => dispatch(fetchFeedResults(query)),
     createFeed: feed => dispatch(createFeed(feed)),
     openPopOut: component => dispatch(openPopOut(component)),
-    fetchUnsubscribedFeed: feedId => dispatch(fetchUnsubscribedFeed(feedId))
+    fetchUnsubscribedFeed: feedId => dispatch(fetchUnsubscribedFeed(feedId)),
+    clearErrors: () => dispatch(clearErrors())
   });
 };
 

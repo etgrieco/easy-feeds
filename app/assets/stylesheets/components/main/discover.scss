@@ -5,6 +5,25 @@
   max-width: 840px;
 }
 
+.discover-form-switch {
+  display: flex;
+  height: 40px;
+  border-bottom: 1px solid rgba(159, 159, 159, .2);
+  align-items: flex-end;
+  margin-bottom: 50px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  color: $text-light-grey;
+}
+
+.discover-form-switch div {
+  padding-right: 20px;
+}
+
+.discover-search-index input {
+  height: 35px;
+}
+
 .discover-search-index h1 {
   color: grey;
   font-size: 24px;
@@ -18,7 +37,7 @@
 
 .feed-search-input-container i {
   position: absolute;
-  bottom:19px;
+  bottom:28px;
   left:12px;
   width:10px;
   height:10px;
@@ -93,4 +112,53 @@
 .search-item p {
   font-size: 12px;
   color: grey;
+}
+
+
+//ADD FEED FORM
+.add-feed-form {
+  width: 100%;
+}
+
+.add-feed-input-container {
+  position: relative;
+  vertical-align: middle;
+}
+
+.add-feed-input-container i {
+  position: absolute;
+  bottom:26px;
+  left:12px;
+  width:10px;
+  height:10px;
+  color: rgba(0, 0, 0, 0.15);
+}
+
+.add-feed-form input {
+  display: inline-block;
+  padding: 5px;
+  padding-left: 40px;
+  width: calc(100% - 162px);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  margin-left: 0px;
+}
+
+.add-feed-form input:focus {
+  border: 1px solid $green;
+}
+
+.add-feed-form input:focus + i {
+  color: grey;
+}
+
+.add-feed-form button {
+  margin: 10px;
+  width: 70px;
+  height: 10px;
+  padding: 12px 15px;
+  padding-top: 8px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 0px;
 }

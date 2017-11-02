@@ -9,6 +9,7 @@ class DiscoverSearchIndex extends React.Component {
     super(props);
     this.state = {query: "", dataBaseSearch: true};
     this.handleQueryChange = this.handleQueryChange.bind(this);
+    this.handleSwitch = this.handleSwitch.bind(this);
   }
 
   componentDidMount() {
@@ -46,8 +47,13 @@ class DiscoverSearchIndex extends React.Component {
         {discoverIndexItems}
       </div>
     </div>
-  );
-}
+    );
+  }
+
+  handleSwitch({ dataBaseSearch, clearErrors }) {
+    this.setState({ dataBaseSearch });
+    clearErrors ? this.props.clearErrors() : null;
+  }
 
   render() {
     const { feeds } = this.props;
@@ -55,8 +61,16 @@ class DiscoverSearchIndex extends React.Component {
 
     return(
       <div className="discover-search-index">
-        <div onClick={e => this.setState({dataBaseSearch: !this.state.dataBaseSearch})}>
-          Switch Form
+        <div className="discover-form-switch">
+          <div className="discover-search-button"
+            onClick={e => this.handleSwitch({dataBaseSearch: true, clearErrors: true})}
+            >
+            Search
+          </div>
+          <div className="discover-add-url-button"
+            onClick={e => this.handleSwitch({dataBaseSearch: false})}
+            >
+            Add URL</div>
         </div>
         { this.state.dataBaseSearch ?
         <div>
