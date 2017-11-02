@@ -30,3 +30,15 @@ json.feeds do
 
   json.allIds all_feeds.sort_by(&:title).map(&:id)
 end
+
+json.collections({})
+json.collections do
+  json.byId do
+    current_user.collections.includes(:subscriptions).each do |collection|
+      json.set! collection.id do
+        json.partial! 'api/collections/collection', collection: collection
+        json.feeds collection.subscriptions.map(&:id)
+      end
+    end
+  end
+end

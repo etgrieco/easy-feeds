@@ -5,7 +5,7 @@ class Api::SubscriptionsController < ApplicationController
 
   def index
     # lazy loaded in case refresh already ran
-    @subscriptions ||= current_user.subscriptions.includes(:feed)
+    @subscriptions ||= current_user.subscriptions.includes(:feed, :collections)
   end
 
   def show
