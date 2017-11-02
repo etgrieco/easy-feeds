@@ -5,6 +5,16 @@
   max-width: 840px;
 }
 
+.feeds-following-sources p {
+  padding-top: 5px;
+  font-size: 18px;
+  color: $text-dark-grey;
+}
+
+.feeds-following-sources p span {
+  color: black;
+}
+
 .feeds-index {
   padding-top: 40px;
   width: 100%;
@@ -40,7 +50,7 @@
 }
 
 .add-feed-form input:focus {
-  border: 1px solid #2BB14C;
+  border: 1px solid $green;
 }
 
 .add-feed-form input:focus + i {
@@ -170,7 +180,7 @@
 }
 
 .feed-rename-form button {
-  color: #2BB14C;
+  color: $green;
   opacity: .5;
 }
 
@@ -181,7 +191,7 @@
 //Feed status/delete columns
 
 .feed-status-text {
-  color: #2BB14C;
+  color: $darker-green;
 }
 
 .feed-delete {
