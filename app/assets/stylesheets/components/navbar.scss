@@ -2,6 +2,23 @@
   background: $background-grey;
 }
 
+
+.navbar-show-button {
+  text-align: right;
+}
+
+.navbar-show-button-hidden {
+  text-align: center;
+}
+
+.navbar-show-button .fa-compress {
+  color: $text-light-grey;
+}
+
+.navbar-show-button .fa-expand {
+  text-align: center;
+}
+
 .navbar-transition {
   transition-duration: .3s;
 }
@@ -10,7 +27,7 @@
   position: relative;
   min-width: 260px;
   max-width: 260px;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 70px);
 }
 
 .navbar-container-hidden {
@@ -41,7 +58,6 @@
 .navbar-collections {
   font-size: 13px;
   font-weight: 700;
-  padding-top: 25px;
   overflow-y: auto;
   color: #757575;
 }
@@ -114,7 +130,7 @@
   right: 66px;
 }
 
-.nav-add-content span {
+.nav-add-content-plus {
   font-size: 20px;
   -webkit-text-stroke: 3px $background-grey;
   padding-right: 10px;

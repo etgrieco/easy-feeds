@@ -29,14 +29,18 @@ class NavBar extends React.Component {
 
     return (
       <section className="navbar">
+        <div className={`navbar-show-button${this.state.hidden ? "-hidden" : ""}`}>
+          <span onClick={e => this.setState({hidden: !this.state.hidden})}>
+            { this.state.hidden ?
+              <i class="fa fa-expand" aria-hidden="true"></i> :
+              <i class="fa fa-compress" aria-hidden="true"></i>
+            }
+          </span>
+        </div>
         <nav className={`navbar-container${this.state.hidden ? "-hidden" : ""} navbar-transition`}>
           <div className={`navbar-closed${this.state.hidden ? "":  "-hidden"}`}>
-            <span className="navbar-show-button" onClick={e => this.setState({hidden: false})}>
-              <i className="fa fa-bars" aria-hidden="true"></i>
-            </span>
           </div>
           <div className={`navbar-contents${this.state.hidden ? "-hidden" : ""}`}>
-            <span onClick={e => this.setState({hidden: true})}>Hide</span>
             <div className="navbar-collections">
               <div className="feeds-header noselect">
                 <div>Feeds</div>
@@ -60,10 +64,10 @@ class NavBar extends React.Component {
             </div>
           </div>
         </nav>
-        <aside className="nav-add-content-container">
+        <aside className={`nav-add-content-container ${this.state.hidden ? "hidden" : ""}`}>
           <Link to="/i/discover">
             <div className="nav-add-content">
-              <span><i className="fa fa-plus" aria-hidden="true"></i></span>
+              <span className="nav-add-content-plus"><i className="fa fa-plus" aria-hidden="true"></i></span>
               Add Content
             </div>
           </Link>
