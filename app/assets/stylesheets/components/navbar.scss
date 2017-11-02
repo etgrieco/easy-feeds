@@ -1,24 +1,38 @@
+.width-transition {
+  transition: width .3s;
+}
+
+.navbar-transition {
+  transition: margin-right .3s;
+}
+
+
 .navbar-container {
   background: $background-grey;
   position: relative;
   width: 260px;
-  transition: width 1s;
 }
 
 .navbar-container-hidden {
   background: $background-grey;
   position: relative;
   width: 50px;
-  transition: width 1s;
 }
 
 .navbar-closed {
-  // width: 50px;
+}
+
+.navbar-closed-hidden {
+  margin-right: 260px;
 }
 
 .navbar-contents {
   flex-shrink: 0;
-  // width: 260px;
+  transition: display 1s linear;
+}
+
+.navbar-contents-hidden {
+  margin-right: 260px;
 }
 
 .navbar-collections {
