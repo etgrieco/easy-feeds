@@ -7,7 +7,7 @@ export default props => {
   const newProps = {
     component: StoriesShow,
     isOpen: true,
-    closePopOut: () => props.history.push("/i/latest/"),
+    closePopOut: () => props.history.goBack(),
   };
 
   return <PopOut {...props} {...newProps}/>;
