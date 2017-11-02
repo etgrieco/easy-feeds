@@ -13,14 +13,15 @@
  *= require reset
  *= require body
  *= require buttons
- *= require sessionbar/session-bar
- *= require popout.scss
+ *= require session-bar
+ *= require navbar
+ *= require popout
+ *= require main/main
  *= require main/session-form
  *= require main/landing
  *= require main/feeds
  *= require main/discover
  *= require main/stories
- *= require navbar/navbar
  *= require_self
  *= require_tree .
  */
