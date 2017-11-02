@@ -1,15 +1,16 @@
+.navbar {
+  background: $background-grey;
+}
+
 .navbar-transition {
   transition-duration: .3s;
 }
 
-.contents-transition {
-}
-
 .navbar-container {
-  background: $background-grey;
   position: relative;
   min-width: 260px;
   max-width: 260px;
+  height: calc(100vh - 50px);
 }
 
 .navbar-container-hidden {
@@ -17,6 +18,7 @@
   position: relative;
   min-width: 50px;
   max-width: 50px;
+  height: calc(100vh - 50px);
 }
 
 .navbar-closed {
@@ -37,10 +39,9 @@
 }
 
 .navbar-collections {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   padding-top: 25px;
-  height: calc(100vh - 80px);
   overflow-y: auto;
   color: #757575;
 }
@@ -60,17 +61,7 @@
 
 .tabs-container i {
   padding-right: 10px;
-}
-
-.latest {
-  padding: 0 20px;
-}
-
-.latest:hover {
-  background: $background-hover-grey;
-}
-
-.feeds {
+  padding-left: 5px;
 }
 
 .feeds img {
@@ -81,9 +72,18 @@
 }
 
 .feeds li {
+  box-sizing: border-box;
+  padding-left: 20px;
   display: flex;
+  align-items: center;
   width: 100%;
   list-style: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.feeds li a {
+  margin-right: 20px;
 }
 
 .feeds li:hover {
@@ -94,29 +94,35 @@
   font-weight: 300;
 }
 
-//ADD CONTENT BUTTON
-.nav-add-content {
-  text-transform: uppercase;
-  border-top: 1px solid #9f9f9f;
+.latest li {
+  font-weight: 700;
 }
 
-.nav-add-container {
+//ADD CONTENT BUTTON
+.nav-add-content-container {
+  text-transform: uppercase;
+  border-top: 1px solid $text-light-grey;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.nav-add-content {
+  position: absolute;
+  top: 12px;
+  right: 66px;
 }
 
 .nav-add-content span {
   font-size: 20px;
   -webkit-text-stroke: 3px $background-grey;
   padding-right: 10px;
-  padding-bottom: 5px;
 }
 
 .nav-add-content a {
   height: 300px;
   width: 100%;
-  padding: 20px;
   box-sizing: border-box;
   border: none;
   background: none;
