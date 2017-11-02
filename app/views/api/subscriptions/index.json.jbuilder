@@ -24,6 +24,7 @@ json.feeds do
       all_feeds << feed
       json.set! feed.id do
         json.partial! 'api/feeds/feed', feed: feed
+        json.collections = subscription.collections.map(&:id)
       end
     end
   end
@@ -33,11 +34,12 @@ end
 
 json.collections({})
 json.collections do
+  json.byId({})
   json.byId do
     current_user.collections.includes(:subscriptions).each do |collection|
       json.set! collection.id do
-        json.partial! 'api/collections/collection', collection: collection
-        json.feeds collection.subscriptions.map(&:id)
+        json.name collection.name
+        json.feeds collection.subscriptions.map(&:feed_id)
       end
     end
   end
