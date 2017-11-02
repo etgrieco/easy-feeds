@@ -12,14 +12,14 @@ body button {
 .green-button {
   margin-left: 0;
   font-size: 14px;
-  background: #2BB14C;
+  background: $green;
   font-weight: 400;
   color: white;
   padding: 15px 40px;
 }
 
 .green-button:hover {
-  background: #249540;
+  background: $darker-green;
 }
 
 .discover-button {
@@ -32,13 +32,13 @@ body button {
 }
 
 .follow-button {
-  border: 1px solid #2BB14C;
-  color: #2BB14C;
+  border: 1px solid $green;
+  color: $green;
 }
 
 .follow-button:hover {
-  color: #249540;
-  border: 1px solid #249540;
+  color: $darker-green;
+  border: 1px solid $darker-green;
 }
 
 .following-button {

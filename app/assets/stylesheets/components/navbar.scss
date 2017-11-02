@@ -1,7 +1,7 @@
 .navbar-container {
   flex-shrink: 0;
   width: 260px;
-  background: #efefef;
+  background: $background-grey;
   position: relative;
 }
 
@@ -33,25 +33,6 @@
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //ADD CONTENT BUTTON
 .nav-add-content {
   text-transform: uppercase;
@@ -66,7 +47,7 @@
 
 .nav-add-content span {
   font-size: 20px;
-  -webkit-text-stroke: 3px #efefef;
+  -webkit-text-stroke: 3px $background-grey;
   padding-right: 10px;
   padding-bottom: 5px;
 }

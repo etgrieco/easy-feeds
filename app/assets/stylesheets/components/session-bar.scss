@@ -22,7 +22,7 @@
 }
 
 .session-bar-contents button {
-  color: #9f9f9f;
+  color: $text-light-grey;
   display: inline-block;
   border: 1px solid lightgrey;
   font-size: 14px;
@@ -30,12 +30,12 @@
 }
 
 .session-bar-contents button:hover {
-  border-color: #9f9f9f;
+  border-color:  $text-light-grey;
   color: grey;
 }
 
 .session-logo h3 {
-  color: #9f9f9f;
+  color: $text-light-grey
 }
 
 .logged-in-session {

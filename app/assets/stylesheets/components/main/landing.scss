@@ -5,11 +5,11 @@
 }
 
 .demo-user {
-  background: #4384F4;
+  background: $blue;
 }
 
 .demo-user:hover {
-  background: #386ECB;
+  background: $hover-blue;
 }
 
 .landing-content {
@@ -19,7 +19,7 @@
 }
 
 .landing-container h1 {
-  padding-bottom: 25px;
+  padding-bottom: 15px;
 }
 
 .landing-container p {

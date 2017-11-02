@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.8);
+  background: $modal-screen;
 }
 
 .session-form-window {
@@ -20,6 +20,10 @@
   border-radius: 0px;
   border: 0px solid #000;
   min-height: 500px;
+}
+
+.session-form-window h3 {
+  
 }
 
 .session-form-container {
