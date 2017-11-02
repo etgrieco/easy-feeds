@@ -11,8 +11,7 @@ class Subscription < ApplicationRecord
 
   belongs_to :subscriber,
     class_name: "User",
-    foreign_key: :subscriber_id,
-    primary_key: :id
+    foreign_key: :subscriber_id
 
   belongs_to :feed,
     class_name: "Feed",
@@ -24,12 +23,8 @@ class Subscription < ApplicationRecord
     through: :feed,
     source: :stories
 
-  has_many :collection_assignments,
-    foreign_key: :collection_id,
-    class_name: :CollectionAssignments
-
-  has_many :collection_id,
-    through: :collection_assignments,
-    source: :collection
+  has_many :collections,
+    through: :subscriber,
+    source: :collections
 
 end
