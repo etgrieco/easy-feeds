@@ -23,6 +23,10 @@ class User < ApplicationRecord
     through: :feeds,
     source: :stories
 
+  has_many :collections,
+    foreign_key: :creator_id,
+    class_name: :Collection
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

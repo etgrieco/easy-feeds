@@ -24,4 +24,12 @@ class Subscription < ApplicationRecord
     through: :feed,
     source: :stories
 
+  has_many :collection_assignments,
+    foreign_key: :collection_id,
+    class_name: :CollectionAssignments
+
+  has_many :collection_id,
+    through: :collection_assignments,
+    source: :collection
+
 end
