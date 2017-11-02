@@ -1,38 +1,39 @@
-.width-transition {
-  transition: width .3s;
-}
-
 .navbar-transition {
-  transition: margin-right .3s;
+  transition-duration: .3s;
 }
 
+.contents-transition {
+}
 
 .navbar-container {
   background: $background-grey;
   position: relative;
-  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
 }
 
 .navbar-container-hidden {
   background: $background-grey;
   position: relative;
-  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
 }
 
 .navbar-closed {
+  visibility: visible;
 }
 
 .navbar-closed-hidden {
-  margin-right: 260px;
+  visibility: hidden;
 }
 
 .navbar-contents {
   flex-shrink: 0;
-  transition: display 1s linear;
+  visibility: visible;
 }
 
 .navbar-contents-hidden {
-  margin-right: 260px;
+  visibility: hidden;
 }
 
 .navbar-collections {

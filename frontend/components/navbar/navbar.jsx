@@ -28,13 +28,13 @@ class NavBar extends React.Component {
     });
 
     return (
-      <nav className={`navbar-container${this.state.hidden ? "-hidden" : ""} width-transition`}>
-        <div className={`navbar-closed${this.state.hidden ? "":  "-hidden"} navbar-transition`}>
+      <nav className={`navbar-container${this.state.hidden ? "-hidden" : ""} navbar-transition`}>
+        <div className={`navbar-closed${this.state.hidden ? "":  "-hidden"} contents-transition`}>
           <span className="navbar-show-button" onClick={e => this.setState({hidden: false})}>
             <i className="fa fa-bars" aria-hidden="true"></i>
           </span>
         </div>
-        <div className={`navbar-contents${this.state.hidden ? "-hidden" : ""} navbar-transition`}>
+        <div className={`navbar-contents${this.state.hidden ? "-hidden" : ""} contents-transition`}>
           <span onClick={e => this.setState({hidden: true})}>Hide</span>
           <div className="navbar-collections">
             <div className="feeds-header noselect">
