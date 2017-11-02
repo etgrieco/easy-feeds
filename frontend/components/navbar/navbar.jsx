@@ -18,8 +18,8 @@ class NavBar extends React.Component {
     const feedsList = this.props.feedIds.map(feedId => {
     const feed = this.props.feeds[feedId];
       return (
-        <Link to={`/i/subscriptions/${feed.id}`}>
-        <li key={feedId}>
+        <Link key={feedId} to={`/i/subscriptions/${feed.id}`}>
+        <li>
           <img src={feed.favicon_url} />
             {feed.subscription_title}
         </li>
@@ -32,8 +32,8 @@ class NavBar extends React.Component {
         <div className={`navbar-show-button${this.state.hidden ? "-hidden" : ""}`}>
           <span onClick={e => this.setState({hidden: !this.state.hidden})}>
             { this.state.hidden ?
-              <i class="fa fa-expand" aria-hidden="true"></i> :
-              <i class="fa fa-compress" aria-hidden="true"></i>
+              <i className="fa fa-expand" aria-hidden="true"></i> :
+              <i className="fa fa-compress" aria-hidden="true"></i>
             }
           </span>
         </div>

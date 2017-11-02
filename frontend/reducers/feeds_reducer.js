@@ -14,9 +14,9 @@ const feedsById = (state = { }, action) => {
     case RECEIVE_FEEDS_RESULTS:
       newState = merge({}, state, action.feeds.byId);
       return newState;
+    case RECEIVE_NEW_FEED:
     case RECEIVE_SINGLE_FEED:
     case RECEIVE_LATEST:
-    case RECEIVE_NEW_FEED:
     case RECEIVE_ALL_SUBSCRIPTIONS:
     case RECEIVE_STORY:
       newState = merge({}, state, action.feeds.byId, action.subscriptions.byId);
@@ -33,6 +33,8 @@ const allFeedsResults = (state = [], action) => {
   let newState;
 
   switch (action.type) {
+    case RECEIVE_NEW_FEED:
+      return [action.feeds.allIds[0]];
     case RECEIVE_FEEDS_RESULTS:
       return action.results;
     case CLEAR_ENTITIES:

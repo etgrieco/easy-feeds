@@ -23,7 +23,6 @@ export class FeedsIndex extends React.Component {
           <p>Following <span>{subFeedIds.length} sources</span></p>
         </div>
         <div className="feeds-index">
-          <AddFeedFormContainer />
           <div>
             <table>
               <thead>

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DiscoverIndexItem from './discover_index_item';
+import AddFeedFormContainer from './add_feeds_form_container';
 
 class DiscoverSearchIndex extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {query: ""};
+    this.state = {query: "", dataBaseSearch: true};
     this.handleQueryChange = this.handleQueryChange.bind(this);
   }
 
@@ -54,19 +55,29 @@ class DiscoverSearchIndex extends React.Component {
 
     return(
       <div className="discover-search-index">
-        <h1>What sources do you want to follow?</h1>
-        <form>
-          <div className="feed-search-input-container">
-            <input className="feed-search"
-              value={this.state.query}
-              onChange={this.handleQueryChange}
-              />
-            <i className="fa fa-search" aria-hidden="true"></i>
-          </div>
-        </form>
-        <div className="feed-url-container">
-          <Link to="/i/feeds">{"Have an RSS URL? Add one here."}</Link>
+        <div onClick={e => this.setState({dataBaseSearch: !this.state.dataBaseSearch})}>
+          Switch Form
         </div>
+        { this.state.dataBaseSearch ?
+        <div>
+          <h1>What sources do you want to follow?</h1>
+          <form>
+            <div className="feed-search-input-container">
+              <input className="feed-search"
+                value={this.state.query}
+                onChange={this.handleQueryChange}
+                placeholder="Search for a feed..."
+                />
+              <i className="fa fa-search" aria-hidden="true"></i>
+            </div>
+          </form>
+        </div>
+          :
+        <div>
+          <h1>Have your own feed URL?</h1>
+          <AddFeedFormContainer />
+        </div>
+        }
         {this.discoverSearch(discoverIndexItems)}
       </div>
     );
