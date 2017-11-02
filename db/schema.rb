@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030142331) do
+ActiveRecord::Schema.define(version: 20171102001208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collection_assignments", force: :cascade do |t|
+    t.integer "subscription_id"
+    t.integer "collection_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id", "collection_id"], name: "index_collection_assignments_on_sub_id_and_coll_id", unique: true
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.integer "creator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id", "name"], name: "index_collections_on_creator_id_and_name", unique: true
+  end
 
   create_table "feeds", force: :cascade do |t|
     t.string "title", default: "", null: false
