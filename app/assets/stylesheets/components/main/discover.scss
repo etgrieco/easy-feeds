@@ -12,12 +12,29 @@
   align-items: flex-end;
   margin-bottom: 50px;
   padding-bottom: 10px;
-  box-sizing: border-box;
+  // box-sizing: border-box;
   color: $text-light-grey;
 }
 
+.discover-form-switch .selected {
+  color: $green;
+  border-bottom: 3px solid $green;
+}
+
 .discover-form-switch div {
+  cursor: pointer;
   padding-right: 20px;
+  margin-bottom: -10px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid white;
+}
+
+.discover-form-switch div:hover {
+  border-bottom: 3px solid rgba(159, 159, 159, .8);
+}
+
+.discover-form-switch i {
+  padding-right: 10px;
 }
 
 .discover-search-index input {
@@ -37,7 +54,7 @@
 
 .feed-search-input-container i {
   position: absolute;
-  bottom:28px;
+  bottom:26px;
   left:12px;
   width:10px;
   height:10px;

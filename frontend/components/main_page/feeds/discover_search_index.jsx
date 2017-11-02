@@ -62,15 +62,18 @@ class DiscoverSearchIndex extends React.Component {
     return(
       <div className="discover-search-index">
         <div className="discover-form-switch">
-          <div className="discover-search-button"
+          <div className={`discover-search-button no-select ${this.state.dataBaseSearch ? "selected" : ""}`}
             onClick={e => this.handleSwitch({dataBaseSearch: true, clearErrors: true})}
             >
+            <i className="fa fa-rss" aria-hidden="true"></i>
             Search
           </div>
-          <div className="discover-add-url-button"
+          <div className={`discover-add-url-button no-select ${this.state.dataBaseSearch ? "": "selected"}`}
             onClick={e => this.handleSwitch({dataBaseSearch: false})}
             >
-            Add URL</div>
+            <i class="fa fa-link" aria-hidden="true"></i>
+            Add URL
+          </div>
         </div>
         { this.state.dataBaseSearch ?
         <div>
