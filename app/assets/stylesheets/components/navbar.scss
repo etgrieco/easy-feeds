@@ -1,36 +1,73 @@
 .navbar-container {
-  flex-shrink: 0;
-  width: 260px;
   background: $background-grey;
   position: relative;
+}
+
+.navbar-closed {
+  width: 50px;
+}
+
+.navbar-open {
+  flex-shrink: 0;
+  width: 260px;
 }
 
 .navbar-collections {
   font-size: 14px;
   font-weight: 700;
-  padding: 25px;
-  padding-bottom: 0;
+  padding-top: 25px;
   height: calc(100vh - 80px);
   overflow-y: auto;
   color: #757575;
 }
 
-.tabs {
-  margin-top: 20px;
-}
-
-.tabs i {
-  padding-right: 10px;
-}
-
-.collections-header {
+.feeds-header {
+  padding-left: 15px;
+  padding-right: 20px;
   font-weight: 400;
   display: flex;
   justify-content: space-between;
+  text-transform: uppercase;
 }
 
-.latest-tab {
+.tabs-container {
+  margin-top: 20px;
+}
 
+.tabs-container i {
+  padding-right: 10px;
+}
+
+.latest {
+  padding: 0 20px;
+}
+
+.latest:hover {
+  background: $background-hover-grey;
+}
+
+.feeds {
+}
+
+.feeds img {
+  height: 18px;
+  width: 18px;
+  padding: 2px;
+  margin-right: 10px;
+}
+
+.feeds li {
+  display: flex;
+  width: 100%;
+  list-style: none;
+}
+
+.feeds li:hover {
+  background: $background-hover-grey;
+}
+
+.feeds a {
+  font-weight: 300;
 }
 
 //ADD CONTENT BUTTON

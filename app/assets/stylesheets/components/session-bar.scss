@@ -21,6 +21,10 @@
   align-items: center;
 }
 
+.session-bar-contents h3 {
+  margin: 0 0;
+}
+
 .session-bar-contents button {
   color: $text-light-grey;
   display: inline-block;
