@@ -62,9 +62,12 @@ class Feed < ApplicationRecord
 
 end
 ```
-### Higher-Order Components
+### Overlayed Article and Feed Views
 
 An important front-end feature is the ability to view content in a modal-like component that comes over the feeds/stories browsing UI. In order to keep the code as DRY as possible, the same front-end popout component was used for both browsing a feed and viewing a specific story.
+
+
+![Pop Out Modal][pop-out-modal]
 
 This was primarily accomplished by turning the pop out React component into a higher-order component that can accept a component as props:
 
@@ -95,3 +98,4 @@ Other helpful packages used in this project include:
 
 
 [add-feed-url]: https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/add-new-feed.gif
+[pop-out-modal]: https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/pop-out-modal.gif
