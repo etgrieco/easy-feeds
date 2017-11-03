@@ -62,8 +62,8 @@ class Api::SubscriptionsController < ApplicationController
     if @feed.nil?
       @feed = Feed.new(rss_url: subscription_params[:rss_url], title: "New Feed")
       unless @feed.save
-        render json: @feed.errors.full_messages, status: 422
         # this will stop subscribe create from occuring
+        render json: @feed.errors.full_messages, status: 422
       end
     end
   end

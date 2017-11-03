@@ -12,6 +12,30 @@ This project uses the Rails framework for the backend API, and a React/Redux fra
 
 With EasyFeeds, not only are you able to browse the library of feeds provided by the app, but also users can provide their own feeds with a feed URL.
 
+![Add Feed URL][add-feed-url]
+
+This meant that adding new subscriptions had to consider 1) whether a feed was already in the database and 2) if it's not in the database, to quickly check the validity of the feed, parse it's basic information, and add it to the user's subscriptions.
+
+Therefore, in the subscriptions creation controller action, I would have to ensure feed properties before adding a subscription. This allows for the proper rendering of errors for invalid URLs, skipping a feed fetch from occurring if the feed URL already exists in the database:
+```Ruby
+class Api::SubscriptionsController < ApplicationController
+  before_action :ensure_feed, only: [:create]
+
+# ...
+
+def ensure_feed
+  @feed = Feed.find_by(rss_url: subscription_params[:rss_url])
+
+  if @feed.nil?
+    @feed = Feed.new(rss_url: subscription_params[:rss_url], title: "New Feed")
+    unless @feed.save
+      # this will stop subscribe create from occuring
+      render json: @feed.errors.full_messages, status: 422
+    end
+  end
+end
+```
+
 ## Acknowledgements
 
 In addition to the Rails and React frameworks, this app would not be possible without the collaborators who worked on [Feedjira](https://github.com/feedjira/feedjira) and [MetaInspector](https://github.com/jaimeiniesta/metainspector). These gems were used for efficient and reliable fetching and parsing of RSS files and scraping website metadata.
@@ -19,3 +43,6 @@ In addition to the Rails and React frameworks, this app would not be possible wi
 Other helpful packages used in this project include:
 * [Moment.js](https://github.com/moment/moment): Time parsing, formatting, and calculations
 * [Ruby Favicon class](https://www.webmaster-source.com/2013/09/25/finding-a-websites-favicon-with-ruby/)
+
+
+[add-feed-url]: https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/add-feed-url.png
