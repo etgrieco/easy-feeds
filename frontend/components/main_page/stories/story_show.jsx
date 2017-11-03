@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchStory } from '../../../actions/story_actions';
+import moment from 'moment';
 
 class StoriesShow extends  React.Component {
 
@@ -10,7 +11,7 @@ class StoriesShow extends  React.Component {
   }
 
   render() {
-    let { story } = this.props;
+    let { story, feed } = this.props;
 
     //placeholder values when story has not yet arrived
     story = story ? story :
@@ -22,6 +23,8 @@ class StoriesShow extends  React.Component {
 
     const { summary, image_url, link_url, title } = story;
     const feedTitle = story.feedInfo.title;
+    let pubDateTime = moment(story.pub_datetime).fromNow();
+    pubDateTime = pubDateTime.split(" ")[0] === "in" ? "Just now" : pubDateTime;
 
     const summaryText = {__html: summary};
     const backgroundImage = `url(${image_url})`;
@@ -32,7 +35,8 @@ class StoriesShow extends  React.Component {
         <h1>{title}</h1>
 
         <div className="story-show-info">
-          {feedTitle}
+          <Link to={`/i/subscriptions/${story.feed_id}`}>{feedTitle}</Link>
+           / by {story.author} / {pubDateTime}
         </div>
 
         <div className="story-show-image">
@@ -43,10 +47,11 @@ class StoriesShow extends  React.Component {
           <article dangerouslySetInnerHTML={summaryText} />
         </div>
 
-        <div className="story-website-link">
-          <a target="__blank"
-            href={`${link_url}`}><button>Visit Website</button></a>
-        </div>
+        <a target="__blank" href={`${link_url}`}>
+          <div className="story-website-link">
+            <button>Visit Website</button>
+          </div>
+        </a>
       </div>
 
     );
@@ -59,7 +64,7 @@ export default withRouter(
     (state, ownProps) => {
       const story = state.entities.stories.byId[ownProps.match.params.id];
       return {
-        story
+        story,
       };
     },
     dispatch => (

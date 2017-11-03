@@ -17,10 +17,26 @@
   color: black;
 }
 
+.story-show-info {
+  color: $text-light-grey;
+  font-size: 12px;
+}
+
+.story-show-info a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
 .story-show-image {
-  width: 100%;
   display: block;
+  width: 100%;
   padding: 40px 0;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.story-show-image img {
+  border-radius: 3px;
 }
 
 .story-website-link {

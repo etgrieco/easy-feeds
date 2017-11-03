@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102001208) do
+ActiveRecord::Schema.define(version: 20171103131147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20171102001208) do
     t.datetime "pub_datetime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "teaser", default: "Continue reading..."
     t.index ["feed_id", "entry_id"], name: "index_stories_on_feed_id_and_entry_id", unique: true
   end
 

@@ -17,10 +17,6 @@ class Story < ApplicationRecord
     through: :feed,
     source: :subscriptions
 
-  def self.sanitize_summary(summary)
-    Sanitize.fragment(summary, Sanitize::Config::BASIC)
-  end
-
   def self.create_attributes_hash(fjra_entry, feed_id, feed_title)
 
     link_url = fjra_entry.url
@@ -34,12 +30,14 @@ class Story < ApplicationRecord
     pub_datetime = fjra_entry.published || Time.now
     author = fjra_entry.author || feed_title || "Anonymous"
     summary = fjra_entry.summary || fjra_entry.content
-    summary = sanitize_summary(summary)
+    summary = Sanitize.fragment(summary, Sanitize::Config::BASIC)
+    teaser = Sanitize.fragment(summary, Sanitize::Config::RESTRICTED)
     {
       entry_id: entry_id,
       title: fjra_entry.title,
       author: author,
       summary: summary,
+      teaser: teaser,
       link_url: link_url,
       image_url: fjra_entry.try(:image) || page&.images&.best,
       feed_id: feed_id,

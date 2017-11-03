@@ -1,23 +1,31 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import moment from 'moment';
 
 class StoriesIndexItem extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleRedirect = this.handleRedirect.bind(this);
+  }
+
+  handleRedirect(id) {
+    this.props.history.push(`/i/stories/${id}`);
+  }
+
   render() {
     const { story, feed } = this.props;
-    const pubDateTime = moment(story.pub_datetime).fromNow();
+    let pubDateTime = moment(story.pub_datetime).fromNow();
+    pubDateTime = pubDateTime.split(" ")[0] === "in" ? "Just now" : pubDateTime;
 
-    // const summary = story.summary ? story.summary.slice(0,400).split(".").slice(0, -1).join(".") + ' ...' : null;
-    const summary = story.summary ? story.summary.slice(0,300).split(" ").slice(0, -1).join(" ") + "..." : null;
+    const summary = story.teaser ? story.teaser.slice(0,300).split(" ").slice(0, -1).join(" ") + "..." : null;
     const summaryText = {__html: summary};
 
     const backgroundImage = `url(${story.image_url || feed.favicon_url})`;
     const imageStyle = {backgroundImage};
 
     return (
-      <Link className="link-wrapper" to={`/i/stories/${story.id}`}>
-      <div className="story-index-item">
+      <div className="story-index-item" onClick={e => this.handleRedirect(story.id)}>
         <div className="story-item-image" style={imageStyle} />
         <div className="story-details">
           <h4>
@@ -37,7 +45,6 @@ class StoriesIndexItem extends React.Component {
             <p dangerouslySetInnerHTML={summaryText} />
         </div>
       </div>
-    </Link>
     );
   }
 }

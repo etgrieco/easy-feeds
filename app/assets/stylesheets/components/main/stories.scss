@@ -1,12 +1,3 @@
-.link-wrapper {
-  display: block;
-  border-left: 3px solid white;
-}
-
-.link-wrapper:hover {
-  border-left: 3px solid $text-dark-grey;
-}
-
 .story-index {
   padding-top: 40px;
   margin: 0 auto;
@@ -20,9 +11,18 @@
 }
 
 .story-index-item:hover {
+  border-left: 3px solid $text-dark-grey;
+  cursor: pointer;
+}
+
+.story-index-details a:hover {
+  text-decoration: underline;
+  color: black;
 }
 
 .story-index-item {
+  border-left: 3px solid white;
+
   padding-left: 10px;
   display: flex;
   height: 150px;

@@ -19,7 +19,7 @@ class StoriesIndex extends React.Component {
   render() {
     const { stories, feeds, title, titleLink } = this.props;
     const id = this.props.match.params.id;
-
+    
     const storyItems = stories.map(story => {
       const feed = feeds[story.feed_id];
 
@@ -28,6 +28,7 @@ class StoriesIndex extends React.Component {
           story={story}
           feed={feed}
           titleLink={Boolean(titleLink)}
+          history={this.props.history}
            />
       );
     }
