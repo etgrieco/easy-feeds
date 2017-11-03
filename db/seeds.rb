@@ -29,11 +29,6 @@ http://github.com/blog.atom*
 http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml*
 http://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml*
 http://rss.nytimes.com/services/xml/rss/nyt/Business.xml*
-http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml*
-http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml*
-http://rss.nytimes.com/services/xml/rss/nyt/Science.xml*
-http://rss.nytimes.com/services/xml/rss/nyt/Arts.xml*
-http://www.nytimes.com/svc/collections/v1/publish/www.nytimes.com/column/the-stone/rss.xml*
 http://www.espn.com/espn/rss/news*
 https://www.theringer.com/rss/index.xml*
 https://www.boston.com/tag/local-news/feed*
