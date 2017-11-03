@@ -11,8 +11,9 @@ class StoriesIndexItem extends React.Component {
 
   handleRedirect(e, id) {
     if (e.target.tagName.toLowerCase() === 'a') {
-      const subId = e.target.href.split("/").slice(-1)[0];
-      this.props.history.push(`/i/subscriptions/${subId}`);
+      const destinationURL = e.target.href.split("/").slice(-2)[-0];
+      const destinationId = e.target.href.split("/").slice(-1)[0];
+      this.props.history.push(`/i/${destinationURL}/${destinationId}`);
     } else {
       this.props.history.push(`/i/stories/${id}`);
     }
