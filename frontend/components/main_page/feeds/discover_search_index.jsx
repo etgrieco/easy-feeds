@@ -33,6 +33,7 @@ class DiscoverSearchIndex extends React.Component {
           createFeed={this.props.createFeed}
           openPopOut={this.props.openPopOut}
           fetchUnsubscribedFeed={this.props.fetchUnsubscribedFeed}
+          deleteFeed={this.props.deleteFeed}
           />;
       })
     );
@@ -71,7 +72,7 @@ class DiscoverSearchIndex extends React.Component {
           <div className={`discover-add-url-button no-select ${this.state.dataBaseSearch ? "": "selected"}`}
             onClick={e => this.handleSwitch({dataBaseSearch: false})}
             >
-            <i class="fa fa-link" aria-hidden="true"></i>
+            <i className="fa fa-link" aria-hidden="true"></i>
             Add URL
           </div>
         </div>

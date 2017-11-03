@@ -50,7 +50,7 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = current_user.subscriptions.find_by(id: params[:id])
     if @subscription
       @subscription.destroy!
-      render json: ["Subscription deleted"], status: 200
+      render :show
     else
       render json: ["Subscription no longer exists"], status: 404
     end

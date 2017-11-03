@@ -5,11 +5,20 @@ class DiscoverIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubscribe = this.handleSubscribe.bind(this);
-    this.state = { hovering: false }
+    this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
+    this.state = { hovering: false };
   }
 
   handleSubscribe(feed) {
     this.props.createFeed(feed);
+  }
+
+  handleUnsubscribe(feed) {
+    this.props.deleteFeed(feed);
+  }
+
+  componentWillReceiveProps(newProps) {
+    debugger
   }
 
   render() {
@@ -34,6 +43,7 @@ class DiscoverIndexItem extends React.Component {
             <button className="following-button discover-button"
               onMouseOver={e => this.setState({hovering: true})}
               onMouseLeave={e => this.setState({hovering: false})}
+              onClick={e => this.handleUnsubscribe(feed)}
               >{ this.state.hovering ? "Unfollow" : "Following" }
             </button> :
             <button

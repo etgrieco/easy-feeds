@@ -13,9 +13,10 @@ export const receiveAllSubscriptions = subscriptionsPayload => ({
   subscriptions: subscriptionsPayload.subscriptions
 });
 
-export const removeFeed = feedId => ({
+export const removeFeed = feedPayload => ({
   type: REMOVE_FEED,
-  feedId
+  feeds: feedPayload.feeds,
+  subscriptions: feedPayload.subscriptions
 });
 
 export const receiveSingleFeed = feedPayload => ({
@@ -62,7 +63,7 @@ export const fetchSingleFeed = feedId => dispatch => {
 
 export const deleteFeed = feed => dispatch => (
   SubscriptionApiUtil.deleteSubscription(feed.subscription_id)
-    .then(() => dispatch(removeFeed(feed.id)))
+    .then((feed) => dispatch(removeFeed(feed)))
 );
 
 export const updateFeed = feed => dispatch => {

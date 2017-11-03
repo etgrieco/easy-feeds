@@ -19,6 +19,8 @@ const feedsById = (state = { }, action) => {
     case RECEIVE_LATEST:
     case RECEIVE_ALL_SUBSCRIPTIONS:
     case RECEIVE_STORY:
+    case REMOVE_FEED:
+      debugger
       newState = merge({}, state, action.feeds.byId, action.subscriptions.byId);
       return newState;
     case CLEAR_ENTITIES:

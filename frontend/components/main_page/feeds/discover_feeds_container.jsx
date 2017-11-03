@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchFeedResults } from '../../../actions/discovery_actions';
-import { createFeed } from '../../../actions/subscription_actions';
+import { createFeed, deleteFeed } from '../../../actions/subscription_actions';
 import { openPopOut } from '../../../actions/popout_actions';
 import { clearErrors } from '../../../actions/errors_actions';
 import { fetchUnsubscribedFeed } from '../../../actions/story_actions';
@@ -20,7 +20,8 @@ const mapDispatchToProps = dispatch => {
     createFeed: feed => dispatch(createFeed(feed)),
     openPopOut: component => dispatch(openPopOut(component)),
     fetchUnsubscribedFeed: feedId => dispatch(fetchUnsubscribedFeed(feedId)),
-    clearErrors: () => dispatch(clearErrors())
+    clearErrors: () => dispatch(clearErrors()),
+    deleteFeed: feed => dispatch(deleteFeed(feed))
   });
 };
 

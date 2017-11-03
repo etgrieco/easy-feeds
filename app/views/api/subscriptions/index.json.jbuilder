@@ -24,7 +24,7 @@ json.feeds do
       all_feeds << feed
       json.set! feed.id do
         json.partial! 'api/feeds/feed', feed: feed
-        json.collections = subscription.collections.map(&:id)
+        json.collections subscription.collections.map(&:id)
       end
     end
   end

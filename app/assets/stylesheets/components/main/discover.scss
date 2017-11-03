@@ -1,3 +1,7 @@
+button {
+  cursor: pointer;
+}
+
 .discover-search-index {
   padding-left: 20px;
   padding-top: 40px;
@@ -21,16 +25,20 @@
   border-bottom: 3px solid $green;
 }
 
+.discover-form-switch .selected:hover {
+  border-bottom: 3px solid $green;
+}
+
+.discover-form-switch div:hover {
+  border-bottom: 3px solid rgba(159, 159, 159, .8);
+}
+
 .discover-form-switch div {
   cursor: pointer;
   padding-right: 20px;
   margin-bottom: -10px;
   padding-bottom: 10px;
   border-bottom: 3px solid white;
-}
-
-.discover-form-switch div:hover {
-  border-bottom: 3px solid rgba(159, 159, 159, .8);
 }
 
 .discover-form-switch i {
@@ -182,6 +190,8 @@
   margin-right: 0px;
 }
 
-.following-button {
-  
+.following-button:hover {
+  cursor: pointer;
+  color: red;
+  border: 1px solid red;
 }

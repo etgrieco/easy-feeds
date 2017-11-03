@@ -34,7 +34,7 @@ json.subscriptions do
     json.set! subscription.feed_id do
       json.subscription_title subscription.title
       json.subscription_id subscription.id
-      json.subscribed true
+      json.subscribed !!current_user.subscriptions.find_by(id: subscription.id)
     end
   end
 end
