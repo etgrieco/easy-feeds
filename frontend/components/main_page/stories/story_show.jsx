@@ -12,11 +12,13 @@ class StoriesShow extends  React.Component {
   render() {
     let { story } = this.props;
 
+    //placeholder values when story has not yet arrived
     story = story ? story :
       { title: "", link_url: "", summary: ""};
 
-    story.feedInfo = story.feedInfo ?
-      story.feedInfo : {title: "" };
+    if (!story.feedInfo) {
+      story.feedInfo = {title: "" };
+    }
 
     const { summary, image_url, link_url, title } = story;
     const feedTitle = story.feedInfo.title;

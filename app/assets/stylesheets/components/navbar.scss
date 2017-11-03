@@ -13,10 +13,13 @@
 
 .navbar-show-button .fa-compress {
   color: $text-light-grey;
+  cursor: pointer;
 }
 
 .navbar-show-button .fa-expand {
+  cursor: pointer;
   text-align: center;
+  color: black;
 }
 
 .navbar-transition {
