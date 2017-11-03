@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import StoriesIndex from './stories_index';
 import { fetchSingleFeed } from '../../../actions/subscription_actions';
 import { fetchUnsubscribedFeed } from '../../../actions/story_actions';
@@ -21,6 +21,7 @@ const mapStateToProps = (state, ownProps) => {
     title: feed.subscription_title,
     stories,
     feeds,
+    titleLink: feed.website_url
   });
 };
 

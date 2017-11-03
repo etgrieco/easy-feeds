@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class FeedsIndexRow extends React.Component {
 
@@ -37,7 +38,7 @@ class FeedsIndexRow extends React.Component {
         </form>
       :
       <div className="feed-name-show">
-        {this.state.subscription_title}
+        <Link to={`/i/subscriptions/${feed.id}`}>{this.state.subscription_title}</Link>
         { this.state.isMouseInside ?
           <button className="modify-button feed-rename"
             onClick={e => this.setState(

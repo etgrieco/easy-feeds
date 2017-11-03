@@ -1,5 +1,6 @@
 import React from 'react';
 import StoriesIndexItem from './stories_index_item';
+import { Link } from 'react-router-dom';
 
 class StoriesIndex extends React.Component {
 
@@ -8,7 +9,6 @@ class StoriesIndex extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // for switching among feed-views
     const newURL = newProps.match.url;
     const oldURL = this.props.match.url;
     if (newURL !== oldURL) {
@@ -17,7 +17,7 @@ class StoriesIndex extends React.Component {
   }
 
   render() {
-    const { stories, feeds, title } = this.props;
+    const { stories, feeds, title, titleLink } = this.props;
     const id = this.props.match.params.id;
 
     const storyItems = stories.map(story => {
@@ -34,7 +34,10 @@ class StoriesIndex extends React.Component {
     return (
       <div className="story-index">
         <div>
-          {title}
+          <h2>{titleLink ?
+                <a href={titleLink} target="__blank">{title}</a>
+                 : title
+          }</h2>
         </div>
         {storyItems}
       </div>

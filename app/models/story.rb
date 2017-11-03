@@ -17,7 +17,7 @@ class Story < ApplicationRecord
     source: :subscriptions
 
   def self.sanitize_summary(summary)
-    Sanitize.fragment(summary, Sanitize::Config::RESTRICTED)
+    Sanitize.fragment(summary, Sanitize::Config::BASIC)
   end
 
   def self.create_attributes_hash(fjra_entry, feed_id, feed_title)
