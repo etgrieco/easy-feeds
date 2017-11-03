@@ -22,7 +22,7 @@ const Landing = (props) => {
           }>
           Demo User</button>
         <div className="landing-image-container">
-          <p>Screenshot of final app goes here.</p>
+          <img src="https://i.imgur.com/zHSPehG.png" />
         </div>
         <Route path="/login" component={SessionFormContainer} />
         <Route path="/signup" component={SessionFormContainer} />
