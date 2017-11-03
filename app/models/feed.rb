@@ -45,6 +45,10 @@ class Feed < ApplicationRecord
     end
   end
 
+  def subscription_title(user)
+    user.subscriptions.find_by(feed_id: self.id).title
+  end
+
   def populate_feed_metadata
     @feed ||= Feedjira::Feed.fetch_and_parse self.rss_url
 

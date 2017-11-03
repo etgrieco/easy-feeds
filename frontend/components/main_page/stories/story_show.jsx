@@ -5,10 +5,6 @@ import { fetchStory } from '../../../actions/story_actions';
 
 class StoriesShow extends  React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.fetchStory(this.props.match.params.id);
   }
@@ -16,19 +12,35 @@ class StoriesShow extends  React.Component {
   render() {
     let { story } = this.props;
 
-    story = story ? story : { title: "", link_url: "", summary: ""};
+    story = story ? story : { title: "", link_url: "", summary: "",
+    feedInfo: {title: ""}};
 
-    const summary = story.summary;
+    const { summary, image_url, link_url, title } = story;
+    const feedTitle = story.feedInfo.title;
+
     const summaryText = {__html: summary};
+    const backgroundImage = `url(${image_url})`;
+    const imageStyle = {backgroundImage};
 
     return (
-      <div>
-        <h1>{story.title}</h1>
+      <div className="story-show-container">
+        <h1>{title}</h1>
+
+        <div className="story-show-info">
+          {feedTitle}
+        </div>
+
+        <div className="story-show-image">
+          <img src={image_url} />
+        </div>
+
         <div className="story-summary">
           <article dangerouslySetInnerHTML={summaryText} />
         </div>
-        <div>
-          <a href={`${story.link_url}`}>Visit Website</a>
+
+        <div className="story-website-link">
+          <a target="__blank"
+            href={`${link_url}`}><button>Visit Website</button></a>
         </div>
       </div>
 
@@ -36,13 +48,15 @@ class StoriesShow extends  React.Component {
   }
 }
 
+
 export default withRouter(
   connect(
-    (state, ownProps) => (
-      {
-        story: state.entities.stories.byId[ownProps.match.params.id]
-      }
-    ),
+    (state, ownProps) => {
+      const story = state.entities.stories.byId[ownProps.match.params.id];
+      return {
+        story
+      };
+    },
     dispatch => (
       {
         fetchStory: (storyId) => dispatch(fetchStory(storyId))

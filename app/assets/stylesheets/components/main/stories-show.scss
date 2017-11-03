@@ -1,0 +1,42 @@
+.story-show-container {
+  padding: 50px;
+}
+
+.story-summary p {
+  font-family: serif;
+  padding: 12px;
+}
+
+.story-summary a {
+  text-decoration: underline;
+  color: $text-dark-grey;
+}
+
+.story-summary a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+.story-show-image {
+  width: 100%;
+  display: block;
+  padding: 40px 0;
+}
+
+.story-website-link {
+  display: block;
+  color: $text-light-grey;
+  border: 1px solid lightgrey;
+  font-size: 14px;
+  padding: 8px 20px;
+}
+
+.story-website-link:hover {
+  border-color:  $text-light-grey;
+  color: grey;
+}
+
+.story-website-link {
+  text-align: center;
+  margin: 20px;
+}

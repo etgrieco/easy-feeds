@@ -11,12 +11,16 @@ json.stories do
   json.byId do
     json.set! @story.id do
       json.partial! "api/stories/story", story: @story
+      json.feedInfo do
+        json.id @story.feed.id
+        json.title @story.feed.subscription_title(current_user)
+      end
     end
   end
 end
 
 
-json.subscriptions do  
+json.subscriptions do
   json.byId do
     json.set! @story.feed.id do
       user_sub = current_user.subscriptions.find_by(feed_id: @story.feed)
