@@ -1,4 +1,5 @@
 require 'sanitize'
+require 'metainspector'
 
 class Story < ApplicationRecord
   validates :entry_id, presence: true
@@ -21,6 +22,10 @@ class Story < ApplicationRecord
   end
 
   def self.create_attributes_hash(fjra_entry, feed_id, feed_title)
+
+    link_url = fjra_entry.url
+    page = MetaInspector.new(link_url)
+
     entry_id = fjra_entry.entry_id || fjra_entry.url
     pub_datetime = fjra_entry.published || Time.now
     author = fjra_entry.author || feed_title || "Anonymous"
@@ -31,8 +36,8 @@ class Story < ApplicationRecord
       title: fjra_entry.title,
       author: author,
       summary: summary,
-      link_url: fjra_entry.url,
-      image_url: fjra_entry.try(:image),
+      link_url: link_url,
+      image_url: fjra_entry.try(:image) || page.images.best,
       feed_id: feed_id,
       pub_datetime: pub_datetime
     }

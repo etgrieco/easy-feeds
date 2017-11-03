@@ -33,6 +33,7 @@ gem 'httparty'
 gem 'faker'
 gem 'ransack'
 gem 'sanitize'
+gem 'metainspector'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

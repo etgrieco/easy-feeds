@@ -18,11 +18,14 @@ class StoriesShow extends  React.Component {
 
     story = story ? story : { title: "", link_url: "", summary: ""};
 
+    const summary = story.summary;
+    const summaryText = {__html: summary};
+
     return (
       <div>
         <h1>{story.title}</h1>
         <div className="story-summary">
-          <p>{story.summary}</p>
+          <article dangerouslySetInnerHTML={summaryText} />
         </div>
         <div>
           <a href={`${story.link_url}`}>Visit Website</a>

@@ -26,7 +26,9 @@ class StoriesIndex extends React.Component {
       return (
         <StoriesIndexItem key={story.id}
           story={story}
-          feed={feed} />
+          feed={feed}
+          titleLink={Boolean(titleLink)}
+           />
       );
     }
     );

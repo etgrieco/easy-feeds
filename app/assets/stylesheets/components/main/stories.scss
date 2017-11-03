@@ -1,15 +1,32 @@
+.link-wrapper {
+  display: block;
+  border-left: 3px solid white;
+}
+
+.link-wrapper:hover {
+  border-left: 3px solid $text-dark-grey;
+}
+
 .story-index {
-  padding-left: 20px;
   padding-top: 40px;
   margin: 0 auto;
   max-width: 840px;
 }
 
+.story-index h2 {
+  font-size: 24px;
+  font-weight: bolder;
+  padding-bottom: 40px;
+}
+
+.story-index-item:hover {
+}
+
 .story-index-item {
+  padding-left: 10px;
   display: flex;
   height: 150px;
   width: 620px;
-  border: 1px solid black;
   margin-bottom: 40px;
   overflow: hidden;
 }
@@ -33,13 +50,18 @@
   color: grey;
 }
 
+.story-index-item a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
 .story-item-image {
+  background-size: cover;
   display: block;
   flex: none;
   height: 85px;
   width: 135px;
   overflow: hidden;
-  object-fit: fill;
   border-radius: 3px;
   border: 1px solid lightgrey;
 }
