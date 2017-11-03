@@ -9,8 +9,14 @@ class StoriesIndexItem extends React.Component {
     this.handleRedirect = this.handleRedirect.bind(this);
   }
 
-  handleRedirect(id) {
-    this.props.history.push(`/i/stories/${id}`);
+  handleRedirect(e, id) {
+    if (e.target.tagName.toLowerCase() === 'a') {
+      const subId = e.target.href.split("/").slice(-1)[0];
+      this.props.history.push(`/i/subscriptions/${subId}`);
+    } else {
+      this.props.history.push(`/i/stories/${id}`);
+    }
+
   }
 
   render() {
@@ -25,7 +31,7 @@ class StoriesIndexItem extends React.Component {
     const imageStyle = {backgroundImage};
 
     return (
-      <div className="story-index-item" onClick={e => this.handleRedirect(story.id)}>
+      <div className="story-index-item" onClick={e => this.handleRedirect(e, story.id)}>
         <div className="story-item-image" style={imageStyle} />
         <div className="story-details">
           <h4>

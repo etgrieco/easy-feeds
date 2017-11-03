@@ -23,18 +23,47 @@ class Api::SubscriptionsController < ApplicationController
 
 # ...
 
-def ensure_feed
-  @feed = Feed.find_by(rss_url: subscription_params[:rss_url])
+  def ensure_feed
+    @feed = Feed.find_by(rss_url: subscription_params[:rss_url])
 
-  if @feed.nil?
-    @feed = Feed.new(rss_url: subscription_params[:rss_url], title: "New Feed")
-    unless @feed.save
-      # this will stop subscribe create from occuring
-      render json: @feed.errors.full_messages, status: 422
+    if @feed.nil?
+      @feed = Feed.new(rss_url: subscription_params[:rss_url], title: "New Feed")
+      unless @feed.save
+        # this will stop subscribe create action from occurring
+        render json: @feed.errors.full_messages, status: 422
+      end
     end
   end
+
 end
 ```
+
+Another important optimization made was to only fetch the metadata of stories that were not already in the database. This required a checking procedure before story entries were populated fora particular feed:
+
+```Ruby
+class Feed < ApplicationRecord
+
+# ...
+
+  def populate_entries
+    @feed ||= Feedjira::Feed.fetch_and_parse self.rss_url
+
+    stories = self.stories
+    entries = @feed.entries
+
+    entries.each do |entry|
+      unless stories.find_by(entry_id: entry.entry_id)
+        Story.create(Story.create_attributes_hash(entry, self.id, self.title))
+      end
+    end
+
+    self.last_built = Time.now
+  end
+
+end
+```
+
+##
 
 ## Acknowledgements
 
