@@ -12,8 +12,11 @@ class StoriesShow extends  React.Component {
   render() {
     let { story } = this.props;
 
-    story = story ? story : { title: "", link_url: "", summary: "",
-    feedInfo: {title: ""}};
+    story = story ? story :
+      { title: "", link_url: "", summary: ""};
+
+    story.feedInfo = story.feedInfo ?
+      story.feedInfo : {title: "" };
 
     const { summary, image_url, link_url, title } = story;
     const feedTitle = story.feedInfo.title;
