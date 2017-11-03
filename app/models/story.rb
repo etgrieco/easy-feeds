@@ -25,7 +25,10 @@ class Story < ApplicationRecord
 
     link_url = fjra_entry.url
 
-    page = MetaInspector.try(:new, link_url)
+    begin
+      page = MetaInspector.try(:new, link_url)
+    rescue
+    end
 
     entry_id = fjra_entry.entry_id || fjra_entry.url
     pub_datetime = fjra_entry.published || Time.now
