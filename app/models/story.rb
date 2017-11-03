@@ -24,7 +24,8 @@ class Story < ApplicationRecord
   def self.create_attributes_hash(fjra_entry, feed_id, feed_title)
 
     link_url = fjra_entry.url
-    page = MetaInspector.new(link_url)
+
+    page = MetaInspector.try(:new, link_url)
 
     entry_id = fjra_entry.entry_id || fjra_entry.url
     pub_datetime = fjra_entry.published || Time.now
@@ -37,7 +38,7 @@ class Story < ApplicationRecord
       author: author,
       summary: summary,
       link_url: link_url,
-      image_url: fjra_entry.try(:image) || page.images.best,
+      image_url: fjra_entry.try(:image) || page&.images&.best,
       feed_id: feed_id,
       pub_datetime: pub_datetime
     }
