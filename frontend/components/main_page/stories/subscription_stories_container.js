@@ -16,9 +16,10 @@ const mapStateToProps = (state, ownProps) => {
     feed;
 
   const stories = feed.stories.map(storyId => storiesState[storyId]);
+  const title = feed.subscription_title || feed.title;
 
   return ({
-    title: feed.subscription_title,
+    title,
     stories,
     feeds,
     titleLink: feed.website_url
