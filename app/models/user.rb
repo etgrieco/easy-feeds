@@ -53,14 +53,6 @@ class User < ApplicationRecord
   end
 
   def give_seed_feeds
-    seed_urls = (
-      "http://feeds.bbci.co.uk/news/world/rss.xml*
-      https://www.polygon.com/rss/index.xml*
-      http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml*
-      http://github.com/blog.atom*
-      http://www.espn.com/espn/rss/news*
-      ").split("*\n")
-
     5.times do
       feed = Feed.all.sample
       s = Subscription.new(
