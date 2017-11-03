@@ -20,7 +20,6 @@ const feedsById = (state = { }, action) => {
     case RECEIVE_ALL_SUBSCRIPTIONS:
     case RECEIVE_STORY:
     case REMOVE_FEED:
-      debugger
       newState = merge({}, state, action.feeds.byId, action.subscriptions.byId);
       return newState;
     case CLEAR_ENTITIES:
@@ -36,7 +35,8 @@ const allFeedsResults = (state = [], action) => {
 
   switch (action.type) {
     case RECEIVE_NEW_FEED:
-      return [action.feeds.allIds[0]];
+      const newFeed = action.feeds.allIds[0];
+      return state.includes(newFeed) ? state : [newFeed].concat(state);
     case RECEIVE_FEEDS_RESULTS:
       return action.results;
     case CLEAR_ENTITIES:

@@ -17,12 +17,9 @@ class DiscoverIndexItem extends React.Component {
     this.props.deleteFeed(feed);
   }
 
-  componentWillReceiveProps(newProps) {
-    debugger
-  }
-
   render() {
     const { feed, openPopOut, fetchUnsubscribedFeed } = this.props;
+
     return (
       <div key={feed.id} className="search-item">
         <div className="feed-search-name">
@@ -44,7 +41,7 @@ class DiscoverIndexItem extends React.Component {
               onMouseOver={e => this.setState({hovering: true})}
               onMouseLeave={e => this.setState({hovering: false})}
               onClick={e => this.handleUnsubscribe(feed)}
-              >{ this.state.hovering ? "Unfollow" : "Following" }
+              >{ this.state.hovering ? "Unfollow?" : "Following" }
             </button> :
             <button
               className="follow-button discover-button"
