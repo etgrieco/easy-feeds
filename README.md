@@ -14,7 +14,7 @@ With EasyFeeds, not only are you able to browse the library of feeds provided by
 
 ![Add Feed URL][add-feed-url]
 
-This meant that adding new subscriptions had to consider 1) whether a feed was already in the database and 2) if it's not in the database, to quickly check the validity of the feed, parse it's basic information, and add it to the user's subscriptions.
+This meant that adding new subscriptions had to consider 1) whether a feed was already in the database and 2) if it's not in the database, to quickly check the validity of the feed, parse its basic information, and add it to the user's subscriptions.
 
 Therefore, in the subscriptions creation controller action, I would have to ensure feed properties before adding a subscription. This allows for the proper rendering of errors for invalid URLs, skipping a feed fetch from occurring if the feed URL already exists in the database:
 ```Ruby
