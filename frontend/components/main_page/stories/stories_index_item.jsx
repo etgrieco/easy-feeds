@@ -25,7 +25,7 @@ class StoriesIndexItem extends React.Component {
     let pubDateTime = moment(story.pub_datetime).fromNow();
     pubDateTime = pubDateTime.split(" ")[0] === "in" ? "Just now" : pubDateTime;
 
-    const summary = story.teaser ? story.teaser.slice(0,300).split(" ").slice(0, -1).join(" ") + "..." : null;
+    const summary = story.teaser ? story.teaser.slice(0,250).split(" ").slice(0, -1).join(" ") + "..." : null;
     const summaryText = {__html: summary};
 
     const backgroundImage = `url(${story.image_url || feed.favicon_url})`;

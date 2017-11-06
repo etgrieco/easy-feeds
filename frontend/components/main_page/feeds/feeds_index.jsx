@@ -4,10 +4,6 @@ import AddFeedFormContainer from './add_feeds_form_container';
 
 export class FeedsIndex extends React.Component {
 
-  componentDidMount() {
-    // this.props.fetchAllSubscriptions();
-  }
-
   render() {
     const { feeds, subFeedIds, updateFeed, deleteFeed } = this.props;
     const feedsIndexRows = subFeedIds.map(feedId => {

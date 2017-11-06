@@ -14,7 +14,6 @@ http://www.cbn.com/cbnnews/world/feed/*
 http://feeds.reuters.com/Reuters/worldNews*
 http://feeds.bbci.co.uk/news/rss.xml*
 http://news.sky.com/sky-news/rss/home/rss.xml*
-http://www.cbn.com/cbnnews/us/feed/*
 http://feeds.reuters.com/Reuters/domesticNews*
 http://news.yahoo.com/rss/*
 http://feeds.bbci.co.uk/news/technology/rss.xml*
