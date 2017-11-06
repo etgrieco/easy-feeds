@@ -2,16 +2,16 @@ class Api::FeedsController < ApplicationController
   before_action :require_login
 
   def index
-    sql_join = "left outer join subscriptions
-    on subscriptions.feed_id = feeds.id
-    and subscriptions.subscriber_id = #{current_user.id}"
+    sql_join = "LEFT OUTER JOIN subscriptions
+    ON subscriptions.feed_id = feeds.id
+    AND subscriptions.subscriber_id = #{current_user.id}"
 
     if params[:q].try(:empty?)
       @feeds = Feed.popular
         .select("feeds.*, subscriptions.subscriber_id as followed")
         .joins(sql_join)
     else
-      @q = Feed.ransack(title_cont: params[:q])
+      @q = Feed.ransack(title_or_rss_url_or_description_cont: params[:q])
       @feeds = @q.result
         .select("feeds.*, subscriptions.subscriber_id as followed")
         .joins(sql_join)
