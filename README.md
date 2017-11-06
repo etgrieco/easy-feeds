@@ -1,6 +1,6 @@
 # EasyFeeds
 
-Heroku Link: [EasyFeeds](easy-feeds.herokuapp.com)
+Heroku Link: [EasyFeeds](http://easy-feeds.herokuapp.com)
 
 This project is a clone of [Feedly](http://feedly.com), an RSS Feed publishing aggregator. With Easy Feeds, you can add RSS Feeds to a personal library of websites in order to stay up-to-date with your favorite online content.
 
