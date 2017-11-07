@@ -79,7 +79,8 @@ class Feed < ApplicationRecord
       end
     end
 
-    self.last_built = Time.now
+    self.last_built = entries.map { |entry| entry.published || Time.now }.max
+    self.save
   end
 
 end

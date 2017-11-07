@@ -18,7 +18,6 @@ class Story < ApplicationRecord
     source: :subscriptions
 
   def self.create_attributes_hash(fjra_entry, feed_id, feed_title)
-
     link_url = fjra_entry.url
 
     begin
@@ -32,6 +31,7 @@ class Story < ApplicationRecord
     summary = fjra_entry.summary || fjra_entry.content
     summary = Sanitize.fragment(summary, Sanitize::Config::BASIC)
     teaser = Sanitize.fragment(summary, Sanitize::Config::RESTRICTED)
+
     {
       entry_id: entry_id,
       title: fjra_entry.title,

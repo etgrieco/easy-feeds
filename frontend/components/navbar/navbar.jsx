@@ -9,8 +9,6 @@ class NavBar extends React.Component {
   }
 
   componentDidMount() {
-    // change to fetch all collections!!
-      // -- should include collections + basic subscription info
     this.props.fetchAllSubscriptions();
   }
 

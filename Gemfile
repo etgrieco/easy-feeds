@@ -34,6 +34,7 @@ gem 'faker'
 gem 'ransack'
 gem 'sanitize'
 gem 'metainspector'
+gem 'active_record_union'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
