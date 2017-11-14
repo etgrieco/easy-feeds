@@ -1,8 +1,8 @@
 # EasyFeeds
 
-Heroku Link: [EasyFeeds](http://easy-feeds.herokuapp.com)
+Live Site Link: [EasyFeeds](http://www.easyfeeds.xyz)
 
-This project is a clone of [Feedly](http://feedly.com), an RSS Feed publishing aggregator. With Easy Feeds, you can add RSS Feeds to a personal library of websites in order to stay up-to-date with your favorite online content.
+This project is a [Feedly](http://feedly.com)-inspired web app for RSS feed aggregation. With Easy Feeds, you can add RSS Feeds to a personal library of websites in order to stay up-to-date with your favorite online content.
 
 This project uses the Rails framework for the backend API, and a React/Redux framework in order to handle dynamic front-end rendering in a single-page app.
 
