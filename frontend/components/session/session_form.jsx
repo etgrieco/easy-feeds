@@ -8,7 +8,6 @@ class SessionForm extends Component {
     super(props);
     this.state = { email: "", password: "", first_name: "", last_name: ""};
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.clearErrors = this.props.clearSessionErrors; // for semantic ease
   }
 
   update(field) {
@@ -44,11 +43,10 @@ class SessionForm extends Component {
       : "";
   }
 
-  handleXClick() {
-    return e => {
-      e.preventDefault();
-      this.props.history.push("/");
-    };
+  handleXClick(e) {
+    e.preventDefault();
+    this.props.clearSessionErrors();
+    this.props.history.push("/");
   }
 
   render() {
@@ -66,12 +64,12 @@ class SessionForm extends Component {
 
     return(
       <div className="session-modal">
-        <div className="session-modal-screen"></div>
+        <div className="session-modal-screen" onClick={e => this.handleXClick(e)}></div>
 
         <div className="session-form-window">
           <header className="session-modal-header">
             <button className="session-form-exit-button"
-              onClick={this.handleXClick()}>&#10006;</button>
+              onClick={e => this.handleXClick(e)}>&#10006;</button>
           </header>
 
           <div className="session-form-container">
@@ -103,7 +101,7 @@ class SessionForm extends Component {
               </ul>
 
               <Link to={otherLink}
-                onClick={this.clearErrors}
+                onClick={this.props.clearSessionErrors}
                 >{otherText}</Link>
             </div>
         </div>
