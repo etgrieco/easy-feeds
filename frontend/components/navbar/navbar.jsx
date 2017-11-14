@@ -41,10 +41,10 @@ class NavBar extends React.Component {
           <div className={`navbar-contents${this.state.hidden ? "-hidden" : ""}`}>
             <div className="navbar-collections">
               <div className="feeds-header noselect">
-                <div>Feeds</div>
+                <div></div>
                 <div>
                   <Link to="/i/feeds/">
-                    <i className="fa fa-cog" aria-hidden="true"></i>
+                    <div className="edit-button">ORGANIZE FEEDS<i className="fa fa-cog" aria-hidden="true"></i></div>
                   </Link>
                 </div>
               </div>
