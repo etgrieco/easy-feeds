@@ -20,3 +20,30 @@
   overflow: auto;
   padding: 50px;
 }
+
+.pop-out-exit {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+  background-image: image-url("tab.png");
+  background-position: right;
+  background-repeat: no-repeat;
+  top: 0;
+  bottom: 0;
+  left: 50px;
+  right: 0;
+}
+
+.pop-out-exit div {
+  position: relative;
+  top: 15px;
+  bottom: 0;
+  left: 30px;
+  right: 0;
+  color: $text-light-grey;
+}
+
+.pop-out-exit div:hover {
+  color: $text-dark-grey;
+}
