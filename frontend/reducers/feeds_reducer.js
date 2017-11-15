@@ -17,9 +17,9 @@ const feedsById = (state = { }, action) => {
     case RECEIVE_NEW_FEED:
     case RECEIVE_ALL_SUBSCRIPTIONS:
     case REMOVE_FEED:
+    case RECEIVE_LATEST:
       newState = merge({}, state, action.feeds.byId, action.subscriptions.byId);
       return newState;
-    case RECEIVE_LATEST:
     case RECEIVE_SINGLE_FEED:
       const feedId = Object.keys(action.feeds.byId)[0];
       const newStories = state[feedId].stories.concat(action.feeds.byId[feedId].stories);

@@ -7,32 +7,32 @@ class StoriesIndex extends React.Component {
   constructor(props) {
     super(props);
     this.onScroll = this.onScroll.bind(this);
+    this.onScroll = this.onScroll.bind(this);
+    this.timeout = null;
   }
 
   componentDidMount() {
-    let timeout = null;
-
-    window.document.querySelector(".main-content").addEventListener('scroll', e => this.onScroll(e, timeout), false);
+    window.document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
     if (this.props.stories.length === 0) {
       this.props.fetchAction(this.props.match.params.id);
     }
   }
 
   componentWillUnmount() {
+    let timeout = null;
     window.document.querySelector(".main-content").removeEventListener('scroll', this.onScroll, false);
   }
 
-  onScroll(e, timeout) {
+  onScroll(e) {
     if ((e.target.scrollHeight - e.target.scrollTop
-          <= e.target.offsetHeight + 200) &&
+          <= e.target.offsetHeight + 100) &&
         this.props.stories.length
       ) {
+      this.timeout = this.timeout ? clearTimeout(this.timeout) : null;
 
-      timeout = timeout ? clearTimeout(timeout) : null;
-
-      timeout = setTimeout(
+      this.timeout = setTimeout(
         () => this.fetchMoreStories(this.props.stories.length)
-        , 200);
+        , 500);
     }
   }
 
@@ -46,6 +46,14 @@ class StoriesIndex extends React.Component {
 
   fetchMoreStories(offset) {
     this.props.fetchAction(this.props.match.params.id, offset);
+  }
+
+  componentDidUpdate(oldProps) {
+    const oldURL = oldProps.match.url;
+    const newURL = this.props.match.url;
+    if (oldURL !== newURL) {
+      window.document.querySelector(".main-content").scrollTo(0,0);
+    }
   }
 
   render() {
