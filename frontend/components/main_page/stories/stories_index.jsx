@@ -27,10 +27,12 @@ class StoriesIndex extends React.Component {
           <= e.target.offsetHeight + 200) &&
         this.props.stories.length
       ) {
-      timeout = timeout ? clearTimeout(timeout) :
-        setTimeout(
-          () => this.fetchMoreStories(this.props.stories.length)
-          , 500);
+
+      timeout = timeout ? clearTimeout(timeout) : null;
+
+      timeout = setTimeout(
+        () => this.fetchMoreStories(this.props.stories.length)
+        , 200);
     }
   }
 
