@@ -4,14 +4,40 @@ import { Link } from 'react-router-dom';
 
 class StoriesIndex extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.onScroll = this.onScroll.bind(this);
+  }
+
   componentDidMount() {
-    this.props.fetchAction(this.props.match.params.id);
+    let timeout = null;
+
+    window.document.querySelector(".main-content").addEventListener('scroll', e => this.onScroll(e, timeout), false);
+    if (this.props.stories.length === 0) {
+      this.props.fetchAction(this.props.match.params.id);
+    }
+  }
+
+  componentWillUnmount() {
+    window.document.querySelector(".main-content").removeEventListener('scroll', this.onScroll, false);
+  }
+
+  onScroll(e, timeout) {
+    if ((e.target.scrollHeight - e.target.scrollTop
+          <= e.target.offsetHeight + 200) &&
+        this.props.stories.length
+      ) {
+      timeout = timeout ? clearTimeout(timeout) :
+        setTimeout(
+          () => this.fetchMoreStories(this.props.stories.length)
+          , 500);
+    }
   }
 
   componentWillReceiveProps(newProps) {
-    const newURL = newProps.match.url;
     const oldURL = this.props.match.url;
-    if (newURL !== oldURL) {
+    const newURL = newProps.match.url;
+    if (newProps.stories.length === 0 && oldURL !== newURL) {
       newProps.fetchAction(newProps.match.params.id);
     }
   }
@@ -47,7 +73,6 @@ class StoriesIndex extends React.Component {
           }</h2>
         </div>
         {storyItems}
-        <div onClick={e => this.fetchMoreStories(stories.length)}>CLICK FOR MORE STORIES</div>
       </div>
     );
   }

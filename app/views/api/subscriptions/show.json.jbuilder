@@ -8,7 +8,7 @@ json.stories do
   json.byId do
     stories = subscription.stories
       .order('pub_datetime DESC')
-      .limit(10)
+      .limit(20)
       .offset(params[:offset])
     stories.each do |story|
       all_stories << story
