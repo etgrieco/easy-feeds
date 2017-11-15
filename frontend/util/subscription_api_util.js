@@ -1,8 +1,11 @@
 // gives subscriptions, feeds, & most-recent stories
-export const fetchSingleFeed = (feedId) => (
+export const fetchSingleFeed = (feedId, offset = 0) => (
   $.ajax({
     type: "GET",
-    url: `api/subscriptions/${feedId}`
+    url: `api/subscriptions/${feedId}`,
+    data: {
+      offset
+    }
   })
 );
 

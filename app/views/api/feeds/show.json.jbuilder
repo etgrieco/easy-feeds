@@ -1,7 +1,12 @@
 all_stories = []
+
+json.stories({})
 json.stories do
+  json.byId({})
   json.byId do
-    stories = @feed.stories.order('pub_datetime DESC').limit(20)
+    stories = @feed.stories
+      .order('pub_datetime DESC')
+      .limit(20)
     stories.each do |story|
       all_stories << story
       json.set! story.id do

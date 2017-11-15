@@ -25,6 +25,7 @@ json.feeds do
       json.set! feed.id do
         json.partial! 'api/feeds/feed', feed: feed
         json.collections subscription.collections.map(&:id)
+        json.stories []
       end
     end
   end

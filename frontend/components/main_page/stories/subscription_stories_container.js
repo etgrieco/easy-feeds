@@ -30,8 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   const fetchAction = ownProps.match.path.split('/')[2] === "discover" ?
     feedId => dispatch(fetchUnsubscribedFeed(feedId)) :
-    feedId => dispatch(fetchSingleFeed(feedId));
-
+    (feedId, offset) => dispatch(fetchSingleFeed(feedId, offset));
   return ({
     fetchAction
   });

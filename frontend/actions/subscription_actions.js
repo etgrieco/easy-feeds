@@ -48,10 +48,10 @@ export const fetchAllSubscriptions = () => dispatch => {
   );
 };
 
-export const fetchSingleFeed = feedId => dispatch => {
+export const fetchSingleFeed = (feedId, offset) => dispatch => {
   dispatch(startFeedAction(["Loading Feed..."]));
   return (
-    SubscriptionApiUtil.fetchSingleFeed(feedId)
+    SubscriptionApiUtil.fetchSingleFeed(feedId, offset)
       .then(
         feedPayload =>
           dispatch(receiveSingleFeed(feedPayload)),

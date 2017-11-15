@@ -2,9 +2,14 @@
 all_stories = []
 subscription = @subscription
 
+json.stories({})
 json.stories do
+  json.byId({})
   json.byId do
-    stories = subscription.stories.order('pub_datetime DESC').limit(20)
+    stories = subscription.stories
+      .order('pub_datetime DESC')
+      .limit(10)
+      .offset(params[:offset])
     stories.each do |story|
       all_stories << story
       json.set! story.id do

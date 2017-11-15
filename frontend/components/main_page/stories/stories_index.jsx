@@ -16,6 +16,10 @@ class StoriesIndex extends React.Component {
     }
   }
 
+  fetchMoreStories(offset) {
+    this.props.fetchAction(this.props.match.params.id, offset);
+  }
+
   render() {
     const { stories, feeds, title, titleLink } = this.props;
     const id = this.props.match.params.id;
@@ -43,6 +47,7 @@ class StoriesIndex extends React.Component {
           }</h2>
         </div>
         {storyItems}
+        <div onClick={e => this.fetchMoreStories(stories.length)}>CLICK FOR MORE STORIES</div>
       </div>
     );
   }
