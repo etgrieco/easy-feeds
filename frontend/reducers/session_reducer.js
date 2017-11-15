@@ -45,7 +45,8 @@ const latestStoriesReducer = (state = [], action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_LATEST:
-      return action.stories.allIds;
+      return state.concat(action.stories.allIds);
+      // return action.stories.allIds;
     case CLEAR_ENTITIES:
       return [];
     default:

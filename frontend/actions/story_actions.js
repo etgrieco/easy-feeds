@@ -29,10 +29,10 @@ export const fetchStory = storyId => dispatch => {
   );
 };
 
-export const fetchLatest = () => dispatch => {
+export const fetchLatest = offset => dispatch => {
   dispatch(startFeedAction(["Loading Feeds..."]));
   return (
-    StoryApiUtil.fetchLatest()
+    StoryApiUtil.fetchLatest(offset)
       .then(
       stories =>
         dispatch(receiveLatest(stories))

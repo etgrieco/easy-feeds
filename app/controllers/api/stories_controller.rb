@@ -6,6 +6,7 @@ class Api::StoriesController < ApplicationController
       .order('pub_datetime DESC')
       .limit(20)
       .includes(:feed, :subscriptions)
+      .offset(params[:offset])
   end
 
   def show

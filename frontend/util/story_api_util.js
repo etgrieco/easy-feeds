@@ -1,7 +1,10 @@
-export const fetchLatest = () => (
+export const fetchLatest = offset => (
   $.ajax({
     type: "GET",
-    url: "api/stories"
+    url: "api/stories",
+    data: {
+      offset
+    }
   })
 );
 

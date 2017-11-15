@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return ({
-    fetchAction: () => dispatch(fetchLatest())
+    fetchAction: (_feedId, offset) => dispatch(fetchLatest(offset))
   });
 };
 
