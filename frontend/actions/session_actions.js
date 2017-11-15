@@ -33,6 +33,12 @@ export const signup = user => dispatch => (
     errors => dispatch(receiveSessionErrors(errors.responseJSON)))
 );
 
+export const createDemoUser = () => dispatch => (
+  SessionApiUtil.createDemoUser()
+    .then(signedUpUser => dispatch(receiveCurrentUser(signedUpUser)),
+    errors => dispatch(receiveSessionErrors(errors.responseJSON)))
+);
+
 export const logout = () => dispatch => {
   return SessionApiUtil.logout()
     .then(() => {

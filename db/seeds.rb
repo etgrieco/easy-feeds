@@ -15,7 +15,6 @@ http://feeds.reuters.com/Reuters/worldNews*
 http://feeds.bbci.co.uk/news/rss.xml*
 http://news.sky.com/sky-news/rss/home/rss.xml*
 http://feeds.reuters.com/Reuters/domesticNews*
-http://news.yahoo.com/rss/*
 http://feeds.bbci.co.uk/news/technology/rss.xml*
 http://feeds.bbci.co.uk/news/business/rss.xml*
 http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml*
@@ -44,16 +43,6 @@ end
 
 User.destroy_all
 users = []
-
-du = User.new(
-  email: "demo@email.com",
-  password: "demopassword123",
-  first_name: "Demo",
-  last_name: "User"
-)
-
-users << du
-du.save
 
 50.times do
   u = User.new(
