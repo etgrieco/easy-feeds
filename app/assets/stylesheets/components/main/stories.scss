@@ -12,7 +12,6 @@
 }
 
 .story-index-item:hover {
-  border-left: 3px solid $text-dark-grey;
   cursor: pointer;
 }
 
@@ -22,17 +21,16 @@
 }
 
 .story-index-item {
-  border-left: 3px solid white;
-
-  padding-left: 10px;
+  font-size: 16px;
   display: flex;
   height: 150px;
   width: 620px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   overflow: hidden;
 }
 
 .story-details {
+  position: relative;
   margin-left: 20px;
 }
 
@@ -71,4 +69,36 @@
   font-size: 12px;
   color: grey;
   font-family: 'Noto Serif', serif;
+}
+
+.hide-story {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 1em;
+  color: $text-light-grey;
+}
+
+.hide-story:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.read-story {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 20px;
+  height: 1em;
+  color: $text-light-grey;
+}
+
+.read-story:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.read {
+  opacity: .5;
 }

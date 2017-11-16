@@ -27,27 +27,27 @@ class NavBar extends React.Component {
 
     return (
       <section className="navbar">
-        <div className={`navbar-show-button${this.state.hidden ? "-hidden" : ""}`}>
-          <span onClick={e => this.setState({hidden: !this.state.hidden})}>
-            { this.state.hidden ?
-              <i className="fa fa-expand" aria-hidden="true"></i> :
-              <i className="fa fa-compress" aria-hidden="true"></i>
-            }
-          </span>
+        <div className="menu-container">
+          <div>
+            <Link to="/i/feeds/">
+              <div className={`edit-button${this.state.hidden ? " hidden" : ""}`}>Organize Feeds<i className="fa fa-cog" aria-hidden="true"></i></div>
+            </Link>
+          </div>
+          <div className={`navbar-show-button${this.state.hidden ? "-hidden" : ""}`}>
+            <span onClick={e => this.setState({hidden: !this.state.hidden})}>
+              { this.state.hidden ?
+                <i className="fa fa-expand" aria-hidden="true"></i> :
+                  <i className="fa fa-compress" aria-hidden="true"></i>
+                }
+              </span>
+          </div>
         </div>
         <nav className={`navbar-container${this.state.hidden ? "-hidden" : ""} navbar-transition`}>
           <div className={`navbar-closed${this.state.hidden ? "":  "-hidden"}`}>
           </div>
           <div className={`navbar-contents${this.state.hidden ? "-hidden" : ""}`}>
             <div className="navbar-collections">
-              <div className="feeds-header noselect">
-                <div></div>
-                <div>
-                  <Link to="/i/feeds/">
-                    <div className="edit-button">ORGANIZE FEEDS<i className="fa fa-cog" aria-hidden="true"></i></div>
-                  </Link>
-                </div>
-              </div>
+              <div className="feeds-header noselect"></div>
               <div className="tabs-container">
                 <div className="feeds">
                   <Link to="/i/latest" className="latest">
