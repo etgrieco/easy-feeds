@@ -11,6 +11,7 @@ class StoriesIndexItem extends React.Component {
 
   handleRedirect(e, id) {
     const originPath = this.props.history.location.pathname;
+    console.log(originPath);
     if (e.target.tagName.toLowerCase() !== 'a') {
       this.props.history.push(`${originPath}/stories/${id}`);
     }
@@ -29,7 +30,7 @@ class StoriesIndexItem extends React.Component {
     const imageStyle = {backgroundImage};
 
     const originPath = this.props.history.location.pathname;
-
+    console.log(originPath);
     return (
       <div className="story-index-item" onClick={e => this.handleRedirect(e, story.id)}>
         <div className="story-item-image" style={imageStyle} />

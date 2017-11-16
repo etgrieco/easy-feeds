@@ -6,8 +6,8 @@ export default props => {
 
   const prevSource = props.match.params.prevSource;
   const prevId = props.match.params.prevId ?
-    props.match.params.prevId : "";
-  const prevURL = [prevSource, prevId].join("/");
+    props.match.params.prevId : null;
+  const prevURL = prevId ? `${prevSource}/${prevId}` : `${prevSource}`;
 
   const newProps = {
     component: StoriesShow,
