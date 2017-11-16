@@ -10,12 +10,9 @@ class StoriesIndexItem extends React.Component {
   }
 
   handleRedirect(e, id) {
-    if (e.target.tagName.toLowerCase() === 'a') {
-      const destinationURL = e.target.href.split("/").slice(-2)[-0];
-      const destinationId = e.target.href.split("/").slice(-1)[0];
-      this.props.history.push(`/i/${destinationURL}/${destinationId}`);
-    } else {
-      this.props.history.push(`/i/stories/${id}`);
+    const originPath = this.props.history.location.pathname;
+    if (e.target.tagName.toLowerCase() !== 'a') {
+      this.props.history.push(`${originPath}/stories/${id}`);
     }
 
   }
@@ -31,12 +28,14 @@ class StoriesIndexItem extends React.Component {
     const backgroundImage = `url(${story.image_url || feed.favicon_url})`;
     const imageStyle = {backgroundImage};
 
+    const originPath = this.props.history.location.pathname;
+
     return (
       <div className="story-index-item" onClick={e => this.handleRedirect(e, story.id)}>
         <div className="story-item-image" style={imageStyle} />
         <div className="story-details">
           <h4>
-            <Link to={`/i/stories/${story.id}`}>
+            <Link to={`${originPath}stories/${story.id}`}>
               {story.title}
             </Link>
           </h4>

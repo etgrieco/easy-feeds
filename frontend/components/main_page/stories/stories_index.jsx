@@ -25,7 +25,7 @@ class StoriesIndex extends React.Component {
 
   onScroll(e) {
     if ((e.target.scrollHeight - e.target.scrollTop
-          <= e.target.offsetHeight + 100) &&
+          <= e.target.offsetHeight + 300) &&
         this.props.stories.length
       ) {
       this.timeout = this.timeout ? clearTimeout(this.timeout) : null;

@@ -6,6 +6,7 @@ json.feeds do
     @feeds.each do |feed|
       json.set! feed.id do
         json.partial! 'api/feeds/feed', feed: feed
+        json.stories([])
         json.subscribed !!feed.followed
       end
     end

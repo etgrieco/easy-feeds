@@ -22,6 +22,8 @@ export default (props) => {
       <ProtectedRoute path="/i/subscriptions/:id" component={SubscriptionStoriesContainer} />
       <ProtectedRoute path="/i/collection/:id" component={SubscriptionStoriesContainer} />
       <ProtectedRoute path="/i/stories/:id" component={StoryShowPopout} />
+      <ProtectedRoute path="/i/:prevSource/stories/:id" component={StoryShowPopout} />
+      <ProtectedRoute path="/i/:prevSource/:prevId/stories/:id" component={StoryShowPopout} />
     </section>
   );
 };
