@@ -35,7 +35,7 @@ class StoriesIndexItem extends React.Component {
         <div className="story-item-image" style={imageStyle} />
         <div className="story-details">
           <h4>
-            <Link to={`${originPath}stories/${story.id}`}>
+            <Link to={`${originPath}/stories/${story.id}`}>
               {story.title}
             </Link>
           </h4>
