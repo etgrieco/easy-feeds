@@ -26,7 +26,7 @@ class Api::SubscriptionsController < ApplicationController
     if subscription_params[:title].empty?
       render json: ["Subscription titles must have at least one character"], status: 422
     elsif @subscription.update(subscription_params)
-      render :show
+      render 'api/subscriptions/show_no_stories'
     else
       render json: @subscription.errors.full_messages, status: 422
     end
