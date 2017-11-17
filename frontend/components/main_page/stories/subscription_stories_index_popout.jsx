@@ -1,5 +1,5 @@
 import React from 'react';
-import SubscriptionStoriesContainer from './subscription_stories_container';
+import SubscriptionStoriesContainer from './stories_container';
 import PopOut from '../pop_out';
 
 export default props => {

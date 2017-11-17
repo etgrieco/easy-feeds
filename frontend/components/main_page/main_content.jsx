@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../../util/route_util.js';
 import Landing from './landing';
-import LatestStoriesContainer from './stories/latest_stories_container';
 import SubscriptionStoriesContainer from './stories/stories_container';
 import FeedsIndexContainer from './feeds/feeds_index_container';
 import DiscoverFeedsContainer from './feeds/discover_feeds_container';
