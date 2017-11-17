@@ -2,12 +2,24 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import StoriesIndex from './stories_index';
 import { fetchSingleFeed } from '../../../actions/subscription_actions';
-import { fetchUnsubscribedFeed } from '../../../actions/story_actions';
+import { fetchUnsubscribedFeed, fetchLatest } from '../../../actions/story_actions';
 import { receiveFeedTitle } from '../../../actions/ui_actions';
+
 
 const mapStateToProps = (state, ownProps) => {
   const storiesState = state.entities.stories.byId;
   const feeds = state.entities.feeds.byId;
+
+  if (ownProps.match.path === "/i/latest") {
+    const stories = state.session.latest.map(storyId => storiesState[storyId]);
+
+    return ({
+      title: "Latest",
+      stories,
+      feeds,
+    });
+  }
+
   const id = ownProps.match.params.id;
 
   let feed = feeds[id];
@@ -27,6 +39,13 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+
+  if (ownProps.match.path === "/i/latest") {
+    return ({
+      fetchAction: (_feedId, offset) => dispatch(fetchLatest(offset)),
+      receiveFeedTitle: title => dispatch(receiveFeedTitle(title))
+    });
+  }
 
   const fetchAction = ownProps.match.path.split('/')[2] === "discover" ?
     feedId => dispatch(fetchUnsubscribedFeed(feedId)) :
