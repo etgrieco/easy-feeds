@@ -9,7 +9,14 @@ export default ({ component: Component, isOpen, closePopOut }) => {
             closePopOut();
           }
         } }>
-        <div className="pop-out-exit noselect"><div>&#10006;</div></div>
+        <div className="pop-out-exit noselect">
+          <div className="noselect" onClick={e => {
+              if(e.target.className.includes("pop-out-exit")) {
+                closePopOut();
+              }}}>
+            &#10006;
+          </div>
+        </div>
         <div className="pop-out-window">
           {isOpen ? <Component /> : null}
         </div>

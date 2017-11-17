@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom';
 import StoriesIndex from './stories_index';
 import { fetchSingleFeed } from '../../../actions/subscription_actions';
 import { fetchUnsubscribedFeed } from '../../../actions/story_actions';
-
+import { receiveFeedTitle } from '../../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const storiesState = state.entities.stories.byId;
@@ -32,7 +32,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     feedId => dispatch(fetchUnsubscribedFeed(feedId)) :
     (feedId, offset) => dispatch(fetchSingleFeed(feedId, offset));
   return ({
-    fetchAction
+    fetchAction,
+    receiveFeedTitle: title => dispatch(receiveFeedTitle(title))
   });
 };
 

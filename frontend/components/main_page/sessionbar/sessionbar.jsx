@@ -1,9 +1,6 @@
 import React from 'react';
 
 class SessionBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   sessionButton() {
     const buttonText = this.props.loggedIn ?  "Log Out" : "Login";
@@ -17,13 +14,13 @@ class SessionBar extends React.Component {
   }
 
   render() {
-    const { loggedIn } = this.props;
+    const { loggedIn, title } = this.props;
     return (
-      <header className="session-bar">
+      <header className={`session-bar${ title ? " drop-shadow" : ""}`}>
         <div className={"session-bar-contents" +
           (loggedIn ? " logged-in-session" : "")
         }>
-          <h3 className="session-logo">EasyFeeds</h3>
+          <h3 className="session-logo">{ title ? title : "EasyFeeds" }</h3>
           {this.sessionButton()}
         </div>
       </header>

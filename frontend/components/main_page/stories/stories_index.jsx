@@ -9,6 +9,7 @@ class StoriesIndex extends React.Component {
     this.onScroll = this.onScroll.bind(this);
     this.onScroll = this.onScroll.bind(this);
     this.timeout = null;
+    this.titleSent = false;
   }
 
   componentDidMount() {
@@ -24,15 +25,23 @@ class StoriesIndex extends React.Component {
   }
 
   onScroll(e) {
+    if((e.target.scrollTop > 80) && !this.titleSent) {
+      this.titleSent = this.props.title;
+      this.props.receiveFeedTitle(this.props.title);
+    } else if(e.target.scrollTop < 80) {
+      this.props.receiveFeedTitle(null);
+      this.titleSent = false;
+    }
+
     if ((e.target.scrollHeight - e.target.scrollTop
-          <= e.target.offsetHeight + 300) &&
+          <= e.target.offsetHeight + 500) &&
         this.props.stories.length
       ) {
       this.timeout = this.timeout ? clearTimeout(this.timeout) : null;
 
       this.timeout = setTimeout(
         () => this.fetchMoreStories(this.props.stories.length)
-        , 500);
+        , 300);
     }
   }
 

@@ -4,7 +4,10 @@ import { logout } from '../../../actions/session_actions';
 import SessionBar from './sessionbar';
 
 const mapStateToProps = state => {
-  return {loggedIn: Boolean(state.session.currentUser)};
+  return {
+    loggedIn: Boolean(state.session.currentUser),
+    title: state.ui.feedTitle
+  };
 };
 
 const mapDispatchToProps = dispatch => {

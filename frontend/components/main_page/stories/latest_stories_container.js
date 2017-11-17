@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import StoriesIndex from './stories_index';
 import { fetchLatest } from '../../../actions/story_actions';
+import { receiveFeedTitle } from '../../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const storiesState = state.entities.stories.byId;
@@ -17,7 +18,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return ({
-    fetchAction: (_feedId, offset) => dispatch(fetchLatest(offset))
+    fetchAction: (_feedId, offset) => dispatch(fetchLatest(offset)),
+    receiveFeedTitle: title => dispatch(receiveFeedTitle(title))
   });
 };
 

@@ -77,9 +77,9 @@ class StoriesIndexItem extends React.Component {
           </h5>
             <p dangerouslySetInnerHTML={summaryText} />
           <div className={`noselect read-story${this.state.isMouseInside ? "" : " hidden"}`}
-            onClick={this.handleReadClick}>{this.state.read ? <i class="fa fa-check-square" aria-hidden="true"></i> : <i class="fa fa-check-square-o" aria-hidden="true"></i> }</div>
+            onClick={this.handleReadClick}>{this.state.read ? <i className="fa fa-check-square" aria-hidden="true"></i> : <i className="fa fa-check-square-o" aria-hidden="true"></i> }</div>
           <div className={`noselect hide-story${this.state.isMouseInside ? "" : " hidden"}`}
-            onClick={this.handleXClick}><i class="fa fa-times" aria-hidden="true"></i></div>
+            onClick={this.handleXClick}><i className="fa fa-times" aria-hidden="true"></i></div>
         </div>
       </div>
     );

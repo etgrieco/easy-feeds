@@ -63,7 +63,7 @@ export const fetchSingleFeed = (feedId, offset) => dispatch => {
 
 export const deleteFeed = feed => dispatch => (
   SubscriptionApiUtil.deleteSubscription(feed.subscription_id)
-    .then((feed) => dispatch(removeFeed(feed)))
+    .then(deletedFeed => dispatch(removeFeed(deletedFeed)))
 );
 
 export const updateFeed = feed => dispatch => {
