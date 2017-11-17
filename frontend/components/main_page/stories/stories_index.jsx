@@ -13,6 +13,8 @@ class StoriesIndex extends React.Component {
   }
 
   componentDidMount() {
+    window.document.querySelector(".main-content").scrollTo(0,0);
+
     window.document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
     if (this.props.stories.length === 0) {
       this.props.fetchAction(this.props.match.params.id);
@@ -34,7 +36,7 @@ class StoriesIndex extends React.Component {
     }
 
     if ((e.target.scrollHeight - e.target.scrollTop
-          <= e.target.offsetHeight + 500) &&
+          <= e.target.offsetHeight + 300) &&
         this.props.stories.length
       ) {
       this.timeout = this.timeout ? clearTimeout(this.timeout) : null;
@@ -44,6 +46,8 @@ class StoriesIndex extends React.Component {
         , 300);
     }
   }
+
+
 
   componentWillReceiveProps(newProps) {
     const oldURL = this.props.match.url;
@@ -55,14 +59,6 @@ class StoriesIndex extends React.Component {
 
   fetchMoreStories(offset) {
     this.props.fetchAction(this.props.match.params.id, offset);
-  }
-
-  componentDidUpdate(oldProps) {
-    const oldURL = oldProps.match.url;
-    const newURL = this.props.match.url;
-    if (oldURL !== newURL) {
-      window.document.querySelector(".main-content").scrollTo(0,0);
-    }
   }
 
   render() {

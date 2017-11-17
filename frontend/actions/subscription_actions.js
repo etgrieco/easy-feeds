@@ -49,7 +49,7 @@ export const fetchAllSubscriptions = () => dispatch => {
 };
 
 export const fetchSingleFeed = (feedId, offset) => dispatch => {
-  dispatch(startFeedAction(["Loading Feed..."]));
+  if (!offset) { dispatch(startFeedAction(["Loading Feed..."])); }
   return (
     SubscriptionApiUtil.fetchSingleFeed(feedId, offset)
       .then(
