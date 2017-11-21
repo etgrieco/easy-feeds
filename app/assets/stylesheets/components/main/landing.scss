@@ -4,8 +4,6 @@
   height: calc(100vh + 100px);
 }
 
-.landing-container
-
 .demo-user {
   background: $blue;
 }
@@ -18,6 +16,7 @@
   padding: 40px 50px 50px 50px;
   margin: 0 auto;
   width: 850px;
+  height: 100vh;
 }
 
 .landing-container h1 {
@@ -33,17 +32,11 @@
   font-weight: 200px;
 }
 
-.landing-image-container {
-  margin: 0 auto;
-  width: 840;
-  height: 630px;
-  background: #4C5250;
-  color: white;
-  box-sizing: border-box;
-  padding: 30px;
+.landing-welcome {
+  margin-bottom: 30px;
 }
 
-.landing-image-container img {
-  max-width: 790px;
-  max-height: 600px;
+.landing-image-container {
+  max-width: 800px;
+  box-shadow:5px 5px 5px #999;
 }
