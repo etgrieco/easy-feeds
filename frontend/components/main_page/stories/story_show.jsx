@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchStory, readStory } from '../../../actions/story_actions';
+import { fetchStory } from '../../../actions/story_actions';
 import moment from 'moment';
 
 class StoriesShow extends React.Component {

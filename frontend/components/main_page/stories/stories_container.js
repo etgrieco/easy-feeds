@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import StoriesIndex from './stories_index';
 import { fetchSingleFeed } from '../../../actions/subscription_actions';
-import { fetchUnsubscribedFeed, fetchLatest, readStory } from '../../../actions/story_actions';
+import { fetchUnsubscribedFeed, fetchLatest, readStory, unreadStory } from '../../../actions/story_actions';
 import { receiveFeedTitle } from '../../../actions/ui_actions';
 import merge from 'lodash/merge';
 
@@ -32,7 +32,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   const commonProps = {
     receiveFeedTitle: title => dispatch(receiveFeedTitle(title)),
-    readStory: id => dispatch(readStory(id))
+    readStory: id => dispatch(readStory(id)),
+    unreadStory: id => dispatch(unreadStory(id))
   };
 
   if (ownProps.match.path === "/i/latest") {

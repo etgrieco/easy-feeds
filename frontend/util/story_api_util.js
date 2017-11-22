@@ -22,3 +22,10 @@ export const readStory = id => (
     data: { read: { story_id: id }}
   })
 );
+
+export const unreadStory = id => (
+  $.ajax({
+    type: "DELETE",
+     url: `api/reads/${id}`,
+  })
+);

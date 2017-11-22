@@ -53,3 +53,8 @@ export const readStory = id => dispatch => (
   StoryApiUtil.readStory(id)
     .then(story => dispatch(receiveStory(story)))
 );
+
+export const unreadStory = id => dispatch => (
+  StoryApiUtil.unreadStory(id)
+    .then(story => dispatch(receiveStory(story)))
+);

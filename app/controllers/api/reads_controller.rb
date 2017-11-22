@@ -27,7 +27,7 @@ class Api::ReadsController < ApplicationController
         .find_by(id: read_params[:story_id])
       render "api/stories/show"
     else
-      render json: @read.errors.full_messages
+      render json: @read.errors.full_messages, status: 422
     end
   end
 
@@ -38,7 +38,19 @@ class Api::ReadsController < ApplicationController
   end
 
   def destroy
+    @read = Read.find_by(story_id: params[:id])
 
+    if @read
+      @read.destroy
+      @story = Story
+        .select("stories.*, reads.reader_id as read")
+        .joins(reads_join)
+        .includes(:feed, :subscriptions)
+        .find_by(id: params[:id])
+      render "api/stories/show"
+    else
+      render json: ["Read does not exist"], status: 404
+    end
   end
 
   def read_params

@@ -71,6 +71,7 @@ class StoriesIndex extends React.Component {
           story={story}
           feed={feed}
           readStory={this.props.readStory}
+          unreadStory={this.props.unreadStory}
           titleLink={Boolean(titleLink)}
           history={this.props.history}
            />
