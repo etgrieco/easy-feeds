@@ -9,7 +9,7 @@ class StoriesIndexItem extends React.Component {
     this.handleRedirect = this.handleRedirect.bind(this);
     this.handleXClick = this.handleXClick.bind(this);
     this.handleReadClick = this.handleReadClick.bind(this);
-    this.state = { hidden: false, read: false, isMouseInside: false };
+    this.state = { hidden: Boolean(props.story.read), read: Boolean(props.story.read), isMouseInside: false };
   }
 
   handleRedirect(e, id) {
@@ -33,6 +33,7 @@ class StoriesIndexItem extends React.Component {
 
   handleReadClick(e) {
     e.preventDefault();
+    this.props.readStory(this.props.story.id);
     this.setState({ read: !this.state.read });
   }
 

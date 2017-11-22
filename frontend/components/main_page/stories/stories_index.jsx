@@ -47,8 +47,6 @@ class StoriesIndex extends React.Component {
     }
   }
 
-
-
   componentWillReceiveProps(newProps) {
     const oldURL = this.props.match.url;
     const newURL = newProps.match.url;
@@ -72,6 +70,7 @@ class StoriesIndex extends React.Component {
         <StoriesIndexItem key={story.id}
           story={story}
           feed={feed}
+          readStory={this.props.readStory}
           titleLink={Boolean(titleLink)}
           history={this.props.history}
            />

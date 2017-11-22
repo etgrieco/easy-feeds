@@ -14,3 +14,11 @@ export const fetchStory = id => (
     url: `api/stories/${id}`
   })
 );
+
+export const readStory = id => (
+  $.ajax({
+    type: "POST",
+    url: "api/reads",
+    data: { read: { story_id: id }}
+  })
+);

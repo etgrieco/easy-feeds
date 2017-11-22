@@ -9,6 +9,7 @@ class Api::StoriesController < ApplicationController
     @stories = current_user.stories
       .select("stories.*, reads.reader_id as read")
       .joins(reads_join)
+      .where("reads.id IS NULL")
       .order('pub_datetime DESC')
       .limit(20)
       .includes(:feed, :subscriptions)

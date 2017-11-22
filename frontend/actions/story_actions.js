@@ -48,3 +48,8 @@ export const fetchUnsubscribedFeed = feedId => dispatch =>  {
     )
   );
 };
+
+export const readStory = id => dispatch => (
+  StoryApiUtil.readStory(id)
+    .then(story => dispatch(receiveStory(story)))
+);
