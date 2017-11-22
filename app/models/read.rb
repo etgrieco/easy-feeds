@@ -1,4 +1,4 @@
-class Unread < ApplicationRecord
+class Read < ApplicationRecord
 
   belongs_to :reader,
     foreign_key: :reader_id,

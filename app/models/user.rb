@@ -27,12 +27,12 @@ class User < ApplicationRecord
     foreign_key: :creator_id,
     class_name: :Collection
 
-  has_many :unreads,
+  has_many :reads,
     foreign_key: :reader_id,
-    class_name: :Unread
+    class_name: :Read
 
-  has_many :unread_stories,
-    through: :unreads,
+  has_many :read_stories,
+    through: :reads,
     source: :story
 
   def password=(password)
