@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103131147) do
+ActiveRecord::Schema.define(version: 20171122132537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,14 @@ ActiveRecord::Schema.define(version: 20171103131147) do
     t.datetime "updated_at", null: false
     t.index ["subscriber_id", "feed_id"], name: "index_subscriptions_on_subscriber_id_and_feed_id", unique: true
     t.index ["title"], name: "index_subscriptions_on_title"
+  end
+
+  create_table "unreads", force: :cascade do |t|
+    t.integer "reader_id"
+    t.integer "story_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reader_id", "story_id"], name: "index_unreads_on_reader_id_and_story_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

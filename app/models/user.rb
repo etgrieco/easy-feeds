@@ -27,6 +27,14 @@ class User < ApplicationRecord
     foreign_key: :creator_id,
     class_name: :Collection
 
+  has_many :unreads,
+    foreign_key: :reader_id,
+    class_name: :Unread
+
+  has_many :unread_stories,
+    through: :unreads,
+    source: :story
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
