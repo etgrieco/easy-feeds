@@ -14,3 +14,18 @@ export const fetchStory = id => (
     url: `api/stories/${id}`
   })
 );
+
+export const readStory = id => (
+  $.ajax({
+    type: "POST",
+    url: "api/reads",
+    data: { read: { story_id: id }}
+  })
+);
+
+export const unreadStory = id => (
+  $.ajax({
+    type: "DELETE",
+     url: `api/reads/${id}`,
+  })
+);

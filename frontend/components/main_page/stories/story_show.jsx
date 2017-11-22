@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchStory } from '../../../actions/story_actions';
 import moment from 'moment';
 
-class StoriesShow extends  React.Component {
+class StoriesShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchStory(this.props.match.params.id);
@@ -69,6 +69,7 @@ export default withRouter(
     },
     dispatch => (
       {
+        readStory: (id) => dispatch(readStory(id)),
         fetchStory: (storyId) => dispatch(fetchStory(storyId))
       }
     )

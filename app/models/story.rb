@@ -17,6 +17,10 @@ class Story < ApplicationRecord
     through: :feed,
     source: :subscriptions
 
+  has_many :reads,
+    foreign_key: :story_id,
+    class_name: :Read
+
   def self.create_attributes_hash(fjra_entry, feed_id, feed_title)
     link_url = fjra_entry.url
 

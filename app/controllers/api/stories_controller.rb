@@ -2,7 +2,14 @@ class Api::StoriesController < ApplicationController
   before_action :require_login
 
   def index
+    reads_join = "LEFT OUTER JOIN reads
+    ON reads.story_id = stories.id
+    AND reads.reader_id = #{current_user.id}"
+
     @stories = current_user.stories
+      .select("stories.*, reads.reader_id as read")
+      .joins(reads_join)
+      .where("reads.id IS NULL")
       .order('pub_datetime DESC')
       .limit(20)
       .includes(:feed, :subscriptions)
@@ -10,7 +17,15 @@ class Api::StoriesController < ApplicationController
   end
 
   def show
-    @story = Story.includes(:feed, :subscriptions).find_by(id: params[:id])
+    reads_join = "LEFT OUTER JOIN reads
+    ON reads.story_id = stories.id
+    AND reads.reader_id = #{current_user.id}"
+
+    @story = Story
+      .select("stories.*, reads.reader_id as read")
+      .joins(reads_join)
+      .includes(:feed, :subscriptions)
+      .find_by(id: params[:id])
 
     if @story
       render :show

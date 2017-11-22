@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :feeds, only: [:index, :show]
     resources :stories, only: [:index, :show]
     resources :collections, only: [:create, :update, :destroy]
+    resources :reads, only: [:create, :destroy, :index]
   end
 
 end

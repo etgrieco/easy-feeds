@@ -9,12 +9,10 @@ class StoriesIndexItem extends React.Component {
     this.handleRedirect = this.handleRedirect.bind(this);
     this.handleXClick = this.handleXClick.bind(this);
     this.handleReadClick = this.handleReadClick.bind(this);
-    this.state = { hidden: false, read: false, isMouseInside: false };
+    this.state = { hidden: Boolean(props.story.read), read: Boolean(props.story.read), isMouseInside: false };
   }
 
   handleRedirect(e, id) {
-    e.persist();
-    window.e = e;
     const target = e.target.parentElement;
     if ((!target.className.includes("read-story") && !target.className.includes("hide-story"))) {
       const originPath = this.props.history.location.pathname;
@@ -29,11 +27,20 @@ class StoriesIndexItem extends React.Component {
   handleXClick(e) {
     e.preventDefault();
     this.setState({ hidden: true });
+    this.handleReadClick(e);
   }
 
   handleReadClick(e) {
     e.preventDefault();
-    this.setState({ read: !this.state.read });
+    if (this.state.read &&
+        e.target.parentElement.className.includes("read-story")
+      ) {
+      this.props.unreadStory(this.props.story.id);
+      this.setState({ read: false });
+    } else if (!this.state.read) {
+      this.props.readStory(this.props.story.id);
+      this.setState({ read: true });
+    }
   }
 
   render() {

@@ -1,7 +1,6 @@
 class Api::SubscriptionsController < ApplicationController
   before_action :require_login
   before_action :ensure_feed, only: [:create]
-  # before_action :refresh, only: [:show]
 
   def index
     # lazy loaded in case refresh already ran
