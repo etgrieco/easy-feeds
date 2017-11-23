@@ -29,3 +29,10 @@ export const unreadStory = id => (
      url: `api/reads/${id}`,
   })
 );
+
+export const fetchReads = () => (
+  $.ajax({
+    type: "GET",
+    url: "api/reads"
+  })
+);

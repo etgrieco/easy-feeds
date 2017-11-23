@@ -2,17 +2,21 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import StoriesIndex from './stories_index';
 import { fetchSingleFeed } from '../../../actions/subscription_actions';
-import { fetchUnsubscribedFeed, fetchLatest, readStory, unreadStory } from '../../../actions/story_actions';
+import { fetchUnsubscribedFeed, fetchLatest,
+         fetchReads, readStory, unreadStory } from '../../../actions/story_actions';
 import { receiveFeedTitle } from '../../../actions/ui_actions';
 import merge from 'lodash/merge';
 
 const mapStateToProps = (state, ownProps) => {
-  const storiesState = state.entities.stories.byId;
+  const storiesById = state.entities.stories.byId;
   const feeds = state.entities.feeds.byId;
 
   if (ownProps.match.path === "/i/latest") {
-    const stories = state.session.latest.map(storyId => storiesState[storyId]);
+    const stories = state.session.latest.map(storyId => storiesById[storyId]);
     return ({ title: "Latest", stories, feeds });
+  } else if (ownProps.match.path === "/i/reads") {
+    const stories = state.session.reads.map(storyId => storiesById[storyId]);
+    return ({ title: "Recently Read", stories, feeds });
   }
 
   const id = ownProps.match.params.id;
@@ -22,7 +26,7 @@ const mapStateToProps = (state, ownProps) => {
     {stories: [], subscription_title: ""} :
     feed;
 
-  const stories = feed.stories.map(storyId => storiesState[storyId]);
+  const stories = feed.stories.map(storyId => storiesById[storyId]);
   const title = feed.subscription_title || feed.title;
 
   return ({title, stories, feeds, titleLink: feed.website_url});
@@ -40,6 +44,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return merge(commonProps, {
       fetchAction: (_feedId, offset) => dispatch(fetchLatest(offset)),
      });
+  } else if (ownProps.match.path === "/i/reads") {
+    return merge(commonProps, {
+      fetchAction: () => dispatch(fetchReads())
+    });
   }
 
   const fetchAction = ownProps.match.path.split('/')[2] === "discover" ?

@@ -16,6 +16,7 @@ export default (props) => {
       <AuthRoute path="/signup" component={Landing} />
       <ProtectedRoute path="/i/feeds" component={FeedsIndexContainer} />
       <ProtectedRoute path="/i/latest" component={SubscriptionStoriesContainer} />
+      <ProtectedRoute path="/i/reads" component={SubscriptionStoriesContainer} />
       <ProtectedRoute path="/i/discover/:id" component={SubscriptionStoriesIndexPopout} />
       <ProtectedRoute path="/i/discover" component={DiscoverFeedsContainer} />
       <ProtectedRoute path="/i/subscriptions/:id" component={SubscriptionStoriesContainer} />

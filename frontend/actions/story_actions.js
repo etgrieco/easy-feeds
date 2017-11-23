@@ -4,7 +4,8 @@ import { startFeedAction } from './loading_actions';
 import { receiveSingleFeed } from './subscription_actions';
 
 export const RECEIVE_LATEST = 'RECEIVE_LATEST';
-export const RECEIVE_STORY = "RECEIVE_STORY";
+export const RECEIVE_READS = 'RECEIVE_READS';
+export const RECEIVE_STORY = 'RECEIVE_STORY';
 
 export const receiveLatest = feedsPayload => ({
   type: RECEIVE_LATEST,
@@ -12,6 +13,14 @@ export const receiveLatest = feedsPayload => ({
   subscriptions: feedsPayload.subscriptions,
   stories: feedsPayload.stories
 });
+
+export const receiveReads = feedsPayload => ({
+  type: RECEIVE_READS,
+  feeds: feedsPayload.feeds,
+  subscriptions: feedsPayload.subscriptions,
+  stories: feedsPayload.stories
+});
+
 
 export const receiveStory = storyPayload => ({
   type: RECEIVE_STORY,
@@ -57,4 +66,9 @@ export const readStory = id => dispatch => (
 export const unreadStory = id => dispatch => (
   StoryApiUtil.unreadStory(id)
     .then(story => dispatch(receiveStory(story)))
+);
+
+export const fetchReads = () => dispatch => (
+  StoryApiUtil.fetchReads()
+    .then(stories => dispatch(receiveReads(stories)))
 );

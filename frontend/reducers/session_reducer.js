@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { REMOVE_FEED, RECEIVE_NEW_FEED, RECEIVE_ALL_SUBSCRIPTIONS }
   from '../actions/subscription_actions';
-import { RECEIVE_LATEST } from '../actions/story_actions';
+import { RECEIVE_LATEST, RECEIVE_READS } from '../actions/story_actions';
 import { CLEAR_ENTITIES } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
@@ -53,9 +53,23 @@ const latestStoriesReducer = (state = [], action) => {
   }
 };
 
+const readsReducer = (state = [], action) => {
+  Object.freeze(state);
+  let newState;
+  switch (action.type) {
+    case RECEIVE_READS:
+      return state.concat(action.stories.allIds);
+    case CLEAR_ENTITIES:
+      return [];
+    default:
+      return state;
+  }
+};
+
 
 export default combineReducers({
   currentUser: userReducer,
   subscriptions: subscriptionsReducer,
-  latest: latestStoriesReducer
+  latest: latestStoriesReducer,
+  reads: readsReducer
 });

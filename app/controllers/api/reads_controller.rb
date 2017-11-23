@@ -6,11 +6,12 @@ class Api::ReadsController < ApplicationController
     @stories = current_user.stories
       .select("stories.*, reads.reader_id as read")
       .joins(reads_join)
-      .where("reads.id IS NULL")
+      .where("reads.id IS NOT NULL")
       .order('pub_datetime DESC')
       .limit(20)
       .includes(:feed, :subscriptions)
-      .offset(params[:offset])
+
+    render "api/stories/index"
   end
 
   def create
