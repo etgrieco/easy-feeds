@@ -4,35 +4,6 @@ import AddFeedFormContainer from './add_feeds_form_container';
 
 export class FeedsIndex extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.onScroll = this.onScroll.bind(this);
-    this.titleSent = false;
-  }
-
-
-  componentDidMount() {
-    window.document.querySelector(".main-content").scrollTo(0,0);
-
-    this.props.receiveFeedTitle(null);
-    window.document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
-  }
-
-  componentWillUnmount() {
-    window.document.querySelector(".main-content").removeEventListener('scroll', this.onScroll, false);
-  }
-
-  onScroll(e) {
-    if((e.target.scrollTop > 80) && !this.titleSent) {
-      this.titleSent = true;
-      this.props.receiveFeedTitle("Organize Sources");
-    }
-    else if (e.target.scrollTop < 80) {
-      this.props.receiveFeedTitle(null);
-      this.titleSent = false;
-    }
-  }
-
   render() {
     const { feeds, subFeedIds, updateFeed, deleteFeed } = this.props;
     const feedsIndexRows = subFeedIds.map(feedId => {
