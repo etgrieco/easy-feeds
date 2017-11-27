@@ -30,15 +30,15 @@ class MainContent extends React.Component {
   onScroll(e) {
     if((e.target.scrollTop > 80) && !this.titleSent) {
       this.titleSent = true;
-      this.props.receiveFeedTitle(this.sessionBarTitle());
+      this.props.receiveFeedTitle(this.getTitle());
     }
     else if (e.target.scrollTop < 80) {
-      this.props.receiveFeedTitle(null);
       this.titleSent = false;
+      this.props.receiveFeedTitle(null);
     }
   }
 
-  sessionBarTitle() {
+  getTitle() {
     const path = this.props.history.location.pathname.split("/")[2];
 
     const sessionTitles = {
@@ -75,12 +75,9 @@ class MainContent extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const feeds = state.entities.feeds.byId;
   const id = ownProps.history.location.pathname.split("/")[3];
-
   let feed = feeds[id];
   feed = !feed ? {subscription_title: ""} : feed;
-
   const sessionBarTitle = feed.subscription_title || feed.title;
-
   return ({ sessionBarTitle });
 };
 

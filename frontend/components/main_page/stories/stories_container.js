@@ -3,7 +3,6 @@ import { withRouter, Link } from 'react-router-dom';
 import StoriesIndex from './stories_index';
 import { fetchSingleFeed } from '../../../actions/subscription_actions';
 import { fetchUnsubscribedFeed, fetchLatest, readStory, unreadStory } from '../../../actions/story_actions';
-import { receiveFeedTitle } from '../../../actions/ui_actions';
 import merge from 'lodash/merge';
 
 const mapStateToProps = (state, ownProps) => {
@@ -31,7 +30,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 
   const commonProps = {
-    receiveFeedTitle: title => dispatch(receiveFeedTitle(title)),
     readStory: id => dispatch(readStory(id)),
     unreadStory: id => dispatch(unreadStory(id))
   };
