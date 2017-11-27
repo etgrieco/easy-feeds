@@ -26,7 +26,3 @@ export default (props) => {
     </section>
   );
 };
-
-// <Switch>
-//   <Route path="/i/:anyRoute" render={() => <Redirect to="/i/latest"/>} />
-// </Switch>

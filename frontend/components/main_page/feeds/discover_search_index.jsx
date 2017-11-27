@@ -10,10 +10,31 @@ class DiscoverSearchIndex extends React.Component {
     this.state = {query: "", dataBaseSearch: true};
     this.handleQueryChange = this.handleQueryChange.bind(this);
     this.handleSwitch = this.handleSwitch.bind(this);
+    this.onScroll = this.onScroll.bind(this);
+    this.titleSent = false;
   }
 
   componentDidMount() {
+    window.document.querySelector(".main-content").scrollTo(0,0);
+
     this.props.fetchFeedResults(this.state.query);
+    this.props.receiveFeedTitle(null);
+    window.document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
+  }
+
+  componentWillUnmount() {
+    window.document.querySelector(".main-content").removeEventListener('scroll', this.onScroll, false);
+  }
+
+  onScroll(e) {
+    if((e.target.scrollTop > 80) && !this.titleSent) {
+      this.titleSent = true;
+      this.props.receiveFeedTitle("Discover");
+    }
+    else if (e.target.scrollTop < 80) {
+      this.props.receiveFeedTitle(null);
+      this.titleSent = false;
+    }
   }
 
   handleQueryChange(e) {
