@@ -18,15 +18,9 @@ class MainContent extends React.Component {
   }
 
   componentDidMount() {
-    window.document.querySelector(".main-content").scrollTo(0,0);
     this.props.receiveFeedTitle(null);
     window.document.querySelector(".main-content")
       .addEventListener('scroll', this.onScroll, false);
-  }
-
-  componentWillReceiveProps(newProps) {
-    this.componentWillUnmount();
-    this.componentDidMount();
   }
 
   componentWillUnmount() {
@@ -46,7 +40,7 @@ class MainContent extends React.Component {
   }
 
   getTitle() {
-    const path = this.props.history.location.pathname.split("/")[2];
+    const path = this.props.location.pathname.split("/")[2];
 
     const sessionTitles = {
       discover: "Discover Feeds",

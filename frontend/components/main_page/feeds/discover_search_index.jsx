@@ -13,6 +13,7 @@ class DiscoverSearchIndex extends React.Component {
   }
 
   componentDidMount() {
+    window.document.querySelector(".main-content").scrollTo(0,0);
     this.props.fetchFeedResults(this.state.query);
   }
 
