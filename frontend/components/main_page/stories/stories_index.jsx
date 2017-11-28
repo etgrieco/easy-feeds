@@ -42,6 +42,8 @@ class StoriesIndex extends React.Component {
     const newURL = newProps.match.url;
     if (newProps.stories.length === 0 && oldURL !== newURL) {
       newProps.fetchAction(newProps.match.params.id);
+    } else if (oldURL !== newURL) {
+      window.document.querySelector(".main-content").scrollTo(0,0);
     }
   }
 
