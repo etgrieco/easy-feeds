@@ -60,7 +60,9 @@ const readsReducer = (state = [], action) => {
     case RECEIVE_UNREAD:
       const id = action.stories.allIds[0];
       const idx = state.indexOf(id);
-      return state.splice(idx, 1);
+      newState = state.slice();
+      newState.splice(idx, 1);
+      return newState;
     case RECEIVE_READ:
       return action.stories.allIds.concat(state);
     case RECEIVE_READS:

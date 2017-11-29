@@ -14,7 +14,7 @@ class StoriesIndexItem extends React.Component {
 
   handleRedirect(e, id) {
     const target = e.target.parentElement;
-    if ((!target.className.includes("read-story") && !target.className.includes("hide-story"))) {
+    if (!target.className.includes("read-story") && !target.className.includes("hide-story")) {
       const originPath = this.props.history.location.pathname;
 
       if (e.target.tagName.toLowerCase() !== 'a') {
@@ -85,14 +85,16 @@ class StoriesIndexItem extends React.Component {
             {` by ${story.author} / ${pubDateTime}`}
           </h5>
             <p dangerouslySetInnerHTML={summaryText} />
-          { this.props.staticView ? <div></div> :
           <div className="read-controls">
             <div className={`noselect read-story${this.state.isMouseInside ? "" : " hidden"}`}
-              onClick={this.handleReadClick}>{this.state.read ? <i className="fa fa-check-square" aria-hidden="true"></i> : <i className="fa fa-check-square-o" aria-hidden="true"></i> }</div>
+              onClick={this.handleReadClick}>
+                {this.state.read ?
+                  <i className="fa fa-check-square" aria-hidden="true"></i>
+                   : <i className="fa fa-check-square-o" aria-hidden="true"></i> }
+            </div>
             <div className={`noselect hide-story${this.state.isMouseInside ? "" : " hidden"}`}
               onClick={this.handleXClick}><i className="fa fa-times" aria-hidden="true"></i></div>
           </div>
-          }
         </div>
       </div>
     );
