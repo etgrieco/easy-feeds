@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
     return ({ title: "Latest", stories, feeds });
   } else if (ownProps.match.path === "/i/reads") {
     const stories = state.session.reads.map(storyId => storiesById[storyId]);
-    return ({ title: "Recently Read", stories, feeds, readsView: true });
+    return ({ title: "Recently Read", stories, feeds });
   }
 
   const id = ownProps.match.params.id;
@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
      });
   } else if (ownProps.match.path === "/i/reads") {
     return merge(commonProps, {
-      fetchAction: (_feedId, offset) => dispatch(fetchReads(offset))
+      fetchAction: () => dispatch(fetchReads())
     });
   }
 

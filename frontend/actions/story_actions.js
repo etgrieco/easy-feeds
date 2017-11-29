@@ -68,7 +68,7 @@ export const unreadStory = id => dispatch => (
     .then(story => dispatch(receiveStory(story)))
 );
 
-export const fetchReads = (offset) => dispatch => (
-  StoryApiUtil.fetchReads(offset)
+export const fetchReads = () => dispatch => (
+  StoryApiUtil.fetchReads()
     .then(stories => dispatch(receiveReads(stories)))
 );

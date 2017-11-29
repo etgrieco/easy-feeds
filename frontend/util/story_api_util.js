@@ -30,12 +30,9 @@ export const unreadStory = id => (
   })
 );
 
-export const fetchReads = (offset) => (
+export const fetchReads = () => (
   $.ajax({
     type: "GET",
-    url: "api/reads",
-    data: {
-      offset
-    }
+    url: "api/reads"
   })
 );

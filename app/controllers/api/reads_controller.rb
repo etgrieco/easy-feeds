@@ -9,8 +9,8 @@ class Api::ReadsController < ApplicationController
       .where("reads.id IS NOT NULL")
       .order('pub_datetime DESC')
       .limit(20)
-      .offset(params[:offset])
       .includes(:feed, :subscriptions)
+
     render "api/stories/index"
   end
 

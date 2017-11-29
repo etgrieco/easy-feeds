@@ -46,8 +46,7 @@ class MainContent extends React.Component {
       discover: "Discover Feeds",
       feeds: "Organize Feeds",
       latest: "Latest",
-      subscriptions: this.props.sessionBarTitle,
-      reads: "Recently Read"
+      subscriptions: this.props.sessionBarTitle
     };
 
     return sessionTitles[path];
@@ -61,7 +60,6 @@ class MainContent extends React.Component {
         <AuthRoute path="/signup" component={Landing} />
         <ProtectedRoute path="/i/feeds" component={FeedsIndexContainer} />
         <ProtectedRoute path="/i/latest" component={SubscriptionStoriesContainer} />
-        <ProtectedRoute path="/i/reads" component={SubscriptionStoriesContainer} />
         <ProtectedRoute path="/i/discover/:id" component={SubscriptionStoriesIndexPopout} />
         <ProtectedRoute path="/i/discover" component={DiscoverFeedsContainer} />
         <ProtectedRoute path="/i/subscriptions/:id" component={SubscriptionStoriesContainer} />

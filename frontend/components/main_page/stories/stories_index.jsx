@@ -66,7 +66,6 @@ class StoriesIndex extends React.Component {
           unreadStory={this.props.unreadStory}
           titleLink={Boolean(titleLink)}
           history={this.props.history}
-          readsView={this.props.readsView}
            />
       );
     }
