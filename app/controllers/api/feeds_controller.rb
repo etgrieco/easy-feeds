@@ -9,6 +9,7 @@ class Api::FeedsController < ApplicationController
     if params[:q].try(:empty?)
       @feeds = Feed.popular
         .select("feeds.*, subscriptions.subscriber_id as followed")
+        .where("subscriptions.subscriber_id IS NULL")
         .joins(sql_join)
     else
       @q = Feed.ransack(title_or_rss_url_or_description_cont: params[:q])

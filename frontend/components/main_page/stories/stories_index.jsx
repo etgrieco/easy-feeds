@@ -9,12 +9,10 @@ class StoriesIndex extends React.Component {
     this.onScroll = this.onScroll.bind(this);
     this.onScroll = this.onScroll.bind(this);
     this.timeout = null;
-    this.titleSent = false;
   }
 
   componentDidMount() {
     window.document.querySelector(".main-content").scrollTo(0,0);
-
     window.document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
     if (this.props.stories.length === 0) {
       this.props.fetchAction(this.props.match.params.id);
@@ -27,14 +25,6 @@ class StoriesIndex extends React.Component {
   }
 
   onScroll(e) {
-    if((e.target.scrollTop > 80) && !this.titleSent) {
-      this.titleSent = this.props.title;
-      this.props.receiveFeedTitle(this.props.title);
-    } else if(e.target.scrollTop < 80) {
-      this.props.receiveFeedTitle(null);
-      this.titleSent = false;
-    }
-
     if ((e.target.scrollHeight - e.target.scrollTop
           <= e.target.offsetHeight + 300) &&
         this.props.stories.length
@@ -52,6 +42,8 @@ class StoriesIndex extends React.Component {
     const newURL = newProps.match.url;
     if (newProps.stories.length === 0 && oldURL !== newURL) {
       newProps.fetchAction(newProps.match.params.id);
+    } else if (oldURL !== newURL) {
+      window.document.querySelector(".main-content").scrollTo(0,0);
     }
   }
 
@@ -93,5 +85,9 @@ class StoriesIndex extends React.Component {
   }
 
 }
+
+StoriesIndex.defaultProps = {
+  feed: {stories: [], subscription_title: ""}
+};
 
 export default StoriesIndex;

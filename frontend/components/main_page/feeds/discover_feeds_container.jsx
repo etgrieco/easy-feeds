@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
     openPopOut: component => dispatch(openPopOut(component)),
     fetchUnsubscribedFeed: feedId => dispatch(fetchUnsubscribedFeed(feedId)),
     clearErrors: () => dispatch(clearErrors()),
-    deleteFeed: feed => dispatch(deleteFeed(feed))
+    deleteFeed: feed => dispatch(deleteFeed(feed)),
   });
 };
 

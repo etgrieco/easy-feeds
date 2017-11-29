@@ -13,10 +13,6 @@ const LoadingMessages = ({ messages }) => {
   return <div></div>;
 };
 
-const mapStateToProps = state => {
-  return {
-    messages: state.loading.messages
-  };
-};
-
-export default connect(mapStateToProps, null)(LoadingMessages);
+export default connect(
+  state => ({messages: state.loading.messages}),
+  null)(LoadingMessages);

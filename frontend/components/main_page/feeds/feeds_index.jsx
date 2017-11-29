@@ -4,6 +4,10 @@ import AddFeedFormContainer from './add_feeds_form_container';
 
 export class FeedsIndex extends React.Component {
 
+  componentDidMount() {
+    window.document.querySelector(".main-content").scrollTo(0,0);
+  }
+
   render() {
     const { feeds, subFeedIds, updateFeed, deleteFeed } = this.props;
     const feedsIndexRows = subFeedIds.map(feedId => {
