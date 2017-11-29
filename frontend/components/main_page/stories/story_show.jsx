@@ -11,8 +11,15 @@ class StoriesShow extends React.Component {
   }
 
   render() {
-    let { story } = this.props;
-    if (!story.feedInfo) { story.feedInfo = {title: "" }; }
+    let { story, feed } = this.props;
+
+    //placeholder values when story has not yet arrived
+    story = story ? story :
+      { title: "", link_url: "", summary: ""};
+
+    if (!story.feedInfo) {
+      story.feedInfo = {title: "" };
+    }
 
     const { summary, image_url, link_url, title } = story;
     const feedTitle = story.feedInfo.title;
@@ -51,20 +58,14 @@ class StoriesShow extends React.Component {
   }
 }
 
-StoriesShow.defaultProps = {
-  story: {
-    title: "",
-    link_url: "",
-    summary: "",
-    feedInfo: {title: ""}
-  }
-};
 
 export default withRouter(
   connect(
     (state, ownProps) => {
       const story = state.entities.stories.byId[ownProps.match.params.id];
-      return {story};
+      return {
+        story,
+      };
     },
     dispatch => (
       {
