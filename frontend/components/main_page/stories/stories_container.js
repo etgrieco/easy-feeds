@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
     return ({ title: "Latest", stories, feeds });
   } else if (ownProps.match.path === "/i/reads") {
     const stories = state.session.reads.map(storyId => storiesById[storyId]);
-    return ({ title: "Recently Read", stories, feeds, staticView: true });
+    return ({ title: "Recently Read", stories, feeds, readsView: true });
   }
 
   const id = ownProps.match.params.id;

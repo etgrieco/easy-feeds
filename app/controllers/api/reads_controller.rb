@@ -7,7 +7,7 @@ class Api::ReadsController < ApplicationController
       .select("stories.*, reads.reader_id as read")
       .joins(reads_join)
       .where("reads.id IS NOT NULL")
-      .order('reads.updated_at DESC')
+      .order('pub_datetime DESC')
       .limit(20)
       .offset(params[:offset])
       .includes(:feed, :subscriptions)

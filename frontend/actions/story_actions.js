@@ -5,8 +5,6 @@ import { receiveSingleFeed } from './subscription_actions';
 
 export const RECEIVE_LATEST = 'RECEIVE_LATEST';
 export const RECEIVE_READS = 'RECEIVE_READS';
-export const RECEIVE_READ = 'RECEIVE_READ';
-export const RECEIVE_UNREAD = 'RECEIVE_UNREAD';
 export const RECEIVE_STORY = 'RECEIVE_STORY';
 
 export const receiveLatest = feedsPayload => ({
@@ -23,22 +21,9 @@ export const receiveReads = feedsPayload => ({
   stories: feedsPayload.stories
 });
 
+
 export const receiveStory = storyPayload => ({
   type: RECEIVE_STORY,
-  feeds: storyPayload.feeds,
-  subscriptions: storyPayload.subscriptions,
-  stories: storyPayload.stories
-});
-
-export const receiveRead = storyPayload => ({
-  type: RECEIVE_READ,
-  feeds: storyPayload.feeds,
-  subscriptions: storyPayload.subscriptions,
-  stories: storyPayload.stories
-});
-
-export const receiveUnread = storyPayload => ({
-  type: RECEIVE_UNREAD,
   feeds: storyPayload.feeds,
   subscriptions: storyPayload.subscriptions,
   stories: storyPayload.stories
@@ -75,12 +60,12 @@ export const fetchUnsubscribedFeed = feedId => dispatch =>  {
 
 export const readStory = id => dispatch => (
   StoryApiUtil.readStory(id)
-    .then(storyPayload => dispatch(receiveRead(storyPayload)))
+    .then(story => dispatch(receiveStory(story)))
 );
 
 export const unreadStory = id => dispatch => (
   StoryApiUtil.unreadStory(id)
-    .then(storyPayload => dispatch(receiveUnread(storyPayload)))
+    .then(story => dispatch(receiveStory(story)))
 );
 
 export const fetchReads = (offset) => dispatch => (
