@@ -49,14 +49,23 @@ class NavBar extends React.Component {
             <div className="navbar-collections">
               <div className="feeds-header noselect"></div>
               <div className="tabs-container">
-                <div className="feeds">
-                  <Link to="/i/latest" className="latest">
-                  <li>
-                      <span><i className="fa fa-bars" aria-hidden="true"></i></span>
+                  <div className="feeds">
+                    <div className="special-feeds">
+                    <Link to="/i/latest" className="latest">
+                      <li><span><i className="fa fa-bars" aria-hidden="true"></i></span>
                       Latest
-                  </li>
-                </Link>
-                  {feedsList}
+                      </li>
+                    </Link>
+
+                    <Link to="/i/reads" className="reads">
+                      <li><span><i className="fa fa-book" aria-hidden="true"></i></span>
+                      Recently Read
+                    </li>
+                    </Link>
+                  </div>
+                  <div className="feeds-list">
+                    {feedsList}
+                  </div>
                 </div>
               </div>
             </div>
