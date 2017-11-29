@@ -14,6 +14,8 @@ json.stories do
       .select("stories.*, reads.reader_id as read")
       .joins(reads_join)
       .order('pub_datetime DESC')
+      .where("reads.id IS NULL OR reads.updated_at > :within_last_three_minutes",
+          within_last_three_minutes: Time.now - 180)
       .limit(20)
       .offset(params[:offset])
     stories.each do |story|
