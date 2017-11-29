@@ -14,7 +14,7 @@ class StoriesIndex extends React.Component {
   componentDidMount() {
     window.document.querySelector(".main-content").scrollTo(0,0);
     window.document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
-    if (this.props.stories.length === 0) {
+    if (this.props.stories.length === 0 || this.props.staticView) {
       this.props.fetchAction(this.props.match.params.id);
     }
   }
