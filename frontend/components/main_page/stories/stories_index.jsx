@@ -9,13 +9,15 @@ class StoriesIndex extends React.Component {
     this.onScroll = this.onScroll.bind(this);
     this.onScroll = this.onScroll.bind(this);
     this.timeout = null;
+    this.state = { fetched: false };
   }
 
   componentDidMount() {
     window.document.querySelector(".main-content").scrollTo(0,0);
     window.document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
-    if (this.props.stories.length === 0) {
+    if (this.props.stories.length === 0 || !this.state.fetched) {
       this.props.fetchAction(this.props.match.params.id);
+      this.setState({ fetched: true });
     }
   }
 
@@ -25,6 +27,8 @@ class StoriesIndex extends React.Component {
   }
 
   onScroll(e) {
+    if (this.props.staticView) { return; }
+
     if ((e.target.scrollHeight - e.target.scrollTop
           <= e.target.offsetHeight + 300) &&
         this.props.stories.length
@@ -66,7 +70,7 @@ class StoriesIndex extends React.Component {
           unreadStory={this.props.unreadStory}
           titleLink={Boolean(titleLink)}
           history={this.props.history}
-          readsView={this.props.readsView}
+          staticView={this.props.staticView}
            />
       );
     }

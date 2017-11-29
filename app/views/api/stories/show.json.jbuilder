@@ -17,6 +17,7 @@ json.stories do
       end
     end
   end
+  json.allIds [@story.id]
 end
 
 

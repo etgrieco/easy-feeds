@@ -59,7 +59,7 @@ class StoriesIndexItem extends React.Component {
     const readStateClass = "story-index-item"
                            + `${this.state.hidden ? " hidden" : ""}`
                            + `${this.state.read
-                                && !this.props.readsView ?
+                                && !this.props.staticView ?
                                 " read" : ""}`;
 
     return (
@@ -85,7 +85,7 @@ class StoriesIndexItem extends React.Component {
             {` by ${story.author} / ${pubDateTime}`}
           </h5>
             <p dangerouslySetInnerHTML={summaryText} />
-          { this.props.readsView ? <div></div> :
+          { this.props.staticView ? <div></div> :
           <div className="read-controls">
             <div className={`noselect read-story${this.state.isMouseInside ? "" : " hidden"}`}
               onClick={this.handleReadClick}>{this.state.read ? <i className="fa fa-check-square" aria-hidden="true"></i> : <i className="fa fa-check-square-o" aria-hidden="true"></i> }</div>

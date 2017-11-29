@@ -2,7 +2,7 @@ import { RECEIVE_FEEDS_RESULTS } from '../actions/discovery_actions';
 import { REMOVE_FEED, RECEIVE_NEW_FEED, RECEIVE_SINGLE_FEED, RECEIVE_ALL_SUBSCRIPTIONS }
   from '../actions/subscription_actions';
 import { CLEAR_ENTITIES, RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import { RECEIVE_LATEST, RECEIVE_STORY, RECEIVE_READS } from '../actions/story_actions';
+import { RECEIVE_LATEST, RECEIVE_READS, RECEIVE_READ } from '../actions/story_actions';
 import merge from 'lodash/merge';
 import { combineReducers } from 'redux';
 

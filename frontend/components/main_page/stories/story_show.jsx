@@ -69,7 +69,6 @@ export default withRouter(
     },
     dispatch => (
       {
-        readStory: (id) => dispatch(readStory(id)),
         fetchStory: (storyId) => dispatch(fetchStory(storyId))
       }
     )
