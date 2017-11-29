@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import StoriesIndex from './stories_index';
 import { fetchSingleFeed } from '../../../actions/subscription_actions';
-import { fetchUnsubscribedFeed, fetchLatest, readStory, unreadStory } from '../../../actions/story_actions';
+import { fetchUnsubscribedFeed, fetchLatest, readStory,
+         unreadStory, fetchReads } from '../../../actions/story_actions';
 import merge from 'lodash/merge';
 
 const mapStateToProps = (state, ownProps) => {
@@ -18,12 +19,18 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   const id = ownProps.match.params.id;
-  let feed = feeds[id];
+  const feed = feeds[id];
+  let stories;
+  let title;
+  let titleLink;
 
-  const stories = feed.stories.map(storyId => storiesById[storyId]);
-  const title = feed.subscription_title || feed.title;
+  if (feed) {
+    stories = feed.stories.map(storyId => storiesById[storyId]);
+    title = feed.subscription_title || feed.title;
+    titleLink = feed.website_url;
+  }
 
-  return ({title, stories, feeds, titleLink: feed.website_url});
+  return ({title, stories, feeds, titleLink});
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
