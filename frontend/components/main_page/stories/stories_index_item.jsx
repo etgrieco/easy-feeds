@@ -92,8 +92,10 @@ class StoriesIndexItem extends React.Component {
                   <i className="fa fa-check-square" aria-hidden="true"></i>
                    : <i className="fa fa-check-square-o" aria-hidden="true"></i> }
             </div>
-            <div className={`noselect hide-story${this.state.isMouseInside ? "" : " hidden"}`}
-              onClick={this.handleXClick}><i className="fa fa-times" aria-hidden="true"></i></div>
+            { this.props.staticView ? null :
+              <div className={`noselect hide-story${this.state.isMouseInside ? "" : " hidden"}`}
+                onClick={this.handleXClick}><i className="fa fa-times" aria-hidden="true"></i></div>
+            }
           </div>
         </div>
       </div>

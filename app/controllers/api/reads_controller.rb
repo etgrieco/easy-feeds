@@ -39,7 +39,7 @@ class Api::ReadsController < ApplicationController
   end
 
   def destroy
-    @read = Read.find_by(story_id: params[:id])
+    @read = current_user.reads.find_by(story_id: params[:id])
 
     if @read
       @read.destroy

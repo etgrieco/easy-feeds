@@ -9,15 +9,13 @@ class StoriesIndex extends React.Component {
     this.onScroll = this.onScroll.bind(this);
     this.onScroll = this.onScroll.bind(this);
     this.timeout = null;
-    this.state = { fetched: false };
   }
 
   componentDidMount() {
     window.document.querySelector(".main-content").scrollTo(0,0);
     window.document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
-    if (this.props.stories.length === 0 || !this.state.fetched) {
+    if (this.props.stories.length === 0 || this.props.staticView) {
       this.props.fetchAction(this.props.match.params.id);
-      this.setState({ fetched: true });
     }
   }
 
