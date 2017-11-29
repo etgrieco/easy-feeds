@@ -17,9 +17,6 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
 
   let feed = feeds[id];
-  feed = (!feed || !feed.stories) ?
-    {stories: [], subscription_title: ""} :
-    feed;
 
   const stories = feed.stories.map(storyId => storiesState[storyId]);
   const title = feed.subscription_title || feed.title;

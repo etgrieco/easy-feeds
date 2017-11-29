@@ -86,4 +86,8 @@ class StoriesIndex extends React.Component {
 
 }
 
+StoriesIndex.defaultProps = {
+  feed: {stories: [], subscription_title: ""}
+};
+
 export default StoriesIndex;
