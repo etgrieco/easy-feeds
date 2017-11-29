@@ -15,15 +15,9 @@ const storiesById = (state = {}, action) => {
     case RECEIVE_NEW_FEED:
     case RECEIVE_STORY:
     case RECEIVE_READS:
-      newState = merge({}, state, action.stories.byId);
-      return newState;
     case RECEIVE_READ:
-      newState = merge({}, state);
-      newState[action.stories.allIds[0]].read = true;
-      return newState;
     case RECEIVE_UNREAD:
-      newState = merge({}, state);
-      newState[action.stories.allIds[0]].read = false;
+      newState = merge({}, state, action.stories.byId);
       return newState;
     case CLEAR_ENTITIES:
       return {};
