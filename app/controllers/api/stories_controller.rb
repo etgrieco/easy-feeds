@@ -9,7 +9,9 @@ class Api::StoriesController < ApplicationController
     @stories = current_user.stories
       .select("stories.*, reads.reader_id as read")
       .joins(reads_join)
-      .where("reads.id IS NULL")
+      .where("reads.id IS NULL
+             OR reads.updated_at > :within_last_three_minutes",
+             within_last_three_minutes: Time.now - 180)
       .order('pub_datetime DESC')
       .limit(20)
       .includes(:feed, :subscriptions)
