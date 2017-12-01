@@ -9,8 +9,8 @@ export class FeedsIndex extends React.Component {
   }
 
   render() {
-    const { feeds, subFeedIds, updateFeed, deleteFeed } = this.props;
-    const feedsIndexRows = subFeedIds.map(feedId => {
+    const { feeds, subscriptionIds, updateFeed, deleteFeed } = this.props;
+    const feedsIndexRows = subscriptionIds.map(feedId => {
       const feed = feeds[feedId];
       const props = { updateFeed, deleteFeed, feed };
       return <FeedsIndexRow key={feed.id} {...props} />;
@@ -20,7 +20,7 @@ export class FeedsIndex extends React.Component {
       <div className="feeds-index-container">
         <h1>Organize Sources</h1>
         <div className="feeds-following-sources">
-          <p>Following <span>{subFeedIds.length} sources</span></p>
+          <p>Following <span>{subscriptionIds.length} sources</span></p>
         </div>
         <div className="feeds-index">
           <div>

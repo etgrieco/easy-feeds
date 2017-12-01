@@ -31,7 +31,7 @@ const subscriptionsReducer = (state = [], action) => {
     case REMOVE_FEED:
       idx = state.indexOf(action.feeds.allIds[0]);
       newState = state.concat();
-      idx > -1 ? newState.splice(idx, 1) : null;
+      if(idx > -1) { newState.splice(idx, 1); }
       return newState;
     case CLEAR_ENTITIES:
       return [];
@@ -61,7 +61,7 @@ const readsReducer = (state = [], action) => {
       const id = action.stories.allIds[0];
       const idx = state.indexOf(id);
       newState = state.slice();
-      newState.splice(idx, 1);
+      if(idx > -1) { newState.splice(idx, 1); }
       return newState;
     case RECEIVE_READ:
       return action.stories.allIds.concat(state);

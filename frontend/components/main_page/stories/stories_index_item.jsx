@@ -16,11 +16,11 @@ class StoriesIndexItem extends React.Component {
     const target = e.target.parentElement;
     if (!target.className.includes("read-story") && !target.className.includes("hide-story")) {
       const originPath = this.props.history.location.pathname;
-
+      
       if (e.target.tagName.toLowerCase() !== 'a') {
         this.props.history.push(`${originPath}/stories/${id}`);
+        this.handleReadClick(e);
       }
-      this.handleReadClick(e);
     }
   }
 
