@@ -21,7 +21,10 @@ class StoriesShow extends React.Component {
     let pubDateTime = moment(story.pub_datetime).fromNow();
     pubDateTime = pubDateTime.split(" ")[0] === "in" ? "Just now" : pubDateTime;
 
-    const summaryText = {__html: summary};
+    const summaryText = {
+      __html: summary.replace("<a", "<a target=\"__blank\" ")
+    };
+
     const backgroundImage = `url(${image_url})`;
     const imageStyle = {backgroundImage};
 
