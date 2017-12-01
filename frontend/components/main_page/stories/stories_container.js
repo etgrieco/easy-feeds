@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
     return ({ title: "Latest", stories, feeds });
   } else if (ownProps.match.path === "/i/reads") {
     const stories = state.session.reads.map(storyId => storiesById[storyId]);
-    return ({ title: "Recently Read", stories, feeds, staticView: true });
+    return ({ title: "Recently Read", stories, feeds, readView: true });
   }
 
   const id = ownProps.match.params.id;
@@ -29,7 +29,7 @@ const mapStateToProps = (state, ownProps) => {
     title = feed.subscription_title || feed.title;
     titleLink = feed.website_url;
   }
-  
+
   if (ownProps.match.path.split('/')[2] === "discover") {
     return { title, stories, feeds, previewView: true };
   }
