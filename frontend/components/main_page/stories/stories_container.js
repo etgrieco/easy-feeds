@@ -29,6 +29,10 @@ const mapStateToProps = (state, ownProps) => {
     title = feed.subscription_title || feed.title;
     titleLink = feed.website_url;
   }
+  
+  if (ownProps.match.path.split('/')[2] === "discover") {
+    return { title, stories, feeds, previewView: true };
+  }
 
   return ({title, stories, feeds, titleLink});
 };

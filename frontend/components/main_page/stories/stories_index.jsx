@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import StoriesIndexItem from './stories_index_item';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ class StoriesIndex extends React.Component {
   componentDidMount() {
     window.document.querySelector(".main-content").scrollTo(0,0);
     window.document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
-    if (this.props.stories.length === 0 || this.props.staticView) {
+    if (this.props.stories.length === 0 || this.props.readView) {
       this.props.fetchAction(this.props.match.params.id);
     }
   }
@@ -25,7 +25,7 @@ class StoriesIndex extends React.Component {
   }
 
   onScroll(e) {
-    if (this.props.staticView) { return; }
+    if (this.props.readView) { return; }
 
     if ((e.target.scrollHeight - e.target.scrollTop
           <= e.target.offsetHeight + 300) &&
@@ -68,7 +68,8 @@ class StoriesIndex extends React.Component {
           unreadStory={this.props.unreadStory}
           titleLink={Boolean(titleLink)}
           history={this.props.history}
-          staticView={this.props.staticView}
+          readView={this.props.readView}
+          previewView={this.props.previewView}
            />
       );
     }
