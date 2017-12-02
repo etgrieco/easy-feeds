@@ -62,7 +62,7 @@ class User < ApplicationRecord
 
   def give_seed_feeds
     seed_urls = (
-      "http://feeds.bbci.co.uk/news/world/rss.xml*
+      "https://feeds.thedailybeast.com/summary/rss/articles*
 https://www.wired.com/feed/rss*
 https://www.polygon.com/rss/index.xml*
 http://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml*

@@ -1,5 +1,6 @@
 require 'feedjira'
 require 'feed_favicon_helper'
+require 'metainspector'
 
 class Feed < ApplicationRecord
   validates :rss_url, presence: true
@@ -60,7 +61,7 @@ class Feed < ApplicationRecord
     self.last_built = Time.now
 
     host = URI(@feed.url).host
-    self.favicon_url = Favicon.new(host).uri || ''
+    self.favicon_url = Favicon.new(host).uri || 'https://i.imgur.com/hGzwKc1.png'
 
     self.image_url = favicon_url
   end
