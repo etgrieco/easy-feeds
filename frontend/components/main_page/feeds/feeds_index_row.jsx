@@ -66,7 +66,7 @@ class FeedsIndexRow extends React.Component {
         }
       >
       <td className="feed-source-name">
-        <img src={feed.image_url} className="feed-index-icon"/>
+        <img src={feed.favicon_url} className="feed-index-icon"/>
         {this.subscriptionTitleForm(feed)}
       </td>
       <td className="feed-status-text">{feed.status}</td>
