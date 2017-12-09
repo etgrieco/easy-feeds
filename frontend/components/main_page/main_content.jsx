@@ -11,11 +11,7 @@ import StoryShowPopout from './stories/story_show_popout';
 import { receiveFeedTitle } from '../../actions/ui_actions';
 
 class MainContent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onScroll = this.onScroll.bind(this);
-    this.titleSent = false;
-  }
+  state = {titleSent: false};
 
   componentDidMount() {
     this.props.receiveFeedTitle(null);
@@ -28,13 +24,14 @@ class MainContent extends React.Component {
       .removeEventListener('scroll', this.onScroll, false);
   }
 
-  onScroll(e) {
-    if((e.target.scrollTop > 80) && !this.titleSent) {
-      this.titleSent = true;
+  onScroll = (e) => {
+    const { titleSent } = this.state;
+    if((e.target.scrollTop > 80) && !titleSent) {
+      this.setState({titleSent: true});
       this.props.receiveFeedTitle(this.getTitle());
     }
     else if (e.target.scrollTop < 80) {
-      this.titleSent = false;
+      this.setState({titleSent: false})
       this.props.receiveFeedTitle(null);
     }
   }
@@ -46,7 +43,7 @@ class MainContent extends React.Component {
       discover: "Discover Feeds",
       feeds: "Organize Feeds",
       latest: "Latest",
-      subscriptions: this.props.sessionBarTitle,
+      subscriptions: this.props.subscriptionTitle,
       reads: "Recently Read"
     };
 
@@ -79,13 +76,15 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.history.location.pathname.split("/")[3];
   let feed = feeds[id];
   feed = !feed ? {subscription_title: ""} : feed;
-  const sessionBarTitle = feed.subscription_title || feed.title;
-  return ({ sessionBarTitle });
+  const subscriptionTitle = feed.subscription_title || feed.title;
+  return ({ subscriptionTitle });
 };
+
+const mapDispatchToProps = dispatch => ({
+  receiveFeedTitle: title => dispatch(receiveFeedTitle(title))
+});
 
 export default withRouter(connect(
   mapStateToProps,
-  dispatch => ({
-    receiveFeedTitle: title => dispatch(receiveFeedTitle(title))
-  })
+  mapDispatchToProps
 )(MainContent));

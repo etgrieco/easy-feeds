@@ -4,7 +4,7 @@ import MainContent from './main_content';
 import LoadingMessagesContainer from './loading_messages_container';
 import { withRouter } from 'react-router-dom';
 
-const MainPage = (props) => {
+const MainPage = props => {
   return (
     <main className="main-page">
       <SessionBarContainer />

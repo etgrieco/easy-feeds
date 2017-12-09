@@ -4,7 +4,7 @@ import SessionFormContainer from '../session/session_form_container';
 import { connect } from 'react-redux';
 import { createDemoUser } from '../../actions/session_actions';
 
-const Landing = (props) => {
+function Landing(props) {
   return (
     <div className="landing-container">
       <div className="landing-content">
@@ -24,8 +24,6 @@ const Landing = (props) => {
         <div className="landing-image-container">
           <img src="https://i.imgur.com/jW9WDRh.png" />
         </div>
-        <Route path="/login" component={SessionFormContainer} />
-        <Route path="/signup" component={SessionFormContainer} />
       </div>
     </div>
   );

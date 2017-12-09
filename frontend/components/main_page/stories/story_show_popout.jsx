@@ -11,7 +11,6 @@ export default props => {
 
   const newProps = {
     component: StoriesShow,
-    isOpen: true,
     closePopOut: () => props.history.push(`/i/${prevURL}`),
   };
 

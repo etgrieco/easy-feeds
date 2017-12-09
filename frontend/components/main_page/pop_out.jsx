@@ -1,25 +1,26 @@
 import React from 'react';
 
-export default ({ component: Component, isOpen, closePopOut }) => {
+export default function PopOut({component: Component, closePopOut}) {
 
-  return (
-    <div className={isOpen ? "pop-out-modal" : "hidden"}>
-      <div className="pop-out-modal-screen" onClick={e => {
-          if(e.target.className === "pop-out-modal-screen") {
-            closePopOut();
-          }
-        } }>
-        <div className="pop-out-exit noselect">
-          <div className="noselect" onClick={e => {
-              if(e.target.parentElement.className.includes("pop-out-exit")) {
-                closePopOut();
-              }}}>
-            &#10006;
-          </div>
-        </div>
-        <div className="pop-out-window">
-          {isOpen ? <Component /> : null}
+  const handleClose = (e) => {
+    if(e.target.className === "pop-out-modal-screen" ||
+       e.target.parentElement.className.includes("pop-out-exit")
+      ) { closePopOut(); }
+  }
+
+  return(
+    <div className="pop-out-modal-screen"
+         onClick={e => handleClose(e)}>
+      <div className="pop-out-exit noselect">
+        <div className="noselect" onClick={e => handleClose(e)}>
+          &#10006;
         </div>
       </div>
-    </div>);
-};
+
+      <div className="pop-out-window">
+        <Component />
+      </div>
+    </div>
+  );
+
+}

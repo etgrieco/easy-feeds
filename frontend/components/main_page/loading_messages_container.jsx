@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const LoadingMessages = ({ messages }) => {
+function LoadingMessages({ messages }) {
 
   const loadingMessages = messages.map((msg, idx) =>
     <li key={idx}>{msg}</li>
