@@ -7,9 +7,7 @@ import moment from 'moment';
 class StoriesShow extends React.Component {
 
   componentDidMount() {
-    if (!this.props.match.params.prevSource) {
-      this.props.fetchStory(this.props.match.params.id);
-    }
+    this.props.fetchStory(this.props.match.params.id);
   }
 
   render() {

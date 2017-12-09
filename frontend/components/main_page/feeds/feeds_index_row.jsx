@@ -2,37 +2,32 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class FeedsIndexRow extends React.Component {
+  state = Object.assign({ renaming: false, isMouseInside: false }, this.props.feed);
 
-  constructor(props) {
-    super(props);
-    this.state = Object.assign({ renaming: false, isMouseInside: false }, this.props.feed);
-    this.handleEditChange = this.handleEditChange.bind(this);
+  handleEdit = (e) => {
+    e.preventDefault();
+    this.props.updateFeed(this.state);
+    this.state.renaming = false;
   }
 
-  handleEdit() {
-    return e => {
-      e.preventDefault();
-      this.props.updateFeed(this.state);
-      this.state.renaming = false;
-    };
+  handleEditChange = (e) => {
+    this.setState({
+      subscription_title: e.target.value
+    });
   }
 
-  handleEditChange(e) {
-    this.setState({subscription_title: e.target.value});
-  }
-
-  handleDelete(feed) {
-    return e => this.props.deleteFeed(feed);
+  handleDelete = (e) => {
+    this.props.deleteFeed(this.props.feed);
   }
 
   subscriptionTitleForm(feed) {
     return (
       this.state.renaming ?
         <form className="feed-rename-form"
-          onSubmit={this.handleEdit()}>
+          onSubmit={this.handleEdit}>
           <input type="text"
             value={this.state.subscription_title}
-            onChange={e => this.handleEditChange(e)}
+            onChange={this.handleEditChange}
             />
           <button><i className="fa fa-check" aria-hidden="true"></i></button>
         </form>
@@ -74,7 +69,7 @@ class FeedsIndexRow extends React.Component {
         { this.state.isMouseInside ?
           <div>
             <button className="modify-button feed-delete"
-              onClick={this.handleDelete(feed)}>
+              onClick={this.handleDelete}>
               <i className="fa fa-trash-o" aria-hidden="true"></i>
             </button>
           </div>
