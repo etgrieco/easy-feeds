@@ -22,7 +22,12 @@ const feedsById = (state = {}, action) => {
       newState = merge({}, state, action.feeds.byId, action.subscriptions.byId);
       return newState;
     case RECEIVE_SINGLE_FEED:
+      const feedId = action.feeds.allIds[0];
+      const prevStories = state[feedId] ? state[feedId].stories : [];
+      const allStories = [...prevStories, ...action.feeds.byId[feedId].stories];
       newState = merge({}, state, action.feeds.byId, action.subscriptions.byId);
+      newState[feedId].stories = allStories;
+
       return newState;
     case CLEAR_ENTITIES:
       return {};
