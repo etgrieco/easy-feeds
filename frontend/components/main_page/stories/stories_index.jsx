@@ -7,7 +7,6 @@ class StoriesIndex extends React.Component {
   constructor(props) {
     super(props);
     this.onScroll = this.onScroll.bind(this);
-    this.onScroll = this.onScroll.bind(this);
     this.timeout = null;
   }
 

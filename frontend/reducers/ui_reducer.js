@@ -1,15 +1,35 @@
+import merge from 'lodash/merge';
+import { combineReducers } from 'redux';
 import { OPEN_POPOUT, CLOSE_POPOUT } from '../actions/popout_actions';
 import { RECEIVE_FEED_TITLE } from '../actions/ui_actions';
 import { CLEAR_ENTITIES } from '../actions/session_actions';
-import merge from 'lodash/merge';
+import {  RECEIVE_SINGLE_FEED } from '../actions/subscription_actions';
+import { RECEIVE_LATEST } from '../actions/story_actions';
 
-export default (state = { feedTitle: null }, action) => {
+const storiesReducer = (state = true, action) => {
+  Object.freeze(state);
+
   switch (action.type) {
-    case RECEIVE_FEED_TITLE:
-      return merge({}, state, { feedTitle: action.feedTitle });
-    case CLEAR_ENTITIES:
-      return { feedTitle: null };
+    case RECEIVE_SINGLE_FEED:
+    case RECEIVE_LATEST:
+      return !(Object.keys(action.stories.byId).length === 0);
     default:
       return state;
   }
 };
+
+const feedTitleReducer = (state = null, action) => {
+  switch (action.type) {
+    case RECEIVE_FEED_TITLE:
+      return action.feedTitle;
+    case CLEAR_ENTITIES:
+      return null;
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  feedTitle: feedTitleReducer,
+  moreStories: storiesReducer
+});

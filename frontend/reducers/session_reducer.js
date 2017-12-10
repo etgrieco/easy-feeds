@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import { REMOVE_FEED, RECEIVE_NEW_FEED, RECEIVE_ALL_SUBSCRIPTIONS }
+import { REMOVE_FEED, RECEIVE_NEW_FEED, RECEIVE_ALL_SUBSCRIPTIONS  }
   from '../actions/subscription_actions';
 import { RECEIVE_LATEST, RECEIVE_READS, RECEIVE_READ, RECEIVE_UNREAD } from '../actions/story_actions';
 import { CLEAR_ENTITIES } from '../actions/session_actions';
@@ -73,7 +73,6 @@ const readsReducer = (state = [], action) => {
       return state;
   }
 };
-
 
 export default combineReducers({
   currentUser: userReducer,
