@@ -8,6 +8,8 @@ import { fetchUnsubscribedFeed, fetchLatest, readStory,
 const mapStateToProps = (state, ownProps) => {
   const storiesById = state.entities.stories.byId;
   const feeds = state.entities.feeds.byId;
+  const moreStories = state.ui.moreStories;
+
   let stories;
   let title;
   let titleLink;
@@ -35,7 +37,7 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
 
-  return ({title, stories, feeds, titleLink, ...viewProp});
+  return ({title, stories, feeds, titleLink, moreStories, ...viewProp});
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

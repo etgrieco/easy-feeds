@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import StoryLoadingAnimation from 'react-loading-animation';
 
 class StoriesIndex extends React.Component {
-
   constructor(props) {
     super(props);
     this.onScroll = this.onScroll.bind(this);
@@ -29,7 +28,8 @@ class StoriesIndex extends React.Component {
 
     if ((e.target.scrollHeight - e.target.scrollTop
           <= e.target.offsetHeight + 300) &&
-        this.props.stories.length
+        this.props.stories.length &&
+        this.props.moreStories
       ) {
       this.timeout = this.timeout ? clearTimeout(this.timeout) : null;
 
@@ -54,7 +54,7 @@ class StoriesIndex extends React.Component {
   }
 
   render() {
-    const { stories, feeds, title, titleLink } = this.props;
+    const { stories, feeds, title, titleLink, moreStories, previewView } = this.props;
     const id = this.props.match.params.id;
 
     const storyItems = stories.map(story => {
@@ -84,7 +84,9 @@ class StoriesIndex extends React.Component {
           }</h2>
         </div>
         {storyItems}
-        <StoryLoadingAnimation />
+        { moreStories && !previewView ?
+          <StoryLoadingAnimation /> : null
+        }
       </div>
     );
   }
