@@ -47,7 +47,7 @@ class MainContent extends React.Component {
       reads: "Recently Read"
     };
 
-    return sessionTitles[path];
+    return (sessionTitles[path] || null);
   }
 
   render () {
