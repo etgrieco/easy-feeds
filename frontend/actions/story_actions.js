@@ -1,6 +1,5 @@
 import * as StoryApiUtil from '../util/story_api_util';
 import * as FeedApiUtil from '../util/feed_api_util';
-import { startFeedAction } from './loading_actions';
 import { receiveSingleFeed } from './subscription_actions';
 
 export const RECEIVE_LATEST = 'RECEIVE_LATEST';
@@ -54,7 +53,6 @@ export const fetchStory = storyId => dispatch => {
 };
 
 export const fetchLatest = offset => dispatch => {
-  dispatch(startFeedAction(["Loading Feeds..."]));
   return (
     StoryApiUtil.fetchLatest(offset)
       .then(
