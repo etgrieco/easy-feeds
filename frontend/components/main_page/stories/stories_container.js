@@ -8,33 +8,34 @@ import { fetchUnsubscribedFeed, fetchLatest, readStory,
 const mapStateToProps = (state, ownProps) => {
   const storiesById = state.entities.stories.byId;
   const feeds = state.entities.feeds.byId;
-  let moreProps = {};
-
-  if (ownProps.match.path === "/i/latest") {
-    const stories = state.session.latest.map(storyId => storiesById[storyId]);
-    return ({ title: "Latest", stories, feeds });
-  } else if (ownProps.match.path === "/i/reads") {
-    const stories = state.session.reads.map(storyId => storiesById[storyId]);
-    return ({ title: "Recently Read", stories, feeds, readView: true });
-  }
-
-  const id = ownProps.match.params.id;
-  const feed = feeds[id];
   let stories;
   let title;
   let titleLink;
+  let viewProp = {};
 
-  if (feed) {
-    stories = feed.stories.map(storyId => storiesById[storyId]);
-    title = feed.subscription_title || feed.title;
-    titleLink = feed.website_url;
+  if (ownProps.match.path === "/i/latest") {
+    stories = state.session.latest.map(storyId => storiesById[storyId]);
+    title = "Latest"
+  } else if (ownProps.match.path === "/i/reads") {
+    stories = state.session.reads.map(storyId => storiesById[storyId]);
+    title = "Recently Read"
+    viewProp = {readView: true };
+  } else {
+    const id = ownProps.match.params.id;
+    const feed = feeds[id];
+
+    if (feed) {
+      stories = feed.stories.map(storyId => storiesById[storyId]);
+      title = feed.subscription_title || feed.title;
+      titleLink = feed.website_url;
+    }
+
+    if (ownProps.match.path.split('/')[2] === "discover") {
+      viewProp = {previewView: true};
+    }
   }
 
-  if (ownProps.match.path.split('/')[2] === "discover") {
-    moreProps = {previewView: true};
-  }
-
-  return ({title, stories, feeds, titleLink, ...moreProps});
+  return ({title, stories, feeds, titleLink, ...viewProp});
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

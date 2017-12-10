@@ -32,6 +32,7 @@ json.feeds do
       json.stories all_stories.sort_by(&:pub_datetime).map(&:id).reverse
     end
   end
+  json.allIds [@feed.id]
 end
 
 json.subscriptions do
