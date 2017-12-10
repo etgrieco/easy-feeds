@@ -58,7 +58,9 @@ class StoriesIndex extends React.Component {
   }
 
   render() {
-    const { stories, feeds, title, titleLink, moreStories, previewView } = this.props;
+    const { stories, feeds, title, titleLink,
+            moreStories, previewView, readView } = this.props;
+
     const id = this.props.match.params.id;
 
     const storyItems = stories.map(story => {
@@ -88,7 +90,7 @@ class StoriesIndex extends React.Component {
           }</h2>
         </div>
         {storyItems}
-        { moreStories && !previewView ?
+        { moreStories && !previewView && !readView ?
           <StoryLoadingAnimation /> : null
         }
       </div>
