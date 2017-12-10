@@ -1,6 +1,7 @@
-  import React from 'react';
+import React from 'react';
 import StoriesIndexItem from './stories_index_item';
 import { Link } from 'react-router-dom';
+import StoryLoadingAnimation from 'react-loading-animation';
 
 class StoriesIndex extends React.Component {
 
@@ -83,6 +84,7 @@ class StoriesIndex extends React.Component {
           }</h2>
         </div>
         {storyItems}
+        <StoryLoadingAnimation />
       </div>
     );
   }

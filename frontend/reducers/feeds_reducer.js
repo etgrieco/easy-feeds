@@ -27,7 +27,6 @@ const feedsById = (state = {}, action) => {
       const allStories = [...prevStories, ...action.feeds.byId[feedId].stories];
       newState = merge({}, state, action.feeds.byId, action.subscriptions.byId);
       newState[feedId].stories = allStories;
-
       return newState;
     case CLEAR_ENTITIES:
       return {};

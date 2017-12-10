@@ -4,11 +4,11 @@ import StoriesIndex from './stories_index';
 import { fetchSingleFeed } from '../../../actions/subscription_actions';
 import { fetchUnsubscribedFeed, fetchLatest, readStory,
          unreadStory, fetchReads } from '../../../actions/story_actions';
-import merge from 'lodash/merge';
 
 const mapStateToProps = (state, ownProps) => {
   const storiesById = state.entities.stories.byId;
   const feeds = state.entities.feeds.byId;
+  let moreProps = {};
 
   if (ownProps.match.path === "/i/latest") {
     const stories = state.session.latest.map(storyId => storiesById[storyId]);
@@ -31,37 +31,32 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   if (ownProps.match.path.split('/')[2] === "discover") {
-    return { title, stories, feeds, previewView: true };
+    moreProps = {previewView: true};
   }
 
-  return ({title, stories, feeds, titleLink});
+  return ({title, stories, feeds, titleLink, ...moreProps});
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-
   const commonProps = {
     readStory: id => dispatch(readStory(id)),
     unreadStory: id => dispatch(unreadStory(id))
   };
 
+  let fetchAction = () => {};
   if (ownProps.match.path === "/i/latest") {
-    return merge(commonProps, {
-      fetchAction: (_feedId, offset) => dispatch(fetchLatest(offset)),
-     });
+    fetchAction = (_feedId, offset) => dispatch(fetchLatest(offset))
   } else if (ownProps.match.path === "/i/reads") {
-    return merge(commonProps, {
-      fetchAction: (_feedId, offset) => dispatch(fetchReads(offset))
-    });
+    fetchAction = (_feedId, offset) => dispatch(fetchReads(offset))
+  } else if (ownProps.match.path.split('/')[2] === "discover") {
+    fetchAction = feedId => dispatch(fetchUnsubscribedFeed(feedId));
+  } else {
+    fetchAction = (feedId, offset) => dispatch(fetchSingleFeed(feedId, offset));
   }
 
-  const fetchAction = ownProps.match.path.split('/')[2] === "discover" ?
-    feedId => dispatch(fetchUnsubscribedFeed(feedId)) :
-    (feedId, offset) => dispatch(fetchSingleFeed(feedId, offset));
-
-  return merge(commonProps, {
-    fetchAction,
-  });
+  return ({...commonProps, fetchAction});
 };
 
-export default withRouter(connect(mapStateToProps,
+export default withRouter(connect(
+  mapStateToProps,
   mapDispatchToProps)(StoriesIndex));
