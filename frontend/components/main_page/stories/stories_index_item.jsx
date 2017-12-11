@@ -14,13 +14,14 @@ class StoriesIndexItem extends React.Component {
 
   handleRedirect(e, id) {
     const target = e.target.parentElement;
+
     if (!target.className.includes("read-story") && !target.className.includes("hide-story")) {
       const originPath = this.props.history.location.pathname;
 
-      if (e.target.tagName.toLowerCase() !== 'a'
-          || e.target.href.includes("stories")
-        ) {
+      if (e.target.tagName.toLowerCase() !== 'a') {
         this.props.history.push(`${originPath}/stories/${id}`);
+        this.handleReadClick(e);
+      } else if (e.target.href.includes("stories")) {
         this.handleReadClick(e);
       }
     }
