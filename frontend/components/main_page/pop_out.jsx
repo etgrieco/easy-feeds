@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 class PopOut extends React.Component {
   handleEscKey = (event) => {
     if(event.keyCode === 27){
-      this.props.closePopOut();
+      this.props.handleClose();
     }
   }
 
@@ -21,7 +21,7 @@ class PopOut extends React.Component {
     return (
       <div>
         <div className="pop-out-exit noselect">
-          <div className="noselect" onClick={this.props.closePopOut}>
+          <div className="noselect" onClick={e => this.props.handleClose(true)}>
             &#10006;
           </div>
         </div>
@@ -35,25 +35,44 @@ class PopOut extends React.Component {
 
 }
 
-export default function PopOutWithTransition(props) {
-  const handleClose = e => {
-    if(e.target.className === "pop-out-modal-screen") {
-      props.closePopOut();
+export default class PopOutWithTransition extends React.Component {
+  state = { appeared: false }
+  timeouts = [];
+
+  handleClose = e => {
+    if(e || e.target.className === "pop-out-modal-screen") {
+      this.setState({ appeared: false },
+        () => {
+          const timeout = setTimeout(() => {
+            this.props.closePopOut();
+          }, 200);
+        this.timeouts.push(timeout);
+      });
     }
   }
 
-  return (
-    <div className="pop-out-modal-screen"
-      onClick={e => handleClose(e)}>
-      <ReactCSSTransitionGroup
-        transitionName="pop-out-transition"
-        transitionAppear={true}
-        transitionAppearTimeout={500}
-        transitionLeave={false}
-        transitionEnter={false}
-        >
-        <PopOut {...props} />
-      </ReactCSSTransitionGroup>
-    </div>
-  );
+  componentDidMount(){
+    const timeout = setTimeout(() => {
+      this.setState({appeared: true});
+    }, 0)
+    this.timeouts.push(timeout);
+  }
+
+  componentWillUnmount() {
+    this.timeouts.forEach(to => clearTimeout(to));
+  }
+
+  render() {
+    return (
+      <div className="pop-out-modal-screen"
+        onClick={e => this.handleClose(e)}>
+        <div
+          className={"pop-out-transition" +
+            (this.state.appeared ? "-appear" : "")
+          }>
+          <PopOut {...this.props} handleClose={this.handleClose} />
+        </div>
+      </div>
+    );
+  }
 }

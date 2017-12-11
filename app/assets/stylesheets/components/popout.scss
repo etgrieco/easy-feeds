@@ -49,20 +49,12 @@
   color: $text-dark-grey;
 }
 
+.pop-out-transition {
+  opacity: 0.01;
+  transition: opacity .2s ease;
+}
+
 .pop-out-transition-appear {
-  opacity: 0.01;
-}
-
-.pop-out-transition-appear.pop-out-transition-appear-active {
   opacity: 1;
-  transition: opacity .5s ease;
-}
-
-.pop-out-transition-leave {
-  opacity: 1;
-}
-
-.pop-out-transition-leave.pop-out-transition-leave-active {
-  opacity: 0.01;
-  transition: opacity .5s ease;
+  transition: opacity .3s ease;
 }
