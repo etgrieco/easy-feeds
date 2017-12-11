@@ -1,7 +1,7 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-export default class PopOut extends React.Component {
-
+class PopOut extends React.Component {
   handleEscKey = (event) => {
     if(event.keyCode === 27){
       this.props.closePopOut();
@@ -16,20 +16,12 @@ export default class PopOut extends React.Component {
     document.removeEventListener("keydown", this.handleEscKey, false);
   }
 
-  handleClose = e => {
-    if(e.target.className === "pop-out-modal-screen" ||
-       e.target.className.includes("close-popout")
-     ) { this.props.closePopOut(); }
-  }
-
   render() {
     const { component: Component, closePopOut } = this.props;
-
     return (
-      <div className="pop-out-modal-screen"
-           onClick={e => this.handleClose(e)}>
+      <div>
         <div className="pop-out-exit noselect">
-          <div className="close-popout noselect" onClick={e => this.handleClose(e)}>
+          <div className="noselect" onClick={this.props.closePopOut}>
             &#10006;
           </div>
         </div>
@@ -41,4 +33,27 @@ export default class PopOut extends React.Component {
     );
   }
 
+}
+
+export default function PopOutWithTransition(props) {
+  const handleClose = e => {
+    if(e.target.className === "pop-out-modal-screen") {
+      props.closePopOut();
+    }
+  }
+
+  return (
+    <div className="pop-out-modal-screen"
+      onClick={e => handleClose(e)}>
+      <ReactCSSTransitionGroup
+        transitionName="pop-out-transition"
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionLeave={false}
+        transitionEnter={false}
+        >
+        <PopOut {...props} />
+      </ReactCSSTransitionGroup>
+    </div>
+  );
 }

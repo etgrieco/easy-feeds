@@ -14,11 +14,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  margin-left: 200px;
   z-index: 3;
   background: white;
   overflow: auto;
   padding: 50px;
+  margin-left: 30%;
 }
 
 .pop-out-exit {
@@ -31,7 +31,7 @@
   background-repeat: no-repeat;
   top: 0;
   bottom: 0;
-  left: 150px;
+  left: calc(30% - 50px);
   right: 0;
 }
 
@@ -47,4 +47,22 @@
 .pop-out-exit div:hover {
   cursor: pointer;
   color: $text-dark-grey;
+}
+
+.pop-out-transition-appear {
+  opacity: 0.01;
+}
+
+.pop-out-transition-appear.pop-out-transition-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease;
+}
+
+.pop-out-transition-leave {
+  opacity: 1;
+}
+
+.pop-out-transition-leave.pop-out-transition-leave-active {
+  opacity: 0.01;
+  transition: opacity .5s ease;
 }
