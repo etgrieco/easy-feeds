@@ -24,6 +24,8 @@ function Landing(props) {
         <div className="landing-image-container">
           <img src="https://i.imgur.com/jW9WDRh.png" />
         </div>
+        <Route path="/login" component={SessionFormContainer} />
+        <Route path="/signup" component={SessionFormContainer} />
       </div>
     </div>
   );
