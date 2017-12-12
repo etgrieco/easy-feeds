@@ -6,7 +6,7 @@ class StoriesIndexItem extends React.Component {
 
   state = {
     hidden: false,
-    read: Boolean(props.story.read),
+    read: Boolean(this.props.story.read),
     isMouseInside: false
   };
 
