@@ -4,15 +4,13 @@ import moment from 'moment';
 
 class StoriesIndexItem extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleRedirect = this.handleRedirect.bind(this);
-    this.handleXClick = this.handleXClick.bind(this);
-    this.handleReadClick = this.handleReadClick.bind(this);
-    this.state = { hidden: false, read: Boolean(props.story.read), isMouseInside: false };
-  }
+  state = {
+    hidden: false,
+    read: Boolean(props.story.read),
+    isMouseInside: false
+  };
 
-  handleRedirect(e, id) {
+  handleRedirect = (e, id) => {
     const target = e.target.parentElement;
 
     if (!target.className.includes("read-story") && !target.className.includes("hide-story")) {
@@ -27,13 +25,13 @@ class StoriesIndexItem extends React.Component {
     }
   }
 
-  handleXClick(e) {
+  handleXClick = (e) => {
     e.preventDefault();
     this.setState({ hidden: true });
     this.handleReadClick(e);
   }
 
-  handleReadClick(e) {
+  handleReadClick = (e) => {
     if (this.props.previewView) { return; }
     e.preventDefault();
     if (this.state.read &&
