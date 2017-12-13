@@ -3,7 +3,7 @@ import React from 'react';
 class PopOut extends React.Component {
   handleEscKey = (event) => {
     if(event.keyCode === 27){
-      this.props.handleClose();
+      this.props.handleClose(true);
     }
   }
 
