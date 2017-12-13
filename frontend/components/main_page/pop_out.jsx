@@ -63,11 +63,12 @@ export default class PopOutWithTransition extends React.Component {
 
   render() {
     return (
-      <div className="pop-out-modal-screen"
-        onClick={e => this.handleClose(e)}>
+      <div className={"pop-out-screen" +
+        (this.state.appeared ? "" : "-appearing")
+      } onClick={e => this.handleClose(e)}>
         <div
           className={"pop-out-transition" +
-            (this.state.appeared ? "-appear" : "")
+            (this.state.appeared ? "" : "-appearing" )
           }>
           <PopOut {...this.props} handleClose={this.handleClose} />
         </div>
