@@ -47,7 +47,7 @@ class Feed < ApplicationRecord
   end
 
   def subscription_title(user)
-    user.subscriptions.find_by(feed_id: self.id).title
+    user.subscriptions.find_by(feed_id: self.id)&.title || self.title
   end
 
   def populate_feed_metadata

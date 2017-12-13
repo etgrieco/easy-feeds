@@ -3,7 +3,7 @@ import React from 'react';
 class PopOut extends React.Component {
   handleEscKey = (event) => {
     if(event.keyCode === 27){
-      this.props.handleClose(true);
+      this.props.handleClose();
     }
   }
 
@@ -18,9 +18,9 @@ class PopOut extends React.Component {
   render() {
     const { component: Component, closePopOut } = this.props;
     return (
-      <aside style={{width: "100vw"}}>
+      <aside style={{width: "100vw"}} id="pop-out">
         <div className="pop-out-exit noselect">
-          <div className="noselect" onClick={e => this.props.handleClose(true)}>
+          <div className="noselect" onClick={e => this.props.handleClose()}>
             &#10006;
           </div>
         </div>
@@ -38,16 +38,14 @@ export default class PopOutWithTransition extends React.Component {
   state = { appeared: false }
   timeouts = [];
 
-  handleClose = e => {
-    if(e || e.target.className === "pop-out-modal-screen") {
-      this.setState({ appeared: false },
-        () => {
-          const timeout = setTimeout(() => {
-            this.props.closePopOut();
-          }, 300);
-        this.timeouts.push(timeout);
-      });
-    }
+  handleClose = () => {
+    this.setState({ appeared: false },
+      () => {
+        const timeout = setTimeout(() => {
+          this.props.closePopOut();
+        }, 300);
+      this.timeouts.push(timeout);
+    });
   }
 
   componentDidMount(){
@@ -65,7 +63,7 @@ export default class PopOutWithTransition extends React.Component {
     return (
       <div className={"pop-out-screen" +
         (this.state.appeared ? "" : "-appearing")
-      } onClick={e => this.handleClose(e)}>
+      } onClick={e => { if(e.target.id === "pop-out") { this.handleClose(); }}}>
         <div
           className={"pop-out-transition" +
             (this.state.appeared ? "" : "-appearing" )
