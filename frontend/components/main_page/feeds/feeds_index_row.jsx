@@ -12,7 +12,7 @@ class FeedsIndexRow extends React.Component {
   handleEdit = (e) => {
     e.preventDefault();
     const newFeed = merge({}, this.props.feed, this.state);
-    this.props.updateFeed(newFeed);
+    this.props.updateFeed(newFeed).then(null, () => this.setState({subscription_title: this.props.feed.subscription_title}));
     this.state.renaming = false;
   }
 

@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 import { CLEAR_ERRORS } from '../actions/errors_actions';
-
 import { RECEIVE_CURRENT_USER,
-  RECEIVE_SESSION_ERRORS} from '../actions/session_actions';
+  RECEIVE_SESSION_ERRORS } from '../actions/session_actions';
 import { CLEAR_SESSION_ERRORS } from '../actions/errors_actions';
 const intitialState = [];
 import merge from 'lodash/merge';
@@ -23,15 +22,16 @@ const SessionErrorsReducer = (state = intitialState, action) => {
 };
 
 //Subscription/feed errors
-import { RECEIVE_SUBSCRIPTION_ERRORS,
-  RECEIVE_FEED, REMOVE_FEED } from '../actions/subscription_actions';
+import { RECEIVE_SUBSCRIPTION_ERRORS, RECEIVE_SINGLE_FEED, REMOVE_FEED }
+  from '../actions/subscription_actions';
+
 const SubscriptionErrorsReducer = (state = intitialState, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_SUBSCRIPTION_ERRORS:
       return action.errors ? action.errors : state;
     case CLEAR_ERRORS:
-    case RECEIVE_FEED:
+    case RECEIVE_SINGLE_FEED:
     case REMOVE_FEED:
       return [];
     default:

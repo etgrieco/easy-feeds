@@ -9,7 +9,7 @@ export class FeedsIndex extends React.Component {
   }
 
   render() {
-    const { feeds, subscriptionIds, updateFeed, deleteFeed } = this.props;
+    const { feeds, subscriptionIds, updateFeed, deleteFeed, errors } = this.props;
     const feedsIndexRows = subscriptionIds.map(feedId => {
       const feed = feeds[feedId];
       const props = { updateFeed, deleteFeed, feed };
@@ -22,6 +22,7 @@ export class FeedsIndex extends React.Component {
         <div className="feeds-following-sources">
           <p>Following <span>{subscriptionIds.length} sources</span></p>
         </div>
+        <div style={{color: "red"}}>{errors}</div>
         <div className="feeds-index">
           <div>
             <table>

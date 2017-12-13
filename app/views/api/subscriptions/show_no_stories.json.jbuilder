@@ -1,7 +1,7 @@
 # get 20 most-recent stories
 subscription = @subscription
 
-json.stories({}) do
+json.stories do
   json.byId({})
 end
 
