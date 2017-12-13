@@ -1,21 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import merge from 'lodash/merge';
 
 class FeedsIndexRow extends React.Component {
-  state = Object.assign({ renaming: false, isMouseInside: false },
-                        {subscription_title: this.props.feed.subscription_title});
+  state = merge(
+    {},
+    {renaming: false, isMouseInside: false},
+    {subscription_title: this.props.feed.subscription_title}
+  );
 
   handleEdit = (e) => {
     e.preventDefault();
-    const newFeed = Object.assign({}, this.props.feed, this.state.subscription_title);
+    const newFeed = merge({}, this.props.feed, this.state);
     this.props.updateFeed(newFeed);
     this.state.renaming = false;
   }
 
-  handleEditChange = (e) => {
-    this.setState({
-      subscription_title: e.target.value
-    });
+  handleChange = (e) => {
+    this.setState({subscription_title: e.target.value});
   }
 
   handleDelete = (e) => {
@@ -24,16 +26,11 @@ class FeedsIndexRow extends React.Component {
 
   render() {
     const { feed } = this.props;
+
     return (
       <tr className="feed-index-row"
-        onMouseEnter={e => {
-          this.setState({ isMouseInside: true });
-          }
-        }
-        onMouseLeave={e => {
-          this.setState({ isMouseInside: false });
-          }
-        }
+        onMouseEnter={e => this.setState({ isMouseInside: true })}
+        onMouseLeave={e => this.setState({ isMouseInside: false })}
       >
       <td className="feed-source-name">
         <img src={feed.favicon_url} className="feed-index-icon"/>
@@ -41,7 +38,7 @@ class FeedsIndexRow extends React.Component {
         <SubscriptionTitleInput
           rename={() => this.setState({renaming: true})}
           handleEdit={this.handleEdit}
-          handleEditChange={this.handleEditChange}
+          handleChange={this.handleChange}
           feed={feed}
           {...this.state}
           />
@@ -49,15 +46,12 @@ class FeedsIndexRow extends React.Component {
       </td>
       <td className="feed-status-text">{feed.status}</td>
       <td className="feed-delete-cell">
-        { this.state.isMouseInside ?
-          <div>
-            <button className="modify-button feed-delete"
-              onClick={this.handleDelete}>
-              <i className="fa fa-trash-o" aria-hidden="true"></i>
-            </button>
-          </div>
-          : <div className="modify-button feed-delete"></div>
-        }
+        <button className="modify-button feed-delete" onClick={this.handleDelete}>
+          { this.state.isMouseInside ?
+            <i className="fa fa-trash-o" aria-hidden="true"></i>
+            : null
+          }
+        </button>
       </td>
       </tr>
     );
@@ -66,7 +60,7 @@ class FeedsIndexRow extends React.Component {
 
 function SubscriptionTitleInput({
   rename, handleEdit,
-  handleEditChange, feed,
+  handleChange, feed,
   isMouseInside, renaming,
   subscription_title,
   ...otherProps
@@ -77,16 +71,15 @@ function SubscriptionTitleInput({
       <form className="feed-rename-form" onSubmit={handleEdit}>
         <input type="text"
           value={subscription_title}
-          onChange={handleEditChange}
+          onChange={handleChange}
           />
         <button><i className="fa fa-check" aria-hidden="true"></i></button>
       </form>
     :
     <div className="feed-name-show">
-      <Link to={`/i/subscriptions/${feed.id}`}>{feed.title}</Link>
+      <Link to={`/i/subscriptions/${feed.id}`}>{feed.subscription_title}</Link>
         { isMouseInside ?
-          <button className="modify-button feed-rename"
-            onClick={rename}>
+          <button className="modify-button feed-rename" onClick={rename}>
             <i className="fa fa-pencil" aria-hidden="true"></i>
           </button>
           : null

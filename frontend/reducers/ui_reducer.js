@@ -12,6 +12,7 @@ const storiesReducer = (state = true, action) => {
   switch (action.type) {
     case RECEIVE_SINGLE_FEED:
     case RECEIVE_LATEST:
+      if (action.stories.length === 0) { return state; }
       return !(Object.keys(action.stories.byId).length === 0);
     default:
       return state;

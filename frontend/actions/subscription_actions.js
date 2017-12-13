@@ -70,7 +70,6 @@ export const updateFeed = feed => dispatch => {
     title: feed.subscription_title,
     id: feed.subscription_id
   };
-  dispatch(startFeedAction(["Updating Feed..."]));
   return SubscriptionApiUtil.updateSubscription(subscription)
     .then(
       updatedFeed => {
