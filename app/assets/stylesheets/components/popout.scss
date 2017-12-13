@@ -9,16 +9,13 @@
 }
 
 .pop-out-window {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   z-index: 3;
   background: white;
   overflow: auto;
   padding: 50px;
   margin-left: 30%;
+  height: 100vh;
+  margin-top: -50px;
 }
 
 .pop-out-exit {
@@ -50,11 +47,13 @@
 }
 
 .pop-out-transition {
-  opacity: 0.01;
-  transition: opacity .2s ease;
+  position: absolute;
+  left: 50%;
+  transition: left .3s ease;
 }
 
 .pop-out-transition-appear {
-  opacity: 1;
-  transition: opacity .3s ease;
+  position: absolute;
+  left: 0;
+  transition: left .3s ease;
 }
