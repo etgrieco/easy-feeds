@@ -24,11 +24,12 @@
   margin-left: 30%;
   height: 100vh;
   margin-top: -50px;
+  box-sizing: border-box;
 }
 
 .pop-out-exit {
   position: relative;
-  width: 50px;
+  width: 30px;
   height: 50px;
   z-index: 2;
   background-image: image-url("tab.png");
@@ -36,7 +37,7 @@
   background-repeat: no-repeat;
   top: 0;
   bottom: 0;
-  left: calc(30% - 50px);
+  left: calc(30% - 30px);
   right: 0;
 }
 
@@ -44,7 +45,7 @@
   position: relative;
   top: 15px;
   bottom: 0;
-  left: 30px;
+  left: 10px;
   right: 0;
   color: $text-light-grey;
 }
