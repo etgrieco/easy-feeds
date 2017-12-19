@@ -6,8 +6,8 @@ import { createDemoUser } from '../../actions/session_actions';
 
 function Landing(props) {
   return (
-    <div className="landing-container">
-      <div className="landing-content">
+    <div className="landing">
+      <div>
         <section className="landing-welcome">
           <h1>Welcome to EasyFeeds</h1>
           <p>An easy way to aggregate stories from across the web.</p>

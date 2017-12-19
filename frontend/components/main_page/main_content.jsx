@@ -51,8 +51,14 @@ class MainContent extends React.Component {
   }
 
   render () {
+    const landingStyleProps = (this.props.match.path === "/" ||
+                              this.props.match.path === "/login" ||
+                              this.props.match.path === "/signup") &&
+                              this.props.match.isExact ?
+      {padding: "0", background: "#F2F2F2"} : {};
+
     return (
-      <section className="main-content">
+      <section className="main-content" style={{...landingStyleProps}}>
         <AuthRoute exact path="/" component={Landing} />
         <AuthRoute path="/login" component={Landing} />
         <AuthRoute path="/signup" component={Landing} />

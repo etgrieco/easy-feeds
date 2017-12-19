@@ -1,7 +1,10 @@
-.landing-container {
+.landing {
   background: #F2F2F2;
+  padding: 40px 50px 50px 50px;
   width: 100%;
   height: calc(100vh + 100px);
+  display: flex;
+  justify-content: center;
 }
 
 .demo-user {
@@ -10,13 +13,6 @@
 
 .demo-user:hover {
   background: $hover-blue;
-}
-
-.landing-content {
-  padding: 40px 50px 50px 50px;
-  margin: 0 auto;
-  width: 850px;
-  height: 100vh;
 }
 
 .landing-container h1 {
