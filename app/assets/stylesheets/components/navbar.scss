@@ -36,14 +36,6 @@
   height: calc(100vh - 50px);
 }
 
-.navbar-closed {
-  visibility: visible;
-}
-
-.navbar-closed-hidden {
-  visibility: hidden;
-}
-
 .navbar-contents {
   flex-shrink: 0;
   visibility: visible;
