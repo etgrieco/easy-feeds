@@ -1,0 +1,13 @@
+@media (max-width: 910px) {
+
+  .navbar {
+    position: absolute;
+    z-index: 2;
+  }
+
+  .navbar-closed {
+    position: inherit;
+    transition-delay: position .5s ease;
+  }
+
+}

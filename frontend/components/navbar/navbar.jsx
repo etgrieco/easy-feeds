@@ -17,16 +17,15 @@ class NavBar extends React.Component {
     const feed = this.props.feeds[feedId];
       return (
         <Link key={feedId} to={`/i/subscriptions/${feed.id}`}>
-        <li>
-          <img src={feed.favicon_url} />
-            {feed.subscription_title}
-        </li>
+          <li>
+            <img src={feed.favicon_url} /> {feed.subscription_title}
+          </li>
       </Link>
       );
     });
 
     return (
-      <section className="navbar">
+      <section className={`navbar${this.state.hidden ? " navbar-closed" : ""}`}>
         <div className="menu-container">
           <div>
             <Link to="/i/feeds/">
@@ -42,46 +41,31 @@ class NavBar extends React.Component {
               </span>
           </div>
         </div>
-        <nav className={`navbar-container${this.state.hidden ? "-hidden" : ""} navbar-transition`}>
-          <div className={`navbar-closed${this.state.hidden ? "":  "-hidden"}`}>
-          </div>
-          <div className={`navbar-contents${this.state.hidden ? "-hidden" : ""}`}>
-            <div className="navbar-collections">
-              <div className="feeds-header noselect"></div>
-              <div className="tabs-container">
-                  <div className="feeds">
-                    <div className="special-feeds">
-                    <Link to="/i/latest" className="latest">
-                      <li><span><i className="fa fa-bars" aria-hidden="true"></i></span>
-                      Latest
-                      </li>
-                    </Link>
-
-                    <Link to="/i/reads" className="reads">
-                      <li><span><i className="fa fa-book" aria-hidden="true"></i></span>
-                      Recently Read
-                    </li>
-                    </Link>
-                  </div>
-                  <div className="feeds-list">
-                    {feedsList}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-        <aside className={`nav-add-content-container ${this.state.hidden ? "hidden" : ""}`}>
-          <Link to="/i/discover">
-            <div className="nav-add-content">
-              <span className="nav-add-content-plus"><i className="fa fa-plus" aria-hidden="true"></i></span>
-              Add Content
-            </div>
-          </Link>
-        </aside>
+        <NavBarMenu hidden={this.state.hidden} feedsList={feedsList} />
+        <NavBarAddContent hidden={this.state.hidden} />
       </section>
     );
   }
+}
+
+const NavBarMenu = ({ hidden, feedsList }) => (
+
+
+);
+
+function NavBarAddContent(props) {
+  const { hidden } = props;
+
+  return (
+    <aside className={`nav-add-content-container ${hidden ? "hidden" : ""}`}>
+      <Link to="/i/discover">
+        <div className="nav-add-content">
+          <span className="nav-add-content-plus"><i className="fa fa-plus" aria-hidden="true"></i></span>
+          Add Content
+        </div>
+      </Link>
+    </aside>
+  );
 }
 
 export default NavBar;
