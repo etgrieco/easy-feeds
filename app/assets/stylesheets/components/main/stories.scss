@@ -1,12 +1,21 @@
 .story-index {
-  max-width: 840px;
-  width: 60%;
+  width: 100%;
+  max-width: 620px;
 }
 
 .story-index h2 {
   font-size: 24px;
   font-weight: bolder;
   padding-bottom: 40px;
+}
+
+.story-index-item {
+  font-size: 16px;
+  display: flex;
+  min-height: 100px;
+  width: 100%;
+  margin-bottom: 50px;
+  overflow: hidden;
 }
 
 .story-index-item:hover {
@@ -18,26 +27,21 @@
   color: black;
 }
 
-.story-index-item {
-  font-size: 16px;
-  display: flex;
-  height: 150px;
-  width: 620px;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-
 .story-details {
   position: relative;
   margin-left: 20px;
 }
 
 // title
-.story-index-item h4 {
+.story-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.story-title h4 {
   font-size: 15px;
   font-weight: bold;
   padding-bottom: 12px;
-  margin-right: 140px;
   line-height: 18px;
 }
 
@@ -69,30 +73,19 @@
   font-family: 'Noto Serif', serif;
 }
 
-.hide-story {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
+.read-controls {
+  display: flex;
+  width: 40px;
+  box-sizing: border-box;
+}
+
+.hide-story, .read-story {
   height: 1em;
   color: $text-light-grey;
+  padding: 5px;
 }
 
-.hide-story:hover {
-  cursor: pointer;
-  color: black;
-}
-
-.read-story {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 20px;
-  height: 1em;
-  color: $text-light-grey;
-}
-
-.read-story:hover {
+.hide-story:hover, .read-story:hover {
   cursor: pointer;
   color: black;
 }

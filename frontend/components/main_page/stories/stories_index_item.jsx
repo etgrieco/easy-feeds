@@ -72,12 +72,28 @@ class StoriesIndexItem extends React.Component {
         >
         <div className="story-item-image" style={imageStyle} />
         <div className="story-details">
-          <h4>
-            <Link to={`${originPath}/stories/${story.id}`}>
-              {story.title}
-            </Link>
-          </h4>
-
+          <div className="story-title">
+            <h4>
+              <Link to={`${originPath}/stories/${story.id}`}>
+                {story.title}
+              </Link>
+            </h4>
+            { !this.props.previewView ?
+              <div className="read-controls">
+                <div className={`noselect read-story${this.state.isMouseInside ? "" : " hidden"}`}
+                  onClick={this.handleReadClick}>
+                  {this.state.read ?
+                    <i className="fa fa-check-square" aria-hidden="true"></i>
+                    : <i className="fa fa-check-square-o" aria-hidden="true"></i> }
+                  </div>
+                  { this.props.readView ? null :
+                    <div className={`noselect hide-story${this.state.isMouseInside ? "" : " hidden"}`}
+                      onClick={this.handleXClick}><i className="fa fa-times" aria-hidden="true"></i></div>
+                  }
+                </div>
+                : null
+              }
+          </div>
           <h5>
             { !this.props.titleLink ?
               <Link to={`/i/subscriptions/${story.feed_id}`}>
@@ -87,21 +103,6 @@ class StoriesIndexItem extends React.Component {
             {` by ${story.author} / ${pubDateTime}`}
           </h5>
             <p dangerouslySetInnerHTML={summaryText} />
-          { !this.props.previewView ?
-            <div className="read-controls">
-              <div className={`noselect read-story${this.state.isMouseInside ? "" : " hidden"}`}
-                onClick={this.handleReadClick}>
-                {this.state.read ?
-                  <i className="fa fa-check-square" aria-hidden="true"></i>
-                  : <i className="fa fa-check-square-o" aria-hidden="true"></i> }
-                </div>
-                { this.props.readView ? null :
-                  <div className={`noselect hide-story${this.state.isMouseInside ? "" : " hidden"}`}
-                    onClick={this.handleXClick}><i className="fa fa-times" aria-hidden="true"></i></div>
-                }
-              </div>
-          : null
-          }
         </div>
       </div>
     );
