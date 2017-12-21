@@ -49,8 +49,7 @@ class NavBar extends React.Component {
 }
 
 const NavBarMenu = ({ hidden, feedsList }) => (
-
-
+  <div></div>
 );
 
 function NavBarAddContent(props) {
