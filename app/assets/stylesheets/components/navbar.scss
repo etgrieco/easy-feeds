@@ -83,16 +83,22 @@
 }
 
 //ADD CONTENT BUTTON
-.nav-add-content-container {
+.add-content {
   text-transform: uppercase;
   border-top: 1px solid $text-light-grey;
-  display: flex;
   position: relative;
   height: 120px;
   box-sizing: border-box;
+  text-align: center;
+  vertical-align: baseline;
+  padding: 15px 0;
 }
 
-.nav-add-content-plus {
+.add-content a {
+  display: inline-block;
+}
+
+.add-content span {
   font-size: 20px;
   -webkit-text-stroke: 3px $background-grey;
   padding-right: 10px;
@@ -119,8 +125,4 @@
   padding-right: 20px;
   padding-top: 18px;
   font-weight: 300;
-}
-
-.navbar-container-hidden {
-  text-align: center;
 }

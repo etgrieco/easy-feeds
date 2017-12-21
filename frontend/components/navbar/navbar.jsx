@@ -132,12 +132,10 @@ const NavBarLinks = ({ feedIds, feeds, selected }) => {
 }
 
 const NavBarAddContent = () => (
-  <div className="nav-add-content-container">
+  <div className="add-content">
     <Link to="/i/discover">
-      <div className="nav-add-content">
-        <span className="nav-add-content-plus"><i className="fa fa-plus" aria-hidden="true"></i></span>
-        Add Content
-      </div>
+      <span><i className="fa fa-plus" aria-hidden="true"></i></span>
+      Add Content
     </Link>
   </div>
 );
