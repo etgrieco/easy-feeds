@@ -49,7 +49,35 @@ class NavBar extends React.Component {
 }
 
 const NavBarMenu = ({ hidden, feedsList }) => (
-  <div></div>
+  <nav className={`navbar-container${hidden ? "-hidden" : ""} navbar-transition`}>
+    <div className={`navbar-closed${hidden ? "":  "-hidden"}`}>
+    </div>
+    <div className={`navbar-contents${hidden ? "-hidden" : ""}`}>
+      <div className="navbar-collections">
+        <div className="feeds-header noselect"></div>
+        <div className="tabs-container">
+            <div className="feeds">
+              <div className="special-feeds">
+              <Link to="/i/latest" className="latest">
+                <li><span><i className="fa fa-bars" aria-hidden="true"></i></span>
+                Latest
+                </li>
+              </Link>
+
+              <Link to="/i/reads" className="reads">
+                <li><span><i className="fa fa-book" aria-hidden="true"></i></span>
+                Recently Read
+              </li>
+              </Link>
+            </div>
+            <div className="feeds-list">
+              {feedsList}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 );
 
 function NavBarAddContent(props) {
