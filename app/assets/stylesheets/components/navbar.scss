@@ -1,5 +1,14 @@
 .navbar {
   background: $background-grey;
+  width: 330px;
+}
+
+.navbar.collapsed {
+  width: 50px;
+}
+
+.collapsed, .navbar {
+  transition: width .3s ease;
 }
 
 .navbar-show-button {
@@ -17,55 +26,19 @@
   color: black;
 }
 
-.navbar-transition {
-  transition-duration: .3s;
-}
-
-.navbar-container {
+.navbar-links {
   position: relative;
-  min-width: 260px;
-  max-width: 260px;
   height: calc(100vh - 90px);
-}
-
-.navbar-container-hidden {
-  background: $background-grey;
-  position: relative;
-  min-width: 50px;
-  max-width: 50px;
-  height: calc(100vh - 50px);
-}
-
-.navbar-contents {
-  flex-shrink: 0;
-  visibility: visible;
-}
-
-.navbar-contents-hidden {
-  visibility: hidden;
-}
-
-.navbar-collections {
   font-size: 13px;
   font-weight: 700;
-  overflow-y: auto;
   color: #757575;
 }
 
-.feeds-header {
-  padding-left: 15px;
-  padding-right: 20px;
-  font-weight: 400;
-  display: flex;
-  justify-content: space-between;
-  text-transform: uppercase;
-}
-
-.tabs-container {
+.feeds {
   margin-top: 30px;
 }
 
-.tabs-container i {
+.feeds i {
   padding-right: 10px;
   padding-left: 5px;
 }
@@ -101,8 +74,13 @@
   font-weight: 300;
 }
 
-.latest li {
+.feeds .selected li {
   font-weight: 700;
+  background: $background-hover-grey;
+}
+
+.feeds-list {
+  margin-top: 20px;
 }
 
 //ADD CONTENT BUTTON
@@ -162,8 +140,4 @@
 
 .navbar-container-hidden {
   text-align: center;
-}
-
-.special-feeds {
-  margin-bottom: 20px;
 }

@@ -2,7 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class NavBar extends React.Component {
-  state = { isOpen: true };
+
+  getSelectedLink = () => {
+    const location = this.props.location.pathname.split("/")[2]
+    return location === "subscriptions" ?
+    this.props.location.pathname.split("/")[3] : location;
+  }
+  state = { isOpen: true, selected: this.getSelectedLink() };
 
   componentDidMount() {
     this.props.fetchAllSubscriptions();
@@ -12,23 +18,26 @@ class NavBar extends React.Component {
     this.setState(({ isOpen }) => ({isOpen: !isOpen}));
   }
 
+  handleSelectedUpdate = () => {
+    setTimeout(() => this.setState({selected: this.getSelectedLink()}), 0)
+  }
+
   render() {
-    const feedsList = this.props.feedIds.map(feedId => {
-      const feed = this.props.feeds[feedId];
-      return (
-        <Link key={feedId} to={`/i/subscriptions/${feed.id}`}>
-          <li>
-            <img src={feed.favicon_url} /> {feed.subscription_title}
-          </li>
-      </Link>
-      );
-    });
+    const { isOpen } = this.state;
 
     return (
-      <section className="navbar">
+      <section onClick={this.handleSelectedUpdate}
+        className={`navbar ${isOpen ? "" : "collapsed"}`}>
         <NavBarMenu {...this.state} handleClick={this.handleClick} />
-        <NavBarLinks {...this.state} feedsList={feedsList} />
-        <NavBarAddContent {...this.state} />
+        { isOpen ?
+          <div>
+            <NavBarLinks feedIds={this.props.feedIds}
+                         feeds={this.props.feeds}
+                         selected={this.state.selected} />
+            <NavBarAddContent />
+          </div>
+          : null
+        }
       </section>
     );
   }
@@ -36,7 +45,7 @@ class NavBar extends React.Component {
 
 const NavBarMenu = (props) => (
   <div className="menu-container">
-    { props.isOpen ?
+    {props.isOpen ?
       <div>
         <Link to="/i/feeds/">
           <div className="edit-button">Organize Feeds
@@ -61,43 +70,45 @@ const NavBarCollapseExpand = ({ isOpen, handleClick }) => (
   </div>
 );
 
-const NavBarLinks = ({ isOpen, feedsList }) => (
-  isOpen ?
-    <nav className="navbar-container">
-      <div className="navbar-contents">
-        <div className="navbar-collections">
-          <div className="feeds-header noselect"></div>
-          <div className="tabs-container">
-            <div className="feeds">
-              <div className="special-feeds">
-                <Link to="/i/latest" className="latest">
-                  <li><span><i className="fa fa-bars" aria-hidden="true"></i></span>
-                    Latest
-                  </li>
-                </Link>
+const NavBarLinks = ({ feedIds, feeds, selected }) => {
+  const feedsList = feedIds.map(feedId => {
+    const feed = feeds[feedId];
+    return (
+      <Link className={selected == feedId ? "selected" : ""} key={feedId} to={`/i/subscriptions/${feed.id}`}>
+        <li>
+          <img src={feed.favicon_url} /> {feed.subscription_title}
+        </li>
+    </Link>
+    );
+  });
 
-                <Link to="/i/reads" className="reads">
-                  <li>
-                    <span>
-                      <i className="fa fa-book" aria-hidden="true"></i>
-                    </span>
-                    Recently Read
-                  </li>
-                </Link>
-              </div>
-              <div className="feeds-list">
-                {feedsList}
-              </div>
-            </div>
-          </div>
+  return(
+    <nav className="navbar-links">
+      <div className="feeds">
+        <Link to="/i/latest" className={`latest${selected === "latest" ? " selected" : ""}`}>
+          <li><span><i className="fa fa-bars" aria-hidden="true"></i></span>
+            Latest
+          </li>
+        </Link>
+
+        <Link to="/i/reads" className={`reads${selected === "reads" ? " selected" : ""}`}>
+          <li>
+            <span>
+              <i className="fa fa-book" aria-hidden="true"></i>
+            </span>
+            Recently Read
+          </li>
+        </Link>
+        <div className="feeds-list">
+          {feedsList}
         </div>
       </div>
     </nav>
-    : null
-);
+  );
+}
 
-const NavBarAddContent = ({ isOpen }) => (
-  <aside className={`nav-add-content-container ${isOpen ? "hidden" : ""}`}>
+const NavBarAddContent = () => (
+  <aside className="nav-add-content-container">
     <Link to="/i/discover">
       <div className="nav-add-content">
         <span className="nav-add-content-plus"><i className="fa fa-plus" aria-hidden="true"></i></span>
