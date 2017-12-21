@@ -5,9 +5,8 @@
     z-index: 2;
   }
 
-  .navbar-closed {
+  .navbar.collapsed {
     position: inherit;
-    transition-delay: position .5s ease;
   }
 
 }

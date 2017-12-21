@@ -2,20 +2,44 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class NavBar extends React.Component {
-
   getSelectedLink = () => {
     const location = this.props.location.pathname.split("/")[2]
     return location === "subscriptions" ?
     this.props.location.pathname.split("/")[3] : location;
   }
-  state = { isOpen: true, selected: this.getSelectedLink() };
+
+  state = {
+    isOpen: true,
+    selected: this.getSelectedLink(),
+    isManuallyClosed: false
+  };
 
   componentDidMount() {
+    this.handleResize();
+    addEventListener('resize', this.handleResize, false);
     this.props.fetchAllSubscriptions();
   }
 
-  handleClick = () => {
-    this.setState(({ isOpen }) => ({isOpen: !isOpen}));
+  handleResize = () => {
+    if (window.innerWidth < 910) {
+      this.setState({isOpen: false})
+    } else if (!this.state.isManuallyClosed) {
+      this.setState({isOpen: true})
+    }
+  }
+
+  componentWillUnmount() {
+    removeEventListener('resize');
+  }
+
+  handleClick = (e) => {
+    let controlState = {};
+    if (e.target.className.includes("fa-compress")) {
+      controlState = {isManuallyClosed: true};
+    } else {
+      controlState = {isManuallyClosed: false};
+    }
+    this.setState(({ isOpen }) => ({isOpen: !isOpen, ...controlState}));
   }
 
   handleSelectedUpdate = () => {
@@ -63,8 +87,8 @@ const NavBarCollapseExpand = ({ isOpen, handleClick }) => (
   <div className="navbar-show-button">
     <span onClick={handleClick}>
       {isOpen ?
-        <i className="fa fa-expand" aria-hidden="true"></i>
-        : <i className="fa fa-compress" aria-hidden="true"></i>
+        <i className="fa fa-compress" aria-hidden="true"></i>
+        : <i className="fa fa-expand" aria-hidden="true"></i>
       }
       </span>
   </div>
@@ -108,14 +132,14 @@ const NavBarLinks = ({ feedIds, feeds, selected }) => {
 }
 
 const NavBarAddContent = () => (
-  <aside className="nav-add-content-container">
+  <div className="nav-add-content-container">
     <Link to="/i/discover">
       <div className="nav-add-content">
         <span className="nav-add-content-plus"><i className="fa fa-plus" aria-hidden="true"></i></span>
         Add Content
       </div>
     </Link>
-  </aside>
+  </div>
 );
 
 export default NavBar;

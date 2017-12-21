@@ -27,8 +27,7 @@
 }
 
 .navbar-links {
-  position: relative;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 120px);
   font-size: 13px;
   font-weight: 700;
   color: #757575;
@@ -88,31 +87,15 @@
   text-transform: uppercase;
   border-top: 1px solid $text-light-grey;
   display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
-}
-
-.nav-add-content {
-  position: absolute;
-  top: 12px;
-  right: 66px;
+  height: 120px;
+  box-sizing: border-box;
 }
 
 .nav-add-content-plus {
   font-size: 20px;
   -webkit-text-stroke: 3px $background-grey;
   padding-right: 10px;
-}
-
-.nav-add-content a {
-  height: 300px;
-  width: 100%;
-  box-sizing: border-box;
-  border: none;
-  background: none;
-  text-align: center;
-  vertical-align: middle;
 }
 
 .edit-button {
