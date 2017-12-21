@@ -1,6 +1,7 @@
 .navbar {
   background: $background-grey;
-  width: 330px;
+  width: 250px;
+  flex-shrink: 0;
 }
 
 .navbar.collapsed {

@@ -28,8 +28,8 @@
 }
 
 .story-details {
-  position: relative;
   margin-left: 20px;
+  width: 100%;
 }
 
 // title
@@ -74,15 +74,18 @@
 }
 
 .read-controls {
-  display: flex;
-  width: 40px;
+  min-width: 50px;
+  margin-left: 10px;
+  text-align: right;
   box-sizing: border-box;
 }
 
 .hide-story, .read-story {
+  display: inline-block;
   height: 1em;
   color: $text-light-grey;
   padding: 5px;
+  padding-top: 0;
 }
 
 .hide-story:hover, .read-story:hover {

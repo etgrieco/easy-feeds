@@ -1,12 +1,16 @@
-@media (max-width: 910px) {
+@media (max-width: 640px) {
 
   .navbar {
     position: absolute;
     z-index: 2;
   }
 
-  .navbar.collapsed {
+  .collapsed {
     position: inherit;
+  }
+
+  .collapsed {
+    transition: none;
   }
 
 }

@@ -94,15 +94,17 @@ class StoriesIndexItem extends React.Component {
                 : null
               }
           </div>
-          <h5>
-            { !this.props.titleLink ?
-              <Link to={`/i/subscriptions/${story.feed_id}`}>
-                {feed.subscription_title}
-              </Link> : null
-            }
-            {` by ${story.author} / ${pubDateTime}`}
-          </h5>
+          <div>
+            <h5>
+              { !this.props.titleLink ?
+                <Link to={`/i/subscriptions/${story.feed_id}`}>
+                  {feed.subscription_title}
+                </Link> : null
+              }
+              {` by ${story.author} / ${pubDateTime}`}
+            </h5>
             <p dangerouslySetInnerHTML={summaryText} />
+          </div>
         </div>
       </div>
     );

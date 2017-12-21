@@ -11,7 +11,8 @@ class NavBar extends React.Component {
   state = {
     isOpen: true,
     selected: this.getSelectedLink(),
-    isManuallyClosed: false
+    isManuallyClosed: false,
+    isManuallyOpen: false
   };
 
   componentDidMount() {
@@ -21,29 +22,38 @@ class NavBar extends React.Component {
   }
 
   handleResize = () => {
-    if (window.innerWidth < 910) {
+    if (window.innerWidth < 910 && !this.state.isManuallyOpen) {
       this.setState({isOpen: false})
     } else if (!this.state.isManuallyClosed) {
       this.setState({isOpen: true})
     }
+
+    if (window.innerWidth > 910) {
+      this.setState({isManuallyOpen: false});
+    }
   }
 
   componentWillUnmount() {
-    removeEventListener('resize');
+    removeEventListener('resize', this.handleResize, false);
   }
 
   handleClick = (e) => {
     let controlState = {};
     if (e.target.className.includes("fa-compress")) {
-      controlState = {isManuallyClosed: true};
+      controlState = {isManuallyClosed: true, isManuallyOpen: false};
     } else {
-      controlState = {isManuallyClosed: false};
+      controlState = {isManuallyOpen: true, isManuallyClosed: false};
     }
+
     this.setState(({ isOpen }) => ({isOpen: !isOpen, ...controlState}));
   }
 
   handleSelectedUpdate = () => {
-    setTimeout(() => this.setState({selected: this.getSelectedLink()}), 0)
+    setTimeout(() => this.setState({selected: this.getSelectedLink()}), 0);
+  }
+
+  closeNavBar = () => {
+    this.setState({isOpen: false});
   }
 
   render() {
@@ -52,12 +62,17 @@ class NavBar extends React.Component {
     return (
       <section onClick={this.handleSelectedUpdate}
         className={`navbar ${isOpen ? "" : "collapsed"}`}>
-        <NavBarMenu {...this.state} handleClick={this.handleClick} />
+        <NavBarMenu {...this.state}
+          handleClick={this.handleClick}
+          closeNavBar={this.closeNavBar}
+          />
         { isOpen ?
           <div>
             <NavBarLinks feedIds={this.props.feedIds}
                          feeds={this.props.feeds}
-                         selected={this.state.selected} />
+                         selected={this.state.selected}
+                         closeNavBar={this.closeNavBar}
+                          />
             <NavBarAddContent />
           </div>
           : null
@@ -71,7 +86,7 @@ const NavBarMenu = (props) => (
   <div className="menu-container">
     {props.isOpen ?
       <div>
-        <Link to="/i/feeds/">
+        <Link to="/i/feeds/" onClick={props.closeNavBar}>
           <div className="edit-button">Organize Feeds
             <i className="fa fa-cog" aria-hidden="true"></i>
           </div>
@@ -94,11 +109,14 @@ const NavBarCollapseExpand = ({ isOpen, handleClick }) => (
   </div>
 );
 
-const NavBarLinks = ({ feedIds, feeds, selected }) => {
+const NavBarLinks = ({ feedIds, feeds, selected, closeNavBar }) => {
   const feedsList = feedIds.map(feedId => {
     const feed = feeds[feedId];
     return (
-      <Link className={selected == feedId ? "selected" : ""} key={feedId} to={`/i/subscriptions/${feed.id}`}>
+      <Link className={selected == feedId ? "selected" : ""}
+        onClick={closeNavBar}
+        key={feedId}
+        to={`/i/subscriptions/${feed.id}`}>
         <li>
           <img src={feed.favicon_url} /> {feed.subscription_title}
         </li>
@@ -109,13 +127,15 @@ const NavBarLinks = ({ feedIds, feeds, selected }) => {
   return(
     <nav className="navbar-links">
       <div className="feeds">
-        <Link to="/i/latest" className={`latest${selected === "latest" ? " selected" : ""}`}>
+        <Link to="/i/latest" onClick={closeNavBar}
+          className={`latest${selected === "latest" ? " selected" : ""}`}>
           <li><span><i className="fa fa-bars" aria-hidden="true"></i></span>
             Latest
           </li>
         </Link>
 
-        <Link to="/i/reads" className={`reads${selected === "reads" ? " selected" : ""}`}>
+        <Link to="/i/reads" onClick={closeNavBar}
+          className={`reads${selected === "reads" ? " selected" : ""}`}>
           <li>
             <span>
               <i className="fa fa-book" aria-hidden="true"></i>
