@@ -22,13 +22,13 @@ class NavBar extends React.Component {
   }
 
   handleResize = () => {
-    if (window.innerWidth < 910 && !this.state.isManuallyOpen) {
+    if (window.innerWidth < 700 && !this.state.isManuallyOpen) {
       this.setState({isOpen: false})
     } else if (!this.state.isManuallyClosed) {
       this.setState({isOpen: true})
     }
 
-    if (window.innerWidth > 910) {
+    if (window.innerWidth > 700) {
       this.setState({isManuallyOpen: false});
     }
   }
@@ -53,7 +53,9 @@ class NavBar extends React.Component {
   }
 
   closeNavBar = () => {
-    this.setState({isOpen: false});
+    if (window.innerWidth < 910) {
+      this.setState({isOpen: false})
+    };
   }
 
   render() {
