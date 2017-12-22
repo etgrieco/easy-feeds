@@ -1,4 +1,3 @@
-import merge from 'lodash/merge';
 import { combineReducers } from 'redux';
 import { OPEN_POPOUT, CLOSE_POPOUT } from '../actions/popout_actions';
 import { RECEIVE_FEED_TITLE } from '../actions/ui_actions';

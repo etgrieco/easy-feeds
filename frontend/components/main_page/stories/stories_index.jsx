@@ -6,7 +6,7 @@ import StoryLoadingAnimation from 'react-loading-animation';
 class StoriesIndex extends React.Component {
   state = {
     fetching: false,
-    condensedView: window.innerWidth <= 780
+    condensedView: window.innerWidth <= 810
   };
 
   static defaultProps = {

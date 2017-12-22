@@ -5,6 +5,8 @@ import { REMOVE_FEED, RECEIVE_NEW_FEED, RECEIVE_ALL_SUBSCRIPTIONS  }
 import { RECEIVE_LATEST, RECEIVE_READS, RECEIVE_READ, RECEIVE_UNREAD } from '../actions/story_actions';
 import { CLEAR_ENTITIES } from '../actions/session_actions';
 import merge from 'lodash/merge';
+import union from 'lodash/union';
+import remove from 'lodash/remove';
 
 const userReducer = (state = null, action) => {
   Object.freeze(state);
@@ -21,18 +23,14 @@ const userReducer = (state = null, action) => {
 const subscriptionsReducer = (state = [], action) => {
   Object.freeze(state);
   let newState;
-  let idx;
   switch (action.type) {
     case RECEIVE_ALL_SUBSCRIPTIONS:
       return action.feeds.allIds;
     case RECEIVE_NEW_FEED:
-      const newFeedId = action.feeds.allIds[0];
-      return state.concat([newFeedId]);
+      return union(state, action.feeds.allIds);
     case REMOVE_FEED:
-      idx = state.indexOf(action.feeds.allIds[0]);
-      newState = state.concat();
-      if(idx > -1) { newState.splice(idx, 1); }
-      return newState;
+      const id = action.feeds.allIds[0];
+      return state.filter(el => el !== id);
     case CLEAR_ENTITIES:
       return [];
     default:
@@ -45,7 +43,7 @@ const latestStoriesReducer = (state = [], action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_LATEST:
-      return state.concat(action.stories.allIds);
+      return union(state, action.stories.allIds);
     case CLEAR_ENTITIES:
       return [];
     default:
@@ -59,12 +57,9 @@ const readsReducer = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_UNREAD:
       const id = action.stories.allIds[0];
-      const idx = state.indexOf(id);
-      newState = state.slice();
-      if(idx > -1) { newState.splice(idx, 1); }
-      return newState;
+      return state.filter(el => el !== id);
     case RECEIVE_READ:
-      return action.stories.allIds.concat(state);
+      return union(action.stories.allIds, state);
     case RECEIVE_READS:
       return action.stories.allIds;
     case CLEAR_ENTITIES:

@@ -4,6 +4,7 @@ import { REMOVE_FEED, RECEIVE_NEW_FEED, RECEIVE_SINGLE_FEED, RECEIVE_ALL_SUBSCRI
 import { CLEAR_ENTITIES, RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_LATEST, RECEIVE_READS } from '../actions/story_actions';
 import merge from 'lodash/merge';
+import union from 'lodash/union';
 import { combineReducers } from 'redux';
 
 const feedsById = (state = {}, action) => {
@@ -24,7 +25,7 @@ const feedsById = (state = {}, action) => {
     case RECEIVE_SINGLE_FEED:
       const feedId = action.feeds.allIds[0];
       const prevStories = state[feedId] ? state[feedId].stories : [];
-      const allStories = [...prevStories, ...action.feeds.byId[feedId].stories];
+      const allStories = union(prevStories, action.feeds.byId[feedId].stories);
       newState = merge({}, state, action.feeds.byId, action.subscriptions.byId);
       newState[feedId].stories = allStories;
       return newState;
