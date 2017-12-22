@@ -53,7 +53,7 @@ class NavBar extends React.Component {
   }
 
   closeNavBar = () => {
-    if (window.innerWidth < 910) {
+    if (window.innerWidth < 780) {
       this.setState({isOpen: false})
     };
   }

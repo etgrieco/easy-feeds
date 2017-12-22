@@ -1,0 +1,12 @@
+@media (max-width: 700px) {
+
+  .navbar {
+    position: absolute;
+    z-index: 2;
+  }
+
+  .navbar.collapsed {
+    position: relative;
+  }
+
+}
