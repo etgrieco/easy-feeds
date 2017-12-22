@@ -59,10 +59,10 @@ button {
 
 .feed-search-input-container i {
   position: absolute;
-  bottom:26px;
-  left:12px;
-  width:10px;
-  height:10px;
+  bottom: 21px;
+  left: 12px;
+  width: 10px;
+  height: 10px;
   color: rgba(0, 0, 0, 0.15);
 }
 
@@ -144,15 +144,16 @@ button {
 
 .add-feed-input-container {
   position: relative;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
 }
 
 .add-feed-input-container i {
   position: absolute;
-  bottom:26px;
-  left:12px;
-  width:10px;
-  height:10px;
+  bottom: 21px;
+  left: 12px;
+  width: 10px;
+  height: 10px;
   color: rgba(0, 0, 0, 0.15);
 }
 
@@ -160,7 +161,7 @@ button {
   display: inline-block;
   padding: 5px;
   padding-left: 40px;
-  width: calc(100% - 162px);
+  width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   margin-left: 0px;
@@ -175,16 +176,10 @@ button {
 }
 
 .add-feed-form button {
-  margin: 10px;
-  width: 70px;
-  height: 10px;
-  padding: 15px;
-  padding-bottom: 21px;
-  padding-top: 14px;
-  margin: 0;
-  text-align: center;
-  vertical-align: middle;
-  margin-right: 0px;
+  height: 32px;
+  padding: 10px 20px;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .following-button:hover {

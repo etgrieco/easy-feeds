@@ -1,14 +1,9 @@
 import React from 'react';
 
 export class AddFeedForm extends React.Component {
+  state = {rss_url: ""};
 
-  constructor(props) {
-    super(props);
-    this.state = {rss_url: ""};
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.createFeed(this.state);
   }

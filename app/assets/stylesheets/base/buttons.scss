@@ -7,6 +7,8 @@ body button {
   align-self: center;
   vertical-align: middle;
   text-align: center;
+  width: fit-content;
+  box-sizing: border-box;
 }
 
 .green-button {
