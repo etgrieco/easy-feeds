@@ -96,3 +96,19 @@
 .read {
   opacity: .5;
 }
+
+//condensedView
+
+.story-index-item.condensed {
+  flex-direction: column;
+}
+
+.condensed .story-item-image {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.condensed .story-details {
+  margin: 0;
+}

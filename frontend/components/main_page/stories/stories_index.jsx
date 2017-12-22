@@ -4,19 +4,38 @@ import { Link } from 'react-router-dom';
 import StoryLoadingAnimation from 'react-loading-animation';
 
 class StoriesIndex extends React.Component {
-  state = {fetching: false};
+  state = {
+    fetching: false,
+    condensedView: window.innerWidth <= 780
+  };
+
+  static defaultProps = {
+    stories: [],
+    title: ""
+  };
 
   componentDidMount() {
-    window.document.querySelector(".main-content").scrollTo(0,0);
-    window.document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
+    document.querySelector(".main-content").scrollTo(0,0);
+    document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
+    addEventListener('resize', this.onResize, false)
     if (this.props.stories.length === 0 || this.props.readView) {
       this.props.fetchAction(this.props.match.params.id);
+    }
+    this.storyIndex = document.querySelector(".story-index");
+  }
+
+  onResize = e => {
+    if (this.storyIndex.offsetWidth < 500 && !this.state.condensedView) {
+      this.setState({condensedView: true})
+    } else if (this.storyIndex.offsetWidth > 500 && this.state.condensedView) {
+      this.setState({condensedView: false})
     }
   }
 
   componentWillUnmount() {
     let timeout = null;
-    window.document.querySelector(".main-content").removeEventListener('scroll', this.onScroll, false);
+    document.querySelector(".main-content").removeEventListener('scroll', this.onScroll, false);
+    removeEventListener('resize', this.onResize, false);
   }
 
   componentWillUpdate(newProps) {
@@ -56,7 +75,6 @@ class StoriesIndex extends React.Component {
   render() {
     const { stories, feeds, title, titleLink,
             moreStories, previewView, readView } = this.props;
-
     const id = this.props.match.params.id;
 
     const storyItems = stories.map(story => {
@@ -66,12 +84,10 @@ class StoriesIndex extends React.Component {
         <StoriesIndexItem key={story.id}
           story={story}
           feed={feed}
-          readStory={this.props.readStory}
-          unreadStory={this.props.unreadStory}
           titleLink={Boolean(titleLink)}
           history={this.props.history}
-          readView={this.props.readView}
-          previewView={this.props.previewView}
+          {...this.state}
+          {...this.props}
            />
       );
     }
@@ -92,12 +108,6 @@ class StoriesIndex extends React.Component {
       </div>
     );
   }
-
 }
-
-StoriesIndex.defaultProps = {
-  stories: [],
-  title: ""
-};
 
 export default StoriesIndex;

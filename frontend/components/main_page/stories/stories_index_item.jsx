@@ -58,14 +58,13 @@ class StoriesIndexItem extends React.Component {
 
     const originPath = this.props.history.location.pathname;
 
-    const readStateClass = "story-index-item"
-                           + `${this.state.hidden ? " hidden" : ""}`
-                           + `${this.state.read
-                                && !this.props.readView ?
-                                " read" : ""}`;
+    const storyIndexItemClass = "story-index-item"
+       + (this.state.hidden ? " hidden" : "")
+       + (this.state.read && !this.props.readView ? " read" : "")
+       + (this.props.condensedView ? " condensed" : "");
 
     return (
-      <div className={`${readStateClass}`}
+      <div className={`${storyIndexItemClass}`}
         onMouseEnter={e => this.setState({ isMouseInside: true })}
         onMouseLeave={e => this.setState({ isMouseInside: false })}
         onClick={e => this.handleRedirect(e, story.id)}
