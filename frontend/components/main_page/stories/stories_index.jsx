@@ -4,11 +4,7 @@ import { Link } from 'react-router-dom';
 import StoryLoadingAnimation from 'react-loading-animation';
 
 class StoriesIndex extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onScroll = this.onScroll.bind(this);
-    this.state = {fetching: false};
-  }
+  state = {fetching: false};
 
   componentDidMount() {
     window.document.querySelector(".main-content").scrollTo(0,0);
@@ -29,7 +25,7 @@ class StoriesIndex extends React.Component {
     }
   }
 
-  onScroll(e) {
+  onScroll = (e) => {
     if (this.props.readView || this.props.previewView) { return; }
 
     if ((e.target.scrollHeight - e.target.scrollTop
