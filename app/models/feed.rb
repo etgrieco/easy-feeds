@@ -12,8 +12,7 @@ class Feed < ApplicationRecord
 
   has_many :subscribers,
     through: :subscriptions,
-    source: :subscriber,
-    dependent: :destroy
+    source: :subscriber
 
   has_many :stories,
     foreign_key: :feed_id,

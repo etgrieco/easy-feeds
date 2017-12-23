@@ -29,7 +29,8 @@ class User < ApplicationRecord
 
   has_many :reads,
     foreign_key: :reader_id,
-    class_name: :Read
+    class_name: :Read,
+    dependent: :destroy
 
   has_many :read_stories,
     through: :reads,
