@@ -63,7 +63,8 @@ class NavBar extends React.Component {
 
     return (
       <section onClick={this.handleSelectedUpdate}
-        className={`navbar ${isOpen ? "" : "collapsed"}`}>
+        className={`navbar ${isOpen ? "" : "collapsed"}`}
+        >
         <NavBarMenu {...this.state}
           handleClick={this.handleClick}
           closeNavBar={this.closeNavBar}
@@ -75,7 +76,7 @@ class NavBar extends React.Component {
                          selected={this.state.selected}
                          closeNavBar={this.closeNavBar}
                           />
-            <NavBarAddContent />
+            <NavBarAddContent closeNavBar={this.closeNavBar}/>
           </div>
           : null
         }
@@ -153,8 +154,8 @@ const NavBarLinks = ({ feedIds, feeds, selected, closeNavBar }) => {
   );
 }
 
-const NavBarAddContent = () => (
-  <div className="add-content">
+const NavBarAddContent = ({ closeNavBar }) => (
+  <div className="add-content" onClick={closeNavBar}>
     <Link to="/i/discover">
       <span><i className="fa fa-plus" aria-hidden="true"></i></span>
       Add Content

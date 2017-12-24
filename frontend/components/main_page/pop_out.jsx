@@ -18,7 +18,7 @@ class PopOut extends React.Component {
   render() {
     const { component: Component, closePopOut } = this.props;
     return (
-      <aside style={{width: "100vw"}} id="pop-out">
+      <aside style={{width: "100vw"}}>
         <div className="pop-out-exit noselect">
           <div className="noselect" onClick={e => this.props.handleClose()}>
             &#10006;
@@ -37,6 +37,12 @@ class PopOut extends React.Component {
 export default class PopOutWithTransition extends React.Component {
   state = { appeared: false }
   timeouts = [];
+
+  handleClick = e => {
+    if(e.target.className === "pop-out-screen") {
+      this.handleClose();
+    }
+  }
 
   handleClose = () => {
     this.setState({ appeared: false },
@@ -63,7 +69,7 @@ export default class PopOutWithTransition extends React.Component {
     return (
       <div className={"pop-out-screen" +
         (this.state.appeared ? "" : "-appearing")
-      } onClick={e => { if(e.target.id === "pop-out") { this.handleClose(); }}}>
+      } onClick={this.handleClick}>
         <div
           className={"pop-out-transition" +
             (this.state.appeared ? "" : "-appearing" )
