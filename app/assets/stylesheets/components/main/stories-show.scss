@@ -30,11 +30,12 @@
 
 .story-show-image {
   display: block;
-  width: 70%;
+  width: 100%;
   padding: 40px 0;
   max-width: 500px;
   max-height: 500px;
   margin: 0 auto;
+  min-height: fit-content;
 }
 
 .story-show-image img {
