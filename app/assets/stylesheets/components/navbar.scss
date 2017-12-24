@@ -1,4 +1,5 @@
 .navbar {
+  position: relative;
   background: $background-grey;
   width: 250px;
   flex-shrink: 0;
@@ -87,10 +88,11 @@
 
 //ADD CONTENT BUTTON
 .add-content {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
   text-transform: uppercase;
   border-top: 1px solid $text-light-grey;
-  position: relative;
-  height: 120px;
   box-sizing: border-box;
   text-align: center;
   vertical-align: baseline;
