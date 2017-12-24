@@ -17,14 +17,14 @@
 }
 
 .pop-out-window {
-  z-index: 3;
   background: white;
   overflow: auto;
   padding: 50px;
   margin-left: 20%;
-  height: 100vh;
-  margin-top: -50px;
   box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  bottom: 0;
 }
 
 .pop-out-exit {
