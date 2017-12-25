@@ -11,27 +11,24 @@
   transition: opacity .3s ease;
 }
 
-.pop-out-screen-appearing {
+.pop-out-screen.appearing {
   opacity: 0.01;
   transition: opacity .3s ease;
 }
 
 .pop-out-window {
-  z-index: 3;
   background: white;
   overflow: auto;
   padding: 50px;
   margin-left: 20%;
-  height: 100vh;
-  margin-top: -50px;
   box-sizing: border-box;
+  height: 100%;
 }
 
 .pop-out-exit {
-  position: relative;
+  position: absolute;
   width: 30px;
   height: 50px;
-  z-index: 2;
   background-image: image-url("tab.png");
   background-position: right;
   background-repeat: no-repeat;
@@ -55,7 +52,7 @@
   color: $text-dark-grey;
 }
 
-.pop-out-transition-appearing {
+.pop-out-transition.appearing {
   position: absolute;
   left: 50%;
   transition: left .3s ease;
