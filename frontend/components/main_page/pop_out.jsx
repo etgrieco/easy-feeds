@@ -64,13 +64,13 @@ export default class PopOutWithTransition extends React.Component {
 
   render() {
     return (
-      <div>
+      <section>
         <div onClick={this.handleClick} className={"pop-out-screen" +
           (this.state.appeared ? "" : " appearing")
         }>
           <PopOut {...this.props} handleClose={this.handleClose} />
         </div>
-      </div>
+      </section>
     );
   }
 }
