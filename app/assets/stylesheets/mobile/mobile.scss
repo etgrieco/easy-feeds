@@ -14,3 +14,13 @@
     margin-left: 0;
   }
 }
+
+@media (max-width: 830px) {
+  .search-item {
+    flex-direction: column;
+  }
+
+  .follow-button, .following-button {
+    margin: 10px 0;
+  }
+}
