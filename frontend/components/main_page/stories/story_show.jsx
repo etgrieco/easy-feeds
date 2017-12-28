@@ -27,7 +27,7 @@ class StoriesShow extends React.Component {
     const imageStyle = {backgroundImage};
 
     return (
-      <div className="story-show-container">
+      <div className="story-show">
         <h1>{title}</h1>
 
         <div className="story-show-info">
@@ -35,9 +35,7 @@ class StoriesShow extends React.Component {
            / by {story.author} / {pubDateTime}
         </div>
 
-        <div className="story-show-image">
-          <img src={image_url} />
-        </div>
+        <img src={image_url} / >
 
         <div className="story-summary">
           <article dangerouslySetInnerHTML={summaryText} />
