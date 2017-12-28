@@ -23,9 +23,6 @@ class StoriesShow extends React.Component {
       __html: summary.replace("<a", "<a target=\"__blank\" ")
     };
 
-    const backgroundImage = `url(${image_url})`;
-    const imageStyle = {backgroundImage};
-
     return (
       <div className="story-show">
         <h1>{title}</h1>
@@ -35,7 +32,9 @@ class StoriesShow extends React.Component {
            / by {story.author} / {pubDateTime}
         </div>
 
-        <img src={image_url} / >
+        <div className="story-show-img">
+          <img src={image_url} / >
+        </div>
 
         <div className="story-summary">
           <article dangerouslySetInnerHTML={summaryText} />
