@@ -42,8 +42,7 @@ const allFeedsResults = (state = [], action) => {
 
   switch (action.type) {
     case RECEIVE_NEW_FEED:
-      const newFeed = action.feeds.allIds[0];
-      return state.includes(newFeed) ? state : [newFeed].concat(state);
+      return union(action.feeds.allIds, state);
     case RECEIVE_FEEDS_RESULTS:
       return action.results;
     case CLEAR_ENTITIES:

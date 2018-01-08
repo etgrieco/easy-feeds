@@ -3,11 +3,10 @@ import { CLEAR_ERRORS } from '../actions/errors_actions';
 import { RECEIVE_CURRENT_USER,
   RECEIVE_SESSION_ERRORS } from '../actions/session_actions';
 import { CLEAR_SESSION_ERRORS } from '../actions/errors_actions';
-const intitialState = [];
 import merge from 'lodash/merge';
 
 //Session login/signup errors
-const SessionErrorsReducer = (state = intitialState, action) => {
+const SessionErrorsReducer = (state = [], action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
@@ -21,11 +20,10 @@ const SessionErrorsReducer = (state = intitialState, action) => {
   }
 };
 
-//Subscription/feed errors
 import { RECEIVE_SUBSCRIPTION_ERRORS, RECEIVE_SINGLE_FEED, REMOVE_FEED }
   from '../actions/subscription_actions';
 
-const SubscriptionErrorsReducer = (state = intitialState, action) => {
+const SubscriptionErrorsReducer = (state = [], action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_SUBSCRIPTION_ERRORS:

@@ -7,6 +7,16 @@ export const RECEIVE_NEW_FEED = 'RECEIVE_NEW_FEED';
 export const RECEIVE_SUBSCRIPTION_ERRORS = 'RECEIVE_SUBSCRIPTION_ERRORS';
 export const RECEIVE_ALL_SUBSCRIPTIONS = 'RECEIVE_ALL_SUBSCRIPTIONS';
 
+const commonAction = type => payload => ({
+  type,
+  feeds: payload.feeds,
+  subscriptions: payload.subscriptions,
+  stories: payload.stories
+});
+
+export const receiveSingleFeed = commonAction(RECEIVE_SINGLE_FEED);
+export const receiveNewFeed = commonAction(RECEIVE_NEW_FEED);
+
 export const receiveAllSubscriptions = subscriptionsPayload => ({
   type: RECEIVE_ALL_SUBSCRIPTIONS,
   feeds: subscriptionsPayload.feeds,
@@ -17,20 +27,6 @@ export const removeFeed = feedPayload => ({
   type: REMOVE_FEED,
   feeds: feedPayload.feeds,
   subscriptions: feedPayload.subscriptions
-});
-
-export const receiveSingleFeed = feedPayload => ({
-  type: RECEIVE_SINGLE_FEED,
-  feeds: feedPayload.feeds,
-  subscriptions: feedPayload.subscriptions,
-  stories: feedPayload.stories
-});
-
-export const receiveNewFeed = feedPayload => ({
-  type: RECEIVE_NEW_FEED,
-  feeds: feedPayload.feeds,
-  subscriptions: feedPayload.subscriptions,
-  stories: feedPayload.stories
 });
 
 export const receiveSubscriptionErrors = errors => ({

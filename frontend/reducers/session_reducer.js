@@ -13,8 +13,7 @@ const userReducer = (state = null, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      newState = action.currentUser;
-      return newState;
+      return action.currentUser;
     default:
       return state;
   }

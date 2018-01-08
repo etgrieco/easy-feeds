@@ -8,68 +8,33 @@ export const RECEIVE_READ = 'RECEIVE_READ';
 export const RECEIVE_UNREAD = 'RECEIVE_UNREAD';
 export const RECEIVE_STORY = 'RECEIVE_STORY';
 
-export const receiveLatest = feedsPayload => ({
-  type: RECEIVE_LATEST,
-  feeds: feedsPayload.feeds,
-  subscriptions: feedsPayload.subscriptions,
-  stories: feedsPayload.stories
+const commonAction = type => payload => ({
+  type,
+  feeds: payload.feeds,
+  subscriptions: payload.subscriptions,
+  stories: payload.stories
 });
 
-export const receiveReads = feedsPayload => ({
-  type: RECEIVE_READS,
-  feeds: feedsPayload.feeds,
-  subscriptions: feedsPayload.subscriptions,
-  stories: feedsPayload.stories
-});
+export const receiveLatest = commonAction(RECEIVE_LATEST);
+export const receiveReads = commonAction(RECEIVE_READS);
+export const receiveRead = commonAction(RECEIVE_READ);
+export const receiveStory = commonAction(RECEIVE_STORY);
+export const receiveUnread = commonAction(RECEIVE_UNREAD);
 
-export const receiveStory = storyPayload => ({
-  type: RECEIVE_STORY,
-  feeds: storyPayload.feeds,
-  subscriptions: storyPayload.subscriptions,
-  stories: storyPayload.stories
-});
+export const fetchStory = storyId => dispatch => (
+  StoryApiUtil.fetchStory(storyId)
+    .then(story => dispatch(receiveStory(story)))
+);
 
-export const receiveRead = storyPayload => ({
-  type: RECEIVE_READ,
-  feeds: storyPayload.feeds,
-  subscriptions: storyPayload.subscriptions,
-  stories: storyPayload.stories
-});
+export const fetchLatest = offset => dispatch => (
+  StoryApiUtil.fetchLatest(offset)
+    .then(stories => dispatch(receiveLatest(stories)))
+);
 
-export const receiveUnread = storyPayload => ({
-  type: RECEIVE_UNREAD,
-  feeds: storyPayload.feeds,
-  subscriptions: storyPayload.subscriptions,
-  stories: storyPayload.stories
-});
-
-export const fetchStory = storyId => dispatch => {
-  return (
-    StoryApiUtil.fetchStory(storyId)
-      .then(
-        story => dispatch(receiveStory(story))
-      )
-  );
-};
-
-export const fetchLatest = offset => dispatch => {
-  return (
-    StoryApiUtil.fetchLatest(offset)
-      .then(
-      stories =>
-        dispatch(receiveLatest(stories))
-      )
-  );
-};
-
-export const fetchUnsubscribedFeed = feedId => dispatch =>  {
-  return (
-    FeedApiUtil.fetchUnsubscribedFeed(feedId)
-      .then(
-        feedPayload => dispatch(receiveSingleFeed(feedPayload))
-    )
-  );
-};
+export const fetchUnsubscribedFeed = feedId => dispatch => (
+  FeedApiUtil.fetchUnsubscribedFeed(feedId)
+    .then(feedPayload => dispatch(receiveSingleFeed(feedPayload)))
+);
 
 export const readStory = id => dispatch => (
   StoryApiUtil.readStory(id)
