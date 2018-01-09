@@ -2,6 +2,7 @@ import React from 'react';
 import StoriesIndexItem from './stories_index_item';
 import { Link } from 'react-router-dom';
 import StoryLoadingAnimation from 'react-loading-animation';
+import throttle from 'lodash/throttle';
 
 class StoriesIndex extends React.Component {
   state = {
@@ -16,13 +17,27 @@ class StoriesIndex extends React.Component {
 
   componentDidMount() {
     document.querySelector(".main-content").scrollTo(0,0);
-    document.querySelector(".main-content").addEventListener('scroll', this.onScroll, false);
-    addEventListener('resize', this.onResize, false)
+    document.querySelector(".main-content").addEventListener('scroll', this.throttledScroll, false);
+    addEventListener('resize', this.throttledResize, false)
     if (this.props.stories.length === 0 || this.props.readView) {
       this.props.fetchAction(this.props.match.params.id);
     }
     this.storyIndex = document.querySelector(".story-index");
   }
+
+  componentWillUnmount() {
+    let timeout = null;
+    document.querySelector(".main-content").removeEventListener('scroll', this.throttledScroll, false);
+    removeEventListener('resize', this.throttledResize, false);
+  }
+
+  componentWillUpdate(newProps) {
+    if (newProps.stories.length > this.props.stories.length) {
+      this.setState({ fetching: false });
+    }
+  }
+
+  throttledResize = throttle(e => this.onResize(e), 300);
 
   onResize = e => {
     if (this.storyIndex.offsetWidth < 500 && !this.state.condensedView) {
@@ -32,17 +47,7 @@ class StoriesIndex extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    let timeout = null;
-    document.querySelector(".main-content").removeEventListener('scroll', this.onScroll, false);
-    removeEventListener('resize', this.onResize, false);
-  }
-
-  componentWillUpdate(newProps) {
-    if (newProps.stories.length > this.props.stories.length) {
-      this.setState({ fetching: false });
-    }
-  }
+  throttledScroll = throttle(e => this.onScroll(e), 300);
 
   onScroll = (e) => {
     if (this.props.readView || this.props.previewView) { return; }

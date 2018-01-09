@@ -9,6 +9,7 @@ import DiscoverFeedsContainer from './feeds/discover_feeds_container';
 import SubscriptionStoriesIndexPopout from './stories/subscription_stories_index_popout';
 import StoryShowPopout from './stories/story_show_popout';
 import { receiveFeedTitle } from '../../actions/ui_actions';
+import throttle from 'lodash/throttle';
 
 class MainContent extends React.Component {
   state = {titleSent: false};
@@ -16,13 +17,15 @@ class MainContent extends React.Component {
   componentDidMount() {
     this.props.receiveFeedTitle(null);
     window.document.querySelector(".main-content")
-      .addEventListener('scroll', this.onScroll, false);
+      .addEventListener('scroll', this.throttledScroll, false);
   }
 
   componentWillUnmount() {
     window.document.querySelector(".main-content")
-      .removeEventListener('scroll', this.onScroll, false);
+      .removeEventListener('scroll', this.throttledScroll, false);
   }
+
+  throttledScroll = throttle(e => this.onScroll(e), 100, {leading: true});
 
   onScroll = (e) => {
     const { titleSent } = this.state;
@@ -30,7 +33,7 @@ class MainContent extends React.Component {
       this.setState({titleSent: true});
       this.props.receiveFeedTitle(this.getTitle());
     }
-    else if (e.target.scrollTop < 80) {
+    else if (e.target.scrollTop < 80 && Boolean(this.props.sessionBarTitle)) {
       this.setState({titleSent: false})
       this.props.receiveFeedTitle(null);
     }
@@ -84,7 +87,7 @@ const mapStateToProps = (state, ownProps) => {
   let feed = feeds[id];
   feed = !feed ? {subscription_title: ""} : feed;
   const subscriptionTitle = feed.subscription_title || feed.title;
-  return ({ subscriptionTitle });
+  return ({ subscriptionTitle, sessionBarTitle: state.ui.feedTitle });
 };
 
 const mapDispatchToProps = dispatch => ({

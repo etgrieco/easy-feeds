@@ -37,7 +37,10 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
 
-  return ({title, stories, feeds, titleLink, moreStories, ...viewProp});
+  return ({
+    title, stories, feeds, titleLink, moreStories,
+    ...viewProp
+  });
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
