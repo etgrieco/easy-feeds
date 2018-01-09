@@ -1,10 +1,8 @@
 .landing {
-  background: #F2F2F2;
-  padding: 40px 50px 50px 50px;
   width: 100%;
-  height: calc(100vh + 100px);
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .demo-user {
@@ -34,6 +32,24 @@
 
 .landing-image-container {
   border: 1px solid white;
+  width: 80%;
   max-width: 800px;
   box-shadow:5px 5px 5px #999;
+}
+
+.landing .info-box {
+  padding: 40px 50px 50px 50px;
+  width: 100%;
+}
+
+.info-box {
+  margin-bottom: 100px;
+}
+
+.info-box.background-grey {
+  background: #F2F2F2;
+}
+
+.info-box.background-white {
+  background: white;
 }

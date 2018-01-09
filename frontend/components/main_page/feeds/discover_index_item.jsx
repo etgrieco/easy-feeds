@@ -36,12 +36,14 @@ class DiscoverIndexItem extends React.Component {
               onMouseOver={e => this.setState({hovering: true})}
               onMouseLeave={e => this.setState({hovering: false})}
               onClick={e => this.handleUnsubscribe(feed)}
-              >{ this.state.hovering ? "Unfollow?" : "Following" }
+              >
+              { this.state.hovering ? "Unfollow?" : "Following" }
             </button> :
             <button
               className="follow-button discover-button"
               onClick={e => this.handleSubscribe(feed)}>
-              Follow</button>
+              Follow
+            </button>
           }
         </div>
       </div>

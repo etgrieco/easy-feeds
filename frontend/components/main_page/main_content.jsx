@@ -54,8 +54,7 @@ class MainContent extends React.Component {
     const landingStyleProps = (this.props.match.path === "/" ||
       this.props.match.path === "/login" ||
       this.props.match.path === "/signup") &&
-      this.props.match.isExact ?
-        {padding: "0", background: "#F2F2F2"} : {};
+      this.props.match.isExact ? {padding: "0"} : {};
 
     return (
       <section className="main-content" style={{...landingStyleProps}}>
