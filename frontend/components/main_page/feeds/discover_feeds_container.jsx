@@ -8,22 +8,18 @@ import { clearErrors } from '../../../actions/errors_actions';
 import { fetchUnsubscribedFeed } from '../../../actions/story_actions';
 import DiscoverSearchIndex from './discover_search_index';
 
-const mapStateToProps = state => {
-  return ({
-    feeds: state.entities.feeds
-  });
-};
+const mapStateToProps = state => ({
+  feeds: state.entities.feeds
+});
 
-const mapDispatchToProps = dispatch => {
-  return ({
-    fetchFeedResults: query => dispatch(fetchFeedResults(query)),
-    createFeed: feed => dispatch(createFeed(feed)),
-    openPopOut: component => dispatch(openPopOut(component)),
-    fetchUnsubscribedFeed: feedId => dispatch(fetchUnsubscribedFeed(feedId)),
-    clearErrors: () => dispatch(clearErrors()),
-    deleteFeed: feed => dispatch(deleteFeed(feed)),
-  });
-};
+const mapDispatchToProps = dispatch => ({
+  fetchFeedResults: query => dispatch(fetchFeedResults(query)),
+  createFeed: feed => dispatch(createFeed(feed)),
+  openPopOut: component => dispatch(openPopOut(component)),
+  fetchUnsubscribedFeed: feedId => dispatch(fetchUnsubscribedFeed(feedId)),
+  clearErrors: () => dispatch(clearErrors()),
+  deleteFeed: feed => dispatch(deleteFeed(feed)),
+});
 
 export default withRouter(connect(
   mapStateToProps,

@@ -4,62 +4,25 @@ import DiscoverIndexItem from './discover_index_item';
 import AddFeedFormContainer from './add_feeds_form_container';
 
 class DiscoverSearchIndex extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {query: "", dataBaseSearch: true};
-    this.handleQueryChange = this.handleQueryChange.bind(this);
-    this.handleSwitch = this.handleSwitch.bind(this);
-  }
+  state = {query: "", dataBaseSearch: true};
 
   componentDidMount() {
     window.document.querySelector(".main-content").scrollTo(0,0);
     this.props.fetchFeedResults(this.state.query);
   }
 
-  handleQueryChange(e) {
+  handleQueryChange = e => {
     this.setState({query: e.target.value});
     this.props.fetchFeedResults(e.target.value);
   }
 
-  createDiscoverIndexItems(feeds) {
-    return (
-      feeds.results.length === 0 ?
-      ["No Feeds Found"] :
-      feeds.results.map(resultId => {
-        let feed = feeds.byId[resultId];
-        return <DiscoverIndexItem
-          key={feed.id}
-          feed={feed}
-          createFeed={this.props.createFeed}
-          openPopOut={this.props.openPopOut}
-          fetchUnsubscribedFeed={this.props.fetchUnsubscribedFeed}
-          deleteFeed={this.props.deleteFeed}
-          />;
-      })
-    );
-  }
-
-  discoverSearch(discoverIndexItems) {
-    const text = this.state.query.length === 0 ? "Popular Feeds" : "Results";
-    return (
-    <div className="discover-items">
-      <h2>{text}</h2>
-      <div className="results">
-        {discoverIndexItems}
-      </div>
-    </div>
-    );
-  }
-
-  handleSwitch({ dataBaseSearch, clearErrors }) {
+  handleSwitch = ({ dataBaseSearch, clearErrors }) => {
     this.setState({ dataBaseSearch });
     clearErrors ? this.props.clearErrors() : null;
   }
 
   render() {
-    const { feeds } = this.props;
-    const discoverIndexItems = this.createDiscoverIndexItems(feeds);
+    const text = this.state.query.length === 0 ? "Popular Feeds" : "Results";
 
     return(
       <div className="discover-search-index">
@@ -97,10 +60,35 @@ class DiscoverSearchIndex extends React.Component {
           <AddFeedFormContainer />
         </div>
         }
-        {this.discoverSearch(discoverIndexItems)}
+        <div className="discover-items">
+          <h2>{text}</h2>
+          <DiscoverIndexItems {...this.props} />
+        </div>
       </div>
     );
   }
+}
+
+function DiscoverIndexItems({ feeds, ...otherProps }) {
+  const results = feeds.results.length === 0 ?
+    ["No Feeds Found"] :
+    feeds.results.map(resultId => {
+      let feed = feeds.byId[resultId];
+      return <DiscoverIndexItem
+        key={feed.id}
+        feed={feed}
+        createFeed={otherProps.createFeed}
+        openPopOut={otherProps.openPopOut}
+        fetchUnsubscribedFeed={otherProps.fetchUnsubscribedFeed}
+        deleteFeed={otherProps.deleteFeed}
+      />;
+    });
+
+  return (
+    <div className="results">
+      {results}
+    </div>
+  );
 }
 
 export default DiscoverSearchIndex;

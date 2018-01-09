@@ -2,18 +2,13 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 class DiscoverIndexItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubscribe = this.handleSubscribe.bind(this);
-    this.handleUnsubscribe = this.handleUnsubscribe.bind(this);
-    this.state = { hovering: false };
-  }
+  state = { hovering: false };
 
-  handleSubscribe(feed) {
+  handleSubscribe = feed => {
     this.props.createFeed(feed);
   }
 
-  handleUnsubscribe(feed) {
+  handleUnsubscribe = feed => {
     this.props.deleteFeed(feed);
   }
 

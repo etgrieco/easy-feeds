@@ -16,11 +16,11 @@ class PopOut extends React.Component {
   }
 
   render() {
-    const { component: Component, closePopOut } = this.props;
+    const { component: Component, closePopOut, handleClose } = this.props;
     return (
         <div className="pop-out-window">
           <div className="pop-out-exit noselect">
-            <div className="noselect" onClick={e => this.props.handleClose()}>
+            <div className="noselect" onClick={e => handleClose()}>
               &#10006;
             </div>
           </div>
