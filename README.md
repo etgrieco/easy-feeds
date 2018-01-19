@@ -38,26 +38,19 @@ class Api::SubscriptionsController < ApplicationController
 end
 ```
 
-Another important optimization made was to only fetch the metadata of stories that were not already in the database. This required a checking procedure before story entries were populated fora particular feed:
+Another important optimization made was to only fetch the metadata of stories that were not already in the database. This required a checking procedure before story entries were populated for a particular feed:
 
 ```Ruby
 class Feed < ApplicationRecord
-
 # ...
-
   def populate_entries
-    @feed ||= Feedjira::Feed.fetch_and_parse self.rss_url
-
-    stories = self.stories
-    entries = @feed.entries
-
+    #fetch entries...
     entries.each do |entry|
-      unless stories.find_by(entry_id: entry.entry_id)
-        Story.create(Story.create_attributes_hash(entry, self.id, self.title))
+      unless stories.find_by(entry_id: entry.entry_id) # looks for potential duplicate
+        attributes = Story.create_attributes_hash(entry, self.id, self.title)
+        Story.create(attributes)
       end
     end
-
-    self.last_built = Time.now
   end
 
 end
