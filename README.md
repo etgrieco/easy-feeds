@@ -62,7 +62,7 @@ class Feed < ApplicationRecord
 
 end
 ```
-### Overlayed Article and Feed Views
+### Modular Article and Feed Modals
 
 An important front-end feature is the ability to view content in a modal-like component that comes over the feeds/stories browsing UI. In order to keep the code as DRY as possible, the same front-end popout component was used for both browsing a feed and viewing a specific story.
 
@@ -72,20 +72,23 @@ An important front-end feature is the ability to view content in a modal-like co
 This was primarily accomplished by turning the pop out React component into a higher-order component that can accept a component as props:
 
 ```jsx
+//Skeleton implementation for a 'StoriesShow' component being rendered by a 'PopOut' component
 
-export default ({ component: Component, isOpen, closePopOut }) => {
+import React from 'react';
+import StoriesShow from './story_show';
 
-  return (
-    <div className={isOpen ? "pop-out-modal" : "hidden"}>
-      <div className="pop-out-modal-screen" onClick={e => closePopOut() }>
-      </div>
+const PopOut = { handleClose, ...otherProps } => (
+  <div className="pop-out-window">
+    <div className="pop-out-exit noselect">
+      <div className="noselect" onClick={handleClose}>&#10006;</div>
+    </div>
+    <Component />
+  </div>
+);
 
-      <div className="pop-out-window">
-        {isOpen ? <Component /> : null}
-      </div>
-    </div>);
-};
-
+export default props => (
+  <PopOut {...props} {component: StoriesShow} />;
+);
 ```
 
 ## Acknowledgements

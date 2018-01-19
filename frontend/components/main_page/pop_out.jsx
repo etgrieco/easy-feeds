@@ -20,9 +20,7 @@ class PopOut extends React.Component {
     return (
         <div className="pop-out-window">
           <div className="pop-out-exit noselect">
-            <div className="noselect" onClick={e => handleClose()}>
-              &#10006;
-            </div>
+            <div className="noselect" onClick={handleClose}>&#10006;</div>
           </div>
           <Component />
         </div>
