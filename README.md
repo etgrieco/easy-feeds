@@ -8,6 +8,55 @@ This project uses the Rails framework for the backend API, and a React/Redux fra
 
 ## Features
 
+### Responsive UI
+
+The webpage allows for higher accessibility with responsive UI design for story and feed views. With DRY code, the viewing experience is optimized for both desktop and mobile viewing, as well as compatibility with small window sizes for a more compact viewing experience for multi-taskers.
+
+![Responsive UI Desktop][responsive-ui-desktop]
+![Responsive UI Mobile][responsive-ui-mobile]
+
+In addition to using media queries for applying contingent CSS styling, some vanilla JS functions were integrated with the React components in order to handle the resizing of more dynamic components, such as the navigation bar on the left. It was important to ensure that the navigation bar would handle predictably as the window resized. For example, an open navigation bar in a compact view should remain open as the window view expands. On the other hand, as a window contracts the navigation bar should automatically close.
+
+```jsx
+class NavBar extends React.Component {
+  state = {
+    isOpen: true,
+    isManuallyClosed: false,
+    isManuallyOpen: false
+  };
+
+  handleResize = () => {
+    if (window.innerWidth < 700 && !this.state.isManuallyOpen) {
+      this.setState({isOpen: false})
+    } else if (!this.state.isManuallyClosed) {
+      this.setState({isOpen: true})
+    }
+
+    if (window.innerWidth > 700) {
+      this.setState({isManuallyOpen: false});
+    }
+  }
+
+  componentDidMount() {
+    this.handleResize();
+    addEventListener('resize', this.handleResize, false);
+  }
+
+  render() {
+    const { isOpen } = this.state;
+
+    return (
+      <section className={`navbar ${isOpen ? "" : "collapsed"}`}>
+        //...
+      </section>
+    );
+  }
+
+}
+
+```
+
+
 ### Smart Feed Fetching
 
 With EasyFeeds, not only are you able to browse the library of feeds provided by the app, but also users can provide their own feeds with a feed URL.
@@ -72,9 +121,7 @@ import StoriesShow from './story_show';
 
 const PopOut = { handleClose, ...otherProps } => (
   <div className="pop-out-window">
-    <div className="pop-out-exit noselect">
-      <div className="noselect" onClick={handleClose}>&#10006;</div>
-    </div>
+    //...
     <Component />
   </div>
 );
@@ -96,3 +143,9 @@ Other helpful packages used in this project include:
 [add-feed-url]: https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/add-new-feed.gif
 [pop-out-modal]:
 https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/pop-out-modal.gif
+
+[responsive-ui-desktop]:
+https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/responsive-ui-desktop.gif
+
+[responsive-ui-mobile]:
+https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/responsive-ui-mobile.gif
