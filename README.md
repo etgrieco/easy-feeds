@@ -12,8 +12,7 @@ This project uses the Rails framework for the backend API, and a React/Redux fra
 
 The webpage allows for higher accessibility with responsive UI design for story and feed views. With DRY code, the viewing experience is optimized for both desktop and mobile viewing, as well as compatibility with small window sizes for a more compact viewing experience for multi-taskers.
 
-![Responsive UI Desktop][responsive-ui-desktop]
-![Responsive UI Mobile][responsive-ui-mobile]
+![Responsive UI Combined][responsive-ui-combined]
 
 In addition to using media queries for applying contingent CSS styling, some vanilla JS functions were integrated with the React components in order to handle the resizing of more dynamic components, such as the navigation bar on the left. It was important to ensure that the navigation bar would handle predictably as the window resized. For example, an open navigation bar in a compact view should remain open as the window view expands. On the other hand, as a window contracts the navigation bar should automatically close.
 
@@ -149,3 +148,6 @@ https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/r
 
 [responsive-ui-mobile]:
 https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/responsive-ui-mobile.gif
+
+[responsive-ui-combined]:
+https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/responsive-ui-combined.gif
