@@ -98,4 +98,5 @@ Other helpful packages used in this project include:
 
 
 [add-feed-url]: https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/add-new-feed.gif
-[pop-out-modal]: https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/pop-out-modal.gif
+[pop-out-modal]:
+https://raw.githubusercontent.com/etgrieco/EasyFeeds/master/docs/readme-images/pop-out-modal.gif
