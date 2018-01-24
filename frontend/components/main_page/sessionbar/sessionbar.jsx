@@ -7,7 +7,7 @@ export default ({ loggedIn, title, logout, history, ...otherProps }) => {
   return (
     <header className={`session-bar${ title ? " with-title" : ""}`}>
       <div className={"session-bar-contents" +
-        (loggedIn ? " logged-in-session" : "")
+        (loggedIn ? " logged-in" : "")
       }>
         <h3 className="session-logo">
           { title ? title : "EasyFeeds" }
