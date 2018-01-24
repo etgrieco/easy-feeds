@@ -52,9 +52,9 @@ class StoriesIndexItem extends React.Component {
 
     const summary = story.teaser ? story.teaser.slice(0,250).split(" ").slice(0, -1).join(" ") + "..." : null;
     const summaryText = {__html: summary};
-
-    const backgroundImage = `url(${story.image_url || feed.favicon_url})`;
-    const imageStyle = {backgroundImage};
+    const imageStyle = {
+      backgroundImage: `url(${story.image_url || feed.favicon_url})`
+    };
 
     const originPath = this.props.history.location.pathname;
 
@@ -68,7 +68,7 @@ class StoriesIndexItem extends React.Component {
         onMouseEnter={e => this.setState({ isMouseInside: true })}
         onMouseLeave={e => this.setState({ isMouseInside: false })}
         onClick={e => this.handleRedirect(e, story.id)}
-        >
+      >
         <div className="story-item-image" style={imageStyle} />
         <div className="story-details">
           <div className="story-title">
@@ -77,21 +77,14 @@ class StoriesIndexItem extends React.Component {
                 {story.title}
               </Link>
             </h4>
-            { !this.props.previewView ?
-              <div className="read-controls">
-                <div className={`noselect read-story${this.state.isMouseInside ? "" : " hidden"}`}
-                  onClick={this.handleReadClick}>
-                  {this.state.read ?
-                    <i className="fa fa-check-square" aria-hidden="true"></i>
-                    : <i className="fa fa-check-square-o" aria-hidden="true"></i> }
-                  </div>
-                  { this.props.readView ? null :
-                    <div className={`noselect hide-story${this.state.isMouseInside ? "" : " hidden"}`}
-                      onClick={this.handleXClick}><i className="fa fa-times" aria-hidden="true"></i></div>
-                  }
-                </div>
-                : null
-              }
+            { this.props.previewView ? null :
+              <ReadControls
+                handleReadClick={this.handleReadClick}
+                handleXClick={this.handleXClick}
+                {...this.props}
+                {...this.state}
+              />
+            }
           </div>
           <div>
             <h5>
@@ -109,5 +102,22 @@ class StoriesIndexItem extends React.Component {
     );
   }
 }
+
+const ReadControls = ({ isMouseInside, read, readView, handleReadClick, handleXClick }) => (
+  <div className="read-controls">
+    <div className={`noselect read-story${isMouseInside ? "" : " hidden"}`}
+      onClick={handleReadClick}>
+      { read ?
+        <i className="fa fa-check-square" aria-hidden="true"></i>
+        : <i className="fa fa-check-square-o" aria-hidden="true"></i> }
+      </div>
+      { readView ? null :
+        <div className={`noselect hide-story${isMouseInside ? "" : " hidden"}`}
+          onClick={handleXClick}>
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </div>
+      }
+    </div>
+);
 
 export default StoriesIndexItem;

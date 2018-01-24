@@ -10,11 +10,6 @@ class StoriesIndex extends React.Component {
     condensedView: window.innerWidth <= 810
   };
 
-  static defaultProps = {
-    stories: [],
-    title: ""
-  };
-
   componentDidMount() {
     document.querySelector(".main-content").scrollTo(0,0);
     document.querySelector(".main-content").addEventListener('scroll', this.throttledScroll, false);
@@ -32,7 +27,9 @@ class StoriesIndex extends React.Component {
   }
 
   componentWillUpdate(newProps) {
-    if (newProps.stories.length > this.props.stories.length) {
+    if (newProps.stories.length > this.props.stories.length ||
+      !this.props.moreStories
+      ) {
       this.setState({ fetching: false });
     }
   }
@@ -58,8 +55,8 @@ class StoriesIndex extends React.Component {
         this.props.moreStories &&
         !this.state.fetching
       ) {
-        this.setState({fetching: true})
-        this.fetchMoreStories(this.props.stories.length)
+        this.setState({fetching: true});
+        this.fetchMoreStories(this.props.stories.length);
       }
   }
 
@@ -100,12 +97,7 @@ class StoriesIndex extends React.Component {
 
     return (
       <div className="story-index">
-        <div>
-          <h2>{titleLink ?
-                <a href={titleLink} target="__blank">{title}</a>
-                 : title
-          }</h2>
-        </div>
+        <StoryIndexTitle title={title} titleLink={titleLink} />
         {storyItems}
         { moreStories && !previewView && !readView ?
           <StoryLoadingAnimation /> : null
@@ -113,6 +105,22 @@ class StoriesIndex extends React.Component {
       </div>
     );
   }
+
+  static defaultProps = {
+    stories: [],
+    title: "",
+    titleLink: null
+  };
 }
+
+const StoryIndexTitle = ({titleLink, title}) => (
+  <div>
+    <h2>
+      {titleLink ?
+        <a href={titleLink} target="__blank">{title}</a>
+        : title}
+    </h2>
+  </div>
+);
 
 export default StoriesIndex;

@@ -6,61 +6,54 @@ import { fetchUnsubscribedFeed, fetchLatest, readStory,
          unreadStory, fetchReads } from '../../../actions/story_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const storiesById = state.entities.stories.byId;
   const feeds = state.entities.feeds.byId;
-  const moreStories = state.ui.moreStories;
+  const id = ownProps.match.params.id;
+  const feed = feeds[id] || {stories: []};
+  feed.title = feed ? (feed.subscription_title || feed.title) : ""
+  feed.titleLink = feed ? feed.website_url : null;
 
-  let stories;
-  let title;
-  let titleLink;
-  let viewProp = {};
+  const path = ownProps.match.path.split('/')[2];
 
-  if (ownProps.match.path === "/i/latest") {
-    stories = state.session.latest.map(storyId => storiesById[storyId]);
-    title = "Latest"
-  } else if (ownProps.match.path === "/i/reads") {
-    stories = state.session.reads.map(storyId => storiesById[storyId]);
-    title = "Recently Read"
-    viewProp = {readView: true };
-  } else {
-    const id = ownProps.match.params.id;
-    const feed = feeds[id];
+  const pathProps = {
+    latest: {title: "Latest"},
+    reads: {title: "Recently Read", readView: true},
+    discover: {...feed, previewView: true},
+    subscriptions: {...feed}
+  };
 
-    if (feed) {
-      stories = feed.stories.map(storyId => storiesById[storyId]);
-      title = feed.subscription_title || feed.title;
-      titleLink = feed.website_url;
-    }
-
-    if (ownProps.match.path.split('/')[2] === "discover") {
-      viewProp = {previewView: true};
-    }
+  const storyIds = {
+    latest: state.session.latest,
+    reads: state.session.reads,
+    discover: feed.stories,
+    subscriptions: feed.stories
   }
+  const storiesById = state.entities.stories.byId;
+  const stories = storyIds[path].map(storyId => storiesById[storyId]);
 
   return ({
-    title, stories, feeds, titleLink, moreStories,
-    ...viewProp
+    feeds,
+    ...pathProps[path],
+    stories,
+    moreStories: state.ui.moreStories
   });
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const commonProps = {
-    readStory: id => dispatch(readStory(id)),
-    unreadStory: id => dispatch(unreadStory(id))
+  const fetchActions = {
+    latest: (_id, offset) => dispatch(fetchLatest(offset)),
+    reads: (_id, offset) => dispatch(fetchReads(offset)),
+    discover: id => dispatch(fetchUnsubscribedFeed(id)),
+    subscriptions: (id, offset) => dispatch(fetchSingleFeed(id, offset))
   };
 
-  let fetchAction = () => {};
-  if (ownProps.match.path === "/i/latest") {
-    fetchAction = (_feedId, offset) => dispatch(fetchLatest(offset))
-  } else if (ownProps.match.path === "/i/reads") {
-    fetchAction = (_feedId, offset) => dispatch(fetchReads(offset))
-  } else if (ownProps.match.path.split('/')[2] === "discover") {
-    fetchAction = feedId => dispatch(fetchUnsubscribedFeed(feedId));
-  } else {
-    fetchAction = (feedId, offset) => dispatch(fetchSingleFeed(feedId, offset));
-  }
+  const path = ownProps.match.path.split('/')[2];
+  const fetchAction = fetchActions[path];
 
-  return ({...commonProps, fetchAction});
+  return {
+    readStory: id => dispatch(readStory(id)),
+    unreadStory: id => dispatch(unreadStory(id)),
+    fetchAction
+  };
 };
 
 export default withRouter(connect(
