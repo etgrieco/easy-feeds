@@ -27,9 +27,9 @@ class StoriesIndex extends React.Component {
   }
 
   componentWillUpdate(newProps) {
-    if (newProps.stories.length > this.props.stories.length ||
-      !this.props.moreStories
-      ) {
+    if (!this.props.moreStories ||
+      newProps.stories.length > this.props.stories.length
+    ) {
       this.setState({ fetching: false });
     }
   }

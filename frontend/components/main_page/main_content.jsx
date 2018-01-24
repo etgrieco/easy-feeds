@@ -17,19 +17,18 @@ class MainContent extends React.Component {
   componentDidMount() {
     this.props.receiveFeedTitle(null);
     window.document.querySelector(".main-content")
-      .addEventListener('scroll', this.throttledScroll, false);
+      .addEventListener('scroll', this.throttledSessionBarScroll, false);
   }
 
   componentWillUnmount() {
     window.document.querySelector(".main-content")
-      .removeEventListener('scroll', this.throttledScroll, false);
+      .removeEventListener('scroll', this.throttledSessionBarScroll, false);
   }
 
-  throttledScroll = throttle(e => this.onScroll(e), 100, {leading: true});
+  throttledSessionBarScroll = throttle(e => this.onScroll(e), 50, {leading: true});
 
   onScroll = (e) => {
-    const { titleSent } = this.state;
-    if((e.target.scrollTop > 80) && !titleSent) {
+    if(e.target.scrollTop > 80 && !this.state.titleSent) {
       this.setState({titleSent: true});
       this.props.receiveFeedTitle(this.getTitle());
     }
@@ -50,7 +49,7 @@ class MainContent extends React.Component {
       reads: "Recently Read"
     };
 
-    return (sessionTitles[path] || null);
+    return (sessionTitles[path] || "Welcome to EasyFeeds");
   }
 
   render () {
