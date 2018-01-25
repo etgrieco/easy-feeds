@@ -12,8 +12,6 @@ import { receiveFeedTitle } from '../../actions/ui_actions';
 import throttle from 'lodash/throttle';
 
 class MainContent extends React.Component {
-  state = {titleSent: false};
-
   componentDidMount() {
     this.props.receiveFeedTitle(null);
     window.document.querySelector(".main-content")
@@ -28,12 +26,12 @@ class MainContent extends React.Component {
   throttledSessionBarScroll = throttle(e => this.onScroll(e), 50, {leading: true});
 
   onScroll = (e) => {
-    if(e.target.scrollTop > 80 && !this.state.titleSent) {
-      this.setState({titleSent: true});
+    const titlePresent = Boolean(this.props.sessionBarTitle);
+
+    if(e.target.scrollTop > 80 && !titlePresent) {
       this.props.receiveFeedTitle(this.getTitle());
     }
-    else if (e.target.scrollTop < 80 && Boolean(this.props.sessionBarTitle)) {
-      this.setState({titleSent: false})
+    else if (e.target.scrollTop < 80 && titlePresent) {
       this.props.receiveFeedTitle(null);
     }
   }
@@ -53,7 +51,6 @@ class MainContent extends React.Component {
   }
 
   render () {
-    console.log(this.props);
     const landingStyleProps = (this.props.match.path === "/" &&
       this.props.match.isExact) ||
       this.props.history.location.pathname === "/login" ||

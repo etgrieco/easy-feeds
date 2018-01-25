@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ({ loggedIn, title, logout, history, ...otherProps }) => {
   const buttonText = loggedIn ?  "Log Out" : "Login";
-  const buttonAction = loggedIn ? e => logout() : e => history.push("/login");
+  const buttonAction = loggedIn ? logout : e => history.push("/login");
 
   return (
     <header className={`session-bar${ title ? " with-title" : ""}`}>
