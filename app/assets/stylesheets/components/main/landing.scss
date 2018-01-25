@@ -15,25 +15,26 @@
   background: $hover-blue;
 }
 
-.landing-container h1 {
-  padding-bottom: 15px;
-}
-
-.landing-container p {
-  width: 300px;
-  padding-bottom: 25px;
-  font-size: 20px;
-  line-height: 32px;
-  color: #9F9F9F;
-  font-weight: 200px;
-}
-
-.landing-welcome {
-  margin-bottom: 30px;
-}
-
 .landing-image-container {
   border: 1px solid white;
   max-width: 800px;
   box-shadow:5px 5px 5px #999;
+}
+
+.landing .info-box {
+  padding: 40px 50px 150px 50px;
+  width: 100%;
+}
+
+.background-grey {
+  background: #F2F2F2;
+}
+
+.background-white {
+  background: white;
+}
+
+.info-box .contents {
+  margin: 0 auto;
+  max-width: 750px;
 }

@@ -19,7 +19,7 @@
 }
 
 .session-bar-contents {
-  padding: 0 10px;
+  padding: 0 50px;
   margin: 0 auto;
   max-width: 850px;
   display: flex;
@@ -54,6 +54,7 @@
   color: black;
 }
 
-.logged-in-session {
+.logged-in {
   max-width: none;
+  padding: 0 30px;
 }
