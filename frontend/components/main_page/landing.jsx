@@ -8,7 +8,7 @@ function Landing(props) {
   return (
     <div className="landing">
       <div className="info-box background-grey">
-        <section className="landing-welcome">
+        <div className="contents">
           <h1>Welcome to EasyFeeds</h1>
           <p>An easy way to aggregate stories from across the web.</p>
             <button
@@ -17,23 +17,26 @@ function Landing(props) {
               Get Started</button>
             <button
               className="green-button demo-user"
-              onClick={e => props.createDemoUser()
-              }>
+              onClick={props.createDemoUser}>
               Demo User
             </button>
-        </section>
-        <div className="landing-image-container">
-          <img src="https://i.imgur.com/Exbov3T.png" />
+            <div className="landing-image-container">
+              <img src="https://i.imgur.com/Exbov3T.png" />
+            </div>
         </div>
       </div>
       <div className="info-box background-white">
-        This is a test
+        <div className="contents">
+          <header>
+            <h2>Stay on top of the news</h2>
+          </header>
+        </div>
       </div>
       <div className="info-box background-grey">
-        This is a test
+        <div className="contents">This is a test</div>
       </div>
       <div className="info-box background-white">
-        This is a test
+        <div className="contents">This is a test</div>
       </div>
 
       <Route path="/login" component={SessionFormContainer} />

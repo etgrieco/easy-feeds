@@ -69,7 +69,7 @@ class DiscoverSearchIndex extends React.Component {
   }
 }
 
-function DiscoverIndexItems({ feeds, ...otherProps }) {
+function DiscoverIndexItems({ feeds, ...feedActions }) {
   const results = feeds.results.length === 0 ?
     ["No Feeds Found"] :
     feeds.results.map(resultId => {
@@ -77,10 +77,10 @@ function DiscoverIndexItems({ feeds, ...otherProps }) {
       return <DiscoverIndexItem
         key={feed.id}
         feed={feed}
-        createFeed={otherProps.createFeed}
-        openPopOut={otherProps.openPopOut}
-        fetchUnsubscribedFeed={otherProps.fetchUnsubscribedFeed}
-        deleteFeed={otherProps.deleteFeed}
+        createFeed={feedActions.createFeed}
+        openPopOut={feedActions.openPopOut}
+        fetchUnsubscribedFeed={feedActions.fetchUnsubscribedFeed}
+        deleteFeed={feedActions.deleteFeed}
       />;
     });
 

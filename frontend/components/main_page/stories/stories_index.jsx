@@ -97,11 +97,11 @@ class StoriesIndex extends React.Component {
 
     return (
       <div className="story-index">
-        <StoryIndexTitle title={title} titleLink={titleLink} />
+        <StoriesIndexHeader {...{titleLink}}>{title}</StoriesIndexHeader>
         {storyItems}
-        { moreStories && !previewView && !readView ?
-          <StoryLoadingAnimation /> : null
-        }
+        {moreStories && !previewView && !readView ?
+          <StoryLoadingAnimation /> :
+          null}
       </div>
     );
   }
@@ -113,12 +113,12 @@ class StoriesIndex extends React.Component {
   };
 }
 
-const StoryIndexTitle = ({titleLink, title}) => (
+const StoriesIndexHeader = ({titleLink, title, children}) => (
   <div>
     <h2>
       {titleLink ?
-        <a href={titleLink} target="__blank">{title}</a>
-        : title}
+        <a href={titleLink} target="__blank">{children}</a>
+        : children}
     </h2>
   </div>
 );

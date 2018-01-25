@@ -1,12 +1,9 @@
 import React from 'react';
-import SubscriptionStoriesContainer from './stories_container';
+import StoriesContainer from './stories_container';
 import PopOut from '../pop_out';
 
-export default props => {
-  const newProps = {
-    component: SubscriptionStoriesContainer,
-    closePopOut: () => props.history.push("/i/discover/"),
-  };
-
-  return <PopOut {...props} {...newProps}/>;
-};
+export default props => (
+  <PopOut {...props} closePath={"/i/discover/"}>
+    <StoriesContainer />
+  </PopOut>
+);
