@@ -25,19 +25,6 @@ function Landing(props) {
             </div>
         </div>
       </div>
-      <div className="info-box background-white">
-        <div className="contents">
-          <header>
-            <h2>Stay on top of the news</h2>
-          </header>
-        </div>
-      </div>
-      <div className="info-box background-grey">
-        <div className="contents">This is a test</div>
-      </div>
-      <div className="info-box background-white">
-        <div className="contents">This is a test</div>
-      </div>
 
       <Route path="/login" component={SessionFormContainer} />
       <Route path="/signup" component={SessionFormContainer} />
