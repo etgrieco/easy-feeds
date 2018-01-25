@@ -110,23 +110,32 @@ An important front-end feature is the ability to view content in a modal-like co
 
 ![Pop Out Modal][pop-out-modal]
 
-This was primarily accomplished by turning the pop out React component into a higher-order component that can accept a component as props:
+This was primarily accomplished by building a React element which intuitively allows for other components to be rendered as children. Since the pop-out requires a path to direct the user to when the pop-out is closed, this path is also passed as a prop to the popout element:
 
 ```jsx
-//Skeleton implementation for a 'StoriesShow' component being rendered by a 'PopOut' component
+// Simplified implementation for a 'StoriesShow' component being rendered by a 'PopOut' React element:
 
 import React from 'react';
 import StoriesShow from './story_show';
 
-const PopOut = { handleClose, ...otherProps } => (
-  <div className="pop-out-window">
-    //...
-    <Component />
-  </div>
-);
+class PopOut extends React.Component {
+  handleClose() {
+    this.props.history.push(this.props.closePath);
+  }
+
+  render() {
+    return (
+      <div className="pop-out-window">
+        {this.props.children}
+      </div>
+    );
+  }
+}
 
 export default props => (
-  <PopOut {...props} {component: StoriesShow} />;
+  <PopOut {...props} closePath={"/i/subscriptions"}>
+    <StoriesShow />
+  </PopOut>;
 );
 ```
 
