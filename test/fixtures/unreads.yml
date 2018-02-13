@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  reader_id: 
-  story_id: 1
-
-two:
-  reader_id: 
-  story_id: 1
+# one:
+#   reader_id:
+#   story_id: 1
+#
+# two:
+#   reader_id:
+#   story_id: 1

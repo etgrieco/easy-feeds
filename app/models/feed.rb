@@ -19,7 +19,7 @@ class Feed < ApplicationRecord
     class_name: :Story,
     dependent: :destroy
 
-  before_validation :check_feed_url_status, on: :create
+  before_validation :validate_feed, on: :create
   after_validation :populate_feed_metadata, on: :create
   after_create :populate_entries
 
@@ -29,15 +29,15 @@ class Feed < ApplicationRecord
       .limit(20)
   end
 
-  def check_feed_url_status
+  def validate_feed
     if self.rss_url.empty?
       errors.add(:base, "The url field cannot be empty")
       throw :abort
     end
+
     begin
       @feed = Feedjira::Feed.fetch_and_parse self.rss_url
     rescue
-      puts "Feed url 404"
       errors.add(:base, "There was an issue fetching the feed. " +
         "Please check the URL or try again.")
       self.status = "ISSUES"

@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  subscription_id: 1
-  collection_id: 1
-
-two:
-  subscription_id: 1
-  collection_id: 1
+# one:
+#   subscription_id: 1
+#   collection_id: 1
+#
+# two:
+#   subscription_id: 1
+#   collection_id: 1

@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  author: MyString
-  description: MyString
-  link_url: MyString
-  image_url: MyString
-  feed_id: 1
-  pub_datetime: MyString
-
-two:
-  title: MyString
-  author: MyString
-  description: MyString
-  link_url: MyString
-  image_url: MyString
-  feed_id: 1
-  pub_datetime: MyString
+# one:
+#   title: MyString
+#   author: MyString
+#   description: MyString
+#   link_url: MyString
+#   image_url: MyString
+#   feed_id: 1
+#   pub_datetime: MyString
+#
+# two:
+#   title: MyString
+#   author: MyString
+#   description: MyString
+#   link_url: MyString
+#   image_url: MyString
+#   feed_id: 1
+#   pub_datetime: MyString

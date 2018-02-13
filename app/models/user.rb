@@ -62,13 +62,15 @@ class User < ApplicationRecord
   end
 
   def give_seed_feeds
-    seed_urls = (
-      "https://feeds.thedailybeast.com/summary/rss/articles*
-https://www.wired.com/feed/rss*
-https://www.polygon.com/rss/index.xml*
-http://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml*
-http://github.com/blog.atom*
-https://www.theringer.com/rss/index.xml").split("*\n")
+    seed_urls = [
+      "https://feeds.thedailybeast.com/summary/rss/articles",
+      "https://www.wired.com/feed/rss",
+      "https://www.wired.com/feed/rss",
+      "https://www.polygon.com/rss/index.xml",
+      "http://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml",
+      "http://github.com/blog.atom",
+      "https://www.theringer.com/rss/index.xml"
+    ]
 
     seed_urls.each do |url|
       feed = Feed.find_by(rss_url: url)
