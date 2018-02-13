@@ -1,6 +1,8 @@
 require 'bcrypt'
 
 class User < ApplicationRecord
+  attr_accessor :give_seeds
+
   validates :email, :first_name, :password_digest, :session_token,
     presence: true
 
@@ -9,7 +11,8 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  after_create_commit :give_seed_feeds
+  before_create :ensure_seed_default
+  after_create_commit :seed_user if @give_seeds
 
   has_many :subscriptions,
     foreign_key: :subscriber_id,
@@ -57,11 +60,18 @@ class User < ApplicationRecord
     self.session_token
   end
 
+  # after_initialize
   def ensure_session_token
     self.session_token ||= create_session_token
   end
 
-  def give_seed_feeds
+  # before_create
+  def ensure_seed_default
+    @give_seeds = true unless self.give_seeds
+  end
+
+  # after_create_commit
+  def seed_user
     seed_urls = [
       "https://feeds.thedailybeast.com/summary/rss/articles",
       "https://www.wired.com/feed/rss",
