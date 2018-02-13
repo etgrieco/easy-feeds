@@ -11,6 +11,7 @@ Feed.destroy_all
 seed_urls = [
   "http://feeds.bbci.co.uk/news/world/rss.xml",
   "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+  "http://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml",
   "http://www.politico.com/rss/congress.xml",
   "https://www.polygon.com/rss/index.xml",
   "http://feeds.feedburner.com/TechCrunch/",

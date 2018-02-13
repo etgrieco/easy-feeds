@@ -22,7 +22,7 @@ class Story < ApplicationRecord
     class_name: :Read,
     dependent: :destroy
 
-  def self.create_attributes_hash(fjra_entry, feed_id, feed_title)
+  def self.create_from_entry_and_feed(fjra_entry, feed)
     link_url = fjra_entry.url
 
     begin
@@ -32,22 +32,22 @@ class Story < ApplicationRecord
 
     entry_id = fjra_entry.entry_id || fjra_entry.url
     pub_datetime = fjra_entry.published || Time.now
-    author = fjra_entry.author || feed_title || "Anonymous"
+    author = fjra_entry.author || feed.title || "Anonymous"
     summary = fjra_entry.summary || fjra_entry.content
     summary = Sanitize.fragment(summary, Sanitize::Config::BASIC)
     teaser = Sanitize.fragment(summary, Sanitize::Config::RESTRICTED)
 
-    {
+    Story.create(
       entry_id: entry_id,
+      feed_id: feed.id,
       title: fjra_entry.title,
       author: author,
       summary: summary,
       teaser: teaser,
       link_url: link_url,
       image_url: fjra_entry.try(:image) || page&.images&.best,
-      feed_id: feed_id,
-      pub_datetime: pub_datetime
-    }
+      pub_datetime: pub_datetime,
+    )
   end
 
 end

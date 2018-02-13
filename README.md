@@ -92,15 +92,13 @@ Another important optimization made was to only fetch the metadata of stories th
 class Feed < ApplicationRecord
 # ...
   def populate_entries
-    #fetch entries...
-    entries.each do |entry|
-      unless stories.find_by(entry_id: entry.entry_id) # looks for potential duplicate
-        attributes = Story.create_attributes_hash(entry, self.id, self.title)
-        Story.create(attributes)
+    @feed ||= Feedjira::Feed.fetch_and_parse self.rss_url
+
+    @feed.entries.each do |entry|
+      unless stories.find_by(entry_id: entry.entry_id)
+        Story.create_from_entry_and_feed(entry, self)
       end
     end
-  end
-
 end
 ```
 ### Modular Article and Feed Modals

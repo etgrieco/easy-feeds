@@ -65,7 +65,6 @@ class User < ApplicationRecord
     seed_urls = [
       "https://feeds.thedailybeast.com/summary/rss/articles",
       "https://www.wired.com/feed/rss",
-      "https://www.wired.com/feed/rss",
       "https://www.polygon.com/rss/index.xml",
       "http://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml",
       "http://github.com/blog.atom",
