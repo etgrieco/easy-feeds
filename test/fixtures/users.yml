@@ -4,7 +4,6 @@ one:
   email: newuser@email.com
   first_name: New
   last_name: User
-  password: password123
   password_digest: abcd123efgh456
   session_token: a1234567890xyz
 
