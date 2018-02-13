@@ -77,10 +77,7 @@ function DiscoverIndexItems({ feeds, ...feedActions }) {
       return <DiscoverIndexItem
         key={feed.id}
         feed={feed}
-        createFeed={feedActions.createFeed}
-        openPopOut={feedActions.openPopOut}
-        fetchUnsubscribedFeed={feedActions.fetchUnsubscribedFeed}
-        deleteFeed={feedActions.deleteFeed}
+        {...feedActions}
       />;
     });
 

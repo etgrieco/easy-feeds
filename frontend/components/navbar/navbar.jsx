@@ -59,7 +59,8 @@ class NavBar extends React.Component {
   }
 
   render() {
-    const { isOpen } = this.state;
+    const { isOpen, selected } = this.state;
+    const { feedIds, feeds } = this.props;
 
     return (
       <section onClick={this.handleSelectedUpdate}
@@ -71,11 +72,10 @@ class NavBar extends React.Component {
           />
         { isOpen ?
           <div>
-            <NavBarLinks feedIds={this.props.feedIds}
-                         feeds={this.props.feeds}
-                         selected={this.state.selected}
-                         closeNavBar={this.closeNavBar}
-                          />
+            <NavBarLinks
+              {...{feedIds, selected, feeds}}
+              closeNavBar={this.closeNavBar}
+            />
             <NavBarAddContent closeNavBar={this.closeNavBar}/>
           </div>
           : null
@@ -115,6 +115,7 @@ const NavBarCollapseExpand = ({ isOpen, handleClick }) => (
 const NavBarLinks = ({ feedIds, feeds, selected, closeNavBar }) => {
   const feedsList = feedIds.map(feedId => {
     const feed = feeds[feedId];
+
     return (
       <Link className={selected == feedId ? "selected" : ""}
         onClick={closeNavBar}

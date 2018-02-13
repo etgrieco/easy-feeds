@@ -8,11 +8,12 @@ import { fetchUnsubscribedFeed, fetchLatest, readStory,
 const mapStateToProps = (state, ownProps) => {
   const feeds = state.entities.feeds.byId;
   const id = ownProps.match.params.id;
+  const path = ownProps.match.path.split('/')[2];
+  const storiesById = state.entities.stories.byId;
+
   const feed = feeds[id] || {stories: []};
   feed.title = feed ? (feed.subscription_title || feed.title) : ""
   feed.titleLink = feed ? feed.website_url : null;
-
-  const path = ownProps.match.path.split('/')[2];
 
   const pathProps = {
     latest: {title: "Latest"},
@@ -27,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
     discover: feed.stories,
     subscriptions: feed.stories
   }
-  const storiesById = state.entities.stories.byId;
+
   const stories = storyIds[path].map(storyId => storiesById[storyId]);
 
   return ({
@@ -39,6 +40,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const path = ownProps.match.path.split('/')[2];
+
   const fetchActions = {
     latest: (_id, offset) => dispatch(fetchLatest(offset)),
     reads: (_id, offset) => dispatch(fetchReads(offset)),
@@ -46,16 +49,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     subscriptions: (id, offset) => dispatch(fetchSingleFeed(id, offset))
   };
 
-  const path = ownProps.match.path.split('/')[2];
-  const fetchAction = fetchActions[path];
-
   return {
     readStory: id => dispatch(readStory(id)),
     unreadStory: id => dispatch(unreadStory(id)),
-    fetchAction
+    fetchAction: fetchActions[path]
   };
 };
 
 export default withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps)(StoriesIndex));
+  mapDispatchToProps
+)(StoriesIndex));

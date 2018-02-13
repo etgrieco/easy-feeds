@@ -77,16 +77,13 @@ class StoriesIndex extends React.Component {
   render() {
     const { stories, feeds, title, titleLink,
             moreStories, previewView, readView } = this.props;
-    const id = this.props.match.params.id;
 
     const storyItems = stories.map(story => {
       const feed = feeds[story.feed_id];
 
       return (
         <StoriesIndexItem key={story.id}
-          story={story}
-          feed={feed}
-          titleLink={Boolean(titleLink)}
+          {...{ story, feed, titleLink }}
           history={this.props.history}
           {...this.state}
           {...this.props}

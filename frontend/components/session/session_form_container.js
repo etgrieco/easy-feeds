@@ -6,8 +6,8 @@ import { withRouter } from 'react-router-dom';
 import SessionForm from './session_form';
 
 
-const mapStateToProps = (state, ownProps) => {
-  const formType = ownProps.location.pathname === '/signup' ? 'signup' : 'login';
+const mapStateToProps = (state, { location: { pathname }}) => {
+  const formType = pathname === '/signup' ? 'signup' : 'login';
   return {
     logged_in: Boolean(state.session.currentUser),
     errors: state.errors.session,
@@ -15,8 +15,8 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  const processForm = ownProps.location.pathname === '/signup' ? signup : login;
+const mapDispatchToProps = (dispatch, { location: { pathname }}) => {
+  const processForm = pathname === '/signup' ? signup : login;
   return ({
    processForm: (credentials) => dispatch(processForm(credentials)),
    clearSessionErrors: () => dispatch(clearSessionErrors())
