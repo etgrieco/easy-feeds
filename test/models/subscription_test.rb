@@ -2,18 +2,27 @@ require 'test_helper'
 
 class SubscriptionTest < ActiveSupport::TestCase
   test 'does not create subscription without feed' do
-    subscription = Subscription.new(subscriber_id: users(:johnsmith).id, title: "sub")
+    subscription = Subscription.new(
+      subscriber_id: users(:johnsmith).id,
+      title: "sub"
+    )
     assert_not subscription.save
   end
 
   test 'does not create subscription without user' do
-    subscription = Subscription.new(feed_id: feeds(:bbc).id, title: "sub")
+    subscription = Subscription.new(
+      feed_id: feeds(:bbc).id,
+      title: "sub"
+    )
     assert_not subscription.save
   end
 
-  test 'provides default title when no subscription title given' do
-    subscription = Subscription.new(subscriber_id: users(:janedoe).id, feed_id: feeds(:bbc).id)
-    assert_equal 'BBC', subscription.title
+  test 'provides default title when none given' do
+    subscription = Subscription.new(
+      subscriber_id: users(:janedoe).id,
+      feed_id: feeds(:bbc).id
+    )
+    assert_equal feeds(:bbc).title, subscription.title
   end
 
   test 'assigns custom subscription title when given' do
@@ -31,5 +40,6 @@ class SubscriptionTest < ActiveSupport::TestCase
 
   test 'does not allow updated subscription title to be blank' do
     assert_not subscriptions(:bbc_sub).update(title: '')
+    p subscriptions(:bbc_sub).errors
   end
 end

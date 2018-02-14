@@ -5,7 +5,7 @@ class Subscription < ApplicationRecord
   after_initialize :ensure_default_title, on: :create
 
   def ensure_default_title
-    self.title = title.nil? || title.empty? ? feed.title : title
+    self.title = feed.title if title.nil? || title.empty? 
   end
 
   belongs_to  :subscriber,

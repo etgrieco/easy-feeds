@@ -4,7 +4,7 @@ class User < ApplicationRecord
   attr_accessor :give_seeds
 
   validates :email, :first_name, :password_digest, :session_token,
-    presence: true
+            presence: true
 
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :session_token, :email, uniqueness: true
@@ -12,32 +12,32 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
 
   before_create :ensure_seed_default
-  after_create_commit :seed_user if @give_seeds
+  after_create_commit :seed_user, if: @give_seeds
 
-  has_many :subscriptions,
-    foreign_key: :subscriber_id,
-    dependent: :destroy
+  has_many  :subscriptions,
+            foreign_key: :subscriber_id,
+            dependent: :destroy
 
-  has_many :feeds,
-    through: :subscriptions,
-    source: :feed
+  has_many  :feeds,
+            through: :subscriptions,
+            source: :feed
 
-  has_many :stories,
-    through: :feeds,
-    source: :stories
+  has_many  :stories,
+            through: :feeds,
+            source: :stories
 
-  has_many :collections,
-    foreign_key: :creator_id,
-    class_name: :Collection
+  has_many  :collections,
+            foreign_key: :creator_id,
+            class_name: :Collection
 
-  has_many :reads,
-    foreign_key: :reader_id,
-    class_name: :Read,
-    dependent: :destroy
+  has_many  :reads,
+            foreign_key: :reader_id,
+            class_name: :Read,
+            dependent: :destroy
 
-  has_many :read_stories,
-    through: :reads,
-    source: :story
+  has_many  :read_stories,
+            through: :reads,
+            source: :story
 
   def password=(password)
     @password = password
@@ -56,8 +56,8 @@ class User < ApplicationRecord
 
   def reset_session_token!
     self.session_token = create_session_token
-    self.save!
-    self.session_token
+    save!
+    session_token
   end
 
   # after_initialize
@@ -67,10 +67,10 @@ class User < ApplicationRecord
 
   # before_create
   def ensure_seed_default
-    @give_seeds = true unless self.give_seeds
+    @give_seeds ||= true
   end
 
-  # after_create_commit
+  # after_create_commit if option not disabled
   def seed_user
     seed_urls = [
       "https://feeds.thedailybeast.com/summary/rss/articles",
@@ -84,12 +84,11 @@ class User < ApplicationRecord
     seed_urls.each do |url|
       feed = Feed.find_by(rss_url: url)
       s = Subscription.new(
-        subscriber_id: self.id,
+        subscriber_id: id,
         feed_id: feed.id
       )
       s.save
     end
-
   end
 
   private
@@ -99,5 +98,4 @@ class User < ApplicationRecord
   end
 
   attr_reader :password
-
 end
