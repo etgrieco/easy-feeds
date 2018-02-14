@@ -21,8 +21,8 @@ class Api::SubscriptionsController < ApplicationController
   def update
     # note: takes a subscription id vs. a feed id
     @subscription = current_user.subscriptions.find_by(id: params[:id])
-
-    elsif @subscription.update(subscription_params)
+    # check for empty string? Ok in model?
+    if @subscription.update(subscription_params)
       render 'api/subscriptions/show_no_stories'
     else
       render json: @subscription.errors.full_messages, status: 422
