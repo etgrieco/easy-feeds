@@ -9,22 +9,21 @@ class Subscription < ApplicationRecord
     self.title = feed.title
   end
 
-  belongs_to :subscriber,
-    class_name: "User",
-    foreign_key: :subscriber_id
+  belongs_to  :subscriber,
+              class_name: :User,
+              foreign_key: :subscriber_id
 
-  belongs_to :feed,
-    class_name: "Feed",
-    foreign_key: :feed_id,
-    primary_key: :id,
-    counter_cache: :subscriptions_count
+  belongs_to  :feed,
+              class_name: :Feed,
+              foreign_key: :feed_id,
+              primary_key: :id,
+              counter_cache: :subscriptions_count
 
-  has_many :stories,
-    through: :feed,
-    source: :stories
+  has_many  :stories,
+            through: :feed,
+            source: :stories
 
-  has_many :collections,
-    through: :subscriber,
-    source: :collections
-
+  has_many  :collections,
+            through: :subscriber,
+            source: :collections
 end

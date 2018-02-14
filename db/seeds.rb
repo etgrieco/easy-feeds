@@ -29,19 +29,19 @@ feeds = seed_urls.map do |url|
   f = Feed.new(rss_url: url)
   f if f.save
 end
-  .compact
+feeds.compact!
 
 User.destroy_all
 users = Array.new(50) do
   u = User.new(
     email: Faker::Internet.unique.email,
-    password: "password",
+    password: 'password',
     first_name: Faker::Name.unique.first_name,
-    last_name: Faker::Name.unique.last_name,
+    last_name: Faker::Name.unique.last_name
   )
   u if u.save
 end
-  .compact
+users.compact!
 
 Subscription.destroy_all
 users.each do |user|
