@@ -32,8 +32,7 @@ class UserTest < ActiveSupport::TestCase
     assert_raises(NoMethodError) { User.new(user1_attrs).password }
   end
 
-  test 'should always ensure session token' do
+  test 'should always ensure session token on initialize' do
     user1.session_token
   end
-
 end

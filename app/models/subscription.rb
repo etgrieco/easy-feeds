@@ -2,11 +2,10 @@ class Subscription < ApplicationRecord
   validates :subscriber_id, :feed_id, :title, presence: true
   validates :feed_id, uniqueness: { scope: :subscriber_id }
 
-  before_validation :create_title, on: :create
+  after_initialize :ensure_default_title, on: :create
 
-  # add before creates: default sub name
-  def create_title
-    self.title = feed.title
+  def ensure_default_title
+    self.title = title.nil? || title.empty? ? feed.title : title
   end
 
   belongs_to  :subscriber,

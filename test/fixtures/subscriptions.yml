@@ -1,10 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   subscriber_id: 1
-#   feed_id: 1
-#   title: MyString
-#
+bbc_sub:
+  id: 1
+  subscriber: johnsmith
+  feed: bbc
+  title: My Subscription
+
 # two:
 #   subscriber_id: 1
 #   feed_id: 1

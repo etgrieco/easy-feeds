@@ -22,8 +22,6 @@ class Api::SubscriptionsController < ApplicationController
     # note: takes a subscription id vs. a feed id
     @subscription = current_user.subscriptions.find_by(id: params[:id])
 
-    if subscription_params[:title].empty?
-      render json: ["Subscription titles must have at least one character"], status: 422
     elsif @subscription.update(subscription_params)
       render 'api/subscriptions/show_no_stories'
     else
@@ -35,7 +33,7 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = Subscription.new(
       feed: @feed,
       subscriber: current_user,
-      title: subscription_params[:title] || @feed.title
+      title: subscription_params[:title]
     )
 
     if @subscription.save

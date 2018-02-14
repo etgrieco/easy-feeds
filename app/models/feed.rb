@@ -49,7 +49,7 @@ class Feed < ApplicationRecord
     rescue
       errors.add  :base,
                   "There was an issue fetching the feed." \
-                    "Please check the URL or try again."
+                    " Please check the URL or try again."
 
       throw :abort
     end

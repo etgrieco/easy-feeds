@@ -1,14 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   title: MyString
-#   rss_url: MyString
-#   description: MyString
-#   favicon_url: MyString
-#   website_url: MyString
-#   last_publish: 2017-10-26 09:13:37
-#
+bbc:
+  rss_url: http://feeds.bbci.co.uk/news/world/rss.xml
+  title: BBC
+  description: This is a description
+  favicon_url: http://example.com/icon.png
+  website_url: http://example.com
+  last_built: <%= Time.now %>
+
 # two:
+#   id: 2
 #   title: MyString
 #   rss_url: MyString
 #   description: MyString
