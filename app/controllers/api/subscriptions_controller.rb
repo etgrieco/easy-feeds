@@ -1,15 +1,15 @@
 class Api::SubscriptionsController < ApplicationController
   before_action :require_login
-  before_action :ensure_feed, only: [:create]
+  # before_action :ensure_feed, only: [:create]
 
   def index
     # lazy loaded in case refresh already ran
-    @subscriptions ||= current_user.subscriptions.includes(:feed, :collections)
+    @subscriptions ||= current_user.subscriptions.includes(:feed) # TODO include suggestions
   end
 
   def show
     # lazy loaded in case refresh already ran
-    @subscription ||= current_user.subscriptions.includes(:feed, :stories).find_by(feed_id: params[:id])
+    @subscription ||= current_user.subscription_by_feed(params[:id])
 
     if @subscription
       render :show
@@ -30,8 +30,8 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def create
-    @subscription = Subscription.new(
-      feed: @feed,
+    @subscription = Subscription.create_by_rss_url(
+      rss_url: subscription_params[:rss_url],
       subscriber: current_user,
       title: subscription_params[:title]
     )
@@ -53,28 +53,14 @@ class Api::SubscriptionsController < ApplicationController
     end
   end
 
-  def ensure_feed
-    @feed = Feed.find_by(rss_url: subscription_params[:rss_url])
-
-    if @feed.nil?
-      @feed = Feed.new(rss_url: subscription_params[:rss_url], title: "New Feed")
-      unless @feed.save
-        # this will stop subscribe create action from occurring
-        render json: @feed.errors.full_messages, status: 422
-      end
-    end
-  end
-
   def refresh
     @subscription = current_user.subscriptions.find_by(feed_id: params[:id])
-    @subscription.nil? ? nil : @subscription.feed.populate_entries
+    @subscription = @subscription.feed.populate_entries if @subscription
   end
 
   def refresh_all
     @subs = current_user.subscriptions.includes(:feed, :stories)
-    @subs.each do |feed|
-      feed.populate_entries
-    end
+    @subs.each(&:populate_entries)
   end
 
   def subscription_params

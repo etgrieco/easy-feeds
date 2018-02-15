@@ -91,6 +91,10 @@ class User < ApplicationRecord
     end
   end
 
+  def subscription_by_feed(feed_id)
+    subscriptions.find_by(feed_id: feed_id)
+  end
+
   private
 
   def create_session_token

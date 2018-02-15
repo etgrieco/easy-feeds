@@ -24,10 +24,8 @@ class Feed < ApplicationRecord
   before_validation :validate_feed, on: :create
   after_initialize :ensure_populate_default, on: :create
 
-  if @populate
-    after_validation :populate_feed_metadata, on: :create
-    after_create :populate_entries
-  end
+  after_validation :populate_feed_metadata, on: :create, if: @populate
+  after_create :populate_entries, if: @populate
 
   def self.popular
     Feed
@@ -90,8 +88,7 @@ class Feed < ApplicationRecord
       end
     end
 
-    self.last_built = entries.map { |entry| entry.published || Time.now }.max
+    self.last_built = @feedjira_feed.entries.map(&:published).max || Time.now
     save
   end
-
 end

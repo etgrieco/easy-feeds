@@ -4,8 +4,18 @@ class Subscription < ApplicationRecord
 
   after_initialize :ensure_default_title, on: :create
 
+  def self.create_by_rss_url(attrs)
+    feed = Feed.find_by(rss_url: attrs[:rss_url])
+    feed ||= Feed.create(rss_url: attrs[:rss_url])
+    subscription = Subscription.new(attrs.merge(feed: feed).except(:rss_url))
+
+    # Merges for predictable error handling
+    subscription.feed.errors.each { |k, mes| subscription.errors.add(k, mes) }
+    subscription
+  end
+
   def ensure_default_title
-    self.title = feed.title if title.nil? || title.empty? 
+    self.title = feed.title if title.nil? || title.empty?
   end
 
   belongs_to  :subscriber,

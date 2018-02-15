@@ -64,25 +64,40 @@ With EasyFeeds, not only are you able to browse the library of feeds provided by
 
 This meant that adding new subscriptions had to consider 1) whether a feed was already in the database and 2) if it's not in the database, to quickly check the validity of the feed, parse its basic information, and add it to the user's subscriptions.
 
-Therefore, in the subscriptions creation controller action, I would have to ensure feed properties before adding a subscription. This allows for the proper rendering of errors for invalid URLs, skipping a feed fetch from occurring if the feed URL already exists in the database:
+This logic was handled using a special method in the model class, which would allow subscription creation via a potentially new, existing, or broken rss feed URL.
+
 ```Ruby
+
+# models/subscription.rb
+class Subscription < ApplicationRecord
+  # ...
+  def self.create_by_rss_url(attrs)
+    feed = Feed.find_by(rss_url: attrs[:rss_url])
+    feed ||= Feed.create(rss_url: attrs[:rss_url])
+    subscription = Subscription.new(attrs.merge(feed: feed).except(:rss_url))
+
+    # Merges for predictable error handling
+    subscription.feed.errors.each { |k, mes| subscription.errors.add(k, mes) }
+    subscription
+  end
+end
+
+# controllers/api/subscriptions_controller.rb
 class Api::SubscriptionsController < ApplicationController
-  before_action :ensure_feed, only: [:create]
+  # ...
+  def create
+    @subscription = Subscription.create_by_rss_url(
+      rss_url: subscription_params[:rss_url],
+      subscriber: current_user,
+      title: subscription_params[:title]
+    )
 
-# ...
-
-  def ensure_feed
-    @feed = Feed.find_by(rss_url: subscription_params[:rss_url])
-
-    if @feed.nil?
-      @feed = Feed.new(rss_url: subscription_params[:rss_url], title: "New Feed")
-      unless @feed.save
-        # this will stop subscribe create action from occurring
-        render json: @feed.errors.full_messages, status: 422
-      end
+    if @subscription.save
+      render :show
+    else
+      render json: @subscription.errors.full_messages, status: 422
     end
   end
-
 end
 ```
 

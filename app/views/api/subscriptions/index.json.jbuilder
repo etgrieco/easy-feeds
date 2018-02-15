@@ -24,7 +24,7 @@ json.feeds do
       all_feeds << feed
       json.set! feed.id do
         json.partial! 'api/feeds/feed', feed: feed
-        json.collections subscription.collections.map(&:id)
+        # json.collections subscription.collections.map(&:id)
         json.stories []
       end
     end
@@ -33,15 +33,16 @@ json.feeds do
   json.allIds all_feeds.sort_by(&:title).map(&:id)
 end
 
-json.collections({})
-json.collections do
-  json.byId({})
-  json.byId do
-    current_user.collections.includes(:subscriptions).each do |collection|
-      json.set! collection.id do
-        json.name collection.name
-        json.feeds collection.subscriptions.map(&:feed_id)
-      end
-    end
-  end
-end
+# TODO implement collections
+# json.collections({})
+# json.collections do
+#   json.byId({})
+#   json.byId do
+#     current_user.collections.includes(:subscriptions).each do |collection|
+#       json.set! collection.id do
+#         json.name collection.name
+#         json.feeds collection.subscriptions.map(&:feed_id)
+#       end
+#     end
+#   end
+# end

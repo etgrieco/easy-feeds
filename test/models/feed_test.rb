@@ -11,7 +11,7 @@ class FeedTest < ActiveSupport::TestCase
   test 'stores appropriate errors with empty feed url' do
     empty_feed.save
     assert_includes(
-      empty_feed.errors.messages[:base],
+      empty_feed.errors.full_messages,
       "The url field cannot be empty"
     )
   end
@@ -23,7 +23,7 @@ class FeedTest < ActiveSupport::TestCase
   test 'stores appropriate errors with broken feed url' do
     broken_feed.save
     assert_includes(
-      broken_feed.errors.messages[:base],
+      broken_feed.errors.full_messages,
       "There was an issue fetching the feed. Please check the URL or try again."
     )
   end
