@@ -138,8 +138,8 @@ class PopOut extends React.Component {
 
   render() {
     return (
-      <div onClick={this.handleClose}>X</div>
       <div className="pop-out-window">
+        <div onClick={this.handleClose}>X</div>
         {this.props.children}
       </div>
     );
