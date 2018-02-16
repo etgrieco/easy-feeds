@@ -32,14 +32,13 @@ class Api::SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.create_by_rss_url(
       rss_url: subscription_params[:rss_url],
-      subscriber: current_user,
-      title: subscription_params[:title]
+      subscriber: current_user
     )
 
     if @subscription.save
       render :show
     else
-      render json: @subscription.errors.full_messages, status: 422
+      render json: ["Please check the URL and try again."], status: 422
     end
   end
 
