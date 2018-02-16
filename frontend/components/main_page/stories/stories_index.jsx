@@ -6,7 +6,6 @@ import throttle from 'lodash/throttle';
 
 class StoriesIndex extends React.Component {
   state = {
-    fetching: false,
     condensedView: window.innerWidth <= 810
   };
 
@@ -24,14 +23,6 @@ class StoriesIndex extends React.Component {
     let timeout = null;
     document.querySelector(".main-content").removeEventListener('scroll', this.throttledScroll, false);
     removeEventListener('resize', this.throttledResize, false);
-  }
-
-  componentWillUpdate(newProps) {
-    if (!this.props.moreStories ||
-      newProps.stories.length > this.props.stories.length
-    ) {
-      this.setState({ fetching: false });
-    }
   }
 
   throttledResize = throttle(e => this.onResize(e), 300);
@@ -52,10 +43,8 @@ class StoriesIndex extends React.Component {
     if ((e.target.scrollHeight - e.target.scrollTop
           <= e.target.offsetHeight + 300) &&
         this.props.stories.length &&
-        this.props.moreStories &&
-        !this.state.fetching
+        this.props.moreStories
       ) {
-        this.setState({fetching: true});
         this.fetchMoreStories(this.props.stories.length);
       }
   }
