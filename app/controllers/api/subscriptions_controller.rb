@@ -4,7 +4,7 @@ class Api::SubscriptionsController < ApplicationController
 
   def index
     # lazy loaded in case refresh already ran
-    @subscriptions ||= current_user.subscriptions.includes(:feed) # TODO include suggestions
+    @subscriptions ||= current_user.subscriptions.includes(:feed) # TODO include collections
   end
 
   def show
@@ -43,6 +43,7 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def destroy
+    # receives subscription id for deletion
     @subscription = current_user.subscriptions.find_by(id: params[:id])
     if @subscription
       @subscription.destroy!
