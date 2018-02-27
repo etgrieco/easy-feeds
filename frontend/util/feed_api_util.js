@@ -1,12 +1,12 @@
-export const fetchFeedResults = (q) => (
+export const fetchFeedResults = query => (
   $.ajax({
     type: "GET",
     url: "api/feeds",
-    data: { q }
+    data: { query }
   })
 );
 
-export const fetchUnsubscribedFeed = (feedId) => (
+export const fetchUnsubscribedFeed = feedId => (
   $.ajax({
     type: "GET",
     url: `api/feeds/${feedId}`,

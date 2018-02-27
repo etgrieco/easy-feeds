@@ -5,7 +5,6 @@ import { RECEIVE_CURRENT_USER,
 import { CLEAR_SESSION_ERRORS } from '../actions/errors_actions';
 import merge from 'lodash/merge';
 
-//Session login/signup errors
 const SessionErrorsReducer = (state = [], action) => {
   Object.freeze(state);
   switch (action.type) {

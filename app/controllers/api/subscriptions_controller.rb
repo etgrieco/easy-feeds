@@ -7,6 +7,7 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def show
+    # finds by feed id. Allows for predictable behavior between frontend and backend
     # lazy loaded in case refresh already ran
     @subscription ||= current_user.subscription_by_feed(params[:id])
 
@@ -20,7 +21,6 @@ class Api::SubscriptionsController < ApplicationController
   def update
     # note: takes a subscription id vs. a feed id
     @subscription = current_user.subscriptions.find_by(id: params[:id])
-    # TODO: check for empty string? Ok in model?
     if @subscription.update(subscription_params)
       render 'api/subscriptions/show_no_stories'
     else
