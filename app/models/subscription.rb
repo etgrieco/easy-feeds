@@ -4,14 +4,16 @@ class Subscription < ApplicationRecord
 
   after_initialize :ensure_default_title, on: :create
 
-  def self.create_by_rss_url(attrs)
+  def self.build_by_rss_url(attrs)
     feed = Feed.find_by(rss_url: attrs[:rss_url])
     feed ||= Feed.create(rss_url: attrs[:rss_url])
-    subscription = Subscription.new(attrs.merge(feed: feed).except(:rss_url))
 
-    # Merges for predictable error handling
-    subscription.feed.errors.each { |k, mes| subscription.errors.add(k, mes) }
-    subscription
+    # returns a feed with corresponding errors if not created
+    if feed.id.nil?
+      feed
+    else
+      Subscription.new(attrs.merge(feed: feed).except(:rss_url))
+    end
   end
 
   def ensure_default_title

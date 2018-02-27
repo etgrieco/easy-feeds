@@ -3,7 +3,7 @@ require 'test_helper'
 class SubscriptionTest < ActiveSupport::TestCase
   test 'does not create subscription without feed' do
     subscription = Subscription.new(
-      subscriber_id: users(:johnsmith).id,
+      subscriber_id: users(:johnsmith),
       title: "sub"
     )
     assert_not subscription.save
@@ -11,7 +11,7 @@ class SubscriptionTest < ActiveSupport::TestCase
 
   test 'does not create subscription without user' do
     subscription = Subscription.new(
-      feed_id: feeds(:bbc).id,
+      feed_id: feeds(:bbc),
       title: "sub"
     )
     assert_not subscription.save
@@ -43,7 +43,7 @@ class SubscriptionTest < ActiveSupport::TestCase
   end
 
   test 'handles subscription creation with existing rss_url' do
-    subscription = Subscription.create_by_rss_url(
+    subscription = Subscription.build_by_rss_url(
       rss_url: feeds(:bbc).rss_url,
       subscriber: users(:janedoe),
       title: 'My Subscription'
@@ -54,7 +54,7 @@ class SubscriptionTest < ActiveSupport::TestCase
   end
 
   test 'error with invalid rss_url' do
-    subscription = Subscription.create_by_rss_url(
+    subscription = Subscription.build_by_rss_url(
       rss_url: "http://example.com/rss",
       subscriber: users(:janedoe),
       title: 'My Broken Subscription'
@@ -68,7 +68,7 @@ class SubscriptionTest < ActiveSupport::TestCase
   end
 
   test 'error with empty rss_url' do
-    subscription = Subscription.create_by_rss_url(
+    subscription = Subscription.build_by_rss_url(
       rss_url: '',
       subscriber: users(:janedoe),
       title: 'My Broken Subscription'
@@ -83,7 +83,7 @@ class SubscriptionTest < ActiveSupport::TestCase
   end
 
   test 'handles subscription creation with valid new rss_url' do
-    subscription = Subscription.create_by_rss_url(
+    subscription = Subscription.build_by_rss_url(
       rss_url: "http://www.feedforall.com/sample.xml",
       title: 'Sampe RSS Feed',
       subscriber: users(:janedoe)

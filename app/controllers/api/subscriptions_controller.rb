@@ -1,6 +1,5 @@
 class Api::SubscriptionsController < ApplicationController
   before_action :require_login
-  # before_action :ensure_feed, only: [:create]
 
   def index
     # lazy loaded in case refresh already ran
@@ -30,7 +29,7 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def create
-    @subscription = Subscription.create_by_rss_url(
+    @subscription = Subscription.build_by_rss_url(
       rss_url: subscription_params[:rss_url],
       subscriber: current_user
     )
@@ -38,7 +37,7 @@ class Api::SubscriptionsController < ApplicationController
     if @subscription.save
       render :show
     else
-      render json: ["Please check the URL and try again."], status: 422
+      render json: @subscription.errors.full_messages, status: 422
     end
   end
 
