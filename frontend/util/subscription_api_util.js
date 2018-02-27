@@ -17,10 +17,10 @@ export const fetchAllSubscriptions = () => (
   })
 );
 
-export const deleteSubscription = id => (
+export const deleteSubscription = subID => (
   $.ajax({
     type: "DELETE",
-    url: `api/subscriptions/${id}`
+    url: `api/subscriptions/${subID}`
   })
 );
 

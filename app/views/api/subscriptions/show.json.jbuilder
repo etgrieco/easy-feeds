@@ -43,7 +43,7 @@ json.feeds do
   json.allIds [feed.id]
 end
 
-# get basic subscription info (in an object)
+# get basic subscription info, organized by feed ID.
 json.subscriptions do
   json.byId do
     json.set! subscription.feed_id do
