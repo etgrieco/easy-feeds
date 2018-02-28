@@ -12,5 +12,7 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout())
 });
 
-export default withRouter(connect(mapStateToProps,
-  mapDispatchToProps)(SessionBar));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SessionBar);

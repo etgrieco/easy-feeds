@@ -14,4 +14,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddFeedForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddFeedForm);

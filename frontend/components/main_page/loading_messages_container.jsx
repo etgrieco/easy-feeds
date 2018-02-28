@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function LoadingMessages({ messages }) {
-
   const loadingMessages = messages.map((msg, idx) =>
     <li key={idx}>{msg}</li>
   );
@@ -15,4 +14,5 @@ function LoadingMessages({ messages }) {
 
 export default connect(
   state => ({messages: state.loading.messages}),
-  null)(LoadingMessages);
+  null
+)(LoadingMessages);

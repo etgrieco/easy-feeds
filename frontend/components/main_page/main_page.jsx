@@ -14,4 +14,4 @@ const MainPage = props => {
   );
 };
 
-export default withRouter(MainPage);
+export default MainPage;

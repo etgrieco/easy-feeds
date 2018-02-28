@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
-import { AuthRoute, ProtectedRoute } from '../../util/route_util.js';
+import { AuthRoute, ProtectedRoute } from '../../util/route_util.jsx';
 import Landing from './landing';
 import SubscriptionStoriesContainer from './stories/stories_container';
 import FeedsIndexContainer from './feeds/feeds_index_container';
@@ -91,7 +91,9 @@ const mapDispatchToProps = dispatch => ({
   receiveFeedTitle: title => dispatch(receiveFeedTitle(title))
 });
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MainContent));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(MainContent)
+);
