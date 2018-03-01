@@ -9,7 +9,9 @@ import { fetchUnsubscribedFeed } from '../../../actions/story_actions';
 import DiscoverSearchIndex from './discover_search_index';
 
 const mapStateToProps = state => ({
-  feeds: state.entities.feeds
+  feeds: state.entities.feeds,
+  errors: state.errors.feeds,
+  loadingMessages: state.loading.messages
 });
 
 const mapDispatchToProps = dispatch => ({

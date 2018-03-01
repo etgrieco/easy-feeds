@@ -1,6 +1,5 @@
 import React from 'react';
 import FeedsIndexRow from './feeds_index_row';
-import AddFeedFormContainer from './add_feeds_form_container';
 
 export class FeedsIndex extends React.Component {
 

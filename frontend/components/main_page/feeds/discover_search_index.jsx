@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DiscoverIndexItem from './discover_index_item';
-import AddFeedFormContainer from './add_feeds_form_container';
+import AddFeedForm from './add_feed_form';
 
 class DiscoverSearchIndex extends React.Component {
   state = {query: "", dataBaseSearch: true};
@@ -26,40 +26,10 @@ class DiscoverSearchIndex extends React.Component {
 
     return(
       <div className="discover-search-index">
-        <div className="discover-form-switch">
-          <div className={`discover-search-button no-select ${this.state.dataBaseSearch ? "selected" : ""}`}
-            onClick={e => this.handleSwitch({dataBaseSearch: true, clearErrors: true})}
-            >
-            <i className="fa fa-rss" aria-hidden="true"></i>
-            Search
-          </div>
-          <div className={`discover-add-url-button no-select ${this.state.dataBaseSearch ? "": "selected"}`}
-            onClick={e => this.handleSwitch({dataBaseSearch: false})}
-            >
-            <i className="fa fa-link" aria-hidden="true"></i>
-            Add URL
-          </div>
-        </div>
+        <DiscoverFormSwitch handleSwitch={this.handleSwitch} {...this.state} />
         { this.state.dataBaseSearch ?
-        <div>
-          <h1>What sources do you want to follow?</h1>
-          <form>
-            <div className="feed-search-input-container">
-              <input className="feed-search"
-                value={this.state.query}
-                onChange={this.handleQueryChange}
-                placeholder="Search for a feed..."
-                />
-              <i className="fa fa-search" aria-hidden="true"></i>
-            </div>
-          </form>
-        </div>
-          :
-        <div>
-          <h1>Have your own feed URL?</h1>
-          <AddFeedFormContainer />
-        </div>
-        }
+          <DataBaseSearch handleQueryChange={this.handleQueryChange} {...this.state} /> :
+          <AddFeedForm  {...this.props} /> }
         <div className="discover-items">
           <h2>{text}</h2>
           <DiscoverIndexItems {...this.props} />
@@ -67,6 +37,43 @@ class DiscoverSearchIndex extends React.Component {
       </div>
     );
   }
+}
+
+function DiscoverFormSwitch({ handleSwitch, dataBaseSearch }) {
+  return (
+    <div className="discover-form-switch">
+      <div className={`discover-search-button no-select ${dataBaseSearch ? "selected" : ""}`}
+        onClick={e => handleSwitch({dataBaseSearch: true, clearErrors: true})}
+        >
+        <i className="fa fa-rss" aria-hidden="true"></i>
+        Search
+      </div>
+      <div className={`discover-add-url-button no-select ${dataBaseSearch ? "": "selected"}`}
+        onClick={e => handleSwitch({dataBaseSearch: false})}
+        >
+        <i className="fa fa-link" aria-hidden="true"></i>
+        Add URL
+      </div>
+    </div>
+  );
+}
+
+function DataBaseSearch({ query, handleQueryChange }) {
+  return (
+    <div>
+      <h1>What sources do you want to follow?</h1>
+      <form>
+        <div className="feed-search-input-container">
+          <input className="feed-search"
+            value={query}
+            onChange={handleQueryChange}
+            placeholder="Search for a feed..."
+            />
+          <i className="fa fa-search" aria-hidden="true"></i>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 function DiscoverIndexItems({ feeds, ...feedActions }) {
