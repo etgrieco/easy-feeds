@@ -61,11 +61,7 @@ export const deleteFeed = feed => dispatch => (
     .then(deletedFeed => dispatch(removeFeed(deletedFeed)))
 );
 
-export const updateFeed = feed => dispatch => {
-  const subscription = {
-    title: feed.subscription_title,
-    id: feed.subscription_id
-  };
+export const updateSubscription = subscription => dispatch => {
   return SubscriptionApiUtil.updateSubscription(subscription)
     .then(
       updatedFeed => {

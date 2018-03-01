@@ -2,17 +2,15 @@ import React from 'react';
 import FeedsIndexRow from './feeds_index_row';
 
 export class FeedsIndex extends React.Component {
-
   componentDidMount() {
     window.document.querySelector(".main-content").scrollTo(0,0);
   }
 
   render() {
-    const { feeds, subscriptionIds, updateFeed, deleteFeed, errors } = this.props;
+    const { feeds, subscriptionIds, updateSubscription, deleteFeed, errors } = this.props;
     const feedsIndexRows = subscriptionIds.map(feedId => {
       const feed = feeds[feedId];
-      const props = { updateFeed, deleteFeed, feed };
-      return <FeedsIndexRow key={feed.id} {...props} />;
+      return <FeedsIndexRow key={feed.id} {...{ updateSubscription, deleteFeed, feed }} />;
     });
 
     return (
@@ -37,7 +35,6 @@ export class FeedsIndex extends React.Component {
               </tbody>
             </table>
           </div>
-
         </div>
       </div>
     );
