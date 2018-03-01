@@ -6,7 +6,7 @@ import { createFeed, deleteFeed } from '../../../actions/subscription_actions';
 import { openPopOut } from '../../../actions/popout_actions';
 import { clearErrors } from '../../../actions/errors_actions';
 import { fetchUnsubscribedFeed } from '../../../actions/story_actions';
-import DiscoverSearchIndex from './discover_search_index';
+import Discover from './discover';
 
 const mapStateToProps = state => ({
   feeds: state.entities.feeds,
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
   deleteFeed: feed => dispatch(deleteFeed(feed)),
 });
 
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DiscoverSearchIndex));
+)(Discover);

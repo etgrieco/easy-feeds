@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import DiscoverIndexItem from './discover_index_item';
 import AddFeedForm from './add_feed_form';
 
-class DiscoverSearchIndex extends React.Component {
+class Discover extends React.Component {
   state = {query: "", dataBaseSearch: true};
 
   componentDidMount() {
@@ -27,9 +27,12 @@ class DiscoverSearchIndex extends React.Component {
     return(
       <div className="discover-search-index">
         <DiscoverFormSwitch handleSwitch={this.handleSwitch} {...this.state} />
+
         { this.state.dataBaseSearch ?
           <DataBaseSearch handleQueryChange={this.handleQueryChange} {...this.state} /> :
-          <AddFeedForm  {...this.props} /> }
+          <AddFeedForm  {...this.props} />
+        }
+
         <div className="discover-items">
           <h2>{text}</h2>
           <DiscoverIndexItems {...this.props} />
@@ -79,14 +82,9 @@ function DataBaseSearch({ query, handleQueryChange }) {
 function DiscoverIndexItems({ feeds, ...feedActions }) {
   const results = feeds.results.length === 0 ?
     ["No Feeds Found"] :
-    feeds.results.map(resultId => {
-      let feed = feeds.byId[resultId];
-      return <DiscoverIndexItem
-        key={feed.id}
-        feed={feed}
-        {...feedActions}
-      />;
-    });
+    feeds.results.map(resultId =>
+      <DiscoverIndexItem key={resultId} feed={feeds.byId[resultId]} {...feedActions} />
+    );
 
   return (
     <div className="results">
@@ -95,4 +93,4 @@ function DiscoverIndexItems({ feeds, ...feedActions }) {
   );
 }
 
-export default DiscoverSearchIndex;
+export default Discover;
