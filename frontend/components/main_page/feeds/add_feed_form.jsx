@@ -8,10 +8,6 @@ export class AddFeedForm extends React.Component {
     this.props.createFeed(this.state);
   }
 
-  componentWillReceiveProps() {
-    this.setState({rss_url: ""});
-  }
-
   render() {
     const errors = this.props.errors.map((err, idx) => <li key={idx}>{err}</li>);
     const loadingMessages = this.props.loadingMessages.map((msg, idx) =>
