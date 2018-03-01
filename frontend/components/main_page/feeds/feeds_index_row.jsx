@@ -17,7 +17,7 @@ class FeedsIndexRow extends React.Component {
     });
   }
 
-  handleDelete = (e) => {
+  handleDelete = () => {
     this.props.deleteFeed(this.props.feed);
   }
 
@@ -66,12 +66,27 @@ function PencilButton({ rename }) {
   );
 }
 
-function TrashButton({ handleDelete }) {
-  return (
-    <button className="modify-button feed-delete" onClick={handleDelete}>
-      <i className="fa fa-trash-o" aria-hidden="true"></i>
-    </button>
-  );
+class TrashButton extends React.Component {
+  state = { confirmation: false }
+
+  triggerConfirm = () => {
+    if (this.state.confirmation) {
+      this.props.handleDelete();
+    } else {
+      this.setState({ confirmation: true });
+    }
+  }
+
+  render() {
+    return (
+      <button className="modify-button feed-delete" onClick={this.triggerConfirm}>
+        { this.state.confirmation ?
+          "DELETE?" :
+          <i className="fa fa-trash-o" aria-hidden="true"></i>
+        }
+      </button>
+    );
+  }
 }
 
 class SubscriptionTitleInput extends React.Component{
