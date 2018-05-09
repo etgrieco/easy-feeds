@@ -88,7 +88,7 @@ class Feed < ApplicationRecord
       end
     end
 
-    self.last_built = @feedjira_feed.entries.map(&:published).max || Time.now
+    self.last_built = @feedjira_feed.entries.map{ |ent| ent.published || Time.now}.max
     save
   end
 end

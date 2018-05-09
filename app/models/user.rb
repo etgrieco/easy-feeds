@@ -83,6 +83,7 @@ class User < ApplicationRecord
 
     seed_urls.each do |url|
       feed = Feed.find_by(rss_url: url)
+      next if feed.nil?
       s = Subscription.new(
         subscriber_id: id,
         feed_id: feed.id
