@@ -8,11 +8,6 @@ var prodPlugins = [
     'process.env': {
       'NODE_ENV': JSON.stringify('production')
     }
-  }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: true
-    }
   })
 ];
 
@@ -28,11 +23,13 @@ module.exports = {
     filename: "bundle.js"
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: [/\.jsx?$/, /\.js?$/],
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        use: {
+          loader: 'babel-loader'
+        }
       }
     ]
   },

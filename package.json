@@ -18,12 +18,13 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "webpack": "^3.8.1"
+    "webpack": "^4.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^3.19.0",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "webpack-cli": "^2.1.3"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
@@ -34,9 +35,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:watch": "webpack --watch",
     "build": "webpack",
-    "postinstall": "webpack"
+    "build:dev": "yarn build --mode=development",
+    "build:watch": "yarn build:dev --watch",
+    "build:prod": "yarn build -p",
+    "postinstall": "yarn build:prod"
   },
   "repository": {
     "type": "git",

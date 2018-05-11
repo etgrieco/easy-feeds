@@ -9,7 +9,7 @@ import DiscoverContainer from './feeds/discover_container';
 import SubscriptionStoriesIndexPopout from './stories/subscription_stories_index_popout';
 import StoryShowPopout from './stories/story_show_popout';
 import { receiveFeedTitle } from '../../actions/ui_actions';
-import throttle from 'lodash/throttle';
+import { throttle } from 'lodash';
 
 class MainContent extends React.Component {
   componentDidMount() {
@@ -79,10 +79,9 @@ class MainContent extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const feeds = state.entities.feeds.byId;
+  const feedsById = state.entities.feeds.byId;
   const id = ownProps.history.location.pathname.split("/")[3];
-  let feed = feeds[id];
-  feed = !feed ? {subscription_title: ""} : feed;
+  const feed = feedsById[id] ? { subscription_title: "" } : feedsById[id];
   const subscriptionTitle = feed.subscription_title || feed.title;
   return ({ subscriptionTitle, sessionBarTitle: state.ui.feedTitle });
 };
