@@ -77,17 +77,19 @@ class User < ApplicationRecord
       "https://www.wired.com/feed/rss",
       "https://www.polygon.com/rss/index.xml",
       "http://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml",
-      "http://github.com/blog.atom",
+      "https://blog.github.com/blog.atom",
       "https://www.theringer.com/rss/index.xml"
     ]
 
     seed_urls.each do |url|
       feed = Feed.find_by(rss_url: url)
-      s = Subscription.new(
-        subscriber_id: id,
-        feed_id: feed.id
-      )
-      s.save
+      if feed
+        s = Subscription.new(
+          subscriber_id: id,
+          feed_id: feed.id
+        )
+        s.save
+      end
     end
   end
 
