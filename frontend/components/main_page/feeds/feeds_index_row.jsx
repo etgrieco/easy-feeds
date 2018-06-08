@@ -70,18 +70,16 @@ class TrashButton extends React.Component {
   state = { confirmation: false }
 
   triggerConfirm = () => {
-    if (this.state.confirmation) {
-      this.props.handleDelete();
-    } else {
-      this.setState({ confirmation: true });
-    }
+    this.state.confirmation ?
+      this.props.handleDelete()
+      : this.setState({ confirmation: true })
   }
 
   render() {
     return (
       <button className="modify-button feed-delete" onClick={this.triggerConfirm}>
         { this.state.confirmation ?
-          "DELETE?" :
+          <span>"DELETE?"</span> :
           <i className="fa fa-trash-o" aria-hidden="true"></i>
         }
       </button>

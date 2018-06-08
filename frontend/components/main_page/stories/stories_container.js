@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import StoriesIndex from './stories_index';
 import { fetchSingleFeed } from '../../../actions/subscription_actions';
 import { fetchUnsubscribedFeed, fetchLatest, readStory,
@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
   const storiesById = state.entities.stories.byId;
 
   const feed = feeds[id] || {stories: []};
-  feed.title = feed ? (feed.subscription_title || feed.title) : ""
+  feed.title = feed ? (feed.subscription_title || feed.title) : "";
   feed.titleLink = feed ? feed.website_url : null;
 
   const pathProps = {
@@ -27,7 +27,7 @@ const mapStateToProps = (state, ownProps) => {
     reads: state.session.reads,
     discover: feed.stories,
     subscriptions: feed.stories
-  }
+  };
 
   const stories = storyIds[path].map(storyId => storiesById[storyId]);
 
