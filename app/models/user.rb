@@ -77,7 +77,7 @@ class User < ApplicationRecord
       "https://www.wired.com/feed/rss",
       "https://www.polygon.com/rss/index.xml",
       "http://rss.nytimes.com/services/xml/rss/nyt/NYRegion.xml",
-      "http://github.com/blog.atom",
+      "https://blog.github.com/blog.atom",
       "https://www.theringer.com/rss/index.xml"
     ]
 
