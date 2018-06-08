@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { merge } from 'lodash';
+import merge from 'lodash/merge';
 
 class FeedsIndexRow extends React.Component {
   state = {

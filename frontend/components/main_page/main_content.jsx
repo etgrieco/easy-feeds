@@ -9,7 +9,7 @@ import DiscoverContainer from './feeds/discover_container';
 import SubscriptionStoriesIndexPopout from './stories/subscription_stories_index_popout';
 import StoryShowPopout from './stories/story_show_popout';
 import { receiveFeedTitle } from '../../actions/ui_actions';
-import { throttle } from 'lodash';
+import throttle from 'lodash/throttle';
 
 class MainContent extends React.Component {
   componentDidMount() {

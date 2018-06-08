@@ -29,11 +29,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "yarn build:prod",
     "build:dev": "yarn build --mode=development",
-    "build:watch": "yarn build:dev --watch",
-    "build:prod": "yarn build -p",
-    "postinstall": "yarn build:prod"
+    "build:dev:watch": "yarn build:dev --watch",
+    "build:prod": "NODE_ENV=production webpack --mode=production",
+    "postinstall": "yarn build"
   },
   "repository": {
     "type": "git",
