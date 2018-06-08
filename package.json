@@ -1,6 +1,5 @@
 {
   "name": "EasyFeeds",
-  "private": true,
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -26,15 +25,10 @@
     "redux-logger": "^3.0.6",
     "webpack-cli": "^2.1.3"
   },
-  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "description": "Feedly Clone Project",
   "version": "1.0.0",
   "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "test"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "build:dev": "yarn build --mode=development",
     "build:watch": "yarn build:dev --watch",
