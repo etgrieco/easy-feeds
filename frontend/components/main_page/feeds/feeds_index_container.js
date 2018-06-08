@@ -1,7 +1,6 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import FeedsIndex from './feeds_index';
-import { deleteFeed, updateSubscription, fetchAllSubscriptions } from '../../../actions/subscription_actions';
+import { deleteFeed, updateSubscription } from '../../../actions/subscription_actions';
 
 const mapStateToProps = state => ({
   feeds: state.entities.feeds.byId,

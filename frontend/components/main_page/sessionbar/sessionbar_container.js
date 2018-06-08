@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { logout } from '../../../actions/session_actions';
 import SessionBar from './sessionbar';
 
-const mapStateToProps = state => ({
-  loggedIn: Boolean(state.session.currentUser),
-  title: state.ui.feedTitle
+const mapStateToProps = ({ ui, session }) => ({
+  loggedIn: Boolean(session.currentUser),
+  title: ui.feedTitle
 });
 
 const mapDispatchToProps = dispatch => ({

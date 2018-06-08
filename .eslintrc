@@ -1,6 +1,20 @@
 {
   "parser": "babel-eslint",
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "rules": {
-    "strict": 0
+    "semi": 2,
+    "no-unused-vars": ["warn"],
+    "no-debugger": ["warn"],
+  },
+  "globals": {
+    "$": false
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
   }
 }
