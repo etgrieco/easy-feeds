@@ -81,7 +81,7 @@ class MainContent extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const feedsById = state.entities.feeds.byId;
   const id = ownProps.history.location.pathname.split("/")[3];
-  const feed = feedsById[id] ? { subscription_title: "" } : feedsById[id];
+  const feed = feedsById[id] || { subscription_title: "" };
   const subscriptionTitle = feed.subscription_title || feed.title;
   return ({ subscriptionTitle, sessionBarTitle: state.ui.feedTitle });
 };
