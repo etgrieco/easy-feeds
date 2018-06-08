@@ -1,24 +1,13 @@
-var path = require('path');
-var webpack = require("webpack");
+const path = require('path');
+const webpack = require("webpack");
 
-var plugins = [];
-var devPlugins = [];
-var prodPlugins = [
-  new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production')
-    }
-  }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: true
-    }
-  })
+const isProduction = process.env.NODE_ENV === 'production'
+const devPlugins = [];
+const prodPlugins = [];
+
+const plugins = [
+  ...(isProduction? devPlugins : prodPlugins)
 ];
-
-plugins = plugins.concat(
-  process.env.NODE_ENV === 'production' ? prodPlugins : devPlugins
-);
 
 module.exports = {
   context: __dirname,
@@ -28,11 +17,13 @@ module.exports = {
     filename: "bundle.js"
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: [/\.jsx?$/, /\.js?$/],
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        use: {
+          loader: 'babel-loader'
+        }
       }
     ]
   },
