@@ -4,9 +4,9 @@ import { REMOVE_FEED, RECEIVE_NEW_FEED, RECEIVE_ALL_SUBSCRIPTIONS  }
   from '../actions/subscription_actions';
 import { RECEIVE_LATEST, RECEIVE_READS, RECEIVE_READ, RECEIVE_UNREAD } from '../actions/story_actions';
 import { CLEAR_ENTITIES } from '../actions/session_actions';
-import merge from 'lodash/merge';
-import union from 'lodash/union';
-import remove from 'lodash/remove';
+import merge from 'lodash-es/merge';
+import union from 'lodash-es/union';
+import remove from 'lodash-es/remove';
 
 const userReducer = (state = null, action) => {
   Object.freeze(state);

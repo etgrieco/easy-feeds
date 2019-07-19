@@ -12,10 +12,10 @@ export const createDemoUser = () => (
     url: "/api/users",
     data: {
       user: {
-        email: `demo-user-${Math.floor(Math.random() * 1000000)}@demo.com`,
+        email: `demo-user-${Math.floor(Math.random() * 1000000)}-${Math.floor(Math.random() * 1000000)}@demo.com`,
         first_name: "Demo",
         last_name: "User",
-        password: `${Math.floor(Math.random() * 1000000)}`
+        password: `password`
       }
     }
   })

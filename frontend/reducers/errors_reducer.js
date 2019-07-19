@@ -3,7 +3,7 @@ import { CLEAR_ERRORS } from '../actions/errors_actions';
 import { RECEIVE_CURRENT_USER,
   RECEIVE_SESSION_ERRORS } from '../actions/session_actions';
 import { CLEAR_SESSION_ERRORS } from '../actions/errors_actions';
-import merge from 'lodash/merge';
+import merge from 'lodash-es/merge';
 
 const SessionErrorsReducer = (state = [], action) => {
   Object.freeze(state);
