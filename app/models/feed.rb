@@ -43,7 +43,7 @@ class Feed < ApplicationRecord
     end
 
     begin
-      @feedjira_feed = Feedjira::Feed.fetch_and_parse rss_url
+      @feedjira_feed = fetch_and_parse(rss_url)
     rescue
       errors.add  :base,
                   "There was an issue fetching the feed." \
@@ -60,7 +60,7 @@ class Feed < ApplicationRecord
 
   # after_validation (create)
   def populate_feed_metadata
-    @feedjira_feed ||= Feedjira::Feed.fetch_and_parse rss_url
+    @feedjira_feed ||= fetch_and_parse(rss_url)
 
     title = @feedjira_feed.title
     self.title = title.empty? ? "New Feed" : title
@@ -80,7 +80,7 @@ class Feed < ApplicationRecord
   end
 
   def populate_entries
-    @feedjira_feed ||= Feedjira::Feed.fetch_and_parse rss_url
+    @feedjira_feed ||= fetch_and_parse(rss_url)
 
     @feedjira_feed.entries.each do |entry|
       unless stories.find_by(entry_id: entry.entry_id)
@@ -90,5 +90,10 @@ class Feed < ApplicationRecord
 
     self.last_built = @feedjira_feed.entries.map{ |ent| ent.published || Time.now}.max
     save
+  end
+
+  def fetch_and_parse(rss_url)
+    xml = HTTParty.get(rss_url).body
+    Feedjira.parse(xml)
   end
 end
