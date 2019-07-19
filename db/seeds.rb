@@ -8,6 +8,7 @@
 require 'faker'
 
 Feed.destroy_all
+puts "Destroyed all feeds!"
 seed_urls = [
   "http://feeds.bbci.co.uk/news/world/rss.xml",
   "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
@@ -26,12 +27,19 @@ seed_urls = [
 ]
 
 feeds = seed_urls.map do |url|
+  puts "Fetching and parsing #{url}"
   f = Feed.new(rss_url: url)
-  f if f.save
+  if f.save
+    puts "Fetch and parsing #{url} succeeded!"
+    f
+  else
+    puts "Fetch and parsing #{url} failed!"
+  end
 end
-feeds.compact!
+.compact!
 
 User.destroy_all
+puts "Destroyed all users!"
 users = Array.new(50) do
   u = User.new(
     email: Faker::Internet.unique.email,
@@ -42,10 +50,12 @@ users = Array.new(50) do
   u if u.save
 end
 users.compact!
+puts "50 seed users created!"
 
 Subscription.destroy_all
+puts "Destroyed all subscriptions"
 users.each do |user|
-  feed_ids = Array.new(10) { feeds.sample.id }.compact
+  feed_ids = Array.new(10) { Feed.all.sample.id }.compact
 
   feed_ids.uniq.each do |feed_id|
     s = Subscription.new(
@@ -56,3 +66,4 @@ users.each do |user|
     s.save
   end
 end
+puts "Assigned 10 subscriptions for each user!"

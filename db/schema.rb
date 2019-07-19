@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20171122132537) do
     t.string "favicon_url", default: "", null: false
     t.string "image_url", default: "", null: false
     t.string "website_url", default: "", null: false
-    t.datetime "last_built", default: "2017-10-31 14:44:47", null: false
+    t.datetime "last_built", default: "2019-07-19 03:59:20", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status", default: "OK"

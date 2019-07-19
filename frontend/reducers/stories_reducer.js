@@ -1,4 +1,4 @@
-import merge from 'lodash/merge';
+import merge from 'lodash-es/merge';
 import { combineReducers } from 'redux';
 import { RECEIVE_SINGLE_FEED, RECEIVE_NEW_FEED } from '../actions/subscription_actions';
 import { RECEIVE_LATEST, RECEIVE_STORY, RECEIVE_READS, RECEIVE_READ, RECEIVE_UNREAD } from '../actions/story_actions';

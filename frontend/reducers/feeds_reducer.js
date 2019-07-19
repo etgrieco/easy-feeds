@@ -3,8 +3,8 @@ import { REMOVE_FEED, RECEIVE_NEW_FEED, RECEIVE_SINGLE_FEED, RECEIVE_ALL_SUBSCRI
   from '../actions/subscription_actions';
 import { CLEAR_ENTITIES, RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_LATEST, RECEIVE_READS } from '../actions/story_actions';
-import merge from 'lodash/merge';
-import union from 'lodash/union';
+import merge from 'lodash-es/merge';
+import union from 'lodash-es/union';
 import { combineReducers } from 'redux';
 
 const feedsById = (state = {}, action) => {
