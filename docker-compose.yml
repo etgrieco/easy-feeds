@@ -23,6 +23,5 @@ services:
       POSTRES_PASSWORD: password
       POSTGRES_DB: easyfeeds_development
     # seed: docker-compose exec db sh -c 'psql -U dev easyfeeds_development < /app/development.sql'
-
-    volumes:
-    - ./development.sql:/app/development.sql
+    # volumes:
+    # - ./development.sql:/app/development.sql
