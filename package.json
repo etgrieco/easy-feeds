@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/etgrieco/EasyFeeds#readme",
   "dependencies": {
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "moment": "^2.24.0",
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.2",
