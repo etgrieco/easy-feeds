@@ -102,7 +102,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
-    jquery-rails (4.3.5)
+    jquery-rails (4.6.0)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
@@ -241,7 +241,7 @@ DEPENDENCIES
   figaro
   httparty
   jbuilder (~> 2.5)
-  jquery-rails
+  jquery-rails (~> 4.6)
   listen (>= 3.0.5, < 3.2)
   metainspector
   pg (~> 1.1.4)

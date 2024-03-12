@@ -21,7 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
 
 # Other
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.6'
 gem 'bcrypt', '~> 3.1.7'
 gem 'feedjira', '~> 3'
 gem 'httparty'
