@@ -8,26 +8,23 @@ end
 ruby "2.7.8"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 
 # Asset Gems
-gem 'sass-rails', '~> 5.0'
-gem 'coffee-rails', '~> 4.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
 
 # Other
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.6'
 gem 'bcrypt', '~> 3.1.7'
 gem 'feedjira', '~> 3'
 gem 'httparty'
 gem 'faker'
-gem 'ransack'
-gem 'sanitize'
+gem 'sanitize', '~> 6'
 gem 'metainspector'
 gem 'active_record_union'
 

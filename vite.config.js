@@ -9,8 +9,6 @@ export default defineConfig({
         entryFileNames: `[name].js`
       }
     },
-    // copyPublicDir: true,
-    outDir: './app/assets/javascripts'
   },
   plugins: [react()]
 })
