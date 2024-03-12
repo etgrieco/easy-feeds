@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
+import '../app/assets/stylesheets/application.scss'
+
 document.addEventListener("DOMContentLoaded", () => {
   let store;
   if (window.currentUser) {

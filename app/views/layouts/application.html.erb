@@ -14,6 +14,19 @@
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400" rel="stylesheet">
 
+    <% if Rails.env.development? -%>
+    <script type="module">
+      import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+      RefreshRuntime.injectIntoGlobalHook(window)
+      window.$RefreshReg$ = () => {}
+      window.$RefreshSig$ = () => (type) => type
+      window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+    <script type="module" src="http://localhost:5173/@vite/client"></script>
+    <script type="module" src="http://localhost:5173/frontend/easy_feeds.jsx"></script>
+    <% else -%>
+    # TODO: Figure out how to get production assets working
+    <% end -%>
   </head>
 
   <body>

@@ -15,16 +15,27 @@
 
 
   // CSS Reset
-  @import "base/reset.scss";
+  @import "./base/reset.scss";
 
   // Core
-  @import "base/colors.scss";
-  @import "base/buttons.scss";
-  @import "base/body.scss";
+  @import "./base/colors.scss";
+  @import "./base/buttons.scss";
+  @import "./base/body.scss";
 
   // Components
-  @import "components/**/*";
-  @import "mobile/*";
+  @import "./components/main/discover.scss";
+  @import "./components/main/feeds.scss";
+  @import "./components/main/landing.scss";
+  @import "./components/main/loading.scss";
+  @import "./components/main/main.scss";
+  @import "./components/main/session-form.scss";
+  @import "./components/main/stories-show.scss";
+  @import "./components/main/stories.scss";
+  @import "./components/navbar.scss";
+  @import "./components/popout.scss";
+  @import "./components/session-bar.scss";
+  @import "./components/session-bar.scss";
+  @import "./mobile/mobile.scss";
 
   .hidden {
     display: none;

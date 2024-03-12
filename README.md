@@ -6,6 +6,34 @@ This project is a [Feedly](http://feedly.com)-inspired web app for RSS feed aggr
 
 This project uses the Rails framework for the backend API, and a React/Redux framework in order to handle dynamic front-end rendering in a single-page app.
 
+## Setup
+
+*Prerequisites
+- ruby 2.7.8 (recommended to use [rbenv](https://github.com/rbenv/rbenv))
+- Postgres server running version 10
+    - If you want to run it in a docker container, run `docker-compose run db`
+
+(above prerequisites can be run locally or in a Docker container)
+
+```sh
+# install gems
+bundle install
+# setup db + seed with initial data
+bundle exec rails db:setup
+```
+
+## Running
+
+Frontend:
+```
+npm run dev
+```
+
+Backend:
+```
+bundle exec rails server
+```
+
 ## Features
 
 ### Responsive UI
