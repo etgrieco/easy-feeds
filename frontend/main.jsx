@@ -1,5 +1,5 @@
 // Assets and polyfills
-import '../app/assets/stylesheets/application.scss'
+import './stylesheets/application.scss'
 // React
 import React from 'react';
 import ReactDOM from 'react-dom';
