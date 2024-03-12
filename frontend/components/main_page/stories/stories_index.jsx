@@ -1,7 +1,5 @@
 import React from 'react';
 import StoriesIndexItem from './stories_index_item';
-import { Link } from 'react-router-dom';
-import StoryLoadingAnimation from 'react-loading-animation';
 import throttle from 'lodash/throttle';
 
 class StoriesIndex extends React.Component {
@@ -86,7 +84,7 @@ class StoriesIndex extends React.Component {
         <StoriesIndexHeader {...{titleLink}}>{title}</StoriesIndexHeader>
         {storyItems}
         {moreStories && !previewView && !readView ?
-          <StoryLoadingAnimation /> :
+          <div>Loading...</div> :
           null}
       </div>
     );

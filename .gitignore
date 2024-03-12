@@ -12,8 +12,9 @@ npm-debug.log
 
 # Ignore bundler config.
 /.bundle
-bundle.js
-bundle.js.map
+
+# Ignore output bundle files
+dist
 
 # Ignore all logfiles and tempfiles.
 /log/*

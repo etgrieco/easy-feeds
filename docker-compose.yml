@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  dev:
+  web:
     build: .
     image: easy-feeds-rails
     ports:
@@ -10,7 +10,7 @@ services:
       RAILS_ENV: development
       DB_HOST: db
       POSTGRES_USER: dev
-      POSTRES_PASSWORD: password
+      POSTGRES_PASSWORD: password
       POSTGRES_DB_PREFIX: easyfeeds
     depends_on:
     - db
@@ -20,7 +20,7 @@ services:
     - "5432:5432"
     environment:
       POSTGRES_USER: dev
-      POSTRES_PASSWORD: password
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: easyfeeds_development
     # seed: docker-compose exec db sh -c 'psql -U dev easyfeeds_development < /app/development.sql'
     # volumes:

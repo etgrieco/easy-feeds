@@ -4,11 +4,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "yarn build:prod",
-    "build:dev": "yarn build --mode=development",
-    "build:dev:watch": "yarn build:dev --watch",
-    "build:prod": "NODE_ENV=production webpack --mode=production",
-    "postinstall": "yarn build"
+    "dev": "vite",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -22,27 +19,19 @@
   },
   "homepage": "https://github.com/etgrieco/EasyFeeds#readme",
   "dependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
-    "react": "^16.0.0",
-    "react-addons-css-transition-group": "^15.6.2",
-    "react-dom": "^16.0.0",
-    "react-loading-animation": "^1.4.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "~2.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-eslint": "^7.2.3",
-    "babel-loader": "^8.0.6",
-    "core-js": "^3.1.4",
     "redux-logger": "^3.0.6",
-    "webpack": "^4.36.1",
-    "webpack-cli": "^3.3.6"
+    "sass": "^1.71.1",
+    "vite": "^5.1.4"
   }
 }
