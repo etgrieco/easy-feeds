@@ -33,7 +33,7 @@ npm run dev
 Backend:
 ```sh
 # Load default environment variables for db connections
-source .env.development
+export $(cat .env.development | xargs)
 # Run the server
 bundle exec rails server
 ```
