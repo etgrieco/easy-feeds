@@ -11,10 +11,10 @@ This project uses the Rails framework for the backend API, and a React/Redux fra
 *Prerequisites
 - ruby 2.7.8 (recommended to use [rbenv](https://github.com/rbenv/rbenv))
 - bundler (Last bundled with 2.4.22)
-- Postgres server running version 10
+- Postgres server running version 12
     - If you want to run it in a docker container, run `docker-compose run db`
-
-(above prerequisites can be run locally or in a Docker container)
+    - To back up files from the container development db: `docker-compose exec db sh -c 'pg_dump -U dev easyfeeds_development' > backup.sql`
+    - To restore db to a container: `cat backup.sql |  docker-compose exec -T db sh -c 'psql -U dev easyfeeds_development'`
 
 ```sh
 # install gems
@@ -26,12 +26,15 @@ bundle exec rails db:setup
 ## Running
 
 Frontend:
-```
+```sh
 npm run dev
 ```
 
 Backend:
-```
+```sh
+# Load default environment variables for db connections
+source .env.development
+# Run the server
 bundle exec rails server
 ```
 
