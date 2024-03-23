@@ -10,6 +10,7 @@ This project uses the Rails framework for the backend API, and a React/Redux fra
 
 *Prerequisites
 - ruby 2.7.8 (recommended to use [rbenv](https://github.com/rbenv/rbenv))
+- bundler (Last bundled with 2.4.22)
 - Postgres server running version 10
     - If you want to run it in a docker container, run `docker-compose run db`
 
