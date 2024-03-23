@@ -12,7 +12,7 @@ ENV BUNDLE_PATH=/bundle \
   BUNDLE_BIN=/bundle/bin \
   GEM_HOME=/bundle
 ENV PATH="${BUNDLE_BIN}:${PATH}"
-RUN gem install bundler -v 1.17.2
+RUN gem install bundler -v 2.4.22
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --binstubs="$BUNDLE_BIN"
 
