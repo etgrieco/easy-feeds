@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Other
 gem 'jquery-rails', '~> 4.6'
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.13'
 gem 'feedjira', '~> 3'
 gem 'httparty'
 gem 'faker'
