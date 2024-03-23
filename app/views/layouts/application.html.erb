@@ -13,7 +13,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400" rel="stylesheet">
 
-    <% if Rails.env.development? -%>
+    <% if Rails.env.development? -%> 
     <script type="module">
       import RefreshRuntime from 'http://localhost:5173/@react-refresh'
       RefreshRuntime.injectIntoGlobalHook(window)
@@ -24,7 +24,9 @@
     <script type="module" src="http://localhost:5173/@vite/client"></script>
     <script type="module" src="http://localhost:5173/frontend/main.jsx"></script>
     <% else -%>
-    # TODO: Figure out how to get production assets working
+    <%# TO AVOID COMPLEX BUILD PIPELINE SETUP, THESE ARE HARDCODED FOR NOW %>
+    <script type="module" crossorigin src="/assets/dist/assets/index-DdmFmi0G.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/dist/assets/index-CP0JL9j6.css">
     <% end -%>
   </head>
 

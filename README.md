@@ -185,6 +185,18 @@ export default props => (
 );
 ```
 
+# Deployment
+
+Currently, to avoid a complex deployment environment procedures, static assets will be generated and maintained in source control at `app/assets/static/`.
+
+To re-build:
+
+```sh
+rm -rf app/assets/static/dist
+npm run build
+cp -r dist app/assets/static
+```
+
 ## Acknowledgements
 
 In addition to the Rails and React frameworks, this app would not be possible without the collaborators who worked on [Feedjira](https://github.com/feedjira/feedjira) and [MetaInspector](https://github.com/jaimeiniesta/metainspector). These gems were used for efficient and reliable fetching and parsing of RSS files and scraping website metadata.
