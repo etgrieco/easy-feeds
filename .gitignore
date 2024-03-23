@@ -29,3 +29,6 @@ dist
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore locally generated backups
+backup.sql
