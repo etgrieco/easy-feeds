@@ -158,7 +158,8 @@ GEM
       racc (~> 1.4)
     pg (1.1.4)
     public_suffix (5.0.4)
-    puma (3.12.6)
+    puma (5.6.8)
+      nio4r (~> 2.0)
     racc (1.7.3)
     rack (2.2.8.1)
     rack-test (2.1.0)
@@ -247,7 +248,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   metainspector
   pg (~> 1.1.4)
-  puma (~> 3.7)
+  puma (~> 5.6)
   rails (~> 5.2)
   sanitize (~> 6)
   spring
