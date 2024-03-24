@@ -24,7 +24,9 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  # config.assets.js_compressor = Uglifier.new(harmony: true) # MAYBE I JUST DON'T NEED TO DO THIS AT ALL?
+  # TODO: Our JS assets are no longer being minified to simplify our asset pipeline.
+  # Consider restoring, or getting off Rails static asset mgmt completely.
+  # config.assets.js_compressor = Uglifier.new(harmony: true)
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.

@@ -14,18 +14,24 @@ gem 'pg', '~> 1.1.4'
 # Use Puma as the app server
 gem 'puma', '~> 5.6'
 
+# Data modeling
+gem 'ransack', '~> 2.5.0'
+
 # Asset Gems
 gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
 
-# Other
-gem 'jquery-rails', '~> 4.6'
+# Auth
 gem 'bcrypt', '~> 3.1.13'
+
+# Feed fetching
 gem 'feedjira', '~> 3'
 gem 'httparty'
-gem 'faker'
 gem 'sanitize', '~> 6'
 gem 'metainspector'
+
+# To generate seed data
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
