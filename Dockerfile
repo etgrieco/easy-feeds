@@ -4,20 +4,14 @@ WORKDIR /app
 
 # Installs node for asset pipeline
 RUN apt-get update \
-  && curl -sL https://deb.nodesource.com/setup_10.x | bash \
   && apt-get install -y nodejs
 
-# Installs gems
-ENV BUNDLE_PATH=/bundle \
-  BUNDLE_BIN=/bundle/bin \
-  GEM_HOME=/bundle
-ENV PATH="${BUNDLE_BIN}:${PATH}"
 RUN gem install bundler -v 2.4.22
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --binstubs="$BUNDLE_BIN"
+RUN bundle install
 
 COPY . .
 
 EXPOSE 3000
 
-CMD bundle exec rails server -b 0.0.0.0 -p 3000
+ENTRYPOINT [ "bundle exec rails", "server", "-b", "0.0.0.0", "-p", "3000" ]

@@ -1,6 +1,6 @@
 # EasyFeeds
 
-Live Site Link: [EasyFeeds](http://easyfeeds.herokuapp.com/)
+Live Site Link: [EasyFeeds](https://easy-feeds.onrender.com/)
 
 This project is a [Feedly](http://feedly.com)-inspired web app for RSS feed aggregation. With Easy Feeds, you can add RSS Feeds to a personal library of websites in order to stay up-to-date with your favorite online content.
 
