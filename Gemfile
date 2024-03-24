@@ -18,7 +18,7 @@ gem 'puma', '~> 5.6'
 gem 'ransack', '~> 2.5.0'
 
 # Asset Gems
-gem 'uglifier', '>= 1.3.0'
+gem 'jquery-rails', '~> 4.6'
 gem 'jbuilder', '~> 2.5'
 
 # Auth
