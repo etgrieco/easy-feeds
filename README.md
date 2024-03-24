@@ -12,7 +12,7 @@ This project uses the Rails framework for the backend API, and a React/Redux fra
 - ruby 2.7.8 (recommended to use [rbenv](https://github.com/rbenv/rbenv))
 - bundler (Last bundled with 2.4.22)
 - Postgres server running version 12
-    - If you want to run it in a docker container, run `docker-compose run db`
+    - If you want to simply run Postgres in a docker container, use `docker-compose run db`
     - To back up files from the container development db: `docker-compose exec db sh -c 'pg_dump -U dev easyfeeds_development' > backup.sql`
     - To restore db to a container: `cat backup.sql |  docker-compose exec -T db sh -c 'psql -U dev easyfeeds_development'`
 - yarn 1.x
@@ -24,11 +24,11 @@ bundle install
 bundle exec rails db:setup
 ```
 
-## Running
+## Local running + development
 
 Frontend:
 ```sh
-npm run dev
+yarn run dev
 ```
 
 Backend:
@@ -37,6 +37,23 @@ Backend:
 export $(cat .env.development | xargs)
 # Run the server
 bundle exec rails server
+```
+
+### Running backend services locally via Docker
+
+Prerequisites:
+- Docker
+
+Spin up fresh containers
+
+```sh
+docker-compose up
+```
+
+Setup the databases (migration + seed data)
+
+```sh
+docker-compose exec web bundle exec rails db:setup
 ```
 
 ## Features
@@ -193,7 +210,7 @@ Generated asset files are to be copied into `app/assets/static/`.
 To re-build:
 
 ```sh
-npm run build
+yarn run build
 mv -f dist app/assets/static/dist
 ```
 
