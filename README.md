@@ -192,9 +192,8 @@ Currently, to avoid a complex deployment environment procedures, static assets w
 To re-build:
 
 ```sh
-rm -rf app/assets/static/dist
 npm run build
-cp -r dist app/assets/static
+mv -f dist app/assets/static/dist
 ```
 
 ## Acknowledgements

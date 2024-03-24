@@ -13,7 +13,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400" rel="stylesheet">
 
-    <% if Rails.env.development? -%> 
+    <% if !Rails.env.development? -%> 
     <script type="module">
       import RefreshRuntime from 'http://localhost:5173/@react-refresh'
       RefreshRuntime.injectIntoGlobalHook(window)
