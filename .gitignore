@@ -30,9 +30,14 @@ dist
 # Ignore application configuration
 /config/application.yml
 
+# Ignore locally compiled assets
+public/assets
+
 # Ignore locally generated backups
 backup.sql
 
 !.env.development
 .env.*
 .idea
+
+.yarn*

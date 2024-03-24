@@ -15,6 +15,7 @@ This project uses the Rails framework for the backend API, and a React/Redux fra
     - If you want to run it in a docker container, run `docker-compose run db`
     - To back up files from the container development db: `docker-compose exec db sh -c 'pg_dump -U dev easyfeeds_development' > backup.sql`
     - To restore db to a container: `cat backup.sql |  docker-compose exec -T db sh -c 'psql -U dev easyfeeds_development'`
+- yarn 1.x
 
 ```sh
 # install gems
@@ -194,6 +195,12 @@ To re-build:
 ```sh
 npm run build
 mv -f dist app/assets/static/dist
+```
+
+To test if your server can successfully run in a production-like environment locally:
+
+```sh
+DATABASE_URL={remote_db_url} SECRET_KEY_BASE={secret_key_goes_here} RAILS_ENV=production bundle exec rails server
 ```
 
 ## Acknowledgements
