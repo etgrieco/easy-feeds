@@ -15,6 +15,7 @@ npm-debug.log
 
 # Ignore output bundle files
 dist
+!app/assets/static/dist
 
 # Ignore all logfiles and tempfiles.
 /log/*
