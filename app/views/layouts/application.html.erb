@@ -24,9 +24,10 @@
     <script type="module" src="http://localhost:5173/@vite/client"></script>
     <script type="module" src="http://localhost:5173/frontend/main.jsx"></script>
     <% else -%>
-    <%# TO AVOID COMPLEX BUILD PIPELINE SETUP, THESE ARE HARDCODED FOR NOW %>
-    <script type="module" crossorigin src="/assets/dist/assets/index-DdmFmi0G.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/dist/assets/index-CP0JL9j6.css">
+      <% asset_manifest[:css_files].each do |css_file| %>
+        <link rel="stylesheet" crossorigin href="/assets/dist/<%= css_file %>">
+      <% end %>
+      <script type="module" crossorigin src="/assets/dist/<%= asset_manifest[:entry_js] -%>"></script>
     <% end -%>
   </head>
 
