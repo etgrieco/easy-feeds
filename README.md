@@ -185,9 +185,9 @@ export default props => (
 );
 ```
 
-# Deployment
+# Setting up a deployment environment
 
-Currently, to avoid a complex deployment environment procedures, static assets will be generated and maintained in source control at `app/assets/static/`.
+Generated asset files are to be copied into `app/assets/static/`.
 
 To re-build:
 
