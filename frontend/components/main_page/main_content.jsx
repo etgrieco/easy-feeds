@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Switch, withRouter } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../../util/route_util.jsx';
 import Landing from './landing';
 import SubscriptionStoriesContainer from './stories/stories_container';
@@ -9,7 +9,7 @@ import DiscoverContainer from './feeds/discover_container';
 import SubscriptionStoriesIndexPopout from './stories/subscription_stories_index_popout';
 import StoryShowPopout from './stories/story_show_popout';
 import { receiveFeedTitle } from '../../actions/ui_actions';
-import throttle from 'lodash/throttle';
+import throttle from 'lodash-es/throttle.js';
 
 class MainContent extends React.Component {
   componentDidMount() {

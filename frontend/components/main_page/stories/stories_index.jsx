@@ -1,6 +1,6 @@
 import React from 'react';
 import StoriesIndexItem from './stories_index_item';
-import throttle from 'lodash/throttle';
+import throttle from 'lodash-es/throttle';
 
 class StoriesIndex extends React.Component {
   state = {
